@@ -1,0 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Payanarss Type Designer - Professional IDE-like Design System */
+
+@layer base {
+  :root {
+    /* Core backgrounds */
+    --background: 210 20% 98%;
+    --foreground: 222 47% 11%;
+
+    /* Card surfaces */
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    /* Popovers/modals */
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Primary - Deep blue for headers and CTAs */
+    --primary: 217 91% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Subtle gray-blue */
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    /* Muted elements */
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    /* Accent - Purple for AI/special actions */
+    --accent: 262 83% 58%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Success */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+
+    /* Warning */
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders and inputs */
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 217 91% 40%;
+
+    --radius: 0.5rem;
+
+    /* Sidebar - Clean white with subtle borders */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 217 91% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 40% 96%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-ring: 217 91% 40%;
+
+    /* Header gradient */
+    --header-from: 217 91% 40%;
+    --header-to: 217 91% 32%;
+
+    /* Tree node hover */
+    --tree-hover: 210 40% 96%;
+    --tree-active: 217 91% 95%;
+    --tree-active-border: 217 91% 40%;
+  }
+
+  .dark {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 8%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 8%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 6%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 262 83% 65%;
+    --accent-foreground: 0 0% 100%;
+    --success: 142 76% 46%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 0%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 217 91% 60%;
+    --sidebar-background: 222 47% 8%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 222 47% 6%;
+    --sidebar-accent: 217 33% 17%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 33% 17%;
+    --sidebar-ring: 217 91% 60%;
+    --header-from: 217 91% 32%;
+    --header-to: 217 91% 24%;
+    --tree-hover: 217 33% 12%;
+    --tree-active: 217 91% 15%;
+    --tree-active-border: 217 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+}
+
+@layer components {
+  .header-gradient {
+    background: linear-gradient(135deg, hsl(var(--header-from)) 0%, hsl(var(--header-to)) 100%);
+  }
+
+  .tree-node {
+    @apply rounded-md px-2 py-1.5 cursor-pointer transition-all duration-150;
+  }
+
+  .tree-node:hover {
+    background-color: hsl(var(--tree-hover));
+  }
+
+  .tree-node-active {
+    background-color: hsl(var(--tree-active));
+    border-left: 3px solid hsl(var(--tree-active-border));
+  }
+
+  .prompt-bar {
+    background: linear-gradient(180deg, hsl(var(--card)) 0%, hsl(var(--background)) 100%);
+    box-shadow: 0 -4px 20px -4px hsl(var(--foreground) / 0.08);
+  }
+
+  .table-header {
+    @apply bg-muted text-foreground font-semibold text-sm;
+  }
+
+  .action-button {
+    @apply px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-150;
+  }
+
+  .action-button-primary {
+    @apply action-button bg-primary text-primary-foreground hover:opacity-90;
+  }
+
+  .action-button-success {
+    @apply action-button bg-success text-success-foreground hover:opacity-90;
+  }
+
+  .action-button-warning {
+    @apply action-button bg-warning text-warning-foreground hover:opacity-90;
+  }
+
+  .action-button-destructive {
+    @apply action-button bg-destructive text-destructive-foreground hover:opacity-90;
+  }
+
+  .action-button-accent {
+    @apply action-button bg-accent text-accent-foreground hover:opacity-90;
+  }
+
+  .action-button-secondary {
+    @apply action-button bg-secondary text-secondary-foreground hover:bg-secondary/80;
+  }
+}

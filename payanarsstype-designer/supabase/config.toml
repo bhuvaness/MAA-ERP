@@ -1,0 +1,10 @@
+project_id = "rrdnuyinmvusxzeqonxo"
+
+[functions.generate-types]
+verify_jwt = false
+
+[functions.embed-types]
+verify_jwt = false
+
+[functions.query-types]
+verify_jwt = false
