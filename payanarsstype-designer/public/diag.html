@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head><title>PayanarssType Diagnostic</title></head>
+<body style="font-family:monospace;padding:40px;max-width:900px">
+<h1>🔍 PayanarssType Designer — Diagnostic</h1>
+<div id="output" style="white-space:pre-wrap;font-size:13px"></div>
+<script>
+const log = (msg, color) => {
+  const div = document.getElementById('output');
+  const p = document.createElement('div');
+  p.style.cssText = `padding:4px 0;color:${color||'#333'}`;
+  p.textContent = msg;
+  div.appendChild(p);
+};
+
+(async () => {
+  log('=== Step 1: Loading VanakkamPayanarssTypes.json ===', '#2563eb');
+  try {
+    const r1 = await fetch('/data/VanakkamPayanarssTypes.json');
+    log(`  HTTP status: ${r1.status} ${r1.statusText}`);
+    const text1 = await r1.text();
+    log(`  File size: ${text1.length} chars`);
+    const d1 = JSON.parse(text1);
+    log(`  ✅ Valid JSON — ${d1.length} entries`, 'green');
+    log(`  First entry: ${d1[0]?.Name} (Id: ${d1[0]?.Id?.substring(0,20)}...)`);
+  } catch(e) {
+    log(`  ❌ FAILED: ${e.message}`, 'red');
+  }
+
+  log('');
+  log('=== Step 2: Loading GymBusiness_PayanarssTypes.json ===', '#2563eb');
+  try {
+    const r2 = await fetch('/data/GymBusiness_PayanarssTypes.json');
+    log(`  HTTP status: ${r2.status} ${r2.statusText}`);
+    const text2 = await r2.text();
+    log(`  File size: ${text2.length} chars`);
+    const d2 = JSON.parse(text2);
+    log(`  ✅ Valid JSON — ${d2.length} entries`, 'green');
+    if(d2.length > 0) log(`  First entry: ${d2[0]?.Name} (Id: ${d2[0]?.Id?.substring(0,20)}...)`);
+  } catch(e) {
+    log(`  ❌ FAILED: ${e.message}`, 'red');
+  }
+
+  log('');
+  log('=== Step 3: Testing /api/save-types endpoint ===', '#2563eb');
+  try {
+    const r3 = await fetch('/api/save-types', { method: 'POST', headers: {'Content-Type':'application/json'}, body: '{"types":"test"}' });
+    log(`  HTTP status: ${r3.status} (400 is expected for test)`);
+    const body = await r3.text();
+    log(`  Response: ${body}`);
+    log(`  ✅ API endpoint is reachable`, 'green');
+  } catch(e) {
+    log(`  ⚠️ API not available: ${e.message} (OK if vite.config.ts not updated)`, 'orange');
+  }
+
+  log('');
+  log('=== Step 4: Checking browser console for errors ===', '#2563eb');
+  log('  Open DevTools (F12) → Console tab to see runtime errors');
+  log('  Common issues:');
+  log('  - Corrupted JSON file → parse error → blank screen');
+  log('  - Missing npm packages → import error → blank screen');
+  log('  - Vite HMR loop → page keeps reloading');
+
+  log('');
+  log('=== Done ===', '#2563eb');
+})();
+</script>
+</body>
+</html>

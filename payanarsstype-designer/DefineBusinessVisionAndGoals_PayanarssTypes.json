@@ -1,0 +1,2194 @@
+[
+  {
+    "Id": "VISION00000000000000000000000001",
+    "ParentId": "GYM00000000000000000000000000003",
+    "Name": "Define Business Vision and Goals",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Complete framework to model business vision down to measurable success criteria"
+  },
+  {
+    "Id": "VISION00000000000000000000000002",
+    "ParentId": "VISION00000000000000000000000001",
+    "Name": "Vision Foundation",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Core identity and long-term aspirational direction of the organization"
+  },
+  {
+    "Id": "VISION00000000000000000000000003",
+    "ParentId": "VISION00000000000000000000000002",
+    "Name": "Purpose Statement",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Define why the organization exists beyond profit"
+  },
+  {
+    "Id": "VISION00000000000000000000000004",
+    "ParentId": "VISION00000000000000000000000003",
+    "Name": "Identify Core Problem Being Solved",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "The fundamental problem or need the business addresses"
+  },
+  {
+    "Id": "VISION00000000000000000000000005",
+    "ParentId": "VISION00000000000000000000000003",
+    "Name": "Define Target Beneficiaries",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Who benefits most from the organization's existence"
+  },
+  {
+    "Id": "VISION00000000000000000000000006",
+    "ParentId": "VISION00000000000000000000000003",
+    "Name": "Articulate Social or Economic Impact",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "The broader positive change the business creates"
+  },
+  {
+    "Id": "VISION00000000000000000000000007",
+    "ParentId": "VISION00000000000000000000000003",
+    "Name": "Document Founding Story and Motivation",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "The origin narrative that drives organizational culture"
+  },
+  {
+    "Id": "VISION00000000000000000000000008",
+    "ParentId": "VISION00000000000000000000000002",
+    "Name": "Vision Statement",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "The aspirational future state the organization strives to achieve"
+  },
+  {
+    "Id": "VISION00000000000000000000000009",
+    "ParentId": "VISION00000000000000000000000008",
+    "Name": "Define Long-Term Desired Future State",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "What the world or industry looks like when the vision is realized"
+  },
+  {
+    "Id": "VISION00000000000000000000000010",
+    "ParentId": "VISION00000000000000000000000008",
+    "Name": "Set Vision Time Horizon",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Target year or period for vision realization (5-10-25 years)"
+  },
+  {
+    "Id": "VISION00000000000000000000000011",
+    "ParentId": "VISION00000000000000000000000008",
+    "Name": "Validate Vision with Stakeholders",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Ensure alignment with founders, board, and key leadership"
+  },
+  {
+    "Id": "VISION00000000000000000000000012",
+    "ParentId": "VISION00000000000000000000000008",
+    "Name": "Communicate Vision Across Organization",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Ensure every team member understands and connects with the vision"
+  },
+  {
+    "Id": "VISION00000000000000000000000013",
+    "ParentId": "VISION00000000000000000000000002",
+    "Name": "Mission Statement",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "How the organization delivers on its purpose daily"
+  },
+  {
+    "Id": "VISION00000000000000000000000014",
+    "ParentId": "VISION00000000000000000000000013",
+    "Name": "Define Core Activities",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "The primary activities the business performs to fulfill its mission"
+  },
+  {
+    "Id": "VISION00000000000000000000000015",
+    "ParentId": "VISION00000000000000000000000013",
+    "Name": "Identify Primary Value Delivered",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "The specific value or transformation customers receive"
+  },
+  {
+    "Id": "VISION00000000000000000000000016",
+    "ParentId": "VISION00000000000000000000000013",
+    "Name": "Specify Target Market Served",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "The customer segments the mission directly serves"
+  },
+  {
+    "Id": "VISION00000000000000000000000017",
+    "ParentId": "VISION00000000000000000000000013",
+    "Name": "Differentiate from Competitors",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "What makes the organization's approach uniquely effective"
+  },
+  {
+    "Id": "VISION00000000000000000000000018",
+    "ParentId": "VISION00000000000000000000000002",
+    "Name": "Core Values",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "The non-negotiable principles that guide all decisions and behaviors"
+  },
+  {
+    "Id": "VISION00000000000000000000000019",
+    "ParentId": "VISION00000000000000000000000018",
+    "Name": "Identify Foundational Beliefs",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "The deeply held convictions that shape organizational culture"
+  },
+  {
+    "Id": "VISION00000000000000000000000020",
+    "ParentId": "VISION00000000000000000000000018",
+    "Name": "Define Behavioral Expectations per Value",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "How each value translates into observable daily actions"
+  },
+  {
+    "Id": "VISION00000000000000000000000021",
+    "ParentId": "VISION00000000000000000000000018",
+    "Name": "Establish Value Conflict Resolution Protocol",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "How to decide when two values appear to conflict"
+  },
+  {
+    "Id": "VISION00000000000000000000000022",
+    "ParentId": "VISION00000000000000000000000018",
+    "Name": "Create Values Integration Plan",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "How values are embedded into hiring, evaluation, and promotion"
+  },
+  {
+    "Id": "VISION00000000000000000000000023",
+    "ParentId": "VISION00000000000000000000000001",
+    "Name": "Strategic Themes",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Major strategic pillars that organize the path from vision to execution"
+  },
+  {
+    "Id": "VISION00000000000000000000000024",
+    "ParentId": "VISION00000000000000000000000023",
+    "Name": "Market Growth and Expansion",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Strategies to increase market presence and reach"
+  },
+  {
+    "Id": "VISION00000000000000000000000025",
+    "ParentId": "VISION00000000000000000000000024",
+    "Name": "Geographic Expansion",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Entering new regional or international markets"
+  },
+  {
+    "Id": "VISION00000000000000000000000026",
+    "ParentId": "VISION00000000000000000000000025",
+    "Name": "Identify High-Potential Regions",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Research and rank markets by opportunity size and accessibility"
+  },
+  {
+    "Id": "VISION00000000000000000000000027",
+    "ParentId": "VISION00000000000000000000000025",
+    "Name": "Assess Regulatory and Legal Requirements",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Understand compliance needs per target geography"
+  },
+  {
+    "Id": "VISION00000000000000000000000028",
+    "ParentId": "VISION00000000000000000000000025",
+    "Name": "Define Market Entry Strategy per Region",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Choose between direct entry, partnership, franchise, or acquisition"
+  },
+  {
+    "Id": "VISION00000000000000000000000029",
+    "ParentId": "VISION00000000000000000000000025",
+    "Name": "Estimate Investment Required per Market",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Capital and resource requirements for each expansion target"
+  },
+  {
+    "Id": "VISION00000000000000000000000030",
+    "ParentId": "VISION00000000000000000000000024",
+    "Name": "Customer Segment Expansion",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Reaching new customer demographics or verticals"
+  },
+  {
+    "Id": "VISION00000000000000000000000031",
+    "ParentId": "VISION00000000000000000000000030",
+    "Name": "Identify Underserved Customer Segments",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Find customer groups with unmet needs the business can address"
+  },
+  {
+    "Id": "VISION00000000000000000000000032",
+    "ParentId": "VISION00000000000000000000000030",
+    "Name": "Develop Segment-Specific Value Propositions",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Tailor messaging and packaging for each new segment"
+  },
+  {
+    "Id": "VISION00000000000000000000000033",
+    "ParentId": "VISION00000000000000000000000030",
+    "Name": "Build Segment Entry Pilots",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Run small-scale tests before full segment commitment"
+  },
+  {
+    "Id": "VISION00000000000000000000000034",
+    "ParentId": "VISION00000000000000000000000030",
+    "Name": "Measure Segment Adoption Velocity",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Track how quickly new segments convert and retain"
+  },
+  {
+    "Id": "VISION00000000000000000000000035",
+    "ParentId": "VISION00000000000000000000000024",
+    "Name": "Channel Diversification",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Expanding distribution and access channels"
+  },
+  {
+    "Id": "VISION00000000000000000000000036",
+    "ParentId": "VISION00000000000000000000000035",
+    "Name": "Evaluate Digital vs Physical Channel Mix",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Determine optimal balance of online and offline presence"
+  },
+  {
+    "Id": "VISION00000000000000000000000037",
+    "ParentId": "VISION00000000000000000000000035",
+    "Name": "Assess Partnership and Reseller Opportunities",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Identify third parties that can extend market reach"
+  },
+  {
+    "Id": "VISION00000000000000000000000038",
+    "ParentId": "VISION00000000000000000000000035",
+    "Name": "Build Direct-to-Consumer Capabilities",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Develop owned channels for direct customer relationships"
+  },
+  {
+    "Id": "VISION00000000000000000000000039",
+    "ParentId": "VISION00000000000000000000000023",
+    "Name": "Product and Service Innovation",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Strategies to evolve offerings and stay ahead of market needs"
+  },
+  {
+    "Id": "VISION00000000000000000000000040",
+    "ParentId": "VISION00000000000000000000000039",
+    "Name": "Core Product Evolution",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Continuous improvement of primary offerings"
+  },
+  {
+    "Id": "VISION00000000000000000000000041",
+    "ParentId": "VISION00000000000000000000000040",
+    "Name": "Gather Customer Feedback Systematically",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Structured processes for collecting and analyzing user input"
+  },
+  {
+    "Id": "VISION00000000000000000000000042",
+    "ParentId": "VISION00000000000000000000000040",
+    "Name": "Prioritize Feature Development by Impact",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Rank improvements by customer value and business ROI"
+  },
+  {
+    "Id": "VISION00000000000000000000000043",
+    "ParentId": "VISION00000000000000000000000040",
+    "Name": "Establish Release Cadence",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Define regular intervals for product updates and improvements"
+  },
+  {
+    "Id": "VISION00000000000000000000000044",
+    "ParentId": "VISION00000000000000000000000040",
+    "Name": "Monitor Competitive Product Landscape",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Track competitor offerings to maintain differentiation"
+  },
+  {
+    "Id": "VISION00000000000000000000000045",
+    "ParentId": "VISION00000000000000000000000039",
+    "Name": "New Product Development",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Creating entirely new offerings to capture adjacent opportunities"
+  },
+  {
+    "Id": "VISION00000000000000000000000046",
+    "ParentId": "VISION00000000000000000000000045",
+    "Name": "Identify Adjacent Market Opportunities",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Find related needs the business is uniquely positioned to solve"
+  },
+  {
+    "Id": "VISION00000000000000000000000047",
+    "ParentId": "VISION00000000000000000000000045",
+    "Name": "Build Rapid Prototyping Capability",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Develop internal capacity to test new ideas quickly and cheaply"
+  },
+  {
+    "Id": "VISION00000000000000000000000048",
+    "ParentId": "VISION00000000000000000000000045",
+    "Name": "Define Stage-Gate Innovation Process",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Structured process from ideation to launch with clear checkpoints"
+  },
+  {
+    "Id": "VISION00000000000000000000000049",
+    "ParentId": "VISION00000000000000000000000039",
+    "Name": "Technology and Platform Strategy",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Leveraging technology as a competitive advantage"
+  },
+  {
+    "Id": "VISION00000000000000000000000050",
+    "ParentId": "VISION00000000000000000000000049",
+    "Name": "Define Technology Investment Roadmap",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Multi-year plan for technology capabilities and infrastructure"
+  },
+  {
+    "Id": "VISION00000000000000000000000051",
+    "ParentId": "VISION00000000000000000000000049",
+    "Name": "Evaluate Build vs Buy vs Partner Decisions",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Framework for technology acquisition strategy"
+  },
+  {
+    "Id": "VISION00000000000000000000000052",
+    "ParentId": "VISION00000000000000000000000049",
+    "Name": "Establish Data and AI Strategy",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "How data and artificial intelligence drive product and decisions"
+  },
+  {
+    "Id": "VISION00000000000000000000000053",
+    "ParentId": "VISION00000000000000000000000023",
+    "Name": "Operational Excellence",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Strategies to maximize efficiency, quality, and scalability"
+  },
+  {
+    "Id": "VISION00000000000000000000000054",
+    "ParentId": "VISION00000000000000000000000053",
+    "Name": "Process Optimization",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Streamlining workflows for speed and cost efficiency"
+  },
+  {
+    "Id": "VISION00000000000000000000000055",
+    "ParentId": "VISION00000000000000000000000054",
+    "Name": "Map End-to-End Business Processes",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Document all core processes from trigger to completion"
+  },
+  {
+    "Id": "VISION00000000000000000000000056",
+    "ParentId": "VISION00000000000000000000000054",
+    "Name": "Identify Bottlenecks and Waste",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Find and quantify inefficiencies in current workflows"
+  },
+  {
+    "Id": "VISION00000000000000000000000057",
+    "ParentId": "VISION00000000000000000000000054",
+    "Name": "Define Automation Opportunities",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Identify processes suitable for technology-driven automation"
+  },
+  {
+    "Id": "VISION00000000000000000000000058",
+    "ParentId": "VISION00000000000000000000000054",
+    "Name": "Establish Continuous Improvement Culture",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Embed ongoing optimization as an organizational habit"
+  },
+  {
+    "Id": "VISION00000000000000000000000059",
+    "ParentId": "VISION00000000000000000000000053",
+    "Name": "Quality Management",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Ensuring consistent quality across all outputs"
+  },
+  {
+    "Id": "VISION00000000000000000000000060",
+    "ParentId": "VISION00000000000000000000000059",
+    "Name": "Define Quality Standards per Output Type",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Specific measurable criteria for each deliverable"
+  },
+  {
+    "Id": "VISION00000000000000000000000061",
+    "ParentId": "VISION00000000000000000000000059",
+    "Name": "Implement Quality Assurance Checkpoints",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Stage gates that verify quality before progression"
+  },
+  {
+    "Id": "VISION00000000000000000000000062",
+    "ParentId": "VISION00000000000000000000000059",
+    "Name": "Establish Defect Tracking and Resolution",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Systematic process for identifying and fixing quality issues"
+  },
+  {
+    "Id": "VISION00000000000000000000000063",
+    "ParentId": "VISION00000000000000000000000053",
+    "Name": "Scalability Planning",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Preparing systems and teams to handle growth without degradation"
+  },
+  {
+    "Id": "VISION00000000000000000000000064",
+    "ParentId": "VISION00000000000000000000000063",
+    "Name": "Assess Current Capacity Constraints",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Identify what limits growth today (people, systems, capital)"
+  },
+  {
+    "Id": "VISION00000000000000000000000065",
+    "ParentId": "VISION00000000000000000000000063",
+    "Name": "Design Scalable Architecture",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Build systems that grow incrementally without redesign"
+  },
+  {
+    "Id": "VISION00000000000000000000000066",
+    "ParentId": "VISION00000000000000000000000063",
+    "Name": "Plan Headcount and Skill Growth",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Workforce planning aligned with projected growth trajectory"
+  },
+  {
+    "Id": "VISION00000000000000000000000067",
+    "ParentId": "VISION00000000000000000000000023",
+    "Name": "Customer Experience and Loyalty",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Strategies to deliver exceptional experiences and build lasting relationships"
+  },
+  {
+    "Id": "VISION00000000000000000000000068",
+    "ParentId": "VISION00000000000000000000000067",
+    "Name": "Customer Journey Optimization",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Improving every touchpoint in the customer lifecycle"
+  },
+  {
+    "Id": "VISION00000000000000000000000069",
+    "ParentId": "VISION00000000000000000000000068",
+    "Name": "Map Complete Customer Journey",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Document all interactions from awareness to advocacy"
+  },
+  {
+    "Id": "VISION00000000000000000000000070",
+    "ParentId": "VISION00000000000000000000000068",
+    "Name": "Identify Pain Points per Journey Stage",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Find friction and frustration in current experience"
+  },
+  {
+    "Id": "VISION00000000000000000000000071",
+    "ParentId": "VISION00000000000000000000000068",
+    "Name": "Design Journey Improvements per Stage",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Specific interventions to reduce friction and increase delight"
+  },
+  {
+    "Id": "VISION00000000000000000000000072",
+    "ParentId": "VISION00000000000000000000000068",
+    "Name": "Measure Journey Satisfaction Scores",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Track experience quality at each stage over time"
+  },
+  {
+    "Id": "VISION00000000000000000000000073",
+    "ParentId": "VISION00000000000000000000000067",
+    "Name": "Retention and Loyalty Programs",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Systems to keep customers engaged and returning"
+  },
+  {
+    "Id": "VISION00000000000000000000000074",
+    "ParentId": "VISION00000000000000000000000073",
+    "Name": "Design Loyalty Reward Structure",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Incentive programs that reward continued engagement"
+  },
+  {
+    "Id": "VISION00000000000000000000000075",
+    "ParentId": "VISION00000000000000000000000073",
+    "Name": "Build Proactive Churn Prevention",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Early warning systems and interventions for at-risk customers"
+  },
+  {
+    "Id": "VISION00000000000000000000000076",
+    "ParentId": "VISION00000000000000000000000073",
+    "Name": "Create Customer Community Platform",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Spaces for customers to connect, share, and advocate"
+  },
+  {
+    "Id": "VISION00000000000000000000000077",
+    "ParentId": "VISION00000000000000000000000067",
+    "Name": "Voice of Customer Program",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Systematic listening to customer needs and sentiment"
+  },
+  {
+    "Id": "VISION00000000000000000000000078",
+    "ParentId": "VISION00000000000000000000000077",
+    "Name": "Establish Regular Customer Surveys",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Scheduled feedback collection across all segments"
+  },
+  {
+    "Id": "VISION00000000000000000000000079",
+    "ParentId": "VISION00000000000000000000000077",
+    "Name": "Build Customer Advisory Board",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Select group of key customers who provide strategic input"
+  },
+  {
+    "Id": "VISION00000000000000000000000080",
+    "ParentId": "VISION00000000000000000000000077",
+    "Name": "Monitor Social and Review Sentiment",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Track public perception across digital channels"
+  },
+  {
+    "Id": "VISION00000000000000000000000081",
+    "ParentId": "VISION00000000000000000000000023",
+    "Name": "People and Culture",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Strategies to attract, develop, and retain exceptional talent"
+  },
+  {
+    "Id": "VISION00000000000000000000000082",
+    "ParentId": "VISION00000000000000000000000081",
+    "Name": "Talent Acquisition Strategy",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Building a pipeline of exceptional candidates"
+  },
+  {
+    "Id": "VISION00000000000000000000000083",
+    "ParentId": "VISION00000000000000000000000082",
+    "Name": "Define Employer Brand and Value Proposition",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "What makes the organization a compelling place to work"
+  },
+  {
+    "Id": "VISION00000000000000000000000084",
+    "ParentId": "VISION00000000000000000000000082",
+    "Name": "Build Diverse Sourcing Channels",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Multiple pathways to reach different talent pools"
+  },
+  {
+    "Id": "VISION00000000000000000000000085",
+    "ParentId": "VISION00000000000000000000000082",
+    "Name": "Design Rigorous and Fair Selection Process",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Structured interviews and assessments that predict success"
+  },
+  {
+    "Id": "VISION00000000000000000000000086",
+    "ParentId": "VISION00000000000000000000000081",
+    "Name": "Talent Development and Growth",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Helping people grow their skills and careers"
+  },
+  {
+    "Id": "VISION00000000000000000000000087",
+    "ParentId": "VISION00000000000000000000000086",
+    "Name": "Create Individual Development Plans",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Personalized growth roadmaps for each team member"
+  },
+  {
+    "Id": "VISION00000000000000000000000088",
+    "ParentId": "VISION00000000000000000000000086",
+    "Name": "Build Internal Training Programs",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Structured learning opportunities aligned with business needs"
+  },
+  {
+    "Id": "VISION00000000000000000000000089",
+    "ParentId": "VISION00000000000000000000000086",
+    "Name": "Establish Mentorship and Coaching Programs",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Pairing experienced leaders with developing talent"
+  },
+  {
+    "Id": "VISION00000000000000000000000090",
+    "ParentId": "VISION00000000000000000000000086",
+    "Name": "Define Career Pathways and Progression",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Clear routes for advancement within the organization"
+  },
+  {
+    "Id": "VISION00000000000000000000000091",
+    "ParentId": "VISION00000000000000000000000081",
+    "Name": "Culture and Engagement",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Creating an environment where people do their best work"
+  },
+  {
+    "Id": "VISION00000000000000000000000092",
+    "ParentId": "VISION00000000000000000000000091",
+    "Name": "Measure Employee Engagement Regularly",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Pulse surveys and feedback mechanisms for culture health"
+  },
+  {
+    "Id": "VISION00000000000000000000000093",
+    "ParentId": "VISION00000000000000000000000091",
+    "Name": "Design Recognition and Reward Systems",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Programs that celebrate contributions and achievements"
+  },
+  {
+    "Id": "VISION00000000000000000000000094",
+    "ParentId": "VISION00000000000000000000000091",
+    "Name": "Foster Inclusion and Belonging",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Practices that ensure every person feels valued and heard"
+  },
+  {
+    "Id": "VISION00000000000000000000000095",
+    "ParentId": "VISION00000000000000000000000023",
+    "Name": "Financial Sustainability",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Strategies to ensure long-term financial health and resilience"
+  },
+  {
+    "Id": "VISION00000000000000000000000096",
+    "ParentId": "VISION00000000000000000000000095",
+    "Name": "Revenue Diversification",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Building multiple sustainable revenue streams"
+  },
+  {
+    "Id": "VISION00000000000000000000000097",
+    "ParentId": "VISION00000000000000000000000096",
+    "Name": "Identify Potential Revenue Streams",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Catalog all possible ways the business can generate income"
+  },
+  {
+    "Id": "VISION00000000000000000000000098",
+    "ParentId": "VISION00000000000000000000000096",
+    "Name": "Evaluate Revenue Stream Viability",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Assess each stream for size, margin, and strategic fit"
+  },
+  {
+    "Id": "VISION00000000000000000000000099",
+    "ParentId": "VISION00000000000000000000000096",
+    "Name": "Build Revenue Stream Launch Plans",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Execution plans for activating new revenue sources"
+  },
+  {
+    "Id": "VISION00000000000000000000000100",
+    "ParentId": "VISION00000000000000000000000095",
+    "Name": "Cost Structure Optimization",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Managing costs for maximum efficiency without sacrificing quality"
+  },
+  {
+    "Id": "VISION00000000000000000000000101",
+    "ParentId": "VISION00000000000000000000000100",
+    "Name": "Categorize Costs as Fixed vs Variable",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Understand cost behavior to improve financial flexibility"
+  },
+  {
+    "Id": "VISION00000000000000000000000102",
+    "ParentId": "VISION00000000000000000000000100",
+    "Name": "Identify Cost Reduction Opportunities",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Find areas where spending can decrease without value loss"
+  },
+  {
+    "Id": "VISION00000000000000000000000103",
+    "ParentId": "VISION00000000000000000000000100",
+    "Name": "Negotiate Strategic Vendor Partnerships",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Build long-term supplier relationships that reduce cost"
+  },
+  {
+    "Id": "VISION00000000000000000000000104",
+    "ParentId": "VISION00000000000000000000000095",
+    "Name": "Funding and Investment Strategy",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Securing capital for growth and operations"
+  },
+  {
+    "Id": "VISION00000000000000000000000105",
+    "ParentId": "VISION00000000000000000000000104",
+    "Name": "Define Capital Requirements by Phase",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "How much funding is needed and when"
+  },
+  {
+    "Id": "VISION00000000000000000000000106",
+    "ParentId": "VISION00000000000000000000000104",
+    "Name": "Evaluate Funding Source Options",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Compare debt, equity, grants, and internal funding"
+  },
+  {
+    "Id": "VISION00000000000000000000000107",
+    "ParentId": "VISION00000000000000000000000104",
+    "Name": "Build Investor and Lender Relationships",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Proactive relationship management with capital providers"
+  },
+  {
+    "Id": "VISION00000000000000000000000108",
+    "ParentId": "VISION00000000000000000000000001",
+    "Name": "Strategic Goals",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Specific, time-bound goals that advance each strategic theme"
+  },
+  {
+    "Id": "VISION00000000000000000000000109",
+    "ParentId": "VISION00000000000000000000000108",
+    "Name": "Growth Goals",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Goals focused on increasing market presence and revenue"
+  },
+  {
+    "Id": "VISION00000000000000000000000110",
+    "ParentId": "VISION00000000000000000000000109",
+    "Name": "Achieve Target Market Share",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Reach a defined percentage of addressable market"
+  },
+  {
+    "Id": "VISION00000000000000000000000111",
+    "ParentId": "VISION00000000000000000000000110",
+    "Name": "Define Addressable Market Size",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Total available market in revenue or units"
+  },
+  {
+    "Id": "VISION00000000000000000000000112",
+    "ParentId": "VISION00000000000000000000000110",
+    "Name": "Set Market Share Target by Year",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Incremental market share milestones per fiscal year"
+  },
+  {
+    "Id": "VISION00000000000000000000000113",
+    "ParentId": "VISION00000000000000000000000110",
+    "Name": "Identify Market Share Measurement Method",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "How market share will be tracked and verified"
+  },
+  {
+    "Id": "VISION00000000000000000000000114",
+    "ParentId": "VISION00000000000000000000000109",
+    "Name": "Reach Revenue Milestones",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Hit defined revenue targets within specified timeframes"
+  },
+  {
+    "Id": "VISION00000000000000000000000115",
+    "ParentId": "VISION00000000000000000000000114",
+    "Name": "Set Annual Revenue Targets",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Year-over-year revenue goals with growth percentages"
+  },
+  {
+    "Id": "VISION00000000000000000000000116",
+    "ParentId": "VISION00000000000000000000000114",
+    "Name": "Define Revenue by Product Line",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Revenue contribution expected from each offering"
+  },
+  {
+    "Id": "VISION00000000000000000000000117",
+    "ParentId": "VISION00000000000000000000000114",
+    "Name": "Establish Monthly Revenue Tracking",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Regular monitoring cadence for revenue performance"
+  },
+  {
+    "Id": "VISION00000000000000000000000118",
+    "ParentId": "VISION00000000000000000000000109",
+    "Name": "Expand Customer Base",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Grow the total number of active customers"
+  },
+  {
+    "Id": "VISION00000000000000000000000119",
+    "ParentId": "VISION00000000000000000000000118",
+    "Name": "Set Customer Acquisition Targets",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Number of new customers to acquire per period"
+  },
+  {
+    "Id": "VISION00000000000000000000000120",
+    "ParentId": "VISION00000000000000000000000118",
+    "Name": "Define Customer Acquisition Cost Ceiling",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Maximum acceptable cost to acquire each customer"
+  },
+  {
+    "Id": "VISION00000000000000000000000121",
+    "ParentId": "VISION00000000000000000000000118",
+    "Name": "Track Customer Growth Rate Monthly",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Monitor velocity of customer base expansion"
+  },
+  {
+    "Id": "VISION00000000000000000000000122",
+    "ParentId": "VISION00000000000000000000000108",
+    "Name": "Product Goals",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Goals focused on product development and innovation"
+  },
+  {
+    "Id": "VISION00000000000000000000000123",
+    "ParentId": "VISION00000000000000000000000122",
+    "Name": "Launch New Products on Schedule",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Deliver planned product launches within committed timelines"
+  },
+  {
+    "Id": "VISION00000000000000000000000124",
+    "ParentId": "VISION00000000000000000000000123",
+    "Name": "Define Product Launch Calendar",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Scheduled launch dates for all planned products"
+  },
+  {
+    "Id": "VISION00000000000000000000000125",
+    "ParentId": "VISION00000000000000000000000123",
+    "Name": "Set Development Milestone Checkpoints",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Key dates for design, build, test, and release phases"
+  },
+  {
+    "Id": "VISION00000000000000000000000126",
+    "ParentId": "VISION00000000000000000000000123",
+    "Name": "Measure Time-to-Market per Product",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Track duration from concept approval to market availability"
+  },
+  {
+    "Id": "VISION00000000000000000000000127",
+    "ParentId": "VISION00000000000000000000000122",
+    "Name": "Improve Product Quality Scores",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Increase customer satisfaction with product quality"
+  },
+  {
+    "Id": "VISION00000000000000000000000128",
+    "ParentId": "VISION00000000000000000000000127",
+    "Name": "Set Product Quality Baseline",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Current quality scores across all measurable dimensions"
+  },
+  {
+    "Id": "VISION00000000000000000000000129",
+    "ParentId": "VISION00000000000000000000000127",
+    "Name": "Define Quality Improvement Targets",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Specific score improvements expected per measurement period"
+  },
+  {
+    "Id": "VISION00000000000000000000000130",
+    "ParentId": "VISION00000000000000000000000127",
+    "Name": "Implement Quality Feedback Loops",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Systems that route quality data back to development teams"
+  },
+  {
+    "Id": "VISION00000000000000000000000131",
+    "ParentId": "VISION00000000000000000000000108",
+    "Name": "Operational Goals",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Goals focused on efficiency and process performance"
+  },
+  {
+    "Id": "VISION00000000000000000000000132",
+    "ParentId": "VISION00000000000000000000000131",
+    "Name": "Reduce Operational Costs",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Decrease cost-per-unit while maintaining or improving quality"
+  },
+  {
+    "Id": "VISION00000000000000000000000133",
+    "ParentId": "VISION00000000000000000000000132",
+    "Name": "Set Cost Reduction Percentage Targets",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Specific percentage reduction goals by cost category"
+  },
+  {
+    "Id": "VISION00000000000000000000000134",
+    "ParentId": "VISION00000000000000000000000132",
+    "Name": "Identify Top Cost Reduction Initiatives",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "The highest-impact projects for reducing operational costs"
+  },
+  {
+    "Id": "VISION00000000000000000000000135",
+    "ParentId": "VISION00000000000000000000000132",
+    "Name": "Track Cost Savings Realized Monthly",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Monitor actual savings against planned targets"
+  },
+  {
+    "Id": "VISION00000000000000000000000136",
+    "ParentId": "VISION00000000000000000000000131",
+    "Name": "Improve Process Cycle Times",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Reduce the time required for key business processes"
+  },
+  {
+    "Id": "VISION00000000000000000000000137",
+    "ParentId": "VISION00000000000000000000000136",
+    "Name": "Baseline Current Cycle Times",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Measure current duration for all critical processes"
+  },
+  {
+    "Id": "VISION00000000000000000000000138",
+    "ParentId": "VISION00000000000000000000000136",
+    "Name": "Set Cycle Time Reduction Targets",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Specific time reduction goals per process"
+  },
+  {
+    "Id": "VISION00000000000000000000000139",
+    "ParentId": "VISION00000000000000000000000136",
+    "Name": "Implement Process Improvement Projects",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Execute structured initiatives to reduce cycle times"
+  },
+  {
+    "Id": "VISION00000000000000000000000140",
+    "ParentId": "VISION00000000000000000000000108",
+    "Name": "Customer Goals",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Goals focused on customer satisfaction and retention"
+  },
+  {
+    "Id": "VISION00000000000000000000000141",
+    "ParentId": "VISION00000000000000000000000140",
+    "Name": "Improve Customer Satisfaction Score",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Increase overall CSAT or NPS ratings"
+  },
+  {
+    "Id": "VISION00000000000000000000000142",
+    "ParentId": "VISION00000000000000000000000141",
+    "Name": "Establish Current Satisfaction Baseline",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Measure and document current satisfaction scores"
+  },
+  {
+    "Id": "VISION00000000000000000000000143",
+    "ParentId": "VISION00000000000000000000000141",
+    "Name": "Set Satisfaction Score Improvement Targets",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Specific point improvements expected per measurement period"
+  },
+  {
+    "Id": "VISION00000000000000000000000144",
+    "ParentId": "VISION00000000000000000000000141",
+    "Name": "Design Satisfaction Improvement Initiatives",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Targeted actions to address top dissatisfaction drivers"
+  },
+  {
+    "Id": "VISION00000000000000000000000145",
+    "ParentId": "VISION00000000000000000000000140",
+    "Name": "Increase Customer Retention Rate",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Reduce customer churn and increase repeat engagement"
+  },
+  {
+    "Id": "VISION00000000000000000000000146",
+    "ParentId": "VISION00000000000000000000000145",
+    "Name": "Measure Current Retention and Churn Rates",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Baseline metrics for customer lifecycle duration"
+  },
+  {
+    "Id": "VISION00000000000000000000000147",
+    "ParentId": "VISION00000000000000000000000145",
+    "Name": "Set Retention Rate Improvement Targets",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Specific percentage improvements in retention per period"
+  },
+  {
+    "Id": "VISION00000000000000000000000148",
+    "ParentId": "VISION00000000000000000000000145",
+    "Name": "Build Retention-Focused Interventions",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Programs and actions designed to keep customers engaged"
+  },
+  {
+    "Id": "VISION00000000000000000000000149",
+    "ParentId": "VISION00000000000000000000000108",
+    "Name": "Financial Goals",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Goals focused on financial performance and sustainability"
+  },
+  {
+    "Id": "VISION00000000000000000000000150",
+    "ParentId": "VISION00000000000000000000000149",
+    "Name": "Achieve Profitability Milestones",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Reach defined profit margin targets within timeframes"
+  },
+  {
+    "Id": "VISION00000000000000000000000151",
+    "ParentId": "VISION00000000000000000000000150",
+    "Name": "Set Gross Margin Targets",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Target gross profit margins by product and overall"
+  },
+  {
+    "Id": "VISION00000000000000000000000152",
+    "ParentId": "VISION00000000000000000000000150",
+    "Name": "Set Net Profit Targets by Year",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Year-over-year net profitability goals"
+  },
+  {
+    "Id": "VISION00000000000000000000000153",
+    "ParentId": "VISION00000000000000000000000150",
+    "Name": "Define Break-Even Timeline",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "When the business expects to become consistently profitable"
+  },
+  {
+    "Id": "VISION00000000000000000000000154",
+    "ParentId": "VISION00000000000000000000000149",
+    "Name": "Build Financial Reserves",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Accumulate cash reserves for resilience and opportunity"
+  },
+  {
+    "Id": "VISION00000000000000000000000155",
+    "ParentId": "VISION00000000000000000000000154",
+    "Name": "Set Reserve Fund Target Amount",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Minimum cash reserve expressed in months of operating cost"
+  },
+  {
+    "Id": "VISION00000000000000000000000156",
+    "ParentId": "VISION00000000000000000000000154",
+    "Name": "Define Reserve Contribution Schedule",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "How much and how often funds are allocated to reserves"
+  },
+  {
+    "Id": "VISION00000000000000000000000157",
+    "ParentId": "VISION00000000000000000000000154",
+    "Name": "Establish Reserve Usage Policy",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Rules governing when and how reserves can be accessed"
+  },
+  {
+    "Id": "VISION00000000000000000000000158",
+    "ParentId": "VISION00000000000000000000000108",
+    "Name": "People Goals",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Goals focused on team building and organizational capability"
+  },
+  {
+    "Id": "VISION00000000000000000000000159",
+    "ParentId": "VISION00000000000000000000000158",
+    "Name": "Build Leadership Pipeline",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Develop internal candidates for future leadership roles"
+  },
+  {
+    "Id": "VISION00000000000000000000000160",
+    "ParentId": "VISION00000000000000000000000159",
+    "Name": "Identify High-Potential Individuals",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Assessment criteria and process for leadership potential"
+  },
+  {
+    "Id": "VISION00000000000000000000000161",
+    "ParentId": "VISION00000000000000000000000159",
+    "Name": "Create Leadership Development Tracks",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Structured programs for advancing leadership capability"
+  },
+  {
+    "Id": "VISION00000000000000000000000162",
+    "ParentId": "VISION00000000000000000000000159",
+    "Name": "Set Internal Promotion Rate Targets",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Percentage of leadership roles filled from within"
+  },
+  {
+    "Id": "VISION00000000000000000000000163",
+    "ParentId": "VISION00000000000000000000000158",
+    "Name": "Achieve Employee Engagement Targets",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Reach defined levels of team engagement and satisfaction"
+  },
+  {
+    "Id": "VISION00000000000000000000000164",
+    "ParentId": "VISION00000000000000000000000163",
+    "Name": "Set Engagement Score Targets",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Specific engagement index improvements per survey cycle"
+  },
+  {
+    "Id": "VISION00000000000000000000000165",
+    "ParentId": "VISION00000000000000000000000163",
+    "Name": "Identify Top Engagement Drivers",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "The factors that most influence engagement for this workforce"
+  },
+  {
+    "Id": "VISION00000000000000000000000166",
+    "ParentId": "VISION00000000000000000000000163",
+    "Name": "Design Targeted Engagement Initiatives",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Actions specifically aimed at improving key engagement drivers"
+  },
+  {
+    "Id": "VISION00000000000000000000000167",
+    "ParentId": "VISION00000000000000000000000001",
+    "Name": "Strategic Objectives",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "SMART objectives that make goals actionable and measurable"
+  },
+  {
+    "Id": "VISION00000000000000000000000168",
+    "ParentId": "VISION00000000000000000000000167",
+    "Name": "Revenue Objectives",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Specific measurable revenue-related objectives"
+  },
+  {
+    "Id": "VISION00000000000000000000000169",
+    "ParentId": "VISION00000000000000000000000168",
+    "Name": "Increase Monthly Recurring Revenue by X%",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Grow MRR by a defined percentage within a fiscal year"
+  },
+  {
+    "Id": "VISION00000000000000000000000170",
+    "ParentId": "VISION00000000000000000000000169",
+    "Name": "Define MRR Baseline",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Current monthly recurring revenue as starting point"
+  },
+  {
+    "Id": "VISION00000000000000000000000171",
+    "ParentId": "VISION00000000000000000000000169",
+    "Name": "Set Quarterly MRR Growth Milestones",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Incremental targets for each quarter of the year"
+  },
+  {
+    "Id": "VISION00000000000000000000000172",
+    "ParentId": "VISION00000000000000000000000169",
+    "Name": "Assign Revenue Growth Ownership",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Person or team accountable for hitting MRR targets"
+  },
+  {
+    "Id": "VISION00000000000000000000000173",
+    "ParentId": "VISION00000000000000000000000168",
+    "Name": "Achieve X New Enterprise Clients per Quarter",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Acquire a defined number of high-value clients each quarter"
+  },
+  {
+    "Id": "VISION00000000000000000000000174",
+    "ParentId": "VISION00000000000000000000000173",
+    "Name": "Define Enterprise Client Criteria",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Revenue threshold and characteristics that define enterprise"
+  },
+  {
+    "Id": "VISION00000000000000000000000175",
+    "ParentId": "VISION00000000000000000000000173",
+    "Name": "Build Enterprise Sales Pipeline",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Structured pipeline with stage definitions and conversion targets"
+  },
+  {
+    "Id": "VISION00000000000000000000000176",
+    "ParentId": "VISION00000000000000000000000173",
+    "Name": "Track Enterprise Win Rate",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Measure percentage of enterprise opportunities that close"
+  },
+  {
+    "Id": "VISION00000000000000000000000177",
+    "ParentId": "VISION00000000000000000000000167",
+    "Name": "Product Objectives",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Specific measurable product-related objectives"
+  },
+  {
+    "Id": "VISION00000000000000000000000178",
+    "ParentId": "VISION00000000000000000000000177",
+    "Name": "Reduce Product Defect Rate to X%",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Decrease bugs and defects below a defined threshold"
+  },
+  {
+    "Id": "VISION00000000000000000000000179",
+    "ParentId": "VISION00000000000000000000000178",
+    "Name": "Categorize Defects by Severity",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Classification system for critical, major, and minor defects"
+  },
+  {
+    "Id": "VISION00000000000000000000000180",
+    "ParentId": "VISION00000000000000000000000178",
+    "Name": "Set Defect Rate Reduction Timeline",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Month-by-month targets for defect rate improvement"
+  },
+  {
+    "Id": "VISION00000000000000000000000181",
+    "ParentId": "VISION00000000000000000000000178",
+    "Name": "Implement Automated Quality Testing",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Invest in automation to catch defects earlier in development"
+  },
+  {
+    "Id": "VISION00000000000000000000000182",
+    "ParentId": "VISION00000000000000000000000177",
+    "Name": "Achieve X% Feature Adoption Rate",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Ensure new features are actually used by target percentage of users"
+  },
+  {
+    "Id": "VISION00000000000000000000000183",
+    "ParentId": "VISION00000000000000000000000182",
+    "Name": "Define Feature Adoption Measurement",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "How adoption is tracked (activation, usage frequency, depth)"
+  },
+  {
+    "Id": "VISION00000000000000000000000184",
+    "ParentId": "VISION00000000000000000000000182",
+    "Name": "Set Adoption Targets per Feature Launch",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Expected adoption percentage within 30/60/90 days of release"
+  },
+  {
+    "Id": "VISION00000000000000000000000185",
+    "ParentId": "VISION00000000000000000000000182",
+    "Name": "Build Feature Onboarding Flows",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "In-product guidance to help users discover and adopt new features"
+  },
+  {
+    "Id": "VISION00000000000000000000000186",
+    "ParentId": "VISION00000000000000000000000167",
+    "Name": "Operational Objectives",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Specific measurable operations-related objectives"
+  },
+  {
+    "Id": "VISION00000000000000000000000187",
+    "ParentId": "VISION00000000000000000000000186",
+    "Name": "Reduce Average Response Time to X Hours",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Decrease customer support response time to a defined target"
+  },
+  {
+    "Id": "VISION00000000000000000000000188",
+    "ParentId": "VISION00000000000000000000000187",
+    "Name": "Measure Current Average Response Time",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Baseline measurement across all support channels"
+  },
+  {
+    "Id": "VISION00000000000000000000000189",
+    "ParentId": "VISION00000000000000000000000187",
+    "Name": "Set Response Time Targets by Channel",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Different targets for email, chat, phone, and social"
+  },
+  {
+    "Id": "VISION00000000000000000000000190",
+    "ParentId": "VISION00000000000000000000000187",
+    "Name": "Implement Response Time Monitoring",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Real-time dashboards tracking response performance"
+  },
+  {
+    "Id": "VISION00000000000000000000000191",
+    "ParentId": "VISION00000000000000000000000186",
+    "Name": "Achieve X% First-Contact Resolution Rate",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Resolve customer issues on first interaction at target rate"
+  },
+  {
+    "Id": "VISION00000000000000000000000192",
+    "ParentId": "VISION00000000000000000000000191",
+    "Name": "Define First-Contact Resolution Criteria",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "What qualifies as resolved on first contact"
+  },
+  {
+    "Id": "VISION00000000000000000000000193",
+    "ParentId": "VISION00000000000000000000000191",
+    "Name": "Set FCR Improvement Milestones",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Quarterly targets for first-contact resolution improvement"
+  },
+  {
+    "Id": "VISION00000000000000000000000194",
+    "ParentId": "VISION00000000000000000000000191",
+    "Name": "Build Knowledge Base for Common Issues",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Self-service and agent resources to improve resolution speed"
+  },
+  {
+    "Id": "VISION00000000000000000000000195",
+    "ParentId": "VISION00000000000000000000000167",
+    "Name": "Customer Objectives",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Specific measurable customer-related objectives"
+  },
+  {
+    "Id": "VISION00000000000000000000000196",
+    "ParentId": "VISION00000000000000000000000195",
+    "Name": "Achieve Net Promoter Score of X",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Reach a defined NPS target within a specific timeframe"
+  },
+  {
+    "Id": "VISION00000000000000000000000197",
+    "ParentId": "VISION00000000000000000000000196",
+    "Name": "Establish NPS Measurement Process",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "How, when, and to whom NPS surveys are sent"
+  },
+  {
+    "Id": "VISION00000000000000000000000198",
+    "ParentId": "VISION00000000000000000000000196",
+    "Name": "Set NPS Improvement Quarterly Targets",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Incremental NPS point improvements per quarter"
+  },
+  {
+    "Id": "VISION00000000000000000000000199",
+    "ParentId": "VISION00000000000000000000000196",
+    "Name": "Identify and Act on Detractor Feedback",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Process for converting detractor feedback into improvements"
+  },
+  {
+    "Id": "VISION00000000000000000000000200",
+    "ParentId": "VISION00000000000000000000000195",
+    "Name": "Reduce Customer Churn to X%",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Decrease monthly or annual customer churn below target threshold"
+  },
+  {
+    "Id": "VISION00000000000000000000000201",
+    "ParentId": "VISION00000000000000000000000200",
+    "Name": "Analyze Churn Root Causes",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Identify the top reasons customers leave"
+  },
+  {
+    "Id": "VISION00000000000000000000000202",
+    "ParentId": "VISION00000000000000000000000200",
+    "Name": "Build Churn Prediction Model",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Early warning system based on behavioral indicators"
+  },
+  {
+    "Id": "VISION00000000000000000000000203",
+    "ParentId": "VISION00000000000000000000000200",
+    "Name": "Design Win-Back Campaigns",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Targeted outreach to recover recently churned customers"
+  },
+  {
+    "Id": "VISION00000000000000000000000204",
+    "ParentId": "VISION00000000000000000000000001",
+    "Name": "Success Metrics",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Measurable KPIs and tracking systems for every level of the hierarchy"
+  },
+  {
+    "Id": "VISION00000000000000000000000205",
+    "ParentId": "VISION00000000000000000000000204",
+    "Name": "Financial Metrics",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Metrics tracking financial health and performance"
+  },
+  {
+    "Id": "VISION00000000000000000000000206",
+    "ParentId": "VISION00000000000000000000000205",
+    "Name": "Revenue Metrics",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Tracking revenue growth and composition"
+  },
+  {
+    "Id": "VISION00000000000000000000000207",
+    "ParentId": "VISION00000000000000000000000206",
+    "Name": "Monthly Recurring Revenue (MRR)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Total predictable revenue generated each month"
+  },
+  {
+    "Id": "VISION00000000000000000000000208",
+    "ParentId": "VISION00000000000000000000000206",
+    "Name": "Annual Recurring Revenue (ARR)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Annualized recurring revenue projection"
+  },
+  {
+    "Id": "VISION00000000000000000000000209",
+    "ParentId": "VISION00000000000000000000000206",
+    "Name": "Revenue Growth Rate",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Period-over-period percentage increase in total revenue"
+  },
+  {
+    "Id": "VISION00000000000000000000000210",
+    "ParentId": "VISION00000000000000000000000206",
+    "Name": "Average Revenue Per User (ARPU)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Revenue divided by total active customers"
+  },
+  {
+    "Id": "VISION00000000000000000000000211",
+    "ParentId": "VISION00000000000000000000000205",
+    "Name": "Profitability Metrics",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Tracking profit margins and cost efficiency"
+  },
+  {
+    "Id": "VISION00000000000000000000000212",
+    "ParentId": "VISION00000000000000000000000211",
+    "Name": "Gross Profit Margin",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Revenue minus cost of goods sold as percentage of revenue"
+  },
+  {
+    "Id": "VISION00000000000000000000000213",
+    "ParentId": "VISION00000000000000000000000211",
+    "Name": "Net Profit Margin",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Bottom-line profit as percentage of total revenue"
+  },
+  {
+    "Id": "VISION00000000000000000000000214",
+    "ParentId": "VISION00000000000000000000000211",
+    "Name": "Operating Expense Ratio",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Operating costs as percentage of revenue"
+  },
+  {
+    "Id": "VISION00000000000000000000000215",
+    "ParentId": "VISION00000000000000000000000211",
+    "Name": "EBITDA",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Earnings before interest, taxes, depreciation, and amortization"
+  },
+  {
+    "Id": "VISION00000000000000000000000216",
+    "ParentId": "VISION00000000000000000000000205",
+    "Name": "Cash Flow Metrics",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Tracking liquidity and cash management"
+  },
+  {
+    "Id": "VISION00000000000000000000000217",
+    "ParentId": "VISION00000000000000000000000216",
+    "Name": "Operating Cash Flow",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Cash generated from core business operations"
+  },
+  {
+    "Id": "VISION00000000000000000000000218",
+    "ParentId": "VISION00000000000000000000000216",
+    "Name": "Cash Burn Rate",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Monthly rate of cash consumption for pre-profit businesses"
+  },
+  {
+    "Id": "VISION00000000000000000000000219",
+    "ParentId": "VISION00000000000000000000000216",
+    "Name": "Runway in Months",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "How many months the business can operate at current burn rate"
+  },
+  {
+    "Id": "VISION00000000000000000000000220",
+    "ParentId": "VISION00000000000000000000000204",
+    "Name": "Customer Metrics",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Metrics tracking customer acquisition, satisfaction, and retention"
+  },
+  {
+    "Id": "VISION00000000000000000000000221",
+    "ParentId": "VISION00000000000000000000000220",
+    "Name": "Acquisition Metrics",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Tracking customer growth and acquisition efficiency"
+  },
+  {
+    "Id": "VISION00000000000000000000000222",
+    "ParentId": "VISION00000000000000000000000221",
+    "Name": "Customer Acquisition Cost (CAC)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Total cost to acquire one new customer"
+  },
+  {
+    "Id": "VISION00000000000000000000000223",
+    "ParentId": "VISION00000000000000000000000221",
+    "Name": "New Customers per Period",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Count of new customers acquired each month or quarter"
+  },
+  {
+    "Id": "VISION00000000000000000000000224",
+    "ParentId": "VISION00000000000000000000000221",
+    "Name": "Lead-to-Customer Conversion Rate",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Percentage of leads that become paying customers"
+  },
+  {
+    "Id": "VISION00000000000000000000000225",
+    "ParentId": "VISION00000000000000000000000220",
+    "Name": "Retention Metrics",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Tracking customer loyalty and churn"
+  },
+  {
+    "Id": "VISION00000000000000000000000226",
+    "ParentId": "VISION00000000000000000000000225",
+    "Name": "Customer Retention Rate",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Percentage of customers retained over a defined period"
+  },
+  {
+    "Id": "VISION00000000000000000000000227",
+    "ParentId": "VISION00000000000000000000000225",
+    "Name": "Monthly Churn Rate",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Percentage of customers lost each month"
+  },
+  {
+    "Id": "VISION00000000000000000000000228",
+    "ParentId": "VISION00000000000000000000000225",
+    "Name": "Customer Lifetime Value (CLV)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Total revenue expected from a customer over their lifetime"
+  },
+  {
+    "Id": "VISION00000000000000000000000229",
+    "ParentId": "VISION00000000000000000000000225",
+    "Name": "CLV to CAC Ratio",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Lifetime value divided by acquisition cost (target 3:1 or higher)"
+  },
+  {
+    "Id": "VISION00000000000000000000000230",
+    "ParentId": "VISION00000000000000000000000220",
+    "Name": "Satisfaction Metrics",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Tracking customer happiness and advocacy"
+  },
+  {
+    "Id": "VISION00000000000000000000000231",
+    "ParentId": "VISION00000000000000000000000230",
+    "Name": "Net Promoter Score (NPS)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Likelihood of customers recommending the business (-100 to +100)"
+  },
+  {
+    "Id": "VISION00000000000000000000000232",
+    "ParentId": "VISION00000000000000000000000230",
+    "Name": "Customer Satisfaction Score (CSAT)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Direct satisfaction rating on a defined scale"
+  },
+  {
+    "Id": "VISION00000000000000000000000233",
+    "ParentId": "VISION00000000000000000000000230",
+    "Name": "Customer Effort Score (CES)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "How easy customers find it to do business with the organization"
+  },
+  {
+    "Id": "VISION00000000000000000000000234",
+    "ParentId": "VISION00000000000000000000000204",
+    "Name": "Product Metrics",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Metrics tracking product performance and adoption"
+  },
+  {
+    "Id": "VISION00000000000000000000000235",
+    "ParentId": "VISION00000000000000000000000234",
+    "Name": "Usage Metrics",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Tracking how customers engage with the product"
+  },
+  {
+    "Id": "VISION00000000000000000000000236",
+    "ParentId": "VISION00000000000000000000000235",
+    "Name": "Daily Active Users (DAU)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Number of unique users engaging with the product daily"
+  },
+  {
+    "Id": "VISION00000000000000000000000237",
+    "ParentId": "VISION00000000000000000000000235",
+    "Name": "Monthly Active Users (MAU)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Number of unique users engaging monthly"
+  },
+  {
+    "Id": "VISION00000000000000000000000238",
+    "ParentId": "VISION00000000000000000000000235",
+    "Name": "Feature Adoption Rate",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Percentage of users who activate and use specific features"
+  },
+  {
+    "Id": "VISION00000000000000000000000239",
+    "ParentId": "VISION00000000000000000000000235",
+    "Name": "Session Duration",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Average time users spend per product session"
+  },
+  {
+    "Id": "VISION00000000000000000000000240",
+    "ParentId": "VISION00000000000000000000000234",
+    "Name": "Quality Metrics",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Tracking product reliability and defect rates"
+  },
+  {
+    "Id": "VISION00000000000000000000000241",
+    "ParentId": "VISION00000000000000000000000240",
+    "Name": "Defect Density",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Number of defects per unit of product output"
+  },
+  {
+    "Id": "VISION00000000000000000000000242",
+    "ParentId": "VISION00000000000000000000000240",
+    "Name": "Mean Time to Resolution",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Average time to fix reported defects"
+  },
+  {
+    "Id": "VISION00000000000000000000000243",
+    "ParentId": "VISION00000000000000000000000240",
+    "Name": "System Uptime Percentage",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Availability of the product as percentage of total time"
+  },
+  {
+    "Id": "VISION00000000000000000000000244",
+    "ParentId": "VISION00000000000000000000000204",
+    "Name": "Operational Metrics",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Metrics tracking operational efficiency and throughput"
+  },
+  {
+    "Id": "VISION00000000000000000000000245",
+    "ParentId": "VISION00000000000000000000000244",
+    "Name": "Efficiency Metrics",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Tracking speed and resource utilization"
+  },
+  {
+    "Id": "VISION00000000000000000000000246",
+    "ParentId": "VISION00000000000000000000000245",
+    "Name": "Process Cycle Time",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Average time to complete key business processes"
+  },
+  {
+    "Id": "VISION00000000000000000000000247",
+    "ParentId": "VISION00000000000000000000000245",
+    "Name": "Throughput Rate",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Volume of work completed per unit of time"
+  },
+  {
+    "Id": "VISION00000000000000000000000248",
+    "ParentId": "VISION00000000000000000000000245",
+    "Name": "Resource Utilization Rate",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Percentage of available capacity being productively used"
+  },
+  {
+    "Id": "VISION00000000000000000000000249",
+    "ParentId": "VISION00000000000000000000000244",
+    "Name": "Service Metrics",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Tracking service delivery performance"
+  },
+  {
+    "Id": "VISION00000000000000000000000250",
+    "ParentId": "VISION00000000000000000000000249",
+    "Name": "Average Response Time",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Time between customer request and first response"
+  },
+  {
+    "Id": "VISION00000000000000000000000251",
+    "ParentId": "VISION00000000000000000000000249",
+    "Name": "First-Contact Resolution Rate",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Percentage of issues resolved on first interaction"
+  },
+  {
+    "Id": "VISION00000000000000000000000252",
+    "ParentId": "VISION00000000000000000000000249",
+    "Name": "Service Level Agreement Compliance",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Percentage of commitments met within agreed timelines"
+  },
+  {
+    "Id": "VISION00000000000000000000000253",
+    "ParentId": "VISION00000000000000000000000204",
+    "Name": "People Metrics",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Metrics tracking workforce health and development"
+  },
+  {
+    "Id": "VISION00000000000000000000000254",
+    "ParentId": "VISION00000000000000000000000253",
+    "Name": "Engagement Metrics",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Tracking employee satisfaction and commitment"
+  },
+  {
+    "Id": "VISION00000000000000000000000255",
+    "ParentId": "VISION00000000000000000000000254",
+    "Name": "Employee Engagement Index",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Composite score from regular engagement surveys"
+  },
+  {
+    "Id": "VISION00000000000000000000000256",
+    "ParentId": "VISION00000000000000000000000254",
+    "Name": "Employee Net Promoter Score (eNPS)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Likelihood of employees recommending the workplace"
+  },
+  {
+    "Id": "VISION00000000000000000000000257",
+    "ParentId": "VISION00000000000000000000000254",
+    "Name": "Voluntary Turnover Rate",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Percentage of employees who leave by choice per period"
+  },
+  {
+    "Id": "VISION00000000000000000000000258",
+    "ParentId": "VISION00000000000000000000000253",
+    "Name": "Development Metrics",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Tracking learning and career progression"
+  },
+  {
+    "Id": "VISION00000000000000000000000259",
+    "ParentId": "VISION00000000000000000000000258",
+    "Name": "Internal Promotion Rate",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Percentage of open roles filled from within"
+  },
+  {
+    "Id": "VISION00000000000000000000000260",
+    "ParentId": "VISION00000000000000000000000258",
+    "Name": "Training Hours per Employee",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Average learning investment per team member"
+  },
+  {
+    "Id": "VISION00000000000000000000000261",
+    "ParentId": "VISION00000000000000000000000258",
+    "Name": "Skills Gap Closure Rate",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Progress in developing identified critical competencies"
+  },
+  {
+    "Id": "VISION00000000000000000000000262",
+    "ParentId": "VISION00000000000000000000000204",
+    "Name": "Metric Governance",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Systems and processes for maintaining metric integrity and usefulness"
+  },
+  {
+    "Id": "VISION00000000000000000000000263",
+    "ParentId": "VISION00000000000000000000000262",
+    "Name": "Metric Definition Standards",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Rules for how metrics are defined and documented"
+  },
+  {
+    "Id": "VISION00000000000000000000000264",
+    "ParentId": "VISION00000000000000000000000263",
+    "Name": "Metric Naming Convention",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Standard format for naming and categorizing metrics"
+  },
+  {
+    "Id": "VISION00000000000000000000000265",
+    "ParentId": "VISION00000000000000000000000263",
+    "Name": "Metric Owner Assignment",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Each metric has a single accountable owner"
+  },
+  {
+    "Id": "VISION00000000000000000000000266",
+    "ParentId": "VISION00000000000000000000000263",
+    "Name": "Data Source and Calculation Documentation",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Clear documentation of where data comes from and how metrics are computed"
+  },
+  {
+    "Id": "VISION00000000000000000000000267",
+    "ParentId": "VISION00000000000000000000000262",
+    "Name": "Metric Review Cadence",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "How often metrics are reviewed and acted upon"
+  },
+  {
+    "Id": "VISION00000000000000000000000268",
+    "ParentId": "VISION00000000000000000000000267",
+    "Name": "Weekly Operational Metric Reviews",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Rapid-cycle review of operational and service metrics"
+  },
+  {
+    "Id": "VISION00000000000000000000000269",
+    "ParentId": "VISION00000000000000000000000267",
+    "Name": "Monthly Strategic Metric Reviews",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Deeper review of financial and customer metrics"
+  },
+  {
+    "Id": "VISION00000000000000000000000270",
+    "ParentId": "VISION00000000000000000000000267",
+    "Name": "Quarterly Executive Metric Reviews",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Comprehensive review of all strategic metrics with leadership"
+  },
+  {
+    "Id": "VISION00000000000000000000000271",
+    "ParentId": "VISION00000000000000000000000262",
+    "Name": "Metric Evolution Process",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "How metrics are updated, retired, or replaced over time"
+  },
+  {
+    "Id": "VISION00000000000000000000000272",
+    "ParentId": "VISION00000000000000000000000271",
+    "Name": "Annual Metric Relevance Assessment",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Yearly evaluation of whether each metric still drives the right behavior"
+  },
+  {
+    "Id": "VISION00000000000000000000000273",
+    "ParentId": "VISION00000000000000000000000271",
+    "Name": "Metric Retirement Protocol",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Process for phasing out metrics that are no longer useful"
+  },
+  {
+    "Id": "VISION00000000000000000000000274",
+    "ParentId": "VISION00000000000000000000000271",
+    "Name": "New Metric Introduction Process",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "How new metrics are proposed, tested, and adopted"
+  }
+]
