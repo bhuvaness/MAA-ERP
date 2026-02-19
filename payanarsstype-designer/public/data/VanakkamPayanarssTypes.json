@@ -42081,8 +42081,3200 @@
     "Id": "300000000000000000000000000000001",
     "ParentId": "300000000000000000000000000000001",
     "Name": "Gym Business DB Schema",
-    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "PayanarssTypeId": "100000000000000000000000000000004",
     "Attributes": [],
     "Description": "Root node — Gym Business complete database schema"
+  },
+  {
+    "Id": "GYM2000000000000000000000000001",
+    "ParentId": "300000000000000000000000000000001",
+    "Name": "Define Business Vision and Goals",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000002",
+    "ParentId": "GYM2000000000000000000000000001",
+    "Name": "Identify Target Customer Segment",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "bodybuilders, general fitness, women-only, etc."
+  },
+  {
+    "Id": "GYM2000000000000000000000000003",
+    "ParentId": "GYM2000000000000000000000000001",
+    "Name": "Define Gym Type",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "CrossFit, traditional, boutique, 24-hour, etc."
+  },
+  {
+    "Id": "GYM2000000000000000000000000004",
+    "ParentId": "GYM2000000000000000000000000001",
+    "Name": "Set Revenue Targets for Year 1, Year 2, Year 3",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000005",
+    "ParentId": "300000000000000000000000000000001",
+    "Name": "Register Business",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000006",
+    "ParentId": "GYM2000000000000000000000000005",
+    "Name": "Choose Business Name",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000007",
+    "ParentId": "GYM2000000000000000000000000005",
+    "Name": "Register Trade License",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000008",
+    "ParentId": "GYM2000000000000000000000000005",
+    "Name": "Obtain Commercial Registration Certificate",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000009",
+    "ParentId": "GYM2000000000000000000000000005",
+    "Name": "Open Business Bank Account",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000010",
+    "ParentId": "GYM2000000000000000000000000005",
+    "Name": "Get Tax Registration (VAT / GST as applicable)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000011",
+    "ParentId": "300000000000000000000000000000001",
+    "Name": "Hire Initial Team",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000012",
+    "ParentId": "GYM2000000000000000000000000011",
+    "Name": "Recruit Gym Manager",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000013",
+    "ParentId": "GYM2000000000000000000000000011",
+    "Name": "Recruit Front Desk Staff",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000014",
+    "ParentId": "GYM2000000000000000000000000011",
+    "Name": "Recruit Certified Fitness Trainers",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000015",
+    "ParentId": "GYM2000000000000000000000000011",
+    "Name": "Recruit Cleaning Staff",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000016",
+    "ParentId": "GYM2000000000000000000000000011",
+    "Name": "Recruit Security Staff",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000017",
+    "ParentId": "300000000000000000000000000000001",
+    "Name": "Get Insurance",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000018",
+    "ParentId": "GYM2000000000000000000000000017",
+    "Name": "Obtain Liability Insurance",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000019",
+    "ParentId": "GYM2000000000000000000000000017",
+    "Name": "Obtain Property Insurance",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000020",
+    "ParentId": "GYM2000000000000000000000000017",
+    "Name": "Obtain Equipment Insurance",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000021",
+    "ParentId": "GYM2000000000000000000000000017",
+    "Name": "Obtain Workers Compensation Insurance",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000022",
+    "ParentId": "300000000000000000000000000000001",
+    "Name": "Find Building",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000023",
+    "ParentId": "GYM2000000000000000000000000022",
+    "Name": "Define Location Criteria",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000024",
+    "ParentId": "GYM2000000000000000000000000023",
+    "Name": "Preferred Area / Neighborhood",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000025",
+    "ParentId": "GYM2000000000000000000000000023",
+    "Name": "Minimum Square Footage Required",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000026",
+    "ParentId": "GYM2000000000000000000000000023",
+    "Name": "Parking Availability",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000027",
+    "ParentId": "GYM2000000000000000000000000023",
+    "Name": "Accessibility (ground floor, elevator, ramp)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000028",
+    "ParentId": "GYM2000000000000000000000000023",
+    "Name": "Proximity to Target Customers",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000029",
+    "ParentId": "GYM2000000000000000000000000022",
+    "Name": "Search for Buildings",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000030",
+    "ParentId": "GYM2000000000000000000000000029",
+    "Name": "Engage Real Estate Agent",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000031",
+    "ParentId": "GYM2000000000000000000000000029",
+    "Name": "Browse Online Property Listings",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000032",
+    "ParentId": "GYM2000000000000000000000000029",
+    "Name": "Visit Shortlisted Properties",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000033",
+    "ParentId": "GYM2000000000000000000000000029",
+    "Name": "Compare Properties (rent, size, location, condition)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000034",
+    "ParentId": "GYM2000000000000000000000000022",
+    "Name": "Found Building",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000035",
+    "ParentId": "GYM2000000000000000000000000034",
+    "Name": "Negotiate Rent and Terms",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000036",
+    "ParentId": "GYM2000000000000000000000000035",
+    "Name": "Negotiate Monthly Rent Amount",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000037",
+    "ParentId": "GYM2000000000000000000000000035",
+    "Name": "Negotiate Rent-Free Fit-Out Period",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000038",
+    "ParentId": "GYM2000000000000000000000000035",
+    "Name": "Negotiate Lease Duration (1 year, 3 years, 5 years)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000039",
+    "ParentId": "GYM2000000000000000000000000035",
+    "Name": "Negotiate Maintenance Responsibility (landlord vs tenant)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000040",
+    "ParentId": "GYM2000000000000000000000000034",
+    "Name": "Pay Security Deposit",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000041",
+    "ParentId": "GYM2000000000000000000000000040",
+    "Name": "Verify Deposit Amount Against Agreement",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000042",
+    "ParentId": "GYM2000000000000000000000000040",
+    "Name": "Make Payment via Bank Transfer / Cheque",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000043",
+    "ParentId": "GYM2000000000000000000000000034",
+    "Name": "Collect Receipt",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000044",
+    "ParentId": "GYM2000000000000000000000000043",
+    "Name": "Verify Receipt Amount Matches Payment",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000045",
+    "ParentId": "GYM2000000000000000000000000043",
+    "Name": "Verify Date and Landlord Details on Receipt",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000046",
+    "ParentId": "GYM2000000000000000000000000043",
+    "Name": "Store Physical Copy in Safe",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000047",
+    "ParentId": "GYM2000000000000000000000000043",
+    "Name": "Scan and Upload Digital Copy to Document Management System",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000048",
+    "ParentId": "GYM2000000000000000000000000034",
+    "Name": "Collect Agreement Copy",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000049",
+    "ParentId": "GYM2000000000000000000000000048",
+    "Name": "Review All Clauses with Legal Advisor",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000050",
+    "ParentId": "GYM2000000000000000000000000048",
+    "Name": "Sign Agreement (both parties)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000051",
+    "ParentId": "GYM2000000000000000000000000048",
+    "Name": "Collect Landlord-Signed Original Copy",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000052",
+    "ParentId": "GYM2000000000000000000000000048",
+    "Name": "Store Physical Copy in Safe",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000053",
+    "ParentId": "GYM2000000000000000000000000048",
+    "Name": "Scan and Upload Digital Copy to Document Management System",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000054",
+    "ParentId": "GYM2000000000000000000000000034",
+    "Name": "Agreement Renewal Cycle",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000055",
+    "ParentId": "GYM2000000000000000000000000054",
+    "Name": "Set Renewal Reminder 90 Days Before Expiry",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000056",
+    "ParentId": "GYM2000000000000000000000000054",
+    "Name": "Review Current Market Rent Rates",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000057",
+    "ParentId": "GYM2000000000000000000000000054",
+    "Name": "Negotiate Renewal Terms with Landlord",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000058",
+    "ParentId": "GYM2000000000000000000000000054",
+    "Name": "Sign Renewal Agreement",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000059",
+    "ParentId": "GYM2000000000000000000000000054",
+    "Name": "Update Document Management System",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000060",
+    "ParentId": "GYM2000000000000000000000000054",
+    "Name": "Update Financial Records with New Rent Amount",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000061",
+    "ParentId": "300000000000000000000000000000001",
+    "Name": "Prepare Building",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000062",
+    "ParentId": "GYM2000000000000000000000000061",
+    "Name": "Get Building Inspection Done",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000063",
+    "ParentId": "GYM2000000000000000000000000062",
+    "Name": "Inspect Electrical Wiring and Load Capacity",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000064",
+    "ParentId": "GYM2000000000000000000000000062",
+    "Name": "Inspect Water Supply and Drainage",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000065",
+    "ParentId": "GYM2000000000000000000000000062",
+    "Name": "Inspect Structural Integrity (walls, floor load-bearing capacity)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000066",
+    "ParentId": "GYM2000000000000000000000000062",
+    "Name": "Inspect Ventilation and Air Conditioning",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000067",
+    "ParentId": "GYM2000000000000000000000000062",
+    "Name": "Inspect Fire Safety Systems (alarms, sprinklers, exits)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000068",
+    "ParentId": "GYM2000000000000000000000000061",
+    "Name": "Do Cleaning",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000069",
+    "ParentId": "GYM2000000000000000000000000068",
+    "Name": "Remove Previous Tenant Debris",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000070",
+    "ParentId": "GYM2000000000000000000000000068",
+    "Name": "Deep Clean All Floors",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000071",
+    "ParentId": "GYM2000000000000000000000000068",
+    "Name": "Clean All Windows and Glass Surfaces",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000072",
+    "ParentId": "GYM2000000000000000000000000068",
+    "Name": "Clean All Walls and Ceilings",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000073",
+    "ParentId": "GYM2000000000000000000000000068",
+    "Name": "Sanitize All Surfaces",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000074",
+    "ParentId": "GYM2000000000000000000000000068",
+    "Name": "Dispose of Waste Properly",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000075",
+    "ParentId": "GYM2000000000000000000000000061",
+    "Name": "Do Painting",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000076",
+    "ParentId": "GYM2000000000000000000000000075",
+    "Name": "Select Brand Colors for Interior",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000077",
+    "ParentId": "GYM2000000000000000000000000075",
+    "Name": "Prepare Walls (fill cracks, sand, prime)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000078",
+    "ParentId": "GYM2000000000000000000000000075",
+    "Name": "Apply Base Coat Paint",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000079",
+    "ParentId": "GYM2000000000000000000000000075",
+    "Name": "Apply Finishing Coat Paint",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000080",
+    "ParentId": "GYM2000000000000000000000000075",
+    "Name": "Paint Floor Markings (zones, safety lines)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000081",
+    "ParentId": "GYM2000000000000000000000000075",
+    "Name": "Add Gym Branding / Logo on Feature Wall",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000082",
+    "ParentId": "GYM2000000000000000000000000061",
+    "Name": "Do Plumbing",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000083",
+    "ParentId": "GYM2000000000000000000000000082",
+    "Name": "Install Water Supply Lines",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000084",
+    "ParentId": "GYM2000000000000000000000000082",
+    "Name": "Install Drainage Lines",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000085",
+    "ParentId": "GYM2000000000000000000000000082",
+    "Name": "Install Water Heater for Showers",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000086",
+    "ParentId": "GYM2000000000000000000000000082",
+    "Name": "Install Wash Basins",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000087",
+    "ParentId": "GYM2000000000000000000000000082",
+    "Name": "Install Shower Units",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000088",
+    "ParentId": "GYM2000000000000000000000000082",
+    "Name": "Test All Water Connections for Leaks",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000089",
+    "ParentId": "GYM2000000000000000000000000061",
+    "Name": "Toilet is Must",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000090",
+    "ParentId": "GYM2000000000000000000000000089",
+    "Name": "Determine Number of Toilets Required (male, female, staff)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000091",
+    "ParentId": "GYM2000000000000000000000000089",
+    "Name": "Install Toilet Units",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000092",
+    "ParentId": "GYM2000000000000000000000000089",
+    "Name": "Install Hand Wash Basins",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000093",
+    "ParentId": "GYM2000000000000000000000000089",
+    "Name": "Install Mirrors",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000094",
+    "ParentId": "GYM2000000000000000000000000089",
+    "Name": "Install Hand Dryers / Paper Towel Dispensers",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000095",
+    "ParentId": "GYM2000000000000000000000000089",
+    "Name": "Install Soap Dispensers",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000096",
+    "ParentId": "GYM2000000000000000000000000089",
+    "Name": "Install Sanitary Bins",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000097",
+    "ParentId": "GYM2000000000000000000000000089",
+    "Name": "Ensure Proper Ventilation / Exhaust Fans",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000098",
+    "ParentId": "GYM2000000000000000000000000089",
+    "Name": "Install Non-Slip Floor Tiles",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000099",
+    "ParentId": "GYM2000000000000000000000000089",
+    "Name": "Set Up Daily Cleaning Schedule for Toilets",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000100",
+    "ParentId": "GYM2000000000000000000000000061",
+    "Name": "Install Flooring",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000101",
+    "ParentId": "GYM2000000000000000000000000100",
+    "Name": "Install Rubber Flooring in Weight Area",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000102",
+    "ParentId": "GYM2000000000000000000000000100",
+    "Name": "Install Vinyl / Wooden Flooring in Cardio Area",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000103",
+    "ParentId": "GYM2000000000000000000000000100",
+    "Name": "Install Anti-Slip Tiles in Wet Areas",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000104",
+    "ParentId": "GYM2000000000000000000000000100",
+    "Name": "Install Mats in Stretching / Yoga Area",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000105",
+    "ParentId": "GYM2000000000000000000000000061",
+    "Name": "Install Electrical Systems",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000106",
+    "ParentId": "GYM2000000000000000000000000105",
+    "Name": "Install Adequate Lighting (LED, energy-efficient)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000107",
+    "ParentId": "GYM2000000000000000000000000105",
+    "Name": "Install Power Outlets for Equipment",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000108",
+    "ParentId": "GYM2000000000000000000000000105",
+    "Name": "Install Three-Phase Power Supply for Heavy Equipment",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000109",
+    "ParentId": "GYM2000000000000000000000000105",
+    "Name": "Install Emergency Lighting",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000110",
+    "ParentId": "GYM2000000000000000000000000105",
+    "Name": "Install Sound System Wiring",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000111",
+    "ParentId": "GYM2000000000000000000000000061",
+    "Name": "Install HVAC (Heating, Ventilation, Air Conditioning)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000112",
+    "ParentId": "GYM2000000000000000000000000111",
+    "Name": "Install Air Conditioning Units",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000113",
+    "ParentId": "GYM2000000000000000000000000111",
+    "Name": "Install Exhaust Fans",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000114",
+    "ParentId": "GYM2000000000000000000000000111",
+    "Name": "Install Fresh Air Intake Vents",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000115",
+    "ParentId": "GYM2000000000000000000000000111",
+    "Name": "Test Temperature Control Across All Zones",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000116",
+    "ParentId": "GYM2000000000000000000000000061",
+    "Name": "Install Safety Infrastructure",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000117",
+    "ParentId": "GYM2000000000000000000000000116",
+    "Name": "Install Fire Extinguishers",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000118",
+    "ParentId": "GYM2000000000000000000000000116",
+    "Name": "Install Emergency Exit Signs",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000119",
+    "ParentId": "GYM2000000000000000000000000116",
+    "Name": "Install First Aid Station",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000120",
+    "ParentId": "GYM2000000000000000000000000116",
+    "Name": "Install CCTV Cameras",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000121",
+    "ParentId": "GYM2000000000000000000000000116",
+    "Name": "Install Access Control System (door locks, card readers)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000122",
+    "ParentId": "300000000000000000000000000000001",
+    "Name": "Budget Plan",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000123",
+    "ParentId": "GYM2000000000000000000000000122",
+    "Name": "Estimate One-Time Setup Costs",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000124",
+    "ParentId": "GYM2000000000000000000000000123",
+    "Name": "Building Deposit and Advance Rent",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000125",
+    "ParentId": "GYM2000000000000000000000000123",
+    "Name": "Renovation and Fit-Out Costs",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000126",
+    "ParentId": "GYM2000000000000000000000000123",
+    "Name": "Equipment Purchase Cost",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000127",
+    "ParentId": "GYM2000000000000000000000000123",
+    "Name": "Furniture and Fixtures (reception desk, lockers, benches)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000128",
+    "ParentId": "GYM2000000000000000000000000123",
+    "Name": "Technology Setup (POS system, software, WiFi, CCTV)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000129",
+    "ParentId": "GYM2000000000000000000000000123",
+    "Name": "Branding and Signage",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000130",
+    "ParentId": "GYM2000000000000000000000000123",
+    "Name": "Legal and Licensing Fees",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000131",
+    "ParentId": "GYM2000000000000000000000000122",
+    "Name": "Estimate Monthly Recurring Costs",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000132",
+    "ParentId": "GYM2000000000000000000000000131",
+    "Name": "Rent",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000133",
+    "ParentId": "GYM2000000000000000000000000131",
+    "Name": "Electricity and Water Bills",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000134",
+    "ParentId": "GYM2000000000000000000000000131",
+    "Name": "Staff Salaries",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000135",
+    "ParentId": "GYM2000000000000000000000000131",
+    "Name": "Internet and Phone Bills",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000136",
+    "ParentId": "GYM2000000000000000000000000131",
+    "Name": "Insurance Premiums",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000137",
+    "ParentId": "GYM2000000000000000000000000131",
+    "Name": "Cleaning Supplies",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000138",
+    "ParentId": "GYM2000000000000000000000000131",
+    "Name": "Equipment Maintenance",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000139",
+    "ParentId": "GYM2000000000000000000000000131",
+    "Name": "Marketing and Advertising",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000140",
+    "ParentId": "GYM2000000000000000000000000131",
+    "Name": "Software Subscriptions (membership management, accounting)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000141",
+    "ParentId": "GYM2000000000000000000000000122",
+    "Name": "Define Revenue Projections",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000142",
+    "ParentId": "GYM2000000000000000000000000141",
+    "Name": "Estimate Membership Fee Structure",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000143",
+    "ParentId": "GYM2000000000000000000000000141",
+    "Name": "Estimate Member Enrollment Rate Per Month",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000144",
+    "ParentId": "GYM2000000000000000000000000141",
+    "Name": "Estimate Personal Training Revenue",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000145",
+    "ParentId": "GYM2000000000000000000000000141",
+    "Name": "Estimate Additional Revenue (merchandise, supplements, locker rental)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000146",
+    "ParentId": "GYM2000000000000000000000000122",
+    "Name": "Calculate Break-Even Point",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000147",
+    "ParentId": "GYM2000000000000000000000000146",
+    "Name": "Total Fixed Costs vs Variable Costs",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000148",
+    "ParentId": "GYM2000000000000000000000000146",
+    "Name": "Minimum Members Required to Break Even",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000149",
+    "ParentId": "GYM2000000000000000000000000146",
+    "Name": "Estimated Time to Break Even",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000150",
+    "ParentId": "GYM2000000000000000000000000122",
+    "Name": "Secure Funding",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000151",
+    "ParentId": "GYM2000000000000000000000000150",
+    "Name": "Self-Funding Amount",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000152",
+    "ParentId": "GYM2000000000000000000000000150",
+    "Name": "Bank Loan Application",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000153",
+    "ParentId": "GYM2000000000000000000000000150",
+    "Name": "Investor Pitch (if applicable)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000154",
+    "ParentId": "GYM2000000000000000000000000150",
+    "Name": "Government Grants / Subsidies (if available)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000155",
+    "ParentId": "GYM2000000000000000000000000122",
+    "Name": "Create Cash Flow Forecast",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000156",
+    "ParentId": "GYM2000000000000000000000000155",
+    "Name": "Month-by-Month Cash Inflow Projections",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000157",
+    "ParentId": "GYM2000000000000000000000000155",
+    "Name": "Month-by-Month Cash Outflow Projections",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000158",
+    "ParentId": "GYM2000000000000000000000000155",
+    "Name": "Maintain Emergency Reserve Fund (3-6 months operating cost)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000159",
+    "ParentId": "300000000000000000000000000000001",
+    "Name": "Finalize Equipments List with Budget",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000160",
+    "ParentId": "GYM2000000000000000000000000159",
+    "Name": "Categorize Equipment by Zone",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000161",
+    "ParentId": "GYM2000000000000000000000000160",
+    "Name": "Cardio Zone (treadmills, ellipticals, bikes, rowing machines)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000162",
+    "ParentId": "GYM2000000000000000000000000160",
+    "Name": "Strength Zone (dumbbells, barbells, weight plates, benches, racks)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000163",
+    "ParentId": "GYM2000000000000000000000000160",
+    "Name": "Functional Training Zone (kettlebells, battle ropes, TRX, resistance bands)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000164",
+    "ParentId": "GYM2000000000000000000000000160",
+    "Name": "Stretching / Yoga Zone (mats, foam rollers, yoga blocks)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000165",
+    "ParentId": "GYM2000000000000000000000000160",
+    "Name": "Group Class Area (mirrors, speakers, mats)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000166",
+    "ParentId": "GYM2000000000000000000000000159",
+    "Name": "Define Quantity Per Equipment Type",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000167",
+    "ParentId": "GYM2000000000000000000000000166",
+    "Name": "Based on Expected Member Count",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000168",
+    "ParentId": "GYM2000000000000000000000000166",
+    "Name": "Based on Peak Hour Usage Estimate",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000169",
+    "ParentId": "GYM2000000000000000000000000166",
+    "Name": "Based on Available Floor Space",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000170",
+    "ParentId": "GYM2000000000000000000000000159",
+    "Name": "Search for Equipments in Market",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000171",
+    "ParentId": "GYM2000000000000000000000000170",
+    "Name": "Research Equipment Brands and Models",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000172",
+    "ParentId": "GYM2000000000000000000000000171",
+    "Name": "Compare Brand Reputation and Reviews",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000173",
+    "ParentId": "GYM2000000000000000000000000171",
+    "Name": "Compare Warranty Terms",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000174",
+    "ParentId": "GYM2000000000000000000000000171",
+    "Name": "Compare After-Sales Service Availability",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000175",
+    "ParentId": "GYM2000000000000000000000000170",
+    "Name": "Get Quotations from Multiple Vendors",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000176",
+    "ParentId": "GYM2000000000000000000000000175",
+    "Name": "Request Quotation from Vendor 1",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000177",
+    "ParentId": "GYM2000000000000000000000000175",
+    "Name": "Request Quotation from Vendor 2",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000178",
+    "ParentId": "GYM2000000000000000000000000175",
+    "Name": "Request Quotation from Vendor 3",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000179",
+    "ParentId": "GYM2000000000000000000000000175",
+    "Name": "Request Quotation from Vendor 4 (International / Online)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000180",
+    "ParentId": "GYM2000000000000000000000000170",
+    "Name": "Compare Quotations",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000181",
+    "ParentId": "GYM2000000000000000000000000180",
+    "Name": "Compare Price Per Unit",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000182",
+    "ParentId": "GYM2000000000000000000000000180",
+    "Name": "Compare Delivery Timeline",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000183",
+    "ParentId": "GYM2000000000000000000000000180",
+    "Name": "Compare Installation Support",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000184",
+    "ParentId": "GYM2000000000000000000000000180",
+    "Name": "Compare Payment Terms (upfront, installment, lease)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000185",
+    "ParentId": "GYM2000000000000000000000000170",
+    "Name": "Negotiate Best Price",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000186",
+    "ParentId": "GYM2000000000000000000000000185",
+    "Name": "Negotiate Bulk Discount",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000187",
+    "ParentId": "GYM2000000000000000000000000185",
+    "Name": "Negotiate Free Delivery and Installation",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000188",
+    "ParentId": "GYM2000000000000000000000000185",
+    "Name": "Negotiate Extended Warranty",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000189",
+    "ParentId": "GYM2000000000000000000000000170",
+    "Name": "Select Final Vendor",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000190",
+    "ParentId": "GYM2000000000000000000000000189",
+    "Name": "Verify Vendor Business License",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000191",
+    "ParentId": "GYM2000000000000000000000000189",
+    "Name": "Verify Vendor References / Past Clients",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000192",
+    "ParentId": "GYM2000000000000000000000000189",
+    "Name": "Sign Purchase Agreement",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000193",
+    "ParentId": "300000000000000000000000000000001",
+    "Name": "Prepare Equipment Placing Plan",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000194",
+    "ParentId": "GYM2000000000000000000000000193",
+    "Name": "Measure Floor Area Dimensions",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000195",
+    "ParentId": "GYM2000000000000000000000000194",
+    "Name": "Measure Total Usable Floor Area",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000196",
+    "ParentId": "GYM2000000000000000000000000194",
+    "Name": "Mark Structural Columns and Obstacles",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000197",
+    "ParentId": "GYM2000000000000000000000000194",
+    "Name": "Mark Electrical Outlet Positions",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000198",
+    "ParentId": "GYM2000000000000000000000000194",
+    "Name": "Mark Ventilation Points",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000199",
+    "ParentId": "GYM2000000000000000000000000193",
+    "Name": "Design Zone Layout",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000200",
+    "ParentId": "GYM2000000000000000000000000199",
+    "Name": "Allocate Cardio Zone Area",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000201",
+    "ParentId": "GYM2000000000000000000000000199",
+    "Name": "Allocate Strength / Free Weights Zone Area",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000202",
+    "ParentId": "GYM2000000000000000000000000199",
+    "Name": "Allocate Machine Weights Zone Area",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000203",
+    "ParentId": "GYM2000000000000000000000000199",
+    "Name": "Allocate Functional Training Zone Area",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000204",
+    "ParentId": "GYM2000000000000000000000000199",
+    "Name": "Allocate Stretching / Yoga Zone Area",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000205",
+    "ParentId": "GYM2000000000000000000000000199",
+    "Name": "Allocate Group Class Area",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000206",
+    "ParentId": "GYM2000000000000000000000000199",
+    "Name": "Allocate Reception and Waiting Area",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000207",
+    "ParentId": "GYM2000000000000000000000000199",
+    "Name": "Allocate Locker Room and Changing Area",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000208",
+    "ParentId": "GYM2000000000000000000000000199",
+    "Name": "Allocate Staff / Office Area",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000209",
+    "ParentId": "GYM2000000000000000000000000193",
+    "Name": "Map Equipment to Zones",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000210",
+    "ParentId": "GYM2000000000000000000000000209",
+    "Name": "Place Each Equipment in Designated Zone",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000211",
+    "ParentId": "GYM2000000000000000000000000209",
+    "Name": "Ensure Minimum Spacing Between Equipment (safety clearance)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000212",
+    "ParentId": "GYM2000000000000000000000000209",
+    "Name": "Ensure Equipment Faces Mirrors Where Applicable",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000213",
+    "ParentId": "GYM2000000000000000000000000209",
+    "Name": "Ensure Heavy Equipment is on Reinforced Flooring",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000214",
+    "ParentId": "GYM2000000000000000000000000209",
+    "Name": "Ensure Emergency Exits Are Not Blocked",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000215",
+    "ParentId": "GYM2000000000000000000000000193",
+    "Name": "Create Floor Plan Drawing",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000216",
+    "ParentId": "GYM2000000000000000000000000215",
+    "Name": "Draft Digital Floor Plan with Equipment Positions",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000217",
+    "ParentId": "GYM2000000000000000000000000215",
+    "Name": "Get Floor Plan Reviewed by Safety Officer",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000218",
+    "ParentId": "GYM2000000000000000000000000215",
+    "Name": "Get Floor Plan Approved by Building Management (if required)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000219",
+    "ParentId": "GYM2000000000000000000000000215",
+    "Name": "Print Floor Plan for Installation Team",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000220",
+    "ParentId": "300000000000000000000000000000001",
+    "Name": "Purchase Equipments",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000221",
+    "ParentId": "GYM2000000000000000000000000220",
+    "Name": "Raise Purchase Orders",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000222",
+    "ParentId": "GYM2000000000000000000000000221",
+    "Name": "Create PO for Each Vendor with Item Details",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000223",
+    "ParentId": "GYM2000000000000000000000000221",
+    "Name": "Get PO Approved by Owner / Finance",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000224",
+    "ParentId": "GYM2000000000000000000000000221",
+    "Name": "Send PO to Vendor",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000225",
+    "ParentId": "GYM2000000000000000000000000220",
+    "Name": "Track Delivery Schedule",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000226",
+    "ParentId": "GYM2000000000000000000000000225",
+    "Name": "Confirm Expected Delivery Date with Vendor",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000227",
+    "ParentId": "GYM2000000000000000000000000225",
+    "Name": "Arrange Storage Area for Incoming Equipment",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000228",
+    "ParentId": "GYM2000000000000000000000000225",
+    "Name": "Assign Staff to Receive Deliveries",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000229",
+    "ParentId": "GYM2000000000000000000000000220",
+    "Name": "Receive Equipment",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000230",
+    "ParentId": "GYM2000000000000000000000000229",
+    "Name": "Verify Delivered Items Against Purchase Order",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000231",
+    "ParentId": "GYM2000000000000000000000000229",
+    "Name": "Inspect Each Item for Physical Damage",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000232",
+    "ParentId": "GYM2000000000000000000000000229",
+    "Name": "Count and Confirm Quantity",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000233",
+    "ParentId": "GYM2000000000000000000000000229",
+    "Name": "Sign Delivery Receipt",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000234",
+    "ParentId": "GYM2000000000000000000000000220",
+    "Name": "Purchase Bills",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000235",
+    "ParentId": "GYM2000000000000000000000000234",
+    "Name": "Collect Invoice from Vendor",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000236",
+    "ParentId": "GYM2000000000000000000000000234",
+    "Name": "Verify Invoice Amount Matches PO and Delivery",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000237",
+    "ParentId": "GYM2000000000000000000000000234",
+    "Name": "Record Invoice in Accounting System",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000238",
+    "ParentId": "GYM2000000000000000000000000234",
+    "Name": "Schedule Payment as Per Agreed Terms",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000239",
+    "ParentId": "GYM2000000000000000000000000234",
+    "Name": "Make Payment (bank transfer / cheque)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000240",
+    "ParentId": "GYM2000000000000000000000000234",
+    "Name": "Collect Payment Confirmation / Receipt",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000241",
+    "ParentId": "GYM2000000000000000000000000234",
+    "Name": "File Invoice and Receipt in Document Management System",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000242",
+    "ParentId": "GYM2000000000000000000000000220",
+    "Name": "Warranties",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000243",
+    "ParentId": "GYM2000000000000000000000000242",
+    "Name": "Collect Warranty Card / Certificate for Each Equipment",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000244",
+    "ParentId": "GYM2000000000000000000000000242",
+    "Name": "Record Warranty Start Date and End Date",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000245",
+    "ParentId": "GYM2000000000000000000000000242",
+    "Name": "Record Warranty Terms and Conditions",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000246",
+    "ParentId": "GYM2000000000000000000000000242",
+    "Name": "Store Warranty Documents in Document Management System",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000247",
+    "ParentId": "GYM2000000000000000000000000242",
+    "Name": "Set Warranty Expiry Reminders (30 days before expiry)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000248",
+    "ParentId": "GYM2000000000000000000000000242",
+    "Name": "Register Equipment on Manufacturer Portal (if required)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000249",
+    "ParentId": "GYM2000000000000000000000000220",
+    "Name": "Place Equipments as per Equipment Placing Plan",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000250",
+    "ParentId": "GYM2000000000000000000000000249",
+    "Name": "Unpack All Equipment",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000251",
+    "ParentId": "GYM2000000000000000000000000249",
+    "Name": "Move Equipment to Designated Zone",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000252",
+    "ParentId": "GYM2000000000000000000000000249",
+    "Name": "Assemble Equipment (if required)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000253",
+    "ParentId": "GYM2000000000000000000000000249",
+    "Name": "Anchor / Bolt Heavy Equipment to Floor",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000254",
+    "ParentId": "GYM2000000000000000000000000249",
+    "Name": "Connect Equipment to Power Supply",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000255",
+    "ParentId": "GYM2000000000000000000000000249",
+    "Name": "Calibrate Equipment Settings",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000256",
+    "ParentId": "GYM2000000000000000000000000249",
+    "Name": "Verify Equipment is Level and Stable",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000257",
+    "ParentId": "GYM2000000000000000000000000220",
+    "Name": "Safety Check",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000258",
+    "ParentId": "GYM2000000000000000000000000257",
+    "Name": "Test Each Equipment for Proper Functioning",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000259",
+    "ParentId": "GYM2000000000000000000000000257",
+    "Name": "Verify Emergency Stop Buttons Work",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000260",
+    "ParentId": "GYM2000000000000000000000000257",
+    "Name": "Check All Cables and Connections Are Secure",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000261",
+    "ParentId": "GYM2000000000000000000000000257",
+    "Name": "Verify Weight Stacks Move Smoothly",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000262",
+    "ParentId": "GYM2000000000000000000000000257",
+    "Name": "Check Treadmill Belt Alignment and Speed Calibration",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000263",
+    "ParentId": "GYM2000000000000000000000000257",
+    "Name": "Verify No Sharp Edges or Loose Bolts",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000264",
+    "ParentId": "GYM2000000000000000000000000257",
+    "Name": "Ensure Safety Signage is Placed Near Equipment",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000265",
+    "ParentId": "GYM2000000000000000000000000257",
+    "Name": "Get Final Safety Clearance from Inspector / Manager",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000266",
+    "ParentId": "300000000000000000000000000000001",
+    "Name": "Add Members",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000267",
+    "ParentId": "GYM2000000000000000000000000266",
+    "Name": "Design Membership Plans",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000268",
+    "ParentId": "GYM2000000000000000000000000267",
+    "Name": "Define Plan Types (daily, monthly, quarterly, half-yearly, annual)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000269",
+    "ParentId": "GYM2000000000000000000000000267",
+    "Name": "Define Plan Pricing for Each Type",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000270",
+    "ParentId": "GYM2000000000000000000000000267",
+    "Name": "Define Student / Senior / Corporate Discount Rates",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000271",
+    "ParentId": "GYM2000000000000000000000000267",
+    "Name": "Define Personal Training Add-On Packages",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000272",
+    "ParentId": "GYM2000000000000000000000000267",
+    "Name": "Define Locker Rental Add-On",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000273",
+    "ParentId": "GYM2000000000000000000000000266",
+    "Name": "Set Up Membership Management System",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000274",
+    "ParentId": "GYM2000000000000000000000000273",
+    "Name": "Configure Membership Software",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000275",
+    "ParentId": "GYM2000000000000000000000000273",
+    "Name": "Set Up Member Registration Form",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000276",
+    "ParentId": "GYM2000000000000000000000000273",
+    "Name": "Set Up ID Card / Access Card Printing",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000277",
+    "ParentId": "GYM2000000000000000000000000273",
+    "Name": "Set Up Biometric / QR Code Entry System",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000278",
+    "ParentId": "GYM2000000000000000000000000266",
+    "Name": "Onboard New Member",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000279",
+    "ParentId": "GYM2000000000000000000000000278",
+    "Name": "Collect Member Personal Details (name, contact, emergency contact)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000280",
+    "ParentId": "GYM2000000000000000000000000278",
+    "Name": "Collect Health Declaration Form",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000281",
+    "ParentId": "GYM2000000000000000000000000278",
+    "Name": "Conduct Fitness Assessment",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000282",
+    "ParentId": "GYM2000000000000000000000000278",
+    "Name": "Assign Membership Plan",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000283",
+    "ParentId": "GYM2000000000000000000000000278",
+    "Name": "Issue Access Card / Biometric Registration",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000284",
+    "ParentId": "GYM2000000000000000000000000278",
+    "Name": "Provide Gym Orientation Tour",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000285",
+    "ParentId": "GYM2000000000000000000000000278",
+    "Name": "Assign Locker (if applicable)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000286",
+    "ParentId": "GYM2000000000000000000000000278",
+    "Name": "Provide Welcome Kit (towel, water bottle, schedule)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000287",
+    "ParentId": "GYM2000000000000000000000000266",
+    "Name": "Allow Gym Exercise",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000288",
+    "ParentId": "GYM2000000000000000000000000287",
+    "Name": "Grant Access to Gym Facility",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000289",
+    "ParentId": "GYM2000000000000000000000000287",
+    "Name": "Provide Initial Training Session with Trainer",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000290",
+    "ParentId": "GYM2000000000000000000000000287",
+    "Name": "Share Workout Plan Based on Fitness Goals",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000291",
+    "ParentId": "GYM2000000000000000000000000287",
+    "Name": "Monitor Member Activity for First Week",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000292",
+    "ParentId": "GYM2000000000000000000000000287",
+    "Name": "Collect Feedback After First Week",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000293",
+    "ParentId": "GYM2000000000000000000000000287",
+    "Name": "Update Workout Plan Based on Progress",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000294",
+    "ParentId": "GYM2000000000000000000000000266",
+    "Name": "Collect Payments For X Periods",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000295",
+    "ParentId": "GYM2000000000000000000000000294",
+    "Name": "Generate Invoice for Selected Membership Plan",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000296",
+    "ParentId": "GYM2000000000000000000000000294",
+    "Name": "Offer Payment Methods (cash, card, bank transfer, online)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000297",
+    "ParentId": "GYM2000000000000000000000000294",
+    "Name": "Collect Payment",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000298",
+    "ParentId": "GYM2000000000000000000000000294",
+    "Name": "Issue Payment Receipt",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000299",
+    "ParentId": "GYM2000000000000000000000000294",
+    "Name": "Update Member Payment Status in System",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000300",
+    "ParentId": "GYM2000000000000000000000000294",
+    "Name": "Send Payment Confirmation via SMS / Email",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000301",
+    "ParentId": "GYM2000000000000000000000000294",
+    "Name": "Set Auto-Reminder for Next Payment Due Date",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000302",
+    "ParentId": "GYM2000000000000000000000000294",
+    "Name": "Handle Late Payment Follow-Up",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000303",
+    "ParentId": "GYM2000000000000000000000000302",
+    "Name": "Send First Reminder (3 days after due date)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000304",
+    "ParentId": "GYM2000000000000000000000000302",
+    "Name": "Send Second Reminder (7 days after due date)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000305",
+    "ParentId": "GYM2000000000000000000000000302",
+    "Name": "Send Final Notice (14 days after due date)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000306",
+    "ParentId": "GYM2000000000000000000000000302",
+    "Name": "Suspend Membership Access (if unpaid after 30 days)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000307",
+    "ParentId": "GYM2000000000000000000000000266",
+    "Name": "Prepare Payments Plan",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000308",
+    "ParentId": "GYM2000000000000000000000000307",
+    "Name": "Define Payment Cycle (monthly, quarterly, annual)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000309",
+    "ParentId": "GYM2000000000000000000000000307",
+    "Name": "Set Payment Due Dates",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000310",
+    "ParentId": "GYM2000000000000000000000000307",
+    "Name": "Configure Auto-Debit / Recurring Payment (if member opts in)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000311",
+    "ParentId": "GYM2000000000000000000000000307",
+    "Name": "Generate Monthly Payment Collection Report",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000312",
+    "ParentId": "GYM2000000000000000000000000307",
+    "Name": "Reconcile Collected Payments with Bank Statements",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000313",
+    "ParentId": "GYM2000000000000000000000000307",
+    "Name": "Handle Refund Requests",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000314",
+    "ParentId": "GYM2000000000000000000000000313",
+    "Name": "Verify Refund Eligibility as Per Policy",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000315",
+    "ParentId": "GYM2000000000000000000000000313",
+    "Name": "Calculate Refund Amount (pro-rated if applicable)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000316",
+    "ParentId": "GYM2000000000000000000000000313",
+    "Name": "Process Refund",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000317",
+    "ParentId": "GYM2000000000000000000000000313",
+    "Name": "Update Member Records",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000318",
+    "ParentId": "300000000000000000000000000000001",
+    "Name": "Equipment Maintenance Plan",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000319",
+    "ParentId": "GYM2000000000000000000000000318",
+    "Name": "Create Equipment Inventory Register",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000320",
+    "ParentId": "GYM2000000000000000000000000319",
+    "Name": "List All Equipment with Serial Numbers",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000321",
+    "ParentId": "GYM2000000000000000000000000319",
+    "Name": "Record Purchase Date and Vendor",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000322",
+    "ParentId": "GYM2000000000000000000000000319",
+    "Name": "Record Warranty Status",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000323",
+    "ParentId": "GYM2000000000000000000000000319",
+    "Name": "Assign Unique Asset Tag to Each Equipment",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000324",
+    "ParentId": "GYM2000000000000000000000000318",
+    "Name": "Weekly Plan",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000325",
+    "ParentId": "GYM2000000000000000000000000324",
+    "Name": "Visual Inspection of All Equipment",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000326",
+    "ParentId": "GYM2000000000000000000000000324",
+    "Name": "Wipe Down and Clean All Equipment Surfaces",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000327",
+    "ParentId": "GYM2000000000000000000000000324",
+    "Name": "Check Treadmill Belts for Wear and Alignment",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000328",
+    "ParentId": "GYM2000000000000000000000000324",
+    "Name": "Check Cable Machines for Fraying or Wear",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000329",
+    "ParentId": "GYM2000000000000000000000000324",
+    "Name": "Lubricate Moving Parts (pulleys, hinges, rails)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000330",
+    "ParentId": "GYM2000000000000000000000000324",
+    "Name": "Tighten Loose Bolts and Screws",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000331",
+    "ParentId": "GYM2000000000000000000000000324",
+    "Name": "Test Emergency Stop Buttons",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000332",
+    "ParentId": "GYM2000000000000000000000000324",
+    "Name": "Check Weight Plate Condition and Stacking",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000333",
+    "ParentId": "GYM2000000000000000000000000324",
+    "Name": "Log Maintenance Activities in Register",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000334",
+    "ParentId": "GYM2000000000000000000000000318",
+    "Name": "Monthly Plan",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000335",
+    "ParentId": "GYM2000000000000000000000000334",
+    "Name": "Deep Clean All Equipment",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000336",
+    "ParentId": "GYM2000000000000000000000000334",
+    "Name": "Inspect Electrical Connections and Wiring",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000337",
+    "ParentId": "GYM2000000000000000000000000334",
+    "Name": "Calibrate Cardio Equipment (speed, resistance, heart rate monitors)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000338",
+    "ParentId": "GYM2000000000000000000000000334",
+    "Name": "Check Upholstery for Tears and Replace if Needed",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000339",
+    "ParentId": "GYM2000000000000000000000000334",
+    "Name": "Inspect and Replace Worn Rubber Grips / Handles",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000340",
+    "ParentId": "GYM2000000000000000000000000334",
+    "Name": "Check Floor Mats and Replace Worn Sections",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000341",
+    "ParentId": "GYM2000000000000000000000000334",
+    "Name": "Review Maintenance Log for Recurring Issues",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000342",
+    "ParentId": "GYM2000000000000000000000000334",
+    "Name": "Order Replacement Parts if Needed",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000343",
+    "ParentId": "GYM2000000000000000000000000334",
+    "Name": "Schedule Professional Service for Complex Equipment",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000344",
+    "ParentId": "GYM2000000000000000000000000318",
+    "Name": "Yearly",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000345",
+    "ParentId": "GYM2000000000000000000000000344",
+    "Name": "Full Professional Service of All Equipment",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000346",
+    "ParentId": "GYM2000000000000000000000000344",
+    "Name": "Replace Treadmill Belts and Decks (if worn)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000347",
+    "ParentId": "GYM2000000000000000000000000344",
+    "Name": "Replace All Cables on Cable Machines",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000348",
+    "ParentId": "GYM2000000000000000000000000344",
+    "Name": "Repaint / Refinish Equipment Frames (if rusted or chipped)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000349",
+    "ParentId": "GYM2000000000000000000000000344",
+    "Name": "Full Electrical Safety Inspection",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000350",
+    "ParentId": "GYM2000000000000000000000000344",
+    "Name": "Review Equipment Lifecycle - Plan Replacements",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000351",
+    "ParentId": "GYM2000000000000000000000000344",
+    "Name": "Update Equipment Inventory Register",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000352",
+    "ParentId": "GYM2000000000000000000000000344",
+    "Name": "Review and Renew Service Contracts with Vendors",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000353",
+    "ParentId": "GYM2000000000000000000000000344",
+    "Name": "Budget Allocation for Next Year Maintenance",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000354",
+    "ParentId": "300000000000000000000000000000001",
+    "Name": "Marketing and Promotions",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000355",
+    "ParentId": "GYM2000000000000000000000000354",
+    "Name": "Pre-Launch Marketing",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000356",
+    "ParentId": "GYM2000000000000000000000000355",
+    "Name": "Create Gym Brand Identity (logo, colors, tagline)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000357",
+    "ParentId": "GYM2000000000000000000000000355",
+    "Name": "Build Gym Website",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000358",
+    "ParentId": "GYM2000000000000000000000000355",
+    "Name": "Create Social Media Pages (Instagram, Facebook, Google Business)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000359",
+    "ParentId": "GYM2000000000000000000000000355",
+    "Name": "Run Pre-Launch Teaser Campaigns",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000360",
+    "ParentId": "GYM2000000000000000000000000355",
+    "Name": "Offer Early Bird Membership Discounts",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000361",
+    "ParentId": "GYM2000000000000000000000000355",
+    "Name": "Distribute Flyers in Local Area",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000362",
+    "ParentId": "GYM2000000000000000000000000354",
+    "Name": "Grand Opening Event",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000363",
+    "ParentId": "GYM2000000000000000000000000362",
+    "Name": "Plan Opening Day Event",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000364",
+    "ParentId": "GYM2000000000000000000000000362",
+    "Name": "Invite Local Influencers / Fitness Bloggers",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000365",
+    "ParentId": "GYM2000000000000000000000000362",
+    "Name": "Offer Free Trial Day for Walk-Ins",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000366",
+    "ParentId": "GYM2000000000000000000000000362",
+    "Name": "Arrange Refreshments and Giveaways",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000367",
+    "ParentId": "GYM2000000000000000000000000354",
+    "Name": "Ongoing Marketing",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000368",
+    "ParentId": "GYM2000000000000000000000000367",
+    "Name": "Run Monthly Social Media Campaigns",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000369",
+    "ParentId": "GYM2000000000000000000000000367",
+    "Name": "Collect and Publish Member Testimonials",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000370",
+    "ParentId": "GYM2000000000000000000000000367",
+    "Name": "Referral Program (member brings a friend discount)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000371",
+    "ParentId": "GYM2000000000000000000000000367",
+    "Name": "Partner with Local Corporates for Group Memberships",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000372",
+    "ParentId": "GYM2000000000000000000000000367",
+    "Name": "Seasonal Promotions (New Year, Summer Body, Ramadan)",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000373",
+    "ParentId": "300000000000000000000000000000001",
+    "Name": "Daily Operations",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000374",
+    "ParentId": "GYM2000000000000000000000000373",
+    "Name": "Opening Checklist",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000375",
+    "ParentId": "GYM2000000000000000000000000374",
+    "Name": "Unlock Facility",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000376",
+    "ParentId": "GYM2000000000000000000000000374",
+    "Name": "Switch On Lights, AC, Music",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000377",
+    "ParentId": "GYM2000000000000000000000000374",
+    "Name": "Verify All Equipment is Functional",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000378",
+    "ParentId": "GYM2000000000000000000000000374",
+    "Name": "Clean and Sanitize All Surfaces",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000379",
+    "ParentId": "GYM2000000000000000000000000374",
+    "Name": "Restock Water Dispenser and Towels",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000380",
+    "ParentId": "GYM2000000000000000000000000374",
+    "Name": "Check Reception Area is Ready",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000381",
+    "ParentId": "GYM2000000000000000000000000373",
+    "Name": "Member Check-In / Check-Out",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000382",
+    "ParentId": "GYM2000000000000000000000000381",
+    "Name": "Verify Membership Status at Entry",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000383",
+    "ParentId": "GYM2000000000000000000000000381",
+    "Name": "Log Member Attendance",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000384",
+    "ParentId": "GYM2000000000000000000000000381",
+    "Name": "Handle Walk-In Enquiries",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000385",
+    "ParentId": "GYM2000000000000000000000000373",
+    "Name": "End-of-Day Checklist",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000386",
+    "ParentId": "GYM2000000000000000000000000385",
+    "Name": "Ensure All Members Have Left",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000387",
+    "ParentId": "GYM2000000000000000000000000385",
+    "Name": "Switch Off All Equipment",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000388",
+    "ParentId": "GYM2000000000000000000000000385",
+    "Name": "Switch Off Lights, AC, Music",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000389",
+    "ParentId": "GYM2000000000000000000000000385",
+    "Name": "Secure All Doors and Windows",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000390",
+    "ParentId": "GYM2000000000000000000000000385",
+    "Name": "Set Alarm System",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000391",
+    "ParentId": "GYM2000000000000000000000000385",
+    "Name": "Prepare Daily Attendance and Revenue Report",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000392",
+    "ParentId": "300000000000000000000000000000001",
+    "Name": "Compliance and Legal",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000393",
+    "ParentId": "GYM2000000000000000000000000392",
+    "Name": "Obtain Municipality Approvals",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000394",
+    "ParentId": "GYM2000000000000000000000000392",
+    "Name": "Obtain Civil Defense / Fire Safety Certificate",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000395",
+    "ParentId": "GYM2000000000000000000000000392",
+    "Name": "Obtain Health and Safety Clearance",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000396",
+    "ParentId": "GYM2000000000000000000000000392",
+    "Name": "Display Required Licenses and Certificates",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000397",
+    "ParentId": "GYM2000000000000000000000000392",
+    "Name": "Maintain First Aid Compliance",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000398",
+    "ParentId": "GYM2000000000000000000000000392",
+    "Name": "Conduct Annual Safety Drills",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYM2000000000000000000000000399",
+    "ParentId": "GYM2000000000000000000000000392",
+    "Name": "Renew All Licenses Before Expiry",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
   }
 ]
