@@ -11,4 +11,7 @@
   <ItemGroup>
     <None Remove="src\MAA_ERP_v4.html" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="public\data\" />
+  </ItemGroup>
 </Project>

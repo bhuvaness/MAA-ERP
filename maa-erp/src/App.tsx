@@ -5,6 +5,7 @@ import { useSetupFlow } from './hooks/useSetupFlow';
 import { useChat } from './hooks/useChat';
 import ContextPanel from './components/ContextPanel';
 import WelcomeScreen from './components/WelcomeScreen';
+import BusinessSetupWizard from './components/BusinessSetupWizard';
 import ChatInput from './components/ChatInput';
 import ImportModal from './components/ImportModal';
 import MessageList from './components/MessageList';
@@ -21,6 +22,14 @@ const App: React.FC = () => {
   const chat = useChat();
   const [importOpen, setImportOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  /**
+   * NEW: Controls which screen is visible.
+   *   'welcome' → Viki welcome screen (original)
+   *   'wizard'  → BusinessSetupWizard (drill-down industry selector)
+   *   'chat'    → Chat interface (post-setup)
+   */
+  const [screen, setScreen] = useState<'welcome' | 'wizard' | 'chat'>('welcome');
 
   /* ═══ Delegated click handlers for dynamic HTML ═══ */
   useEffect(() => {
@@ -71,25 +80,59 @@ const App: React.FC = () => {
   }, []);
 
   /* ═══ SETUP FLOW ═══ */
-  const handleBeginSetup = useCallback(async () => {
+
+  /**
+   * CHANGED: "Set up my business" now opens the wizard
+   * instead of the old hardcoded chat-based step flow.
+   */
+  const handleBeginSetup = useCallback(() => {
+    setScreen('wizard');
+  }, []);
+
+  /**
+   * NEW: Called when user completes the BusinessSetupWizard.
+   * Receives the selected PayanarssType IDs, transitions to chat,
+   * and shows a summary message from Viki.
+   */
+  const handleWizardComplete = useCallback(async (selectedIds: string[]) => {
+    // Mark setup as complete in existing setup flow
     setup.beginSetup();
+    setup.setCurrentStep(6);
+    setup.setShowChat(true);
+
+    // Transition to chat screen
+    setScreen('chat');
+
+    // Show summary in chat
+    const count = selectedIds.length;
     await chat.addVikiMessage(
-      `<div class="msg-text">Let's register your business! 👋 I'll walk you through <strong>6 quick steps</strong>.</div>
-      ${progressHTML(0)}
-      <div class="msg-text" style="margin-top:12px"><strong>Step 1:</strong> What type of business do you run?</div>
+      `<div class="msg-text">Your business is configured! 🎉</div>
+      ${successHTML(`<strong>${count} modules</strong> selected and activated`)}
+      <div class="msg-text" style="margin-top:12px">
+        Your MAA ERP workspace is ready. I've loaded all the selected modules,
+        tables, and business rules. What would you like to do first?
+      </div>
       <div class="msg-actions">
-        <button class="action-chip" data-action="industry" data-value="Restaurant"><span class="chip-icon">🍽</span> Restaurant</button>
-        <button class="action-chip" data-action="industry" data-value="Construction"><span class="chip-icon">🏗</span> Construction</button>
-        <button class="action-chip" data-action="industry" data-value="Retail"><span class="chip-icon">🛒</span> Retail</button>
-        <button class="action-chip" data-action="industry" data-value="Hotel"><span class="chip-icon">🏠</span> Hotel</button>
-        <button class="action-chip" data-action="industry" data-value="Gym & Fitness"><span class="chip-icon">🏋</span> Gym</button>
-        <button class="action-chip" data-action="industry" data-value="Salon & Spa"><span class="chip-icon">✂</span> Salon</button>
-        <button class="action-chip" data-action="industry" data-value="Clinic"><span class="chip-icon">🩺</span> Clinic</button>
-        <button class="action-chip" data-action="industry" data-value="Facility Management"><span class="chip-icon">🔧</span> FM</button>
-        <button class="action-chip" data-action="industry" data-value="Other"><span class="chip-icon">✚</span> Other</button>
+        <button class="action-chip" data-action="add-employee"><span class="chip-icon">👤</span> Add Employee</button>
+        <button class="action-chip" data-action="open-import"><span class="chip-icon">📎</span> Import Data</button>
+        <button class="action-chip" data-action="explore"><span class="chip-icon">🔍</span> Explore Modules</button>
       </div>`
     );
+
+    // Save selected IDs for later use
+    localStorage.setItem('maa-erp-business-config', JSON.stringify({
+      selectedTypeIds: selectedIds,
+      configuredAt: new Date().toISOString(),
+    }));
   }, [setup, chat]);
+
+  /**
+   * NEW: Called when user cancels the wizard.
+   * Returns to Viki welcome screen.
+   */
+  const handleWizardCancel = useCallback(() => {
+    setScreen('welcome');
+  }, []);
 
   const handleSetupAnswer = useCallback(async (stepId: string, value: string) => {
     setup.updateSetupData(stepId, value);
@@ -117,58 +160,50 @@ const App: React.FC = () => {
         `${successHTML('Trade license saved')}${progressHTML(3)}
         <div class="msg-text" style="margin-top:12px"><strong>Step 4: Commercial Registration</strong></div>
         <div class="msg-form-card"><div class="form-card-header"><div class="form-card-dot" style="background:var(--pink)"></div><h4>Commercial Registration</h4><span class="form-card-badge" style="background:var(--pink-soft);color:var(--pink)">LEGAL</span></div>
-          <div class="form-card-body"><div class="fc-row"><div class="fc-field"><label class="fc-label">CR Number</label><input class="fc-input" id="crNo" placeholder="1234567"/></div><div class="fc-field"><label class="fc-label">Emirate</label><select class="fc-input"><option>Abu Dhabi</option><option>Dubai</option><option>Sharjah</option></select></div></div></div>
-          <div class="form-card-footer"><button class="fc-save" data-action="next" data-step="commercial" data-input="crNo" data-default="1234567">Next →</button><button class="fc-skip" data-action="skip" data-step="commercial">Skip</button></div></div>`, 500);
-    } else if (stepId === 'commercial') {
+          <div class="form-card-body"><div class="fc-row"><div class="fc-field"><label class="fc-label">CR Number</label><input class="fc-input" id="crNo" placeholder="1234567890"/></div><div class="fc-field"><label class="fc-label">Issuing Authority</label><select class="fc-input"><option>MoEC Abu Dhabi</option><option>MoEC Dubai</option></select></div></div><div class="fc-row"><div class="fc-field"><label class="fc-label">Issue Date</label><input class="fc-input" type="date"/></div><div class="fc-field"><label class="fc-label">Expiry</label><input class="fc-input" type="date"/></div></div></div>
+          <div class="form-card-footer"><button class="fc-save" data-action="next" data-step="cr" data-input="crNo" data-default="1234567890">Next →</button><button class="fc-skip" data-action="skip" data-step="cr">Skip</button></div></div>`, 500);
+    } else if (stepId === 'cr') {
       setup.setCurrentStep(4);
       await chat.addVikiMessage(
-        `${successHTML('CR saved')}${progressHTML(4)}
-        <div class="msg-text" style="margin-top:12px"><strong>Step 5: Bank Account</strong></div>
-        <div class="msg-form-card"><div class="form-card-header"><div class="form-card-dot" style="background:var(--green)"></div><h4>Bank Account</h4><span class="form-card-badge" style="background:var(--green-soft);color:var(--green)">FINANCE</span></div>
-          <div class="form-card-body"><div class="fc-field"><label class="fc-label">Bank</label><select class="fc-input" id="bankName"><option value="">Select...</option><option>ADCB</option><option>Emirates NBD</option><option>FAB</option><option>ADIB</option><option>Mashreq</option></select></div><div class="fc-field"><label class="fc-label">IBAN</label><input class="fc-input" placeholder="AE XX XXXX..."/></div></div>
-          <div class="form-card-footer"><button class="fc-save" data-action="next" data-step="bank" data-input="bankName" data-default="ADCB">Next →</button><button class="fc-skip" data-action="skip" data-step="bank">Skip</button></div></div>`, 500);
-    } else if (stepId === 'bank') {
+        `${successHTML('Commercial registration saved')}${progressHTML(4)}
+        <div class="msg-text" style="margin-top:12px"><strong>Step 5: VAT Registration</strong></div>
+        <div class="msg-form-card"><div class="form-card-header"><div class="form-card-dot" style="background:var(--green)"></div><h4>VAT Registration</h4><span class="form-card-badge" style="background:var(--green-soft);color:var(--green)">TAX</span></div>
+          <div class="form-card-body"><div class="fc-row"><div class="fc-field"><label class="fc-label">TRN (Tax Registration Number)</label><input class="fc-input" id="trnNo" placeholder="100XXXXXXXXX"/></div><div class="fc-field"><label class="fc-label">VAT Rate</label><select class="fc-input"><option>5% (UAE Standard)</option><option>0% (Exempt)</option></select></div></div></div>
+          <div class="form-card-footer"><button class="fc-save" data-action="next" data-step="vat" data-input="trnNo" data-default="100000000000">Next →</button><button class="fc-skip" data-action="skip" data-step="vat">Skip</button></div></div>`, 500);
+    } else if (stepId === 'vat') {
       setup.setCurrentStep(5);
       await chat.addVikiMessage(
-        `${successHTML('Bank saved')}${progressHTML(5)}
-        <div class="msg-text" style="margin-top:12px"><strong>Step 6: Tax Registration (VAT/GST)</strong></div>
-        <div class="msg-form-card"><div class="form-card-header"><div class="form-card-dot" style="background:var(--yellow)"></div><h4>Tax Registration</h4><span class="form-card-badge" style="background:var(--yellow-soft);color:var(--yellow)">TAX</span></div>
-          <div class="form-card-body"><div class="fc-row"><div class="fc-field"><label class="fc-label">TRN</label><input class="fc-input" id="trn" placeholder="100XXXXXXXXX003"/></div><div class="fc-field"><label class="fc-label">Type</label><select class="fc-input"><option>VAT (5%)</option><option>VAT Exempt</option><option>Not Registered</option></select></div></div></div>
-          <div class="form-card-footer"><button class="fc-save" data-action="next" data-step="tax" data-input="trn" data-default="TRN-AUTO">Complete ✓</button><button class="fc-skip" data-action="skip" data-step="tax">Skip</button></div></div>`, 500);
-    } else if (stepId === 'tax') {
-      await handleCompleteSetup();
-    }
-  }, [setup, chat]);
-
-  const handleSkip = useCallback(async (stepId: string) => {
-    setup.updateSetupData(stepId, '(skipped)');
-    chat.addUserMessage('Skip for now');
-    await chat.addVikiMessage('<div class="msg-text" style="color:var(--text-3)">Skipped — you can complete this anytime.</div>', 300);
-    if (stepId === 'tax') { await handleCompleteSetup(); }
-    else {
-      const nextMap: Record<string, string> = { license: 'license', commercial: 'commercial', bank: 'bank' };
-      if (nextMap[stepId]) handleSetupAnswer(stepId, '(skipped)');
-    }
-  }, [setup, chat]);
-
-  const handleCompleteSetup = useCallback(async () => {
-    setup.completeSetup();
-    const ind = setup.setupData.industry || 'Business';
-    await chat.addVikiMessage(
-      `<div class="msg-success" style="font-size:14px;padding:10px 18px">🎉 Business setup complete!</div>${progressHTML(6)}${setupSummaryHTML(setup.setupData)}`, 800);
-    await chat.addVikiMessage(
-      `<div class="msg-text"><strong>12 modules</strong> activated for <em>${ind}</em>. What's next?</div>
-      <div class="msg-text" style="margin-top:4px;font-size:12px;color:var(--text-3)">💡 Tip: Start typing in the chatbox to discover all modules, actions &amp; reports</div>
+        `${successHTML('VAT registered')}${progressHTML(5)}
+        <div class="msg-text" style="margin-top:12px"><strong>Step 6: Contact Information</strong></div>
+        <div class="msg-form-card"><div class="form-card-header"><div class="form-card-dot" style="background:var(--accent)"></div><h4>Contact Details</h4></div>
+          <div class="form-card-body"><div class="fc-row"><div class="fc-field"><label class="fc-label">Phone</label><input class="fc-input" id="phone" placeholder="+971 XX XXX XXXX"/></div><div class="fc-field"><label class="fc-label">Email</label><input class="fc-input" id="email" type="email" placeholder="info@company.ae"/></div></div><div class="fc-field"><label class="fc-label">Address</label><input class="fc-input" placeholder="Office 123, Tower A, Abu Dhabi"/></div></div>
+          <div class="form-card-footer"><button class="fc-save" data-action="next" data-step="contact" data-input="phone" data-default="+971 50 123 4567">Complete Setup →</button></div></div>`, 500);
+    } else if (stepId === 'contact') {
+      setup.setCurrentStep(6);
+      const d = setup.setupData;
+      await chat.addVikiMessage(
+        `${successHTML('All done!')}${progressHTML(6)}
+      ${setupSummaryHTML(d)}
+      <div class="msg-text" style="margin-top:12px">What would you like to do next?</div>
       <div class="msg-actions">
-        <button class="action-chip" data-action="add-employee"><span class="chip-icon">👤</span> Add employees</button>
-        <button class="action-chip" data-action="open-import"><span class="chip-icon">📎</span> Import from Excel</button>
-        <button class="action-chip" data-action="explore"><span class="chip-icon">🔍</span> Explore modules</button>
+        <button class="action-chip" data-action="add-employee"><span class="chip-icon">👤</span> Add Employee</button>
+        <button class="action-chip" data-action="open-import"><span class="chip-icon">📎</span> Import Data</button>
+        <button class="action-chip" data-action="explore"><span class="chip-icon">🔍</span> Explore Modules</button>
       </div>`, 500);
+    }
   }, [setup, chat]);
+
+  const handleSkip = useCallback((step: string) => {
+    chat.addUserMessage('Skipped');
+    if (step === 'license') handleSetupAnswer('license', '—');
+    if (step === 'cr') handleSetupAnswer('cr', '—');
+    if (step === 'vat') handleSetupAnswer('vat', '—');
+  }, [chat, handleSetupAnswer]);
 
   /* ═══ POST-SETUP ═══ */
   const handlePostSetup = useCallback(async (type: string) => {
     setup.setShowChat(true);
+    setScreen('chat');
     if (type === 'employee') {
       chat.updateContext('New Employee', 'HR › Employee Management');
       await chat.addVikiMessage(`<div class="msg-text">Let's add a new employee.</div>${employeeFormHTML()}`);
@@ -200,6 +235,7 @@ const App: React.FC = () => {
   /* ═══ IMPORT ═══ */
   const handleFileSelected = useCallback((file: File) => {
     setup.setShowChat(true);
+    setScreen('chat');
     const ext = file.name.split('.').pop()?.toUpperCase() || '';
     const size = (file.size / 1024).toFixed(1);
     const ec = EXT_COLORS[ext] || { bg: 'var(--bg-surface)', c: 'var(--text-3)', i: '📄' };
@@ -233,6 +269,7 @@ const App: React.FC = () => {
   /* ═══ FREE TEXT ═══ */
   const handleSendMessage = useCallback(async (text: string) => {
     setup.setShowChat(true);
+    setScreen('chat');
     chat.addUserMessage(text);
     const lower = text.toLowerCase();
     if (!setup.setupComplete) { handleBeginSetup(); return; }
@@ -246,6 +283,7 @@ const App: React.FC = () => {
   /* ═══ MENU ACTION ═══ */
   const handleMenuAction = useCallback((item: MenuItem) => {
     setup.setShowChat(true);
+    setScreen('chat');
     chat.addUserMessage(item.name);
     if (item.action === 'employee') { handlePostSetup('employee'); return; }
     if (item.action === 'import_excel' || item.action === 'import_csv') { setImportOpen(true); return; }
@@ -267,11 +305,21 @@ const App: React.FC = () => {
       <div className={`app${!setup.setupComplete ? ' onboarding' : ''}`}>
         <ContextPanel context={chat.context} onImport={() => setImportOpen(true)} />
         <main className="conversation-panel" onDragOver={handleDragOver} onDrop={handleDrop}>
-          {!setup.showChat ? (
+
+          {/* SCREEN SWITCHER — Welcome → Wizard → Chat */}
+          {screen === 'welcome' && (
             <WelcomeScreen onBeginSetup={handleBeginSetup} />
-          ) : (
+          )}
+          {screen === 'wizard' && (
+            <BusinessSetupWizard
+              onComplete={handleWizardComplete}
+              onCancel={handleWizardCancel}
+            />
+          )}
+          {screen === 'chat' && (
             <MessageList messages={chat.messages} isTyping={chat.isTyping} scrollRef={chat.scrollRef} />
           )}
+
           <ChatInput setupComplete={setup.setupComplete} onSendMessage={handleSendMessage} onMenuAction={handleMenuAction} onImport={() => setImportOpen(true)} onTriggerFile={() => fileInputRef.current?.click()} />
         </main>
       </div>
