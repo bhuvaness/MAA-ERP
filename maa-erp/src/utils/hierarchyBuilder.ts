@@ -15,7 +15,7 @@
  *   getChildren() → O(1) via pre-built index
  */
 
-import { PayanarssType, PayanarssTypeNode } from "../types/PayanarssType";
+import type { PayanarssType, PayanarssTypeNode } from "../types/PayanarssType";
 
 // ═══════════════════════════════════════════════════════════════
 // INDEX — Pre-built lookups for O(1) access

@@ -15,7 +15,11 @@ import {
   relatedFormHTML, relatedSavedHTML,
   exploreModulesHTML, attendanceReportHTML,
   importPreviewHTML,
+  businessUseCasesHTML, customerSegmentsHTML, segmentDetailHTML,
 } from './utils/htmlBuilders';
+import {
+  fetchAllTypes, fetchChildren, findBusinessByName, getBusinessSchemaRoot,
+} from './services/payanarssTypeService';
 
 const App: React.FC = () => {
   const setup = useSetupFlow();
@@ -68,6 +72,21 @@ const App: React.FC = () => {
           const value = input?.value || actionEl.dataset.default || '';
           handleSetupAnswer(step, value);
         }
+        if (action === 'drill-usecase') {
+          const id = actionEl.dataset.id || '';
+          if (id) handleDrillUseCase(id);
+        }
+        if (action === 'drill-segment') {
+          const id = actionEl.dataset.id || '';
+          if (id) handleDrillSegment(id);
+        }
+        if (action === 'back-segments') {
+          handleBackToSegments();
+        }
+        if (action === 'select-segment') {
+          const id = actionEl.dataset.id || '';
+          if (id) handleSelectSegment(id);
+        }
       }
 
       if (relatedEl) {
@@ -96,8 +115,7 @@ const App: React.FC = () => {
    */
   const handleWizardComplete = useCallback(async (selectedIds: string[]) => {
     // Mark setup as complete in existing setup flow
-    setup.beginSetup();
-    setup.setCurrentStep(6);
+    setup.completeSetup();
     setup.setShowChat(true);
 
     // Transition to chat screen
@@ -266,19 +284,127 @@ const App: React.FC = () => {
     await chat.addVikiMessage(`${successHTML(`Imported ${rows} records from <strong>${fn}</strong>`)}<div class="msg-actions" style="margin-top:6px"><button class="action-chip" data-action="open-import">📎 Import another</button><button class="action-chip" data-action="add-employee">👤 Add employee</button></div>`, 600);
   }, [chat]);
 
+  /* ═══ BUSINESS IDENTIFICATION & DRILL-DOWN ═══ */
+
+  const handleBusinessIdentification = useCallback(async (keyword: string) => {
+    try {
+      const matches = await findBusinessByName(keyword);
+      if (matches.length === 0) {
+        await chat.addVikiMessage(
+          `<div class="msg-text">I couldn't find a business model matching "<strong>${keyword}</strong>". Try specifying an industry like Gym, Restaurant, or Salon.</div>`
+        );
+        return;
+      }
+
+      const sector = matches[0];
+      const schemaRoot = await getBusinessSchemaRoot(sector.Id);
+      if (!schemaRoot) {
+        await chat.addVikiMessage(
+          `<div class="msg-text">Found <strong>${sector.Name}</strong> but no detailed business model is available yet.</div>`
+        );
+        return;
+      }
+
+      chat.updateContext(sector.Name, `Business > ${sector.Name}`);
+      const useCases = await fetchChildren(schemaRoot.Id);
+      await chat.addVikiMessage(businessUseCasesHTML(sector.Name, useCases));
+    } catch {
+      await chat.addVikiMessage(
+        `<div class="msg-text">Something went wrong loading the business data. Please try again.</div>`
+      );
+    }
+  }, [chat]);
+
+  const handleDrillUseCase = useCallback(async (useCaseId: string) => {
+    try {
+      const all = await fetchAllTypes();
+      const useCase = all.find(t => t.Id === useCaseId);
+      if (!useCase) return;
+
+      const children = await fetchChildren(useCaseId);
+
+      if (useCase.Name.toLowerCase().includes('identify target customer segment')) {
+        chat.updateContext('Customer Segments', `Gym > ${useCase.Name}`);
+        await chat.addVikiMessage(customerSegmentsHTML(children));
+      } else {
+        chat.updateContext(useCase.Name, `Gym > ${useCase.Name}`);
+        await chat.addVikiMessage(businessUseCasesHTML(useCase.Name, children));
+      }
+    } catch (err) {
+      console.error('Failed to drill into use case:', err);
+    }
+  }, [chat]);
+
+  const handleDrillSegment = useCallback(async (segmentId: string) => {
+    try {
+      const all = await fetchAllTypes();
+      const segment = all.find(t => t.Id === segmentId);
+      if (!segment) return;
+
+      const details = await fetchChildren(segmentId);
+      chat.updateContext(segment.Name, `Gym > Customer Segments > ${segment.Name}`);
+      await chat.addVikiMessage(segmentDetailHTML(segment, details));
+    } catch (err) {
+      console.error('Failed to load segment details:', err);
+    }
+  }, [chat]);
+
+  const handleBackToSegments = useCallback(async () => {
+    try {
+      const children = await fetchChildren('GYM2000000000000000000000000002');
+      chat.updateContext('Customer Segments', 'Gym > Identify Target Customer Segment');
+      await chat.addVikiMessage(customerSegmentsHTML(children));
+    } catch (err) {
+      console.error('Failed to navigate back to segments:', err);
+    }
+  }, [chat]);
+
+  const handleSelectSegment = useCallback(async (segmentId: string) => {
+    try {
+      const all = await fetchAllTypes();
+      const segment = all.find(t => t.Id === segmentId);
+      const name = segment?.Name || 'segment';
+      chat.addUserMessage(`Selected: ${name}`);
+      await chat.addVikiMessage(
+        `${successHTML(`<strong>${name}</strong> selected as your target customer segment`)}
+        <div class="msg-text" style="margin-top:8px">What would you like to do next?</div>
+        <div class="msg-actions">
+          <button class="action-chip" data-action="back-segments"><span class="chip-icon">🎯</span> Explore Other Segments</button>
+          <button class="action-chip" data-action="add-employee"><span class="chip-icon">👤</span> Hire Staff</button>
+          <button class="action-chip" data-action="explore"><span class="chip-icon">🔍</span> Explore Modules</button>
+        </div>`
+      );
+    } catch (err) {
+      console.error('Failed to select segment:', err);
+    }
+  }, [chat]);
+
   /* ═══ FREE TEXT ═══ */
   const handleSendMessage = useCallback(async (text: string) => {
     setup.setShowChat(true);
     setScreen('chat');
     chat.addUserMessage(text);
     const lower = text.toLowerCase();
-    if (!setup.setupComplete) { handleBeginSetup(); return; }
-    if (lower.includes('import') || lower.includes('excel') || lower.includes('csv')) { setTimeout(() => setImportOpen(true), 400); }
+    // Business identification — allow even before setup is complete
+    if (
+      /my\s+business\s+is/i.test(lower) ||
+      /i\s+(run|have|own|operate)\s+a/i.test(lower) ||
+      /\b(start|open)\s+(a\s+)?gym\b/i.test(lower) ||
+      lower.includes('gym business') ||
+      (lower.includes('gym') && lower.includes('business'))
+    ) {
+      setup.completeSetup();
+      const businessMatch = text.match(/(?:my\s+business\s+is\s+(?:a\s+)?|i\s+(?:run|have|own|operate)\s+a\s+|start\s+(?:a\s+)?|open\s+(?:a\s+)?)(.+)/i);
+      const keyword = businessMatch ? businessMatch[1].trim() : 'gym';
+      setTimeout(async () => { await handleBusinessIdentification(keyword); }, 400);
+    }
+    else if (!setup.setupComplete) { handleBeginSetup(); return; }
+    else if (lower.includes('import') || lower.includes('excel') || lower.includes('csv')) { setTimeout(() => setImportOpen(true), 400); }
     else if (lower.includes('employee') || lower.includes('hire')) { setTimeout(() => handlePostSetup('employee'), 400); }
     else if (lower.includes('module') || lower.includes('explore')) { setTimeout(() => handlePostSetup('explore'), 400); }
     else if (lower.includes('attendance') || lower.includes('report')) { chat.updateContext('Reports', 'Analytics › Attendance'); setTimeout(async () => { await chat.addVikiMessage(attendanceReportHTML(), 800); }, 400); }
     else { setTimeout(async () => { await chat.addVikiMessage(`<div class="msg-text">What would you like to do?</div><div class="msg-actions"><button class="action-chip" data-action="add-employee">👤 Employees</button><button class="action-chip" data-action="open-import">📎 Import</button><button class="action-chip" data-action="explore">🔍 Explore</button></div>`); }, 400); }
-  }, [setup, chat, handleBeginSetup, handlePostSetup]);
+  }, [setup, chat, handleBeginSetup, handlePostSetup, handleBusinessIdentification]);
 
   /* ═══ MENU ACTION ═══ */
   const handleMenuAction = useCallback((item: MenuItem) => {

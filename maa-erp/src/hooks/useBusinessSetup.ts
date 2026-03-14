@@ -21,7 +21,8 @@
  */
 
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { PayanarssType, TYPE_IDS } from "../types/PayanarssType";
+import type { PayanarssType } from "../types/PayanarssType";
+import { TYPE_IDS } from "../types/PayanarssType";
 import {
   fetchAllTypes,
   saveBusinessConfig,

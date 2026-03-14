@@ -1,5 +1,19 @@
 import { SETUP_STEPS } from '../data/menuData';
 import type { SetupData, RelatedFormDef } from '../types';
+import type { PayanarssType } from '../types/PayanarssType';
+
+const SEGMENT_ICONS: Record<string, string> = {
+  'Bodybuilders': '💪',
+  'General Fitness': '🏃',
+  'Women-Only': '👩',
+  'CrossFit / Functional Training': '🏋️',
+  'Senior / Rehabilitation': '🧓',
+  'Youth / Teen Fitness': '🧒',
+  'Corporate / Office Workers': '💼',
+  'Athletes / Sports Training': '⚽',
+  '24-Hour / Budget': '🕐',
+  'Boutique / Luxury': '✨',
+};
 
 export function progressHTML(activeIdx: number): string {
   const steps = SETUP_STEPS.map((s, i) => {
@@ -92,5 +106,73 @@ export function importPreviewHTML(fn: string, ext: string, size: string, rows: n
       <div class="import-preview-stats"><div class="import-stat"><div class="import-stat-value">${rows}</div><div class="import-stat-label">Rows</div></div><div class="import-stat"><div class="import-stat-value">${cols.length}</div><div class="import-stat-label">Columns</div></div><div class="import-stat"><div class="import-stat-value">${mc}/${cols.length}</div><div class="import-stat-label">Mapped</div></div></div>
       ${cols.length ? `<div class="import-preview-cols">${colTags}</div>` : ''}
       <div class="import-preview-footer"><button class="fc-save" data-action="do-import" data-fn="${fn}" data-rows="${rows}">Import ${rows} rows</button><button class="fc-skip">Map columns</button></div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// BUSINESS USE CASE — Gym metadata drill-down
+// ═══════════════════════════════════════════════════════════════
+
+export function businessUseCasesHTML(businessName: string, useCases: PayanarssType[]): string {
+  const cards = useCases.map(uc =>
+    `<button class="related-opt" data-action="drill-usecase" data-id="${uc.Id}">
+      <div class="related-opt-icon" style="background:var(--accent-soft);color:var(--accent)">⚡</div>
+      <div class="related-opt-text">
+        <h5>${uc.Name}</h5>
+        ${uc.Description ? `<span>${uc.Description}</span>` : ''}
+      </div>
+      <span class="related-opt-arrow">›</span>
+    </button>`
+  ).join('');
+
+  return `<div class="msg-text">I've loaded the <strong>${businessName}</strong> business model.</div>
+    <div class="msg-related" style="margin-top:10px">
+      <div class="msg-related-title">⚡ Business Use Cases (${useCases.length})</div>
+      <div class="related-options">${cards}</div>
+    </div>`;
+}
+
+export function customerSegmentsHTML(segments: PayanarssType[]): string {
+  const cards = segments.map(seg => {
+    const icon = SEGMENT_ICONS[seg.Name] || '🎯';
+    return `<button class="related-opt" data-action="drill-segment" data-id="${seg.Id}">
+      <div class="related-opt-icon" style="background:var(--yellow-soft);color:var(--yellow)">${icon}</div>
+      <div class="related-opt-text">
+        <h5>${seg.Name}</h5>
+        ${seg.Description ? `<span>${seg.Description}</span>` : ''}
+      </div>
+      <span class="related-opt-arrow">›</span>
+    </button>`;
+  }).join('');
+
+  return `<div class="msg-text"><strong>Identify Target Customer Segment</strong></div>
+    <div class="msg-text" style="margin-top:4px;font-size:12px;color:var(--text-4)">
+      Choose a customer segment to see Equipment, Staffing, Facility, Marketing, Pricing, and Revenue Model details.
+    </div>
+    <div class="msg-related" style="margin-top:10px">
+      <div class="msg-related-title">🎯 Customer Segments (${segments.length})</div>
+      <div class="related-options">${cards}</div>
+    </div>`;
+}
+
+export function segmentDetailHTML(segment: PayanarssType, details: PayanarssType[]): string {
+  const rows = details.map(d =>
+    `<div class="data-row">
+      <div class="data-row-info">
+        <h5>${d.Name}</h5>
+        ${d.Description ? `<span>${d.Description}</span>` : '<span style="color:var(--text-4)">No details yet</span>'}
+      </div>
+    </div>`
+  ).join('');
+
+  return `<div class="msg-text"><strong>${segment.Name}</strong> — Segment Details</div>
+    ${segment.Description ? `<div class="msg-text" style="margin-top:4px;font-size:12px;color:var(--text-4)">${segment.Description}</div>` : ''}
+    <div class="msg-data-card" style="margin-top:10px">
+      <div class="data-card-header">📋 ${segment.Name} <span class="data-card-count">${details.length} aspects</span></div>
+      ${rows}
+    </div>
+    <div class="msg-actions" style="margin-top:8px">
+      <button class="action-chip" data-action="back-segments"><span class="chip-icon">←</span> Back to Segments</button>
+      <button class="action-chip" data-action="select-segment" data-id="${segment.Id}"><span class="chip-icon">✓</span> Select This Segment</button>
     </div>`;
 }

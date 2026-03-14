@@ -13,7 +13,8 @@
  *                                                    (swap this layer only)
  */
 
-import { PayanarssType } from "../types/PayanarssType";
+import type { PayanarssType } from "../types/PayanarssType";
+import { TYPE_IDS } from "../types/PayanarssType";
 
 // ═══════════════════════════════════════════════════════════════
 // CONFIGURATION — Change this ONE line when switching to REST API
@@ -121,6 +122,32 @@ export async function loadBusinessConfig(): Promise<string[] | null> {
   } catch {
     return null;
   }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// BUSINESS DISCOVERY
+// ═══════════════════════════════════════════════════════════════
+
+/**
+ * Find business-related GroupType nodes by name (case-insensitive partial match).
+ * Example: findBusinessByName("Gym") → ["Gym & Fitness Center"]
+ */
+export async function findBusinessByName(query: string): Promise<PayanarssType[]> {
+  const all = await fetchAllTypes();
+  const lower = query.toLowerCase();
+  return all.filter(t =>
+    t.Name.toLowerCase().includes(lower) &&
+    t.PayanarssTypeId === TYPE_IDS.GROUP_TYPE
+  );
+}
+
+/**
+ * Given a business sub-sector node (like "Gym & Fitness Center"),
+ * find its child GroupType node that represents the DB Schema.
+ */
+export async function getBusinessSchemaRoot(sectorId: string): Promise<PayanarssType | null> {
+  const children = await fetchChildren(sectorId);
+  return children.find(c => c.PayanarssTypeId === TYPE_IDS.GROUP_TYPE) || children[0] || null;
 }
 
 /** Clear the in-memory cache (useful after data updates) */
