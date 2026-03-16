@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs ls -lh)",
+      "Bash(node -e \":*)",
+      "Bash(node merge-gym.js)",
+      "Bash(npx tsc --noEmit)",
+      "Bash(ls node_modules/.bin/tsc*)",
+      "Bash(npm install)",
+      "Bash(npx vite build)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(where npx)",
+      "Bash(git add maa-erp/public/data/VanakkamPayanarssTypes.json maa-erp/src/App.tsx maa-erp/src/hooks/useBusinessSetup.ts maa-erp/src/services/payanarssTypeService.ts maa-erp/src/types/PayanarssType.ts maa-erp/src/utils/hierarchyBuilder.ts maa-erp/src/utils/htmlBuilders.ts)",
+      "Bash(git commit:*)"
+    ]
+  }
+}

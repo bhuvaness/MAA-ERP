@@ -14,6 +14,7 @@
  */
 
 import React, { useState, useEffect, useCallback, useMemo } from "react";
+import { searchModules } from "../services/ptSearchService";
 
 // ═══════════════════════════════════════════════════════════════
 // TYPES & CONSTANTS
@@ -122,6 +123,10 @@ const BusinessSetupWizard: React.FC<Props> = ({ onComplete, onCancel }) => {
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [searchQuery, setSearchQuery] = useState("");
   const [animKey, setAnimKey] = useState(0);
+  const [vikiInput, setVikiInput] = useState("");
+  const [vikiLoading, setVikiLoading] = useState(false);
+  const [vikiResponse, setVikiResponse] = useState<string | null>(null);
+  const [vikiMatchedTypes, setVikiMatchedTypes] = useState<PayanarssType[]>([]);
 
   // ── Load data from static JSON ──
   useEffect(() => {
@@ -134,8 +139,18 @@ const BusinessSetupWizard: React.FC<Props> = ({ onComplete, onCancel }) => {
         if (!mounted) return;
         const idx = buildIndex(data);
         setIndex(idx);
+
+        // Auto-select all business use cases (UCX, SMO, SUB, ISM, MOD, SEC, TBL prefixes)
+        const autoSelect = new Set<string>();
+        const selectPrefixes = new Set(["UCX", "SMO", "SUB", "ISM", "MOD", "SEC", "TBL"]);
+        for (const t of data) {
+          const prefix = t.Id.substring(0, 3).toUpperCase();
+          if (selectPrefixes.has(prefix)) autoSelect.add(t.Id);
+        }
+        setSelectedIds(autoSelect);
+
         setPhase("browsing");
-        console.log(`📦 Loaded ${data.length} PayanarssTypes, ${idx.roots.length} root(s)`);
+        console.log(`📦 Loaded ${data.length} PayanarssTypes, ${idx.roots.length} root(s), ${autoSelect.size} auto-selected`);
       } catch (err: any) {
         if (mounted) setError(err.message);
       }
@@ -153,6 +168,9 @@ const BusinessSetupWizard: React.FC<Props> = ({ onComplete, onCancel }) => {
   const currentChildren = useMemo(() => {
     if (!index) return [];
     if (navStack.length === 0) {
+      // Find MAA ERP and show only its children (industries)
+      const maaErp = index.roots.find((r) => r.Name === "MAA ERP");
+      if (maaErp) return index.childrenOf.get(maaErp.Id) || [];
       if (index.roots.length === 1) return index.childrenOf.get(index.roots[0].Id) || [];
       return index.roots;
     }
@@ -161,12 +179,26 @@ const BusinessSetupWizard: React.FC<Props> = ({ onComplete, onCancel }) => {
 
   const filteredChildren = useMemo(() => {
     if (!searchQuery.trim()) return currentChildren;
+    if (!index) return [];
     const q = searchQuery.toLowerCase();
-    return currentChildren.filter((c) =>
-      c.Name.toLowerCase().includes(q) ||
-      (c.Description && c.Description.toLowerCase().includes(q))
-    );
-  }, [currentChildren, searchQuery]);
+
+    // Search ALL types in the entire tree, not just current level
+    // Only show meaningful nodes (sectors, modules, submodules, use cases, tables)
+    const skipPrefixes = new Set(["COL", "RUL"]); // Skip columns and rules
+    const matches: PayanarssType[] = [];
+    index.byId.forEach((t) => {
+      if (t.Id === t.ParentId) return; // skip roots
+      const prefix = t.Id.substring(0, 3).toUpperCase();
+      if (skipPrefixes.has(prefix)) return;
+      if (
+        t.Name.toLowerCase().includes(q) ||
+        (t.Description && t.Description.toLowerCase().includes(q))
+      ) {
+        matches.push(t);
+      }
+    });
+    return matches.slice(0, 50); // Limit to 50 results for performance
+  }, [currentChildren, searchQuery, index]);
 
   const breadcrumb = useMemo(() => {
     if (!index || navStack.length === 0) return [];
@@ -235,6 +267,72 @@ const BusinessSetupWizard: React.FC<Props> = ({ onComplete, onCancel }) => {
   const getDescCount = useCallback((nodeId: string) => index?.descendantCount.get(nodeId) || 0, [index]);
   const hasKids = useCallback((nodeId: string) => !!(index?.childrenOf.get(nodeId)?.length), [index]);
   const allVisibleSelected = filteredChildren.length > 0 && filteredChildren.every((c) => selectedIds.has(c.Id));
+
+
+  // ═══ VIKI AI CHAT — uses Pinecone via ptSearchService ═══
+  const askViki = useCallback(async () => {
+    if (!vikiInput.trim() || !index) return;
+    setVikiLoading(true);
+    setVikiResponse(null);
+    setVikiMatchedTypes([]);
+
+    try {
+      // 1. Call Express → Pinecone via ptSearchService
+      const results = await searchModules(vikiInput);
+
+      if (results.length === 0) {
+        setVikiResponse(`I couldn't find matching modules for "${vikiInput}". Try a more specific business description.`);
+        return;
+      }
+
+      // 2. Build matched names + IDs from Pinecone results
+      const matchedIds   = new Set<string>(results.map((r) => r.id));
+      const matchedNames = new Set<string>(results.map((r) => r.name.toLowerCase()));
+
+      // 3. Local matching against the full index
+      const allTypes = Array.from(index.byId.values());
+      const newSelection  = new Set<string>();
+      const displayTypes: PayanarssType[] = [];
+      const displayPrefixes = new Set(["SEC", "MOD", "ISM", "SMO", "SUB", "UCX", "TBL"]);
+      const skipPrefixes    = new Set(["COL", "RUL"]);
+
+      for (const t of allTypes) {
+        const prefix = t.Id.substring(0, 3).toUpperCase();
+        if (skipPrefixes.has(prefix)) continue;
+
+        const isMatch =
+          matchedIds.has(t.Id) ||
+          matchedNames.has(t.Name.toLowerCase());
+
+        if (isMatch) {
+          newSelection.add(t.Id);
+          if (displayPrefixes.has(prefix)) displayTypes.push(t);
+
+          // Also select all descendants
+          const addChildren = (parentId: string) => {
+            const children = index.childrenOf.get(parentId) || [];
+            for (const c of children) {
+              const cp = c.Id.substring(0, 3).toUpperCase();
+              if (!skipPrefixes.has(cp)) newSelection.add(c.Id);
+              addChildren(c.Id);
+            }
+          };
+          addChildren(t.Id);
+        }
+      }
+
+      setSelectedIds((prev) => new Set([...prev, ...newSelection]));
+      setVikiMatchedTypes(displayTypes);
+      setVikiResponse(
+        `Found ${displayTypes.length} module${displayTypes.length !== 1 ? "s" : ""} matching your business. Select the ones you need and click Configure Business.`
+      );
+    } catch (err: any) {
+      setVikiResponse(`⚠️ ${err.message}. Make sure the Express server is running on port 3001.`);
+    } finally {
+      setVikiLoading(false);
+    }
+  }, [vikiInput, index]);
+
   const isIndustryLevel = navStack.length === 0;
 
   // ═══════════════════════════════════════════════════
@@ -490,6 +588,120 @@ const BusinessSetupWizard: React.FC<Props> = ({ onComplete, onCancel }) => {
             })}
           </div>
         )}
+      </div>
+
+      {/* Viki Matched Modules */}
+      {vikiMatchedTypes.length > 0 && (
+        <div style={{ padding: "16px 20px", borderTop: "1px solid var(--border)" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
+            <div>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--text-1)", margin: 0 }}>🎯 Viki's Recommendations</h3>
+              <p style={{ fontSize: 12, color: "var(--text-4)", margin: "4px 0 0" }}>{vikiMatchedTypes.length} modules matched · {selectedIds.size} total items selected</p>
+            </div>
+            <button
+              onClick={() => { setVikiMatchedTypes([]); setVikiResponse(null); setVikiInput(""); }}
+              style={{ padding: "4px 12px", fontSize: 11, color: "var(--text-4)", background: "var(--bg-base)", border: "1px solid var(--border)", borderRadius: 6, cursor: "pointer" }}
+            >
+              Clear
+            </button>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: 8, maxHeight: 300, overflowY: "auto" }}>
+            {vikiMatchedTypes.map((t) => {
+              const prefix = t.Id.substring(0, 3).toUpperCase();
+              const levelLabel = prefix === "SEC" ? "Sector" : prefix === "MOD" || prefix === "ISM" ? "Module" : prefix === "SMO" || prefix === "SUB" ? "Sub-Module" : prefix === "UCX" ? "Use Case" : prefix === "TBL" ? "Table" : "Item";
+              const levelColor = prefix === "SEC" ? "#9b59b6" : prefix === "MOD" || prefix === "ISM" ? "#3498db" : prefix === "UCX" ? "#27ae60" : prefix === "TBL" ? "#e67e22" : "#7f8c8d";
+              const desc = index?.descendantCount.get(t.Id) || 0;
+              return (
+                <div
+                  key={t.Id}
+                  onClick={() => drillInto(t.Id)}
+                  style={{ padding: "10px 12px", border: "1px solid var(--border)", borderRadius: 8, cursor: "pointer", background: "var(--bg-elevated)", transition: "border-color 0.15s" }}
+                  onMouseOver={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
+                  onMouseOut={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 4 }}>
+                    <span style={{ fontSize: 13, fontWeight: 600, color: "var(--text-1)" }}>{t.Name}</span>
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                    <span style={{ fontSize: 10, padding: "1px 6px", borderRadius: 4, background: levelColor + "22", color: levelColor, fontWeight: 600 }}>{levelLabel}</span>
+                    {desc > 0 && <span style={{ fontSize: 10, color: "var(--text-5)" }}>{desc} children</span>}
+                  </div>
+                  {t.Description && <p style={{ fontSize: 11, color: "var(--text-4)", margin: "4px 0 0", lineHeight: 1.4, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{t.Description}</p>}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Action bar */}
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 14, paddingTop: 14, borderTop: "1px solid var(--border)" }}>
+            <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+              <label style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: "var(--text-3)", cursor: "pointer" }}>
+                <input
+                  type="checkbox"
+                  checked={vikiMatchedTypes.every((t) => selectedIds.has(t.Id))}
+                  onChange={() => {
+                    const allSelected = vikiMatchedTypes.every((t) => selectedIds.has(t.Id));
+                    setSelectedIds((prev) => {
+                      const next = new Set(prev);
+                      if (allSelected) {
+                        vikiMatchedTypes.forEach((t) => next.delete(t.Id));
+                      } else {
+                        vikiMatchedTypes.forEach((t) => next.add(t.Id));
+                      }
+                      return next;
+                    });
+                  }}
+                  style={{ accentColor: "var(--accent)" }}
+                />
+                {vikiMatchedTypes.every((t) => selectedIds.has(t.Id)) ? "Deselect All" : "Select All"}
+              </label>
+              <span style={{ fontSize: 12, color: "var(--text-5)" }}>·</span>
+              <span style={{ fontSize: 12, color: "var(--text-4)" }}>✓ {selectedIds.size} items ready</span>
+            </div>
+            <button
+              onClick={() => onComplete(Array.from(selectedIds))}
+              disabled={selectedIds.size === 0}
+              style={{
+                padding: "10px 28px", fontSize: 14, fontWeight: 700, color: "#fff",
+                background: selectedIds.size > 0 ? "linear-gradient(135deg, #27ae60, #2ecc71)" : "var(--text-5)",
+                border: "none", borderRadius: 10, cursor: selectedIds.size > 0 ? "pointer" : "not-allowed",
+                boxShadow: selectedIds.size > 0 ? "0 2px 8px rgba(39,174,96,0.3)" : "none",
+                transition: "all 0.2s",
+              }}
+            >
+              ✓ Configure Business →
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Viki Chat Bar */}
+      <div style={{ padding: "12px 20px", borderTop: "1px solid var(--border)", background: "var(--bg-elevated)" }}>
+        {vikiResponse && (
+          <div style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: 10, padding: "10px 14px", background: "var(--bg-base)", borderRadius: 10, fontSize: 13, color: "var(--text-2)", lineHeight: 1.6 }}>
+            <span style={{ width: 28, height: 28, borderRadius: "50%", background: "var(--accent)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: 12, flexShrink: 0 }}>V</span>
+            <span>{vikiResponse}</span>
+          </div>
+        )}
+        <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+          <span style={{ width: 32, height: 32, borderRadius: "50%", background: "var(--accent)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: 13, flexShrink: 0 }}>V</span>
+          <input
+            type="text"
+            placeholder="Tell Viki about your business... e.g. 'I run a gym business for ladies'"
+            value={vikiInput}
+            onChange={(e) => setVikiInput(e.target.value)}
+            onKeyDown={(e) => { if (e.key === "Enter" && !vikiLoading) askViki(); }}
+            disabled={vikiLoading}
+            style={{ flex: 1, padding: "10px 14px", fontSize: 13, border: "1px solid var(--border)", borderRadius: 10, background: "var(--bg-base)", color: "var(--text-1)", outline: "none" }}
+          />
+          <button
+            onClick={askViki}
+            disabled={vikiLoading || !vikiInput.trim()}
+            style={{ padding: "10px 18px", fontSize: 13, fontWeight: 600, color: "#fff", background: vikiLoading ? "var(--text-5)" : "var(--accent)", border: "none", borderRadius: 10, cursor: vikiLoading ? "wait" : "pointer", whiteSpace: "nowrap" }}
+          >
+            {vikiLoading ? "Thinking..." : "Ask Viki →"}
+          </button>
+        </div>
       </div>
 
       {/* Bottom bar */}

@@ -34,6 +34,7 @@ const App: React.FC = () => {
    *   'chat'    → Chat interface (post-setup)
    */
   const [screen, setScreen] = useState<'welcome' | 'wizard' | 'chat'>('welcome');
+  const [configuredModuleIds, setConfiguredModuleIds] = useState<string[]>([]);
 
   /* ═══ Delegated click handlers for dynamic HTML ═══ */
   useEffect(() => {
@@ -117,6 +118,9 @@ const App: React.FC = () => {
     // Mark setup as complete in existing setup flow
     setup.completeSetup();
     setup.setShowChat(true);
+
+    // Store selected module IDs for sidebar
+    setConfiguredModuleIds(selectedIds);
 
     // Transition to chat screen
     setScreen('chat');
@@ -429,7 +433,7 @@ const App: React.FC = () => {
   return (
     <>
       <div className={`app${!setup.setupComplete ? ' onboarding' : ''}`}>
-        <ContextPanel context={chat.context} onImport={() => setImportOpen(true)} />
+        <ContextPanel context={chat.context} onImport={() => setImportOpen(true)} selectedModuleIds={configuredModuleIds} />
         <main className="conversation-panel" onDragOver={handleDragOver} onDrop={handleDrop}>
 
           {/* SCREEN SWITCHER — Welcome → Wizard → Chat */}

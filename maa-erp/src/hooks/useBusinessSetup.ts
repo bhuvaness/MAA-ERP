@@ -196,15 +196,20 @@ export function useBusinessSetup(): BusinessSetupState {
   const currentChildren = useMemo(() => {
     if (!index) return [];
 
-    if (navigationStack.length === 0) {
-      // Root level: show children of the system root
-      // The system root is the one self-referencing node (Id === ParentId)
-      if (index.roots.length === 1) {
-        return getChildren(index, index.roots[0].Id);
+      if (navigationStack.length === 0) {
+          // Find MAA ERP (BusinessSolutions) and show its children
+          const maaErp = index.roots.find(
+              (r) => r.Name === "MAA ERP"
+          );
+          if (maaErp) {
+              return getChildren(index, maaErp.Id);
+          }
+          // Fallback
+          if (index.roots.length === 1) {
+              return getChildren(index, index.roots[0].Id);
+          }
+          return index.roots;
       }
-      // Multiple roots (shouldn't happen, but handle gracefully)
-      return index.roots;
-    }
 
     const topId = navigationStack[navigationStack.length - 1];
     return getChildren(index, topId);
