@@ -12,7 +12,7 @@
  *   - FULL: Claude API → reads full PTS library → returns structured response
  */
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import {
   queryViki,
   getGymMetadataDirect,
@@ -49,28 +49,6 @@ export function useVikiChat(): VikiChatState {
   const [gymSchema, setGymSchema] = useState<GymSchemaInfo | null>(null);
   const [selectedSegment, setSelectedSegment] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-
-  /**
-   * Auto-load Gym Business DB Schema on mount.
-   * Hardcoded: always loads gym metadata so the dashboard
-   * shows the TargetCustomer tree without any user query.
-   */
-  useEffect(() => {
-    let mounted = true;
-    async function autoLoadGymSchema() {
-      try {
-        const { gymSchema: schema } = await getGymMetadataDirect();
-        if (mounted && schema) {
-          setGymSchema(schema);
-          console.log("🏋️ Auto-loaded Gym Business DB Schema:", schema.totalNodes, "nodes");
-        }
-      } catch (err) {
-        console.warn("⚠️ Failed to auto-load gym schema:", err);
-      }
-    }
-    autoLoadGymSchema();
-    return () => { mounted = false; };
-  }, []);
 
   /**
    * Submit the user's business description to Viki.

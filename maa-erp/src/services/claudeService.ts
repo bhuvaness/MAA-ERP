@@ -11,7 +11,7 @@
  *   4. Return structured response with matched types
  */
 
-import { PayanarssType } from "./payanarssTypeService";
+import { PayanarssType } from "../types/core";
 import { fetchAllTypes } from "./payanarssTypeService";
 import {
   HierarchyIndex,
@@ -20,11 +20,6 @@ import {
   getNodeById,
   getAncestorPath,
 } from "../utils/hierarchyBuilder";
-import {
-  getTargetCustomerTree,
-  getTargetCustomerNodeCount,
-  type GymTreeNode,
-} from "../data/gymBusinessData";
 
 // ═══════════════════════════════════════════════════════════════
 // TYPES
@@ -51,7 +46,6 @@ export interface GymSchemaInfo {
   phases: { name: string; nodeCount: number; children: string[] }[];
   customerSegments: { name: string; description: string; subCategories: string[] }[];
   totalNodes: number;
-  targetCustomerTree: GymTreeNode | null;
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -180,7 +174,6 @@ export function extractGymMetadata(
     phases,
     customerSegments,
     totalNodes: countAll(gymSchema.Id) + 1,
-    targetCustomerTree: getTargetCustomerTree(),
   };
 }
 

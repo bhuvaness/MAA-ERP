@@ -1,9 +1,13 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import type { MenuItem, RelatedType } from './types';
+import { COL, TABLE_IDS } from './types/Record';
 import { RELATED_FORMS, KNOWN_COLUMNS, EXT_COLORS } from './data/menuData';
 import { useSetupFlow } from './hooks/useSetupFlow';
 import { useChat } from './hooks/useChat';
+import { saveRecord, saveBusinessConfig, loadBusinessConfig } from './services/recordService';
+import { initPinecone, upsertToVector, queryVectors } from './services/pineconeService';
 import ContextPanel from './components/ContextPanel';
+import RightContextPanel from './components/RightContextPanel';
 import WelcomeScreen from './components/WelcomeScreen';
 import BusinessSetupWizard from './components/BusinessSetupWizard';
 import ChatInput from './components/ChatInput';
@@ -15,13 +19,10 @@ import {
   relatedFormHTML, relatedSavedHTML,
   exploreModulesHTML, attendanceReportHTML,
   importPreviewHTML,
-  businessUseCasesHTML, customerSegmentsHTML, segmentDetailHTML,
-  targetCustomerBranchViewHTML,
+  searchResultsHTML, noResultsHTML,
 } from './utils/htmlBuilders';
-import {
-  fetchAllTypes, fetchChildren, findBusinessByName, getBusinessSchemaRoot,
-} from './services/payanarssTypeService';
-import { getTargetCustomerTree } from './data/gymBusinessData';
+import VikiBusinessChat from './components/VikiBusinessChat';
+import './styles/viki-chat.css';
 
 const App: React.FC = () => {
   const setup = useSetupFlow();
@@ -30,14 +31,25 @@ const App: React.FC = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   /**
-   * NEW: Controls which screen is visible.
-   *   'welcome' → Viki welcome screen (original)
-   *   'wizard'  → BusinessSetupWizard (drill-down industry selector)
-   *   'chat'    → Chat interface (post-setup)
+   * Controls which screen is visible.
+   *   'welcome' -> Viki welcome screen
+   *   'wizard'  -> BusinessSetupWizard
+   *   'chat'    -> Chat interface (post-setup)
    */
-  const [screen, setScreen] = useState<'welcome' | 'wizard' | 'chat'>('welcome');
-  const [configuredModuleIds, setConfiguredModuleIds] = useState<string[]>([]);
-  const tcTree = React.useMemo(() => getTargetCustomerTree(), []);
+  const [screen, setScreen] = useState<'viki-setup' | 'welcome' | 'wizard' | 'chat'>('viki-setup');
+  const [lastEmployeeId, setLastEmployeeId] = useState<string | null>(null);
+
+  /* ═══════════════════════════════════════════════════════════
+   * Refs for handlers — avoids stale closures in the global
+   * click listener that is registered once (empty dep array).
+   * ═══════════════════════════════════════════════════════════ */
+  const handleSaveEmployeeRef = useRef<() => void>(() => {});
+  const handlePostSetupRef = useRef<(type: string) => void>(() => {});
+  const handleSavedRelatedRef = useRef<(type: RelatedType) => void>(() => {});
+  const handleDoImportRef = useRef<(fn: string, rows: string) => void>(() => {});
+  const handleSetupAnswerRef = useRef<(stepId: string, value: string) => void>(() => {});
+  const handleSkipRef = useRef<(step: string) => void>(() => {});
+  const handleAddRelatedRef = useRef<(type: RelatedType) => void>(() => {});
 
   /* ═══ Delegated click handlers for dynamic HTML ═══ */
   useEffect(() => {
@@ -48,33 +60,33 @@ const App: React.FC = () => {
 
       if (actionEl) {
         const action = actionEl.dataset.action;
-        if (action === 'save-employee') handleSaveEmployee();
-        if (action === 'add-employee') handlePostSetup('employee');
+        if (action === 'save-employee') handleSaveEmployeeRef.current();
+        if (action === 'add-employee') handlePostSetupRef.current('employee');
         if (action === 'open-import') setImportOpen(true);
-        if (action === 'explore') handlePostSetup('explore');
+        if (action === 'explore') handlePostSetupRef.current('explore');
         if (action === 'save-related') {
           const type = actionEl.dataset.type as RelatedType;
-          if (type) handleSavedRelated(type);
+          if (type) handleSavedRelatedRef.current(type);
         }
         if (action === 'do-import') {
           const fn = actionEl.dataset.fn || '';
           const rows = actionEl.dataset.rows || '0';
-          handleDoImport(fn, rows);
+          handleDoImportRef.current(fn, rows);
         }
         if (action === 'industry') {
           const value = actionEl.dataset.value || '';
-          handleSetupAnswer('industry', value);
+          handleSetupAnswerRef.current('industry', value);
         }
         if (action === 'skip') {
           const step = actionEl.dataset.step || '';
-          handleSkip(step);
+          handleSkipRef.current(step);
         }
         if (action === 'next') {
           const step = actionEl.dataset.step || '';
           const inputId = actionEl.dataset.input || '';
           const input = document.getElementById(inputId) as HTMLInputElement | null;
           const value = input?.value || actionEl.dataset.default || '';
-          handleSetupAnswer(step, value);
+          handleSetupAnswerRef.current(step, value);
         }
         if (action === 'drill-usecase') {
           const id = actionEl.dataset.id || '';
@@ -102,40 +114,56 @@ const App: React.FC = () => {
 
       if (relatedEl) {
         const type = relatedEl.dataset.related as RelatedType;
-        if (type) handleAddRelated(type);
+        if (type) handleAddRelatedRef.current(type);
       }
     };
     document.addEventListener('click', handler);
     return () => document.removeEventListener('click', handler);
   }, []);
 
+  /* ═══ Pinecone init (fire-and-forget) ═══ */
+  useEffect(() => {
+    initPinecone().then(r => {
+      if (r.success) console.log('Pinecone connected:', r.index);
+      else console.warn('Pinecone init skipped:', r.error);
+    });
+  }, []);
+
+  /* ═══ Load saved business config on mount ═══ */
+  useEffect(() => {
+    loadBusinessConfig().then(res => {
+      if (res.success && res.exists && res.config?.setupComplete) {
+        console.log('Restored business config from file system');
+        setup.restoreSetup(res.config.setupData || {});
+        setScreen('chat');
+        const name = res.config.setupData?.name || 'Your Business';
+        chat.addVikiMessage(
+          `<div class="msg-text">Welcome back! 👋</div>
+          ${successHTML(`<strong>${name}</strong> is configured and ready`)}
+          <div class="msg-text" style="margin-top:12px">What would you like to do?</div>
+          <div class="msg-actions">
+            <button class="action-chip" data-action="add-employee"><span class="chip-icon">👤</span> Add Employee</button>
+            <button class="action-chip" data-action="open-import"><span class="chip-icon">📎</span> Import Data</button>
+            <button class="action-chip" data-action="explore"><span class="chip-icon">🔍</span> Explore Modules</button>
+          </div>`
+        );
+      }
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   /* ═══ SETUP FLOW ═══ */
 
-  /**
-   * CHANGED: "Set up my business" now opens the wizard
-   * instead of the old hardcoded chat-based step flow.
-   */
   const handleBeginSetup = useCallback(() => {
     setScreen('wizard');
   }, []);
 
-  /**
-   * NEW: Called when user completes the BusinessSetupWizard.
-   * Receives the selected PayanarssType IDs, transitions to chat,
-   * and shows a summary message from Viki.
-   */
   const handleWizardComplete = useCallback(async (selectedIds: string[]) => {
-    // Mark setup as complete in existing setup flow
-    setup.completeSetup();
+    setup.beginSetup();
+    setup.setCurrentStep(6);
     setup.setShowChat(true);
-
-    // Store selected module IDs for sidebar
-    setConfiguredModuleIds(selectedIds);
-
-    // Transition to chat screen
     setScreen('chat');
 
-    // Show summary in chat
     const count = selectedIds.length;
     await chat.addVikiMessage(
       `<div class="msg-text">Your business is configured! 🎉</div>
@@ -152,17 +180,22 @@ const App: React.FC = () => {
       </div>`
     );
 
-    // Save selected IDs for later use
     localStorage.setItem('maa-erp-business-config', JSON.stringify({
       selectedTypeIds: selectedIds,
       configuredAt: new Date().toISOString(),
     }));
+
+    // Persist business config to file system
+    saveBusinessConfig({
+      setupComplete: true,
+      setupData: setup.setupData,
+      selectedTypeIds: selectedIds,
+    }).then(r => r.success
+      ? console.log('Business config saved to file system')
+      : console.warn('Business config save skipped:', r.error)
+    );
   }, [setup, chat]);
 
-  /**
-   * NEW: Called when user cancels the wizard.
-   * Returns to Viki welcome screen.
-   */
   const handleWizardCancel = useCallback(() => {
     setScreen('welcome');
   }, []);
@@ -223,6 +256,15 @@ const App: React.FC = () => {
         <button class="action-chip" data-action="open-import"><span class="chip-icon">📎</span> Import Data</button>
         <button class="action-chip" data-action="explore"><span class="chip-icon">🔍</span> Explore Modules</button>
       </div>`, 500);
+
+      // Persist business config to file system (chat-based setup)
+      saveBusinessConfig({
+        setupComplete: true,
+        setupData: { ...d, contact: value },
+      }).then(r => r.success
+        ? console.log('Business config saved to file system')
+        : console.warn('Business config save skipped:', r.error)
+      );
     }
   }, [setup, chat]);
 
@@ -245,12 +287,48 @@ const App: React.FC = () => {
   }, [setup, chat]);
 
   const handleSaveEmployee = useCallback(async () => {
-    const nameEl = document.getElementById('empName') as HTMLInputElement | null;
-    const deptEl = document.getElementById('empDept') as HTMLSelectElement | null;
+    const codeEl = document.getElementById(COL.EMP_CODE) as HTMLInputElement | null;
+    const nameEl = document.getElementById(COL.EMP_FIRST_NAME) as HTMLInputElement | null;
+    const deptEl = document.getElementById(COL.EMP_DEPARTMENT) as HTMLSelectElement | null;
+    const dobEl = document.getElementById(COL.EMP_DOB) as HTMLInputElement | null;
+    const code = codeEl?.value || 'EMP-0001';
     const name = nameEl?.value || 'Ahmed Al Rashid';
     const dept = deptEl?.value || 'Operations';
-    chat.addUserMessage(`Created: ${name}, ${dept}`);
-    await chat.addVikiMessage(employeeSavedHTML(name), 600);
+    const dob = dobEl?.value || '';
+
+    // Show user message with the entered values
+    chat.addUserMessage(
+      `<strong>${name}</strong> · ${dept}${dob ? ` · DOB ${dob}` : ''} · ${code}`
+    );
+
+    // Persist to file system -> data/records/{uuid}.json
+    // Keys are PayanarssType column IDs
+    const result = await saveRecord('employee', {
+      [COL.EMP_CODE]: code,
+      [COL.EMP_FIRST_NAME]: name,
+      [COL.EMP_DEPARTMENT]: dept,
+      [COL.EMP_DOB]: dob,
+    }, TABLE_IDS.EMPLOYEE);
+
+    if (result.success) {
+      setLastEmployeeId(result.id);
+      console.log(`Employee saved -> ${result.id}.json`);
+      // Fire-and-forget upsert to Pinecone
+      upsertToVector(result.id, 'employee', TABLE_IDS.EMPLOYEE, {
+        [COL.EMP_CODE]: code,
+        [COL.EMP_FIRST_NAME]: name,
+        [COL.EMP_DEPARTMENT]: dept,
+        [COL.EMP_DOB]: dob,
+      }).then(r => r.success
+        ? console.log('Pinecone upsert OK:', result.id)
+        : console.warn('Pinecone upsert skipped:', r.error)
+      );
+      await chat.addVikiMessage(employeeSavedHTML(name, code, dept), 600);
+    } else {
+      await chat.addVikiMessage(
+        `<div class="msg-text" style="color:var(--rose)">Save failed: ${result.error || 'Unknown error'}</div>`, 300
+      );
+    }
   }, [chat]);
 
   const handleAddRelated = useCallback(async (type: RelatedType) => {
@@ -262,8 +340,99 @@ const App: React.FC = () => {
 
   const handleSavedRelated = useCallback(async (type: RelatedType) => {
     const labels: Record<string, string> = { salary: 'Salary Structure', address: 'Address', documents: 'Document', bank: 'Bank Account' };
-    await chat.addVikiMessage(relatedSavedHTML(labels[type] || type), 300);
+
+    // Map related type -> table ID
+    const tableMap: Record<string, string> = {
+      salary: TABLE_IDS.SALARY_STRUCTURE,
+      address: TABLE_IDS.EMPLOYEE_ADDRESS,
+      documents: TABLE_IDS.EMPLOYEE_DOCUMENT,
+      bank: TABLE_IDS.BANK_ACCOUNT,
+    };
+
+    // Read form values using PayanarssType column IDs
+    let formData: Record<string, unknown> = {};
+    let summaryParts: string[] = [];
+
+    if (type === 'salary') {
+      const basic = (document.getElementById(COL.SAL_BASIC) as HTMLInputElement)?.value || '0';
+      const housing = (document.getElementById(COL.SAL_HOUSING) as HTMLInputElement)?.value || '0';
+      const transport = (document.getElementById(COL.SAL_TRANSPORT) as HTMLInputElement)?.value || '0';
+      const effective = (document.getElementById(COL.SAL_EFFECTIVE) as HTMLInputElement)?.value || '';
+      formData = {
+        [COL.SAL_BASIC]: parseFloat(basic),
+        [COL.SAL_HOUSING]: parseFloat(housing),
+        [COL.SAL_TRANSPORT]: parseFloat(transport),
+        [COL.SAL_EFFECTIVE]: effective,
+        [COL.SAL_EMPLOYEE_ID]: lastEmployeeId || '',
+      };
+      summaryParts = [`Basic: ${basic}`, `Housing: ${housing}`, `Transport: ${transport}`];
+      if (effective) summaryParts.push(`From: ${effective}`);
+    } else if (type === 'address') {
+      const line1 = (document.getElementById(COL.ADDR_LINE1) as HTMLInputElement)?.value || '';
+      const city = (document.getElementById(COL.ADDR_CITY) as HTMLSelectElement)?.value || '';
+      const country = (document.getElementById(COL.ADDR_COUNTRY) as HTMLSelectElement)?.value || '';
+      formData = {
+        [COL.ADDR_LINE1]: line1,
+        [COL.ADDR_CITY]: city,
+        [COL.ADDR_COUNTRY]: country,
+        [COL.ADDR_EMPLOYEE_ID]: lastEmployeeId || '',
+      };
+      summaryParts = [line1, city, country].filter(Boolean);
+    } else if (type === 'documents') {
+      const docType = (document.getElementById(COL.DOC_TYPE) as HTMLSelectElement)?.value || '';
+      const docNumber = (document.getElementById(COL.DOC_NUMBER) as HTMLInputElement)?.value || '';
+      const expiry = (document.getElementById(COL.DOC_EXPIRY) as HTMLInputElement)?.value || '';
+      formData = {
+        [COL.DOC_TYPE]: docType,
+        [COL.DOC_NUMBER]: docNumber,
+        [COL.DOC_EXPIRY]: expiry,
+        [COL.DOC_EMPLOYEE_ID]: lastEmployeeId || '',
+      };
+      summaryParts = [docType, docNumber];
+      if (expiry) summaryParts.push(`Exp: ${expiry}`);
+    } else if (type === 'bank') {
+      const bank = (document.getElementById(COL.BANK_CONFIG_KEY) as HTMLSelectElement)?.value || '';
+      const iban = (document.getElementById(COL.BANK_CONFIG_VALUE) as HTMLInputElement)?.value || '';
+      formData = {
+        [COL.BANK_CONFIG_KEY]: bank,
+        [COL.BANK_CONFIG_VALUE]: iban,
+      };
+      summaryParts = [bank, iban].filter(Boolean);
+    }
+
+    // Show user message with the entered values
+    chat.addUserMessage(`${labels[type]}: <strong>${summaryParts.join(' · ')}</strong>`);
+
+    // Persist to file system, linked to last employee if available
+    const result = await saveRecord(type, formData, tableMap[type], lastEmployeeId || undefined);
+
+    if (result.success) {
+      console.log(`${labels[type]} saved -> ${result.id}.json`);
+      // Fire-and-forget upsert to Pinecone
+      upsertToVector(result.id, type, tableMap[type], formData, lastEmployeeId || undefined)
+        .then(r => r.success
+          ? console.log('Pinecone upsert OK:', result.id)
+          : console.warn('Pinecone upsert skipped:', r.error)
+        );
+      await chat.addVikiMessage(relatedSavedHTML(labels[type] || type, summaryParts.join(' · ')), 300);
+    } else {
+      await chat.addVikiMessage(
+        `<div class="msg-text" style="color:var(--rose)">Save failed: ${result.error || 'Unknown error'}</div>`, 300
+      );
+    }
+  }, [chat, lastEmployeeId]);
+
+  /* ═══ Keep refs in sync with latest callbacks ═══ */
+  handleSaveEmployeeRef.current = handleSaveEmployee;
+  handlePostSetupRef.current = handlePostSetup;
+  handleSavedRelatedRef.current = handleSavedRelated;
+  handleDoImportRef.current = useCallback(async (fn: string, rows: string) => {
+    chat.addUserMessage(`Import ${rows} rows`);
+    await chat.addVikiMessage(`${successHTML(`Imported ${rows} records from <strong>${fn}</strong>`)}<div class="msg-actions" style="margin-top:6px"><button class="action-chip" data-action="open-import">📎 Import another</button><button class="action-chip" data-action="add-employee">👤 Add employee</button></div>`, 600);
   }, [chat]);
+  handleSetupAnswerRef.current = handleSetupAnswer;
+  handleSkipRef.current = handleSkip;
+  handleAddRelatedRef.current = handleAddRelated;
 
   /* ═══ IMPORT ═══ */
   const handleFileSelected = useCallback((file: File) => {
@@ -294,148 +463,39 @@ const App: React.FC = () => {
     await chat.addVikiMessage(importPreviewHTML(fn, ext, size, rows, cols, matched, mc, ec), 800);
   }, [chat]);
 
-  const handleDoImport = useCallback(async (fn: string, rows: string) => {
-    chat.addUserMessage(`Import ${rows} rows`);
-    await chat.addVikiMessage(`${successHTML(`Imported ${rows} records from <strong>${fn}</strong>`)}<div class="msg-actions" style="margin-top:6px"><button class="action-chip" data-action="open-import">📎 Import another</button><button class="action-chip" data-action="add-employee">👤 Add employee</button></div>`, 600);
-  }, [chat]);
-
-  /* ═══ BUSINESS IDENTIFICATION & DRILL-DOWN ═══ */
-
-  const handleBusinessIdentification = useCallback(async (keyword: string) => {
-    try {
-      const matches = await findBusinessByName(keyword);
-      if (matches.length === 0) {
-        await chat.addVikiMessage(
-          `<div class="msg-text">I couldn't find a business model matching "<strong>${keyword}</strong>". Try specifying an industry like Gym, Restaurant, or Salon.</div>`
-        );
-        return;
-      }
-
-      const sector = matches[0];
-      const schemaRoot = await getBusinessSchemaRoot(sector.Id);
-      if (!schemaRoot) {
-        await chat.addVikiMessage(
-          `<div class="msg-text">Found <strong>${sector.Name}</strong> but no detailed business model is available yet.</div>`
-        );
-        return;
-      }
-
-      chat.updateContext(sector.Name, `Business > ${sector.Name}`);
-      const useCases = await fetchChildren(schemaRoot.Id);
-      await chat.addVikiMessage(businessUseCasesHTML(sector.Name, useCases));
-    } catch {
-      await chat.addVikiMessage(
-        `<div class="msg-text">Something went wrong loading the business data. Please try again.</div>`
-      );
-    }
-  }, [chat]);
-
-  const handleDrillUseCase = useCallback(async (useCaseId: string) => {
-    try {
-      const all = await fetchAllTypes();
-      const useCase = all.find(t => t.Id === useCaseId);
-      if (!useCase) return;
-
-      const children = await fetchChildren(useCaseId);
-
-      if (useCase.Name.toLowerCase().includes('identify target customer segment')) {
-        chat.updateContext('Customer Segments', `Gym > ${useCase.Name}`);
-        await chat.addVikiMessage(customerSegmentsHTML(children));
-      } else {
-        chat.updateContext(useCase.Name, `Gym > ${useCase.Name}`);
-        await chat.addVikiMessage(businessUseCasesHTML(useCase.Name, children));
-      }
-    } catch (err) {
-      console.error('Failed to drill into use case:', err);
-    }
-  }, [chat]);
-
-  const handleDrillSegment = useCallback(async (segmentId: string) => {
-    try {
-      const all = await fetchAllTypes();
-      const segment = all.find(t => t.Id === segmentId);
-      if (!segment) return;
-
-      const details = await fetchChildren(segmentId);
-      chat.updateContext(segment.Name, `Gym > Customer Segments > ${segment.Name}`);
-      await chat.addVikiMessage(segmentDetailHTML(segment, details));
-    } catch (err) {
-      console.error('Failed to load segment details:', err);
-    }
-  }, [chat]);
-
-  const handleBackToSegments = useCallback(async () => {
-    try {
-      const children = await fetchChildren('GYM2000000000000000000000000002');
-      chat.updateContext('Customer Segments', 'Gym > Identify Target Customer Segment');
-      await chat.addVikiMessage(customerSegmentsHTML(children));
-    } catch (err) {
-      console.error('Failed to navigate back to segments:', err);
-    }
-  }, [chat]);
-
-  const handleSelectSegment = useCallback(async (segmentId: string) => {
-    try {
-      const all = await fetchAllTypes();
-      const segment = all.find(t => t.Id === segmentId);
-      const name = segment?.Name || 'segment';
-      chat.addUserMessage(`Selected: ${name}`);
-      await chat.addVikiMessage(
-        `${successHTML(`<strong>${name}</strong> selected as your target customer segment`)}
-        <div class="msg-text" style="margin-top:8px">What would you like to do next?</div>
-        <div class="msg-actions">
-          <button class="action-chip" data-action="back-segments"><span class="chip-icon">🎯</span> Explore Other Segments</button>
-          <button class="action-chip" data-action="add-employee"><span class="chip-icon">👤</span> Hire Staff</button>
-          <button class="action-chip" data-action="explore"><span class="chip-icon">🔍</span> Explore Modules</button>
-        </div>`
-      );
-    } catch (err) {
-      console.error('Failed to select segment:', err);
-    }
-  }, [chat]);
-
-  /* ═══ TARGET CUSTOMER — Sequential branch view ═══ */
-
-  /** Show branch at index (0 = Identity = first table + columns + rules) */
-  const handleTcNav = useCallback(async (branchIndex: number) => {
-    if (!tcTree) return;
-    const branch = tcTree.children[branchIndex];
-    if (!branch) return;
-    chat.updateContext(branch.name, `TargetCustomer › ${branch.name}`);
-    await chat.addVikiMessage(targetCustomerBranchViewHTML(tcTree, branchIndex));
-  }, [chat, tcTree]);
-
-  /** Click "Identify Target Customer" → directly show first branch */
-  const handleTcRoot = useCallback(async () => {
-    handleTcNav(0);
-  }, [handleTcNav]);
-
   /* ═══ FREE TEXT ═══ */
   const handleSendMessage = useCallback(async (text: string) => {
     setup.setShowChat(true);
     setScreen('chat');
     chat.addUserMessage(text);
     const lower = text.toLowerCase();
-    // Business identification — allow even before setup is complete
-    if (
-      /my\s+business\s+is/i.test(lower) ||
-      /i\s+(run|have|own|operate)\s+a/i.test(lower) ||
-      /\b(start|open)\s+(a\s+)?gym\b/i.test(lower) ||
-      lower.includes('gym business') ||
-      (lower.includes('gym') && lower.includes('business'))
-    ) {
-      setup.completeSetup();
-      const businessMatch = text.match(/(?:my\s+business\s+is\s+(?:a\s+)?|i\s+(?:run|have|own|operate)\s+a\s+|start\s+(?:a\s+)?|open\s+(?:a\s+)?)(.+)/i);
-      const keyword = businessMatch ? businessMatch[1].trim() : 'gym';
-      setTimeout(async () => { await handleBusinessIdentification(keyword); }, 400);
+    if (!setup.setupComplete) { handleBeginSetup(); return; }
+    if (lower.includes('import') || lower.includes('excel') || lower.includes('csv')) {
+      setTimeout(() => setImportOpen(true), 400);
+    } else if (/\b(add|new|hire|create)\b/.test(lower) && /\bemployee\b/.test(lower)) {
+      setTimeout(() => handlePostSetup('employee'), 400);
+    } else if (lower.includes('module') || lower.includes('explore')) {
+      setTimeout(() => handlePostSetup('explore'), 400);
+    } else if (lower.includes('attendance') || lower.includes('report')) {
+      chat.updateContext('Reports', 'Analytics › Attendance');
+      setTimeout(async () => { await chat.addVikiMessage(attendanceReportHTML(), 800); }, 400);
+    } else {
+      // Vector search fallback — query Pinecone with user's text
+      chat.updateContext('Search', `Search › "${text.slice(0, 30)}${text.length > 30 ? '…' : ''}"`);
+      setTimeout(async () => {
+        try {
+          const res = await queryVectors(text, 5);
+          if (res.success && res.results.length > 0) {
+            await chat.addVikiMessage(searchResultsHTML(text, res.results));
+          } else {
+            await chat.addVikiMessage(noResultsHTML(text));
+          }
+        } catch {
+          await chat.addVikiMessage(noResultsHTML(text));
+        }
+      }, 400);
     }
-    else if (!setup.setupComplete) { handleBeginSetup(); return; }
-    else if (lower.includes('import') || lower.includes('excel') || lower.includes('csv')) { setTimeout(() => setImportOpen(true), 400); }
-    else if (lower.includes('employee') || lower.includes('hire')) { setTimeout(() => handlePostSetup('employee'), 400); }
-    else if (lower.includes('module') || lower.includes('explore')) { setTimeout(() => handlePostSetup('explore'), 400); }
-    else if (lower.includes('attendance') || lower.includes('report')) { chat.updateContext('Reports', 'Analytics › Attendance'); setTimeout(async () => { await chat.addVikiMessage(attendanceReportHTML(), 800); }, 400); }
-    else { setTimeout(async () => { await chat.addVikiMessage(`<div class="msg-text">What would you like to do?</div><div class="msg-actions"><button class="action-chip" data-action="add-employee">👤 Employees</button><button class="action-chip" data-action="open-import">📎 Import</button><button class="action-chip" data-action="explore">🔍 Explore</button></div>`); }, 400); }
-  }, [setup, chat, handleBeginSetup, handlePostSetup, handleBusinessIdentification]);
+  }, [setup, chat, handleBeginSetup, handlePostSetup]);
 
   /* ═══ MENU ACTION ═══ */
   const handleMenuAction = useCallback((item: MenuItem) => {
@@ -463,7 +523,28 @@ const App: React.FC = () => {
         <ContextPanel context={chat.context} onImport={() => setImportOpen(true)} selectedModuleIds={configuredModuleIds} />
         <main className="conversation-panel" onDragOver={handleDragOver} onDrop={handleDrop}>
 
-          {/* SCREEN SWITCHER — Welcome → Wizard → Chat */}
+          {/* Conversation top bar */}
+          {screen === 'chat' && (
+            <div className="conv-top">
+              <div className="conv-top-left">
+                <div className="conv-top-av">V</div>
+                <div className="conv-top-info">
+                  <h3>{chat.context.value}</h3>
+                  <p><span className="online-dot" /> Viki is ready · {chat.context.path}</p>
+                </div>
+              </div>
+              <div className="conv-top-actions">
+                <button className="top-btn active">🔍</button>
+                <button className="top-btn">☰</button>
+                <button className="top-btn">▤</button>
+              </div>
+            </div>
+          )}
+
+          {/* SCREEN SWITCHER */}
+          {screen === 'viki-setup' && (
+            <VikiBusinessChat />
+          )}
           {screen === 'welcome' && (
             <WelcomeScreen onBeginSetup={handleBeginSetup} />
           )}
@@ -479,6 +560,7 @@ const App: React.FC = () => {
 
           <ChatInput setupComplete={setup.setupComplete} onSendMessage={handleSendMessage} onMenuAction={handleMenuAction} onImport={() => setImportOpen(true)} onTriggerFile={() => fileInputRef.current?.click()} />
         </main>
+        {setup.setupComplete && <RightContextPanel />}
       </div>
       <ImportModal isOpen={importOpen} onClose={() => setImportOpen(false)} onFileSelected={handleFileSelected} />
       <input ref={fileInputRef} type="file" accept=".json,*" style={{ display: 'none' }} onChange={(e) => { if (e.target.files?.[0]) handleFileSelected(e.target.files[0]); e.target.value = ''; }} />

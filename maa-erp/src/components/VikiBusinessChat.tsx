@@ -13,7 +13,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useVikiChat } from "../hooks/useVikiChat";
 import type { GymSchemaInfo } from "../services/claudeService";
-import PTSTreeView from "./PTSTreeView";
 
 // ═══════════════════════════════════════════════════════════════
 // SUB-COMPONENTS
@@ -108,7 +107,6 @@ const ModuleCard: React.FC<{
 const VikiBusinessChat: React.FC = () => {
   const viki = useVikiChat();
   const [input, setInput] = useState("");
-  const [showTree, setShowTree] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
 
@@ -211,63 +209,6 @@ const VikiBusinessChat: React.FC = () => {
         </div>
       )}
 
-      {/* ── DASHBOARD: Gym Business DB Schema (auto-loaded) ── */}
-      {viki.gymSchema && viki.gymSchema.targetCustomerTree && (
-        <div className="viki-section viki-dashboard-schema">
-          <h3 className="viki-section-title">
-            🏋️ Gym Business DB Schema
-            <span className="viki-section-count">
-              {viki.gymSchema.totalNodes} total nodes
-            </span>
-          </h3>
-
-          {/* Identify Target Customer Segment */}
-          <div className="viki-schema-card">
-            <div className="viki-schema-card-header">
-              <span className="viki-schema-card-icon">🎯</span>
-              <div className="viki-schema-card-info">
-                <h4>Identify Target Customer Segment</h4>
-                <p>{viki.gymSchema.customerSegments.length} segment types · 99 nodes · tree depth 3</p>
-              </div>
-              <button
-                className="viki-schema-btn"
-                onClick={() => setShowTree((v) => !v)}
-              >
-                {showTree ? "Hide" : "View"} DB Schema
-              </button>
-            </div>
-
-            {/* Tree View */}
-            {showTree && (
-              <PTSTreeView
-                tree={viki.gymSchema.targetCustomerTree}
-                title="🗃️ TargetCustomer — Tables, Columns & Rules"
-                onBack={() => setShowTree(false)}
-              />
-            )}
-
-            {/* Segment chips (quick preview) */}
-            {!showTree && (
-              <div className="viki-segment-chips">
-                {viki.gymSchema.customerSegments.map((seg) => (
-                  <span
-                    key={seg.name}
-                    className={`viki-segment-chip ${viki.selectedSegment === seg.name ? "selected" : ""}`}
-                    onClick={() =>
-                      viki.selectedSegment === seg.name
-                        ? viki.clearSegment()
-                        : viki.selectSegment(seg.name)
-                    }
-                  >
-                    {seg.name}
-                  </span>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-
       {/* ── THINKING: Loading ── */}
       {viki.phase === "thinking" && (
         <div className="viki-thinking">
@@ -318,7 +259,7 @@ const VikiBusinessChat: React.FC = () => {
             </div>
           </div>
 
-          {/* Customer Segments (expanded view — when user queries) */}
+          {/* Customer Segments */}
           {viki.gymSchema && viki.gymSchema.customerSegments.length > 0 && (
             <div className="viki-section">
               <h3 className="viki-section-title">
@@ -331,7 +272,6 @@ const VikiBusinessChat: React.FC = () => {
                 Select your gym type. Each selection loads tailored Equipment, Staffing,
                 Facility, Marketing, Pricing, and Revenue Model configurations.
               </p>
-
               <div className="viki-segments-grid">
                 {viki.gymSchema.customerSegments.map((seg) => (
                   <SegmentCard

@@ -21,5 +21,16 @@ export function useSetupFlow() {
     setCurrentStep(0);
   }, []);
 
-  return { setupComplete, currentStep, setupData, showChat, setShowChat, setCurrentStep, updateSetupData, completeSetup, beginSetup };
+  /**
+   * Restore setup state from a saved business config.
+   * Called on app mount when data/business-config.json exists.
+   */
+  const restoreSetup = useCallback((data: SetupData) => {
+    setSetupData(data);
+    setSetupComplete(true);
+    setCurrentStep(6);
+    setShowChat(true);
+  }, []);
+
+  return { setupComplete, currentStep, setupData, showChat, setShowChat, setCurrentStep, updateSetupData, completeSetup, beginSetup, restoreSetup };
 }
