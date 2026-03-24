@@ -278,16 +278,45 @@ const BusinessSetupWizard: React.FC<Props> = ({ onComplete, onCancel }) => {
 
     try {
       // 1. Call Express → Pinecone via ptSearchService
-      const results = await searchModules(vikiInput);
-
-      if (results.length === 0) {
-        setVikiResponse(`I couldn't find matching modules for "${vikiInput}". Try a more specific business description.`);
-        return;
+      let results: { id: string; name: string; score: number }[] = [];
+      try {
+        results = await searchModules(vikiInput);
+      } catch {
+        // Pinecone/Express may not be running — continue with local matching
       }
 
       // 2. Build matched names + IDs from Pinecone results
       const matchedIds   = new Set<string>(results.map((r) => r.id));
       const matchedNames = new Set<string>(results.map((r) => r.name.toLowerCase()));
+
+      // 2b. LOCAL KEYWORD FALLBACK — match sectors/modules by keyword
+      const KEYWORD_MAP: Record<string, string[]> = {
+        'gym':       ['Personal Services', 'Sports & Recreation', 'Gym Business DB Schema'],
+        'fitness':   ['Personal Services', 'Sports & Recreation', 'Gym Business DB Schema'],
+        'workout':   ['Personal Services', 'Sports & Recreation'],
+        'salon':     ['Personal Services'],
+        'spa':       ['Personal Services', 'Hospitality & Travel'],
+        'hotel':     ['Hospitality & Travel'],
+        'restaurant':['Food & Beverage'],
+        'clinic':    ['Healthcare'],
+        'hospital':  ['Healthcare'],
+        'school':    ['Education'],
+        'shop':      ['Retail & E-Commerce'],
+        'store':     ['Retail & E-Commerce'],
+        'factory':   ['Manufacturing'],
+        'construction': ['Construction & Real Estate'],
+        'logistics': ['Transportation & Logistics'],
+        'bank':      ['Financial Services'],
+        'farm':      ['Agriculture & Farming'],
+      };
+
+      const inputLower = vikiInput.toLowerCase();
+      const localMatches = new Set<string>();
+      for (const [keyword, sectors] of Object.entries(KEYWORD_MAP)) {
+        if (inputLower.includes(keyword)) {
+          sectors.forEach((s) => localMatches.add(s.toLowerCase()));
+        }
+      }
 
       // 3. Local matching against the full index
       const allTypes = Array.from(index.byId.values());
@@ -302,7 +331,8 @@ const BusinessSetupWizard: React.FC<Props> = ({ onComplete, onCancel }) => {
 
         const isMatch =
           matchedIds.has(t.Id) ||
-          matchedNames.has(t.Name.toLowerCase());
+          matchedNames.has(t.Name.toLowerCase()) ||
+          localMatches.has(t.Name.toLowerCase());
 
         if (isMatch) {
           newSelection.add(t.Id);
@@ -319,6 +349,11 @@ const BusinessSetupWizard: React.FC<Props> = ({ onComplete, onCancel }) => {
           };
           addChildren(t.Id);
         }
+      }
+
+      if (displayTypes.length === 0) {
+        setVikiResponse(`I couldn't find matching modules for "${vikiInput}". Try a more specific business description.`);
+        return;
       }
 
       setSelectedIds((prev) => new Set([...prev, ...newSelection]));

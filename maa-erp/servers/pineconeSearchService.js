@@ -1,28 +1,32 @@
 /**
- * pineconeSearchService.js
- * Uses Pinecone REST API directly for embedding — bypasses SDK version issues.
+ * pineconeSearchService.js — calls Pinecone REST API directly.
+ *
+ * .env required:
+ *   PINECONE_API_KEY=pcsk_...
+ *   PINECONE_INDEX_HOST=maa-erp-types-y3f7eec.svc.aped-4627-b74a.pinecone.io
+ *   PINECONE_INDEX_NAME=maa-erp-types
+ *   PINECONE_NAMESPACE=payanarss-types
+ *   PINECONE_EMBED_MODEL=multilingual-e5-large
  */
 
-import { Pinecone } from '@pinecone-database/pinecone';
-
 const PINECONE_API_KEY = process.env.PINECONE_API_KEY;
+const INDEX_HOST       = process.env.PINECONE_INDEX_HOST  || 'maa-erp-types-y3f7eec.svc.aped-4627-b74a.pinecone.io';
 const INDEX_NAME       = process.env.PINECONE_INDEX_NAME  || 'maa-erp-types';
+const NAMESPACE        = process.env.PINECONE_NAMESPACE   || 'payanarss-types';
 const EMBED_MODEL      = process.env.PINECONE_EMBED_MODEL || 'multilingual-e5-large';
-const DEFAULT_TOP_K    = 5;
 
 if (!PINECONE_API_KEY) throw new Error('PINECONE_API_KEY is not set in .env');
 
-const pc = new Pinecone({ apiKey: PINECONE_API_KEY });
+const pineconeHeaders = {
+  'Api-Key': PINECONE_API_KEY,
+  'Content-Type': 'application/json',
+};
 
-// ─── Embed via Pinecone REST API (bypasses SDK version differences) ───────────
+// ─── Embed ────────────────────────────────────────────────────
 async function generateEmbedding(text) {
-  const response = await fetch('https://api.pinecone.io/embed', {
+  const res = await fetch('https://api.pinecone.io/embed', {
     method: 'POST',
-    headers: {
-      'Api-Key': PINECONE_API_KEY,
-      'Content-Type': 'application/json',
-      'X-Pinecone-API-Version': '2024-10',
-    },
+    headers: { ...pineconeHeaders, 'X-Pinecone-API-Version': '2024-10' },
     body: JSON.stringify({
       model: EMBED_MODEL,
       inputs: [{ text }],
@@ -30,53 +34,71 @@ async function generateEmbedding(text) {
     }),
   });
 
-  if (!response.ok) {
-    const err = await response.text();
-    throw new Error(`Pinecone embed failed (${response.status}): ${err}`);
-  }
+  if (!res.ok) throw new Error(`Embed failed (${res.status}): ${await res.text()}`);
 
-  const json = await response.json();
-  console.log('[pinecone] embed response keys:', Object.keys(json));
-
-  // REST API returns { data: [{ values: [...] }] }
+  const json   = await res.json();
   const vector = json?.data?.[0]?.values;
+  if (!vector) throw new Error(`No vector in embed response. Keys: ${Object.keys(json)}`);
 
-  if (!vector || !Array.isArray(vector)) {
-    throw new Error(`No vector in embed response. Keys: ${JSON.stringify(Object.keys(json))}`);
-  }
-
-  console.log(`[pinecone] vector dim: ${vector.length}`);
+  console.log(`[pinecone] embedded → dim ${vector.length}`);
   return vector;
 }
 
-// ─── Search ───────────────────────────────────────────────────────────────────
-export async function searchPinecone(prompt, topK = DEFAULT_TOP_K) {
+// ─── Search ───────────────────────────────────────────────────
+export async function searchPinecone(prompt, topK = 10) {
   if (!prompt?.trim()) throw new Error('Prompt must be a non-empty string.');
 
-  console.log(`[pinecone] query: "${prompt}"`);
+  console.log(`[pinecone] query: "${prompt}" | namespace: ${NAMESPACE}`);
 
-  const queryVector = await generateEmbedding(prompt.trim());
+  const vector = await generateEmbedding(prompt.trim());
 
-  const index = pc.index(INDEX_NAME);
-  const queryResponse = await index.query({
-    vector: queryVector,
-    topK,
-    includeMetadata: true,
-    includeValues: false,
+  const res = await fetch(`https://${INDEX_HOST}/query`, {
+    method: 'POST',
+    headers: pineconeHeaders,
+    body: JSON.stringify({
+      vector,
+      topK,
+      namespace: NAMESPACE,       // ← THIS was missing — data lives here
+      includeMetadata: true,
+      includeValues: false,
+    }),
   });
 
-  const matches = (queryResponse?.matches ?? []).map((match) => ({
-    payanarssTypeId: match.id,
-    score: parseFloat((match.score ?? 0).toFixed(4)),
-    metadata: {
-      name:        match.metadata?.name        ?? match.id,
-      description: match.metadata?.description ?? '',
-      category:    match.metadata?.category    ?? '',
-      type:        match.metadata?.type        ?? '',
-      parentName:  match.metadata?.parentName  ?? '',
-    },
-  }));
+  if (!res.ok) throw new Error(`Query failed (${res.status}): ${await res.text()}`);
 
-  console.log(`[pinecone] matched ${matches.length} result(s)`);
-  return { query: prompt.trim(), model: EMBED_MODEL, index: INDEX_NAME, topK, matches };
+  const result  = await res.json();
+  const matches = result?.matches ?? [];
+
+  console.log(`[pinecone] ${matches.length} match(es) in namespace "${NAMESPACE}"`);
+
+  return {
+    query:   prompt.trim(),
+    model:   EMBED_MODEL,
+    index:   INDEX_NAME,
+    namespace: NAMESPACE,
+    topK,
+    matches: matches.map((m) => ({
+      payanarssTypeId: m.id,
+      score: parseFloat((m.score ?? 0).toFixed(4)),
+      metadata: {
+        name:        m.metadata?.name        ?? m.id,
+        description: m.metadata?.description ?? '',
+        level:       m.metadata?.level       ?? '',
+        sector:      m.metadata?.sector      ?? '',
+        module:      m.metadata?.module      ?? '',
+        type:        m.metadata?.type        ?? '',
+        parentName:  m.metadata?.parent_name ?? m.metadata?.parentName ?? '',
+        path:        m.metadata?.path        ?? '',
+      },
+    })),
+  };
+}
+
+// ─── Stats ────────────────────────────────────────────────────
+export async function getPineconeStats() {
+  const res = await fetch(`https://${INDEX_HOST}/describe_index_stats`, {
+    headers: pineconeHeaders,
+  });
+  if (!res.ok) throw new Error(`Stats failed (${res.status}): ${await res.text()}`);
+  return res.json();
 }

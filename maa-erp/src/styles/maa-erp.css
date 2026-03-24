@@ -247,3 +247,44 @@ select.fc-input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg 
 .import-type-tag:hover{border-color:var(--viki);color:var(--text-2)}
 
 @media(max-width:768px){.app{grid-template-columns:1fr}.context-panel{display:none}}
+
+/* ═══════════════════════════════════════════════════════════════
+ * Gym Business DB Schema — Dashboard + Tree View
+ * ═══════════════════════════════════════════════════════════════ */
+.gym-schema-section { padding: 16px 24px 0; }
+.gym-schema-card { border: 1px solid var(--border); border-radius: var(--r-lg); background: var(--bg-card); overflow: hidden; }
+.gym-schema-card-header { display: flex; align-items: center; gap: 14px; padding: 14px 18px; }
+.gym-schema-icon { font-size: 26px; flex-shrink: 0; }
+.gym-schema-info { flex: 1; }
+.gym-schema-info h4 { font-size: 14px; font-weight: 600; color: var(--text); margin: 0; }
+.gym-schema-info p { font-size: 11px; color: var(--text-3); margin: 3px 0 0; }
+.gym-schema-toggle { padding: 7px 14px; border: 1px solid var(--viki-border); border-radius: var(--r-sm); background: var(--viki-soft); color: var(--viki); font-size: 12px; font-weight: 600; font-family: var(--font); cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+.gym-schema-toggle:hover { background: var(--viki); color: white; border-color: var(--viki); }
+.gym-segment-chips { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 18px 16px; }
+.gym-branch-chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border: 1px solid var(--border); border-radius: 20px; font-size: 12px; color: var(--text-2); background: var(--bg-surface); cursor: default; transition: all 0.15s; }
+.gym-branch-chip:hover { border-color: var(--viki-border); background: var(--viki-soft); color: var(--viki); }
+.gym-branch-count { font-size: 10px; color: var(--text-4); background: var(--bg-elevated); padding: 1px 6px; border-radius: 10px; }
+
+/* PTS Tree View */
+.pts-tree { border-top: 1px solid var(--border); }
+.pts-header { display: flex; align-items: center; gap: 12px; padding: 12px 18px; border-bottom: 1px solid var(--border); background: var(--bg-surface); }
+.pts-header-info { flex: 1; }
+.pts-title { margin: 0; font-size: 13px; font-weight: 600; color: var(--text); }
+.pts-stats { font-size: 11px; color: var(--text-4); }
+.pts-header-actions { display: flex; gap: 6px; }
+.pts-btn { padding: 4px 10px; border: 1px solid var(--border); border-radius: var(--r-sm); background: var(--bg-card); color: var(--text-3); font-size: 11px; font-family: var(--font); cursor: pointer; transition: all 0.15s; }
+.pts-btn:hover { background: var(--bg-elevated); color: var(--text); }
+.pts-root-desc { padding: 8px 18px; font-size: 12px; color: var(--text-4); border-bottom: 1px solid var(--border); }
+.pts-body { padding: 4px 0; max-height: 600px; overflow-y: auto; }
+.pts-row { display: flex; align-items: center; gap: 6px; padding: 4px 12px; min-height: 30px; cursor: default; transition: background 0.08s; user-select: none; }
+.pts-expandable { cursor: pointer; }
+.pts-row:hover { background: var(--bg-card-hover); }
+.pts-chevron { width: 14px; font-size: 10px; color: var(--text-4); text-align: center; flex-shrink: 0; }
+.pts-icon { font-size: 13px; flex-shrink: 0; width: 16px; text-align: center; }
+.pts-name { font-size: 12px; color: var(--text-2); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pts-branch-name { font-weight: 600; color: var(--text); }
+.pts-badge { font-size: 9px; font-weight: 600; padding: 1px 6px; border-radius: 3px; flex-shrink: 0; letter-spacing: 0.3px; text-transform: uppercase; }
+.pts-count { font-size: 10px; color: var(--text-4); background: var(--bg-elevated); padding: 1px 6px; border-radius: 10px; flex-shrink: 0; }
+.pts-desc { font-size: 11px; color: var(--text-4); padding: 0 12px 3px; line-height: 1.4; }
+.pts-legend { display: flex; flex-wrap: wrap; gap: 10px; padding: 8px 18px; border-top: 1px solid var(--border); background: var(--bg-surface); }
+.pts-legend-item { display: flex; align-items: center; gap: 3px; font-size: 10px; color: var(--text-4); }

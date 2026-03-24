@@ -16,10 +16,12 @@ import {
   exploreModulesHTML, attendanceReportHTML,
   importPreviewHTML,
   businessUseCasesHTML, customerSegmentsHTML, segmentDetailHTML,
+  targetCustomerBranchViewHTML,
 } from './utils/htmlBuilders';
 import {
   fetchAllTypes, fetchChildren, findBusinessByName, getBusinessSchemaRoot,
 } from './services/payanarssTypeService';
+import { getTargetCustomerTree } from './data/gymBusinessData';
 
 const App: React.FC = () => {
   const setup = useSetupFlow();
@@ -35,6 +37,7 @@ const App: React.FC = () => {
    */
   const [screen, setScreen] = useState<'welcome' | 'wizard' | 'chat'>('welcome');
   const [configuredModuleIds, setConfiguredModuleIds] = useState<string[]>([]);
+  const tcTree = React.useMemo(() => getTargetCustomerTree(), []);
 
   /* ═══ Delegated click handlers for dynamic HTML ═══ */
   useEffect(() => {
@@ -88,6 +91,13 @@ const App: React.FC = () => {
           const id = actionEl.dataset.id || '';
           if (id) handleSelectSegment(id);
         }
+        if (action === 'tc-root') {
+          handleTcRoot();
+        }
+        if (action === 'tc-nav') {
+          const idx = parseInt(actionEl.dataset.index || '0', 10);
+          handleTcNav(idx);
+        }
       }
 
       if (relatedEl) {
@@ -135,6 +145,7 @@ const App: React.FC = () => {
         tables, and business rules. What would you like to do first?
       </div>
       <div class="msg-actions">
+        <button class="action-chip" data-action="tc-root"><span class="chip-icon">🎯</span> Identify Target Customer</button>
         <button class="action-chip" data-action="add-employee"><span class="chip-icon">👤</span> Add Employee</button>
         <button class="action-chip" data-action="open-import"><span class="chip-icon">📎</span> Import Data</button>
         <button class="action-chip" data-action="explore"><span class="chip-icon">🔍</span> Explore Modules</button>
@@ -382,6 +393,22 @@ const App: React.FC = () => {
       console.error('Failed to select segment:', err);
     }
   }, [chat]);
+
+  /* ═══ TARGET CUSTOMER — Sequential branch view ═══ */
+
+  /** Show branch at index (0 = Identity = first table + columns + rules) */
+  const handleTcNav = useCallback(async (branchIndex: number) => {
+    if (!tcTree) return;
+    const branch = tcTree.children[branchIndex];
+    if (!branch) return;
+    chat.updateContext(branch.name, `TargetCustomer › ${branch.name}`);
+    await chat.addVikiMessage(targetCustomerBranchViewHTML(tcTree, branchIndex));
+  }, [chat, tcTree]);
+
+  /** Click "Identify Target Customer" → directly show first branch */
+  const handleTcRoot = useCallback(async () => {
+    handleTcNav(0);
+  }, [handleTcNav]);
 
   /* ═══ FREE TEXT ═══ */
   const handleSendMessage = useCallback(async (text: string) => {
