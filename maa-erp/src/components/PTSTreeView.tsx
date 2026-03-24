@@ -1,18 +1,14 @@
 /**
  * PTSTreeView — PayanarssType Tree Renderer
  * ==========================================
- * Renders a GymTreeNode hierarchy as a collapsible tree.
- * Each node shows its name, type icon, and description.
- * Branches expand/collapse on click.
+ * Renders a GymTreeNode as a collapsible tree in the main chat area.
+ * Dark theme, matching maa-erp.css variables.
+ * First two levels expanded by default.
  */
 
 import React, { useState, useCallback } from "react";
 import type { GymTreeNode } from "../data/gymBusinessData";
 import { TYPE_DISPLAY, PTS_TYPE_IDS } from "../data/gymBusinessData";
-
-// ═══════════════════════════════════════════════════════════════
-// HELPERS
-// ═══════════════════════════════════════════════════════════════
 
 function getTypeInfo(typeId: string) {
   return TYPE_DISPLAY[typeId] || { label: "Node", icon: "📄", color: "#6b7280" };
@@ -30,84 +26,65 @@ function countDescendants(node: GymTreeNode): number {
   return count;
 }
 
-// ═══════════════════════════════════════════════════════════════
-// SINGLE TREE NODE
-// ═══════════════════════════════════════════════════════════════
+// ── Single tree node ──
 
 const TreeNode: React.FC<{
   node: GymTreeNode;
   depth: number;
-  defaultExpanded?: boolean;
-}> = ({ node, depth, defaultExpanded = false }) => {
-  const [expanded, setExpanded] = useState(defaultExpanded);
-  const hasChildren = node.children.length > 0;
-  const nodeIsBranch = isBranch(node.typeId);
-  const typeInfo = getTypeInfo(node.typeId);
-  const descendantCount = countDescendants(node);
+  defaultOpen?: boolean;
+}> = ({ node, depth, defaultOpen = false }) => {
+  const [open, setOpen] = useState(defaultOpen);
+  const hasKids = node.children.length > 0;
+  const branch = isBranch(node.typeId);
+  const info = getTypeInfo(node.typeId);
+  const descendants = countDescendants(node);
 
   const toggle = useCallback(() => {
-    if (hasChildren) setExpanded((e) => !e);
-  }, [hasChildren]);
+    if (hasKids) setOpen((v) => !v);
+  }, [hasKids]);
 
   return (
-    <div className="pts-tree-node" data-depth={depth}>
+    <div className="pts-node">
+      {/* Row */}
       <div
-        className={`pts-tree-row ${hasChildren ? "expandable" : ""} ${expanded ? "expanded" : ""} ${nodeIsBranch ? "branch" : "leaf"}`}
+        className={`pts-row ${hasKids ? "pts-expandable" : ""}`}
         onClick={toggle}
-        style={{ paddingLeft: `${depth * 20 + 8}px` }}
+        style={{ paddingLeft: `${depth * 20 + 12}px` }}
       >
-        {/* Expand/collapse chevron */}
-        <span className="pts-tree-chevron">
-          {hasChildren ? (expanded ? "▾" : "▸") : "·"}
+        <span className="pts-chevron">
+          {hasKids ? (open ? "▾" : "▸") : "·"}
         </span>
-
-        {/* Type icon */}
-        <span
-          className="pts-tree-icon"
-          style={{ color: typeInfo.color }}
-          title={typeInfo.label}
-        >
-          {typeInfo.icon}
+        <span className="pts-icon" style={{ color: info.color }}>
+          {info.icon}
         </span>
-
-        {/* Name */}
-        <span className={`pts-tree-name ${nodeIsBranch ? "is-branch" : ""}`}>
+        <span className={`pts-name ${branch ? "pts-branch-name" : ""}`}>
           {node.name}
         </span>
-
-        {/* Type badge */}
         <span
-          className="pts-tree-badge"
-          style={{ background: `${typeInfo.color}18`, color: typeInfo.color }}
+          className="pts-badge"
+          style={{ background: `${info.color}20`, color: info.color }}
         >
-          {typeInfo.label}
+          {info.label}
         </span>
-
-        {/* Child count (for branches) */}
-        {hasChildren && (
-          <span className="pts-tree-count">{descendantCount}</span>
-        )}
+        {hasKids && <span className="pts-count">{descendants}</span>}
       </div>
 
-      {/* Description on hover/expanded */}
-      {node.description && expanded && !nodeIsBranch && (
-        <div
-          className="pts-tree-desc"
-          style={{ paddingLeft: `${depth * 20 + 44}px` }}
-        >
+      {/* Description (leaf nodes only) */}
+      {node.description && open && !branch && (
+        <div className="pts-desc" style={{ paddingLeft: `${depth * 20 + 48}px` }}>
           {node.description}
         </div>
       )}
 
       {/* Children */}
-      {expanded && hasChildren && (
-        <div className="pts-tree-children">
+      {open && hasKids && (
+        <div className="pts-children">
           {node.children.map((child) => (
             <TreeNode
               key={child.id}
               node={child}
               depth={depth + 1}
-              defaultExpanded={depth < 1}
+              defaultOpen={depth < 1}
             />
           ))}
         </div>
@@ -116,63 +93,55 @@ const TreeNode: React.FC<{
   );
 };
 
-// ═══════════════════════════════════════════════════════════════
-// MAIN COMPONENT
-// ═══════════════════════════════════════════════════════════════
+// ── Main component ──
 
 const PTSTreeView: React.FC<{
   tree: GymTreeNode;
   title?: string;
-  onBack?: () => void;
-}> = ({ tree, title, onBack }) => {
+  onClose?: () => void;
+}> = ({ tree, title, onClose }) => {
   const [expandAll, setExpandAll] = useState(false);
-
   const totalNodes = countDescendants(tree) + 1;
 
   return (
-    <div className="pts-tree-view">
+    <div className="pts-tree">
       {/* Header */}
-      <div className="pts-tree-header">
-        {onBack && (
-          <button className="pts-tree-back" onClick={onBack}>
-            ← Back
-          </button>
-        )}
-        <div className="pts-tree-title-area">
-          <h3 className="pts-tree-title">
-            {title || tree.name}
-          </h3>
-          <span className="pts-tree-stats">
-            {totalNodes} nodes · depth 3 · max 3 cols per branch
+      <div className="pts-header">
+        <div className="pts-header-info">
+          <h3 className="pts-title">{title || tree.name}</h3>
+          <span className="pts-stats">
+            {totalNodes} nodes · depth 3 · max 3 cols/branch
           </span>
         </div>
-        <button
-          className="pts-tree-toggle-all"
-          onClick={() => setExpandAll(!expandAll)}
-        >
-          {expandAll ? "Collapse all" : "Expand all"}
-        </button>
+        <div className="pts-header-actions">
+          <button className="pts-btn" onClick={() => setExpandAll(!expandAll)}>
+            {expandAll ? "Collapse" : "Expand all"}
+          </button>
+          {onClose && (
+            <button className="pts-btn" onClick={onClose}>✕</button>
+          )}
+        </div>
       </div>
 
-      {/* Description */}
+      {/* Root description */}
       {tree.description && (
-        <div className="pts-tree-root-desc">{tree.description}</div>
+        <div className="pts-root-desc">{tree.description}</div>
       )}
 
-      {/* Tree body */}
-      <div className="pts-tree-body" key={expandAll ? "expanded" : "collapsed"}>
+      {/* Tree body — re-mount on expandAll toggle to reset all states */}
+      <div className="pts-body" key={expandAll ? "expanded" : "collapsed"}>
         {tree.children.map((child) => (
           <TreeNode
             key={child.id}
             node={child}
             depth={0}
-            defaultExpanded={expandAll}
+            defaultOpen={expandAll || true}
           />
         ))}
       </div>
 
       {/* Legend */}
-      <div className="pts-tree-legend">
+      <div className="pts-legend">
         {[
           PTS_TYPE_IDS.CHILD_TABLE,
           PTS_TYPE_IDS.TEXT,
@@ -182,11 +151,10 @@ const PTSTreeView: React.FC<{
           PTS_TYPE_IDS.ATTRIBUTE_TYPE,
           PTS_TYPE_IDS.LOOKUP_VALUE,
         ].map((typeId) => {
-          const info = getTypeInfo(typeId);
+          const inf = getTypeInfo(typeId);
           return (
-            <span key={typeId} className="pts-tree-legend-item">
-              <span style={{ color: info.color }}>{info.icon}</span>
-              <span>{info.label}</span>
+            <span key={typeId} className="pts-legend-item">
+              <span style={{ color: inf.color }}>{inf.icon}</span> {inf.label}
             </span>
           );
         })}

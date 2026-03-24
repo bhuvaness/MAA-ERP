@@ -12,6 +12,7 @@
     <None Remove="src\MAA_ERP_v4.html" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="public\data\" />
+    <Folder Include="servers\" />
+    <Folder Include="public\data\records\" />
   </ItemGroup>
 </Project>

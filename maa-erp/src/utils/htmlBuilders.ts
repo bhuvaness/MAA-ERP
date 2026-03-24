@@ -2,6 +2,20 @@ import { SETUP_STEPS } from '../data/menuData';
 import { COL } from '../types/Record';
 import type { PineconeHit } from '../services/pineconeService';
 import type { SetupData, RelatedFormDef } from '../types';
+import type { PayanarssType } from '../types/PayanarssType';
+
+const SEGMENT_ICONS: Record<string, string> = {
+  'Bodybuilders': '💪',
+  'General Fitness': '🏃',
+  'Women-Only': '👩',
+  'CrossFit / Functional Training': '🏋️',
+  'Senior / Rehabilitation': '🧓',
+  'Youth / Teen Fitness': '🧒',
+  'Corporate / Office Workers': '💼',
+  'Athletes / Sports Training': '⚽',
+  '24-Hour / Budget': '🕐',
+  'Boutique / Luxury': '✨',
+};
 
 export function progressHTML(activeIdx: number): string {
   const steps = SETUP_STEPS.map((s, i) => {
@@ -176,5 +190,266 @@ export function importPreviewHTML(fn: string, ext: string, size: string, rows: n
       <div class="import-preview-stats"><div class="import-stat"><div class="import-stat-value">${rows}</div><div class="import-stat-label">Rows</div></div><div class="import-stat"><div class="import-stat-value">${cols.length}</div><div class="import-stat-label">Columns</div></div><div class="import-stat"><div class="import-stat-value">${mc}/${cols.length}</div><div class="import-stat-label">Mapped</div></div></div>
       ${cols.length ? `<div class="import-preview-cols">${colTags}</div>` : ''}
       <div class="import-preview-footer"><button class="fc-save" data-action="do-import" data-fn="${fn}" data-rows="${rows}">Import ${rows} rows</button><button class="fc-skip">Map columns</button></div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// BUSINESS USE CASE — Gym metadata drill-down
+// ═══════════════════════════════════════════════════════════════
+
+export function businessUseCasesHTML(businessName: string, useCases: PayanarssType[]): string {
+  const cards = useCases.map(uc =>
+    `<button class="related-opt" data-action="drill-usecase" data-id="${uc.Id}">
+      <div class="related-opt-icon" style="background:var(--accent-soft);color:var(--accent)">⚡</div>
+      <div class="related-opt-text">
+        <h5>${uc.Name}</h5>
+        ${uc.Description ? `<span>${uc.Description}</span>` : ''}
+      </div>
+      <span class="related-opt-arrow">›</span>
+    </button>`
+  ).join('');
+
+  return `<div class="msg-text">I've loaded the <strong>${businessName}</strong> business model.</div>
+    <div class="msg-related" style="margin-top:10px">
+      <div class="msg-related-title">⚡ Business Use Cases (${useCases.length})</div>
+      <div class="related-options">${cards}</div>
+    </div>`;
+}
+
+export function customerSegmentsHTML(segments: PayanarssType[]): string {
+  const cards = segments.map(seg => {
+    const icon = SEGMENT_ICONS[seg.Name] || '🎯';
+    return `<button class="related-opt" data-action="drill-segment" data-id="${seg.Id}">
+      <div class="related-opt-icon" style="background:var(--yellow-soft);color:var(--yellow)">${icon}</div>
+      <div class="related-opt-text">
+        <h5>${seg.Name}</h5>
+        ${seg.Description ? `<span>${seg.Description}</span>` : ''}
+      </div>
+      <span class="related-opt-arrow">›</span>
+    </button>`;
+  }).join('');
+
+  return `<div class="msg-text"><strong>Identify Target Customer Segment</strong></div>
+    <div class="msg-text" style="margin-top:4px;font-size:12px;color:var(--text-4)">
+      Choose a customer segment to see Equipment, Staffing, Facility, Marketing, Pricing, and Revenue Model details.
+    </div>
+    <div class="msg-related" style="margin-top:10px">
+      <div class="msg-related-title">🎯 Customer Segments (${segments.length})</div>
+      <div class="related-options">${cards}</div>
+    </div>`;
+}
+
+export function segmentDetailHTML(segment: PayanarssType, details: PayanarssType[]): string {
+  const rows = details.map(d =>
+    `<div class="data-row">
+      <div class="data-row-info">
+        <h5>${d.Name}</h5>
+        ${d.Description ? `<span>${d.Description}</span>` : '<span style="color:var(--text-4)">No details yet</span>'}
+      </div>
+    </div>`
+  ).join('');
+
+  return `<div class="msg-text"><strong>${segment.Name}</strong> — Segment Details</div>
+    ${segment.Description ? `<div class="msg-text" style="margin-top:4px;font-size:12px;color:var(--text-4)">${segment.Description}</div>` : ''}
+    <div class="msg-data-card" style="margin-top:10px">
+      <div class="data-card-header">📋 ${segment.Name} <span class="data-card-count">${details.length} aspects</span></div>
+      ${rows}
+    </div>
+    <div class="msg-actions" style="margin-top:8px">
+      <button class="action-chip" data-action="back-segments"><span class="chip-icon">←</span> Back to Segments</button>
+      <button class="action-chip" data-action="select-segment" data-id="${segment.Id}"><span class="chip-icon">✓</span> Select This Segment</button>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// TARGET CUSTOMER TREE — Sequential table → column → rules view
+// ═══════════════════════════════════════════════════════════════
+
+import type { GymTreeNode } from '../data/gymBusinessData';
+import { TYPE_DISPLAY, PTS_TYPE_IDS } from '../data/gymBusinessData';
+
+function getInfo(typeId: string) {
+  return TYPE_DISPLAY[typeId] || { label: 'Node', icon: '📄', color: '#6b7280' };
+}
+
+function isBranchType(typeId: string): boolean {
+  return typeId === PTS_TYPE_IDS.CHILD_TABLE || typeId === PTS_TYPE_IDS.TABLE_TYPE;
+}
+
+/** Render columns as data rows with type badges */
+function columnsHTML(columns: GymTreeNode[]): string {
+  return columns.map(col => {
+    const info = getInfo(col.typeId);
+    return `<div class="data-row">
+      <div class="data-row-info">
+        <h5><span style="color:${info.color};margin-right:6px">${info.icon}</span> ${col.name}
+          <span style="font-size:9px;font-weight:600;color:${info.color};background:${info.color}18;padding:1px 5px;border-radius:3px;margin-left:6px;text-transform:uppercase">${info.label}</span>
+        </h5>
+        ${col.description ? `<span>${col.description}</span>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/** Render rules as a compact list */
+function rulesHTML(rules: GymTreeNode[]): string {
+  if (rules.length === 0) return '';
+  const items = rules.map(r => {
+    const info = getInfo(r.typeId);
+    return `<div class="data-row" style="padding:4px 0">
+      <div class="data-row-info">
+        <h5><span style="color:${info.color};margin-right:4px">${info.icon}</span> ${r.name}</h5>
+        ${r.description ? `<span>${r.description}</span>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+  return `<div class="msg-data-card" style="margin-top:10px">
+    <div class="data-card-header">📏 Rules <span class="data-card-count">${rules.length}</span></div>
+    ${items}
+  </div>`;
+}
+
+/**
+ * Show a branch of TargetCustomer: table → columns → rules → navigation
+ * branchIndex: which branch (0=Identity, 1=Audit, etc.)
+ * totalBranches: total count for navigation
+ * rulesNode: the Rules branch (index 8) for showing associated rules
+ */
+export function targetCustomerBranchViewHTML(
+  tree: GymTreeNode,
+  branchIndex: number
+): string {
+  const branches = tree.children;
+  const branch = branches[branchIndex];
+  if (!branch) return '';
+
+  const total = branches.length;
+  const branchInfo = getInfo(branch.typeId);
+
+  // Find the Rules branch
+  const rulesBranch = branches.find(b => b.name === 'Rules');
+
+  // Collect all leaf columns and sub-branches
+  let columnsSection = '';
+  let relatedRules: GymTreeNode[] = [];
+
+  const hasSubBranches = branch.children.some(c => isBranchType(c.typeId) && c.children.length > 0);
+
+  if (branch.name === 'Rules' && rulesBranch) {
+    // Rules branch — show rule categories with their rules
+    const sections = rulesBranch.children.map(cat => {
+      const catRules = cat.children;
+      const ruleItems = catRules.map(r => {
+        const info = getInfo(r.typeId);
+        return `<div class="data-row" style="padding:4px 0">
+          <div class="data-row-info">
+            <h5><span style="color:${info.color};margin-right:4px">${info.icon}</span> ${r.name}</h5>
+            ${r.description ? `<span>${r.description}</span>` : ''}
+          </div>
+        </div>`;
+      }).join('');
+      return `<div class="msg-data-card" style="margin-top:8px">
+        <div class="data-card-header">📂 ${cat.name} <span class="data-card-count">${catRules.length}</span></div>
+        ${ruleItems}
+      </div>`;
+    }).join('');
+
+    columnsSection = sections;
+  } else if (branch.name === 'LookupValues') {
+    // LookupValues — show value lists
+    const sections = branch.children.map(lv => {
+      const values = lv.children;
+      const valueRows = values.map(v => {
+        const info = getInfo(v.typeId);
+        return `<div class="data-row" style="padding:3px 0">
+          <div class="data-row-info">
+            <h5><span style="color:${info.color};margin-right:4px">${info.icon}</span> ${v.name}</h5>
+            ${v.description ? `<span>${v.description}</span>` : ''}
+          </div>
+        </div>`;
+      }).join('');
+      return `<div class="msg-data-card" style="margin-top:8px">
+        <div class="data-card-header">🏷️ ${lv.name} <span class="data-card-count">${values.length} values</span></div>
+        ${valueRows}
+      </div>`;
+    }).join('');
+    columnsSection = sections;
+  } else if (hasSubBranches) {
+    // Has sub-branches (e.g., Demographics → SegmentProfile, AgeProfile, FitnessProfile)
+    // Show each sub-branch with its columns inline
+    const sections = branch.children.map(sub => {
+      const subInfo = getInfo(sub.typeId);
+      const cols = sub.children;
+      return `<div class="msg-data-card" style="margin-top:8px">
+        <div class="data-card-header"><span style="color:${subInfo.color}">${subInfo.icon}</span> ${sub.name} <span class="data-card-count">${cols.length} columns</span></div>
+        ${sub.description ? `<div style="padding:4px 14px;font-size:11px;color:var(--text-4)">${sub.description}</div>` : ''}
+        ${columnsHTML(cols)}
+      </div>`;
+    }).join('');
+    columnsSection = sections;
+
+    // Collect rules related to this branch's column names
+    if (rulesBranch) {
+      const colNames = new Set<string>();
+      branch.children.forEach(sub => sub.children.forEach(col => colNames.add(col.name.toLowerCase())));
+      rulesBranch.children.forEach(cat => {
+        cat.children.forEach(rule => {
+          const rName = rule.name.toLowerCase();
+          if ([...colNames].some(cn => rName.includes(cn.toLowerCase()))) {
+            relatedRules.push(rule);
+          }
+        });
+      });
+    }
+  } else {
+    // Direct leaf columns (e.g., Identity → Code, Name, Status)
+    columnsSection = `<div class="msg-data-card" style="margin-top:8px">
+      <div class="data-card-header">📋 ${branch.name} <span class="data-card-count">${branch.children.length} columns</span></div>
+      ${columnsHTML(branch.children)}
+    </div>`;
+
+    // Collect rules related to these column names
+    if (rulesBranch) {
+      const colNames = new Set(branch.children.map(c => c.name.toLowerCase()));
+      rulesBranch.children.forEach(cat => {
+        cat.children.forEach(rule => {
+          const rName = rule.name.toLowerCase();
+          if ([...colNames].some(cn => rName.includes(cn.toLowerCase()))) {
+            relatedRules.push(rule);
+          }
+        });
+      });
+    }
+  }
+
+  // Navigation buttons
+  const prevBtn = branchIndex > 0
+    ? `<button class="action-chip" data-action="tc-nav" data-index="${branchIndex - 1}"><span class="chip-icon">←</span> ${branches[branchIndex - 1].name}</button>`
+    : '';
+  const nextBtn = branchIndex < total - 1
+    ? `<button class="action-chip" data-action="tc-nav" data-index="${branchIndex + 1}"><span class="chip-icon">→</span> ${branches[branchIndex + 1].name}</button>`
+    : '';
+
+  return `<div class="msg-text" style="margin-bottom:2px">
+      <strong>🗃️ TargetCustomer</strong>
+      <span style="font-size:11px;color:var(--text-4);margin-left:8px">Branch ${branchIndex + 1} of ${total}</span>
+    </div>
+    <div class="msg-text" style="font-size:12px;color:var(--text-4)">
+      TargetCustomer › <strong style="color:var(--text-2)">${branch.name}</strong>
+    </div>
+    <div style="margin-top:8px;padding:10px 14px;background:var(--bg-surface);border-radius:var(--r);border:1px solid var(--border)">
+      <div style="display:flex;align-items:center;gap:8px">
+        <span style="font-size:18px;color:${branchInfo.color}">${branchInfo.icon}</span>
+        <div>
+          <div style="font-size:14px;font-weight:600;color:var(--text)">${branch.name}</div>
+          ${branch.description ? `<div style="font-size:11px;color:var(--text-4);margin-top:2px">${branch.description}</div>` : ''}
+        </div>
+      </div>
+    </div>
+    ${columnsSection}
+    ${relatedRules.length > 0 ? rulesHTML(relatedRules) : ''}
+    <div class="msg-actions" style="margin-top:10px">
+      ${prevBtn}
+      ${nextBtn}
     </div>`;
 }

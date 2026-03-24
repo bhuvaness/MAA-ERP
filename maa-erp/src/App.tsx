@@ -88,6 +88,28 @@ const App: React.FC = () => {
           const value = input?.value || actionEl.dataset.default || '';
           handleSetupAnswerRef.current(step, value);
         }
+        if (action === 'drill-usecase') {
+          const id = actionEl.dataset.id || '';
+          if (id) handleDrillUseCase(id);
+        }
+        if (action === 'drill-segment') {
+          const id = actionEl.dataset.id || '';
+          if (id) handleDrillSegment(id);
+        }
+        if (action === 'back-segments') {
+          handleBackToSegments();
+        }
+        if (action === 'select-segment') {
+          const id = actionEl.dataset.id || '';
+          if (id) handleSelectSegment(id);
+        }
+        if (action === 'tc-root') {
+          handleTcRoot();
+        }
+        if (action === 'tc-nav') {
+          const idx = parseInt(actionEl.dataset.index || '0', 10);
+          handleTcNav(idx);
+        }
       }
 
       if (relatedEl) {
@@ -151,6 +173,7 @@ const App: React.FC = () => {
         tables, and business rules. What would you like to do first?
       </div>
       <div class="msg-actions">
+        <button class="action-chip" data-action="tc-root"><span class="chip-icon">🎯</span> Identify Target Customer</button>
         <button class="action-chip" data-action="add-employee"><span class="chip-icon">👤</span> Add Employee</button>
         <button class="action-chip" data-action="open-import"><span class="chip-icon">📎</span> Import Data</button>
         <button class="action-chip" data-action="explore"><span class="chip-icon">🔍</span> Explore Modules</button>
@@ -497,7 +520,7 @@ const App: React.FC = () => {
   return (
     <>
       <div className={`app${!setup.setupComplete ? ' onboarding' : ''}`}>
-        <ContextPanel context={chat.context} onImport={() => setImportOpen(true)} />
+        <ContextPanel context={chat.context} onImport={() => setImportOpen(true)} selectedModuleIds={configuredModuleIds} />
         <main className="conversation-panel" onDragOver={handleDragOver} onDrop={handleDrop}>
 
           {/* Conversation top bar */}
