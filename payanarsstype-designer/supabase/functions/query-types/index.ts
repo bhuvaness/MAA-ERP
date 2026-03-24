@@ -5,50 +5,29 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
 };
 
-const EMBEDDING_DIMENSIONS = 1024;
+const DEFAULT_NAMESPACE = 'payanarss-types';
 
-// Domain detection keywords - MUST match embed-types exactly
-const DOMAIN_KEYWORDS: Record<string, string[]> = {
-  HotelManagement: [
-    'hotel', 'guest', 'room', 'reservation', 'booking', 'check-in', 'check-out', 
-    'accommodation', 'hospitality', 'suite', 'housekeeping', 'concierge', 'stay',
-    'lodge', 'inn', 'motel', 'resort', 'front desk', 'amenities', 'rate', 'occupancy',
-    'room service', 'guest experience', 'hotel management', 'hospitality industry'
-  ],
-  TenancyManagement: [
-    'tenancy', 'lease', 'tenant', 'rental', 'rent', 'property', 'landlord', 
-    'occupancy', 'eviction', 'deposit', 'apartment', 'flat', 'real estate',
-    'lease agreement', 'rental property', 'tenant management', 'property management'
-  ],
-  Procurement: [
-    'procurement', 'purchase', 'vendor', 'supplier', 'order', 'rfq', 'quote', 
-    'bidding', 'contract', 'invoice', 'sourcing', 'buying', 'purchase order',
-    'vendor management', 'supply chain', 'procurement process'
-  ],
-  FacilitiesManagement: [
-    'facilities', 'maintenance', 'repair', 'building', 'asset', 'work order', 
-    'inspection', 'hvac', 'equipment', 'facility', 'building management'
-  ],
-  ProjectManagement: [
-    'project', 'task', 'milestone', 'timeline', 'gantt', 'resource', 'schedule', 
-    'deliverable', 'sprint', 'agile', 'project planning', 'project tracking'
-  ],
-  HRPayroll: [
-    'employee', 'payroll', 'salary', 'leave', 'attendance', 'hr', 'recruitment', 
-    'onboarding', 'benefits', 'human resources', 'staff', 'workforce'
-  ],
-  FinanceAccounting: [
-    'finance', 'accounting', 'ledger', 'journal', 'invoice', 'payment', 'budget', 
-    'expense', 'revenue', 'billing', 'financial', 'accounts'
-  ],
-  InventoryManagement: [
-    'inventory', 'stock', 'warehouse', 'sku', 'product', 'item', 'quantity', 
-    'reorder', 'storage', 'goods', 'inventory control'
-  ],
-  ITAssetManagement: [
-    'it', 'asset', 'hardware', 'software', 'license', 'device', 'computer', 
-    'network', 'technology', 'it asset'
-  ],
+// Sector detection: maps keywords in user query to sector names in metadata
+const SECTOR_KEYWORDS: Record<string, string[]> = {
+  'Common Modules': ['hr', 'human resources', 'payroll', 'salary', 'accounting', 'finance', 'employee', 'company setup', 'user management'],
+  'Manufacturing': ['manufacturing', 'factory', 'production', 'assembly', 'textile', 'chemical', 'pharmaceutical'],
+  'Construction & Real Estate': ['construction', 'real estate', 'building', 'contractor', 'civil', 'infrastructure'],
+  'Retail & E-Commerce': ['retail', 'shop', 'store', 'e-commerce', 'ecommerce', 'grocery', 'supermarket', 'fashion', 'electronics'],
+  'Food & Beverage': ['restaurant', 'cafe', 'coffee', 'catering', 'food', 'beverage', 'kitchen', 'bakery', 'bar', 'fast food'],
+  'Hospitality & Travel': ['hotel', 'resort', 'travel', 'tourism', 'hospitality', 'lodge', 'serviced apartment', 'booking'],
+  'Healthcare': ['hospital', 'clinic', 'pharmacy', 'medical', 'healthcare', 'dental', 'lab', 'diagnostic', 'doctor', 'patient'],
+  'Education': ['school', 'university', 'college', 'training', 'education', 'student', 'teacher', 'course', 'e-learning'],
+  'Transportation & Logistics': ['transport', 'logistics', 'freight', 'cargo', 'delivery', 'warehouse', 'fleet', 'shipping'],
+  'Financial Services': ['banking', 'insurance', 'investment', 'fintech', 'loan', 'credit', 'microfinance'],
+  'Professional Services': ['law firm', 'legal', 'consulting', 'architecture', 'engineering', 'audit', 'recruitment'],
+  'Technology & IT': ['software', 'it services', 'data center', 'cloud', 'saas', 'cybersecurity', 'ai company'],
+  'Personal Services': ['salon', 'spa', 'gym', 'fitness', 'laundry', 'cleaning', 'wedding', 'photography', 'pet', 'beauty'],
+  'Agriculture & Farming': ['farm', 'agriculture', 'crop', 'livestock', 'dairy', 'greenhouse', 'aquaculture'],
+  'Energy & Utilities': ['oil', 'gas', 'solar', 'renewable', 'energy', 'water', 'waste', 'power', 'utility'],
+  'Media & Entertainment': ['film', 'tv', 'gaming', 'esports', 'publishing', 'news', 'music', 'event', 'media'],
+  'Government & Public': ['government', 'municipal', 'public safety', 'public transport', 'defense'],
+  'Sports & Recreation': ['sports', 'club', 'academy', 'recreation', 'leisure', 'swimming pool', 'stadium'],
+  'Religious & Community': ['mosque', 'church', 'temple', 'community', 'congregation', 'charity'],
 };
 
 interface QueryResult {
@@ -56,16 +35,21 @@ interface QueryResult {
   score: number;
   metadata: {
     name: string;
-    parentId: string;
-    payanarssTypeId: string;
     description: string;
-    hasAttributes: boolean;
-    domain?: string;
-    purpose?: string;
-    module?: string;
-    keywords?: string;
-    parentName?: string;
-    childCount?: number;
+    level: string;
+    sector: string;
+    module: string;
+    submodule: string;
+    usecase: string;
+    path: string;
+    is_common: boolean;
+    parent_name: string;
+    child_count: number;
+    column_names: string;
+    column_types: string;
+    column_count: number;
+    table_count: number;
+    embedding_text: string;
   };
 }
 
@@ -77,73 +61,150 @@ serve(async (req) => {
   try {
     const PINECONE_API_KEY = Deno.env.get('PINECONE_API_KEY');
     const LOVABLE_API_KEY = Deno.env.get('LOVABLE_API_KEY');
+    if (!PINECONE_API_KEY) throw new Error('PINECONE_API_KEY is not configured');
 
-    if (!PINECONE_API_KEY) {
-      throw new Error('PINECONE_API_KEY is not configured');
-    }
-    if (!LOVABLE_API_KEY) {
-      throw new Error('LOVABLE_API_KEY is not configured');
-    }
+    const { query, indexHost, topK = 15, sectorFilter, levelFilter } = await req.json();
+    if (!query) throw new Error('query is required');
+    if (!indexHost) throw new Error('indexHost is required');
 
-    const { query, indexHost, topK = 15, domainFilter } = await req.json();
+    console.log(`Query: "${query}"`);
 
-    if (!query) {
-      throw new Error('query is required');
-    }
-    if (!indexHost) {
-      throw new Error('indexHost is required');
-    }
+    // Step 1: Detect sector from user query
+    const detectedSector = sectorFilter || detectSector(query);
+    console.log(`Detected sector: ${detectedSector}`);
 
-    console.log(`Processing query: "${query}"`);
-
-    // Step 1: Detect domain from user query (STRICT matching)
-    const detectedDomain = domainFilter || detectDomain(query);
-    console.log(`Detected domain: ${detectedDomain}`);
-
-    // Step 2: Build domain-weighted query text
-    const expandedQuery = await buildDomainWeightedQuery(query, detectedDomain, LOVABLE_API_KEY);
-    console.log(`Expanded query length: ${expandedQuery.length} chars`);
-
-    // Step 3: Generate embedding (MUST match embed-types function exactly)
-    const queryVector = generateEmbedding(expandedQuery);
-
-    // Step 4: Query Pinecone WITH domain filter
+    // Step 2: Build Pinecone filter
     const filter: Record<string, unknown> = {};
-    if (detectedDomain && detectedDomain !== 'General') {
-      filter.domain = detectedDomain;
+    if (detectedSector && detectedSector !== 'General') {
+      filter.sector = { '$in': [detectedSector, 'Common Modules'] };
+    }
+    if (levelFilter) {
+      filter.level = levelFilter;
     }
 
-    // First try with domain filter
-    let results = await queryPinecone(indexHost, PINECONE_API_KEY, queryVector, topK, filter);
-    console.log(`Domain-filtered results: ${results.length}`);
+    // Step 3: Query Pinecone — try integrated inference first
+    let results: QueryResult[] = [];
+    let searchMethod = 'integrated';
 
-    // If we got very few results with filter, also try without filter and merge
-    if (results.length < 5 && detectedDomain !== 'General') {
-      console.log('Few results with domain filter, trying broader search...');
-      const unfilteredResults = await queryPinecone(indexHost, PINECONE_API_KEY, queryVector, topK, {});
-      
-      // Merge: prioritize domain-matching results
-      const existingIds = new Set(results.map(r => r.id));
-      for (const r of unfilteredResults) {
-        if (!existingIds.has(r.id)) {
-          // Lower the score for non-domain matches
-          results.push({ ...r, score: r.score * 0.7 });
+    // Try integrated inference search (text-based)
+    try {
+      const resp = await fetch(`https://${indexHost}/records/search`, {
+        method: 'POST',
+        headers: { 'Api-Key': PINECONE_API_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          query: { text: query },
+          namespace: DEFAULT_NAMESPACE,
+          top_k: topK,
+          ...(Object.keys(filter).length > 0 ? { filter } : {}),
+        }),
+      });
+
+      if (resp.ok) {
+        const data = await resp.json();
+        results = (data.result?.hits || []).map((hit: { _id: string; _score: number; fields: Record<string, unknown> }) => ({
+          id: hit._id,
+          score: hit._score,
+          metadata: hit.fields,
+        }));
+      } else {
+        console.warn(`Integrated search failed (${resp.status}), falling back to vector`);
+        searchMethod = 'fallback';
+      }
+    } catch (e) {
+      console.warn(`Integrated search error: ${e}`);
+      searchMethod = 'fallback';
+    }
+
+    // Fallback: generate local embedding and do vector query
+    if (searchMethod === 'fallback') {
+      const queryVector = generateLocalEmbedding(query);
+
+      const queryBody: Record<string, unknown> = {
+        vector: queryVector,
+        topK,
+        includeMetadata: true,
+        namespace: DEFAULT_NAMESPACE,
+      };
+      if (Object.keys(filter).length > 0) queryBody.filter = filter;
+
+      const resp = await fetch(`https://${indexHost}/query`, {
+        method: 'POST',
+        headers: { 'Api-Key': PINECONE_API_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify(queryBody),
+      });
+
+      if (!resp.ok) throw new Error(`Pinecone query failed: ${await resp.text()}`);
+
+      const data = await resp.json();
+      results = (data.matches || []).map((m: { id: string; score: number; metadata: Record<string, unknown> }) => ({
+        id: m.id,
+        score: m.score,
+        metadata: m.metadata,
+      }));
+    }
+
+    console.log(`Found ${results.length} results via ${searchMethod}`);
+
+    // If sector filter gave few results, broaden search
+    if (results.length < 5 && detectedSector !== 'General' && Object.keys(filter).length > 0) {
+      console.log('Few results with filter, broadening search...');
+      let broadResults: QueryResult[] = [];
+
+      if (searchMethod === 'integrated') {
+        try {
+          const resp = await fetch(`https://${indexHost}/records/search`, {
+            method: 'POST',
+            headers: { 'Api-Key': PINECONE_API_KEY, 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              query: { text: query },
+              namespace: DEFAULT_NAMESPACE,
+              top_k: topK,
+            }),
+          });
+          if (resp.ok) {
+            const data = await resp.json();
+            broadResults = (data.result?.hits || []).map((hit: { _id: string; _score: number; fields: Record<string, unknown> }) => ({
+              id: hit._id,
+              score: hit._score * 0.8, // Penalize non-sector matches
+              metadata: hit.fields,
+            }));
+          }
+        } catch { /* ignore */ }
+      } else {
+        const queryVector = generateLocalEmbedding(query);
+        const resp = await fetch(`https://${indexHost}/query`, {
+          method: 'POST',
+          headers: { 'Api-Key': PINECONE_API_KEY, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ vector: queryVector, topK, includeMetadata: true, namespace: DEFAULT_NAMESPACE }),
+        });
+        if (resp.ok) {
+          const data = await resp.json();
+          broadResults = (data.matches || []).map((m: { id: string; score: number; metadata: Record<string, unknown> }) => ({
+            id: m.id, score: m.score * 0.8, metadata: m.metadata,
+          }));
         }
       }
-      
-      // Re-sort by score
+
+      // Merge unique
+      const existingIds = new Set(results.map(r => r.id));
+      for (const r of broadResults) {
+        if (!existingIds.has(r.id)) results.push(r);
+      }
       results.sort((a, b) => b.score - a.score);
       results = results.slice(0, topK);
     }
 
-    // Step 5: Generate AI summary
-    const aiSummary = await generateAISummary(query, detectedDomain, results, LOVABLE_API_KEY);
+    // Step 4: Generate AI summary
+    const aiSummary = LOVABLE_API_KEY
+      ? await generateAISummary(query, detectedSector, results, LOVABLE_API_KEY)
+      : buildBasicSummary(results);
 
     return new Response(
       JSON.stringify({
         success: true,
         query,
-        detectedDomain,
+        detectedSector,
+        searchMethod,
         results,
         aiSummary,
       }),
@@ -151,231 +212,60 @@ serve(async (req) => {
     );
 
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    console.error('Query types error:', error);
+    const msg = error instanceof Error ? error.message : 'Unknown error';
+    console.error('Query error:', error);
     return new Response(
-      JSON.stringify({ success: false, error: errorMessage }),
+      JSON.stringify({ success: false, error: msg }),
       { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );
   }
 });
 
-/**
- * Detect domain using STRICT keyword matching
- */
-function detectDomain(query: string): string {
-  const lowerQuery = query.toLowerCase();
-  
-  let bestDomain = 'General';
+// ═══════════════════════════════════════
+// SECTOR DETECTION
+// ═══════════════════════════════════════
+
+function detectSector(query: string): string {
+  const lower = query.toLowerCase();
+  let best = 'General';
   let bestScore = 0;
 
-  for (const [domain, keywords] of Object.entries(DOMAIN_KEYWORDS)) {
+  for (const [sector, keywords] of Object.entries(SECTOR_KEYWORDS)) {
     let score = 0;
     for (const kw of keywords) {
-      if (lowerQuery.includes(kw)) {
-        // Multi-word keywords get higher scores
+      if (lower.includes(kw)) {
         score += kw.split(' ').length * 2;
       }
     }
     if (score > bestScore) {
       bestScore = score;
-      bestDomain = domain;
+      best = sector;
     }
   }
-
-  console.log(`Domain detection scores: ${bestDomain} = ${bestScore}`);
-  return bestDomain;
+  return best;
 }
 
-/**
- * Build query text with HEAVY domain keyword weighting to match embedded documents
- */
-async function buildDomainWeightedQuery(query: string, domain: string, apiKey: string): Promise<string> {
-  // Get domain keywords
-  const domainKeywords = DOMAIN_KEYWORDS[domain] || [];
-  
-  // Expand query with AI
-  let aiExpansion = '';
-  try {
-    const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: 'google/gemini-3-flash-preview',
-        messages: [
-          {
-            role: 'system',
-            content: `You are a database schema expert. Given a business requirement, list the specific table names and column names that would be needed. Focus on ${domain} domain tables. Output a comma-separated list of 15-20 table/column names like: Room_Table, Guest_Profile, Reservation_Details, booking_date, check_in_time, etc.`,
-          },
-          {
-            role: 'user',
-            content: query,
-          },
-        ],
-        max_tokens: 200,
-      }),
-    });
+// ═══════════════════════════════════════
+// AI SUMMARY
+// ═══════════════════════════════════════
 
-    if (response.ok) {
-      const data = await response.json();
-      aiExpansion = data.choices?.[0]?.message?.content?.trim() || '';
-    }
-  } catch (e) {
-    console.error('AI expansion error:', e);
-  }
-
-  // Build weighted query text that matches the embedded document format
-  const queryParts = [
-    // Original query
-    query,
-    
-    // Domain signal (repeat for weight - matches embed format)
-    `Domain: ${domain}. ${domain} domain. ${domain} system.`,
-    
-    // Domain keywords (matches embed format)
-    `Domain keywords: ${domainKeywords.slice(0, 15).join(', ')}`,
-    
-    // AI expansion
-    aiExpansion ? `Tables: ${aiExpansion}` : '',
-    
-    // Additional domain repetition for strong matching
-    domain !== 'General' ? `${domain}: ${domainKeywords.slice(0, 10).join(' ')}` : '',
-  ];
-
-  return queryParts.filter(Boolean).join('. ');
-}
-
-/**
- * Generate embedding - MUST MATCH embed-types function EXACTLY
- */
-function generateEmbedding(text: string, dimensions: number = EMBEDDING_DIMENSIONS): number[] {
-  const embedding = new Array(dimensions).fill(0);
-  const lowerText = text.toLowerCase();
-  
-  // Split into words
-  const words = lowerText.split(/[\s,.\-_:;()]+/).filter(w => w.length > 1);
-  
-  // Identify domain keywords and weight them HEAVILY
-  const domainKeywordWeights: Record<string, number> = {};
-  for (const keywords of Object.values(DOMAIN_KEYWORDS)) {
-    for (const kw of keywords) {
-      domainKeywordWeights[kw] = 15;
-    }
-  }
-  
-  // Process each word with domain-aware weighting
-  for (const word of words) {
-    let hash = 0;
-    for (let j = 0; j < word.length; j++) {
-      hash = ((hash << 5) - hash + word.charCodeAt(j)) | 0;
-    }
-    
-    const weight = domainKeywordWeights[word] || 1;
-    
-    const idx1 = Math.abs(hash) % dimensions;
-    const idx2 = Math.abs(hash * 31) % dimensions;
-    const idx3 = Math.abs(hash * 97) % dimensions;
-    
-    embedding[idx1] += 3 * weight;
-    embedding[idx2] += 2 * weight;
-    embedding[idx3] += 1 * weight;
-  }
-  
-  // Bigram features with domain weighting
-  for (let i = 0; i < words.length - 1; i++) {
-    const bigram = words[i] + ' ' + words[i + 1];
-    let hash = 0;
-    for (let j = 0; j < bigram.length; j++) {
-      hash = ((hash << 5) - hash + bigram.charCodeAt(j)) | 0;
-    }
-    
-    let bigramWeight = 1;
-    for (const keywords of Object.values(DOMAIN_KEYWORDS)) {
-      if (keywords.includes(bigram)) {
-        bigramWeight = 20;
-        break;
-      }
-    }
-    
-    const idx = Math.abs(hash) % dimensions;
-    embedding[idx] += 4 * bigramWeight;
-  }
-  
-  // Normalize
-  const magnitude = Math.sqrt(embedding.reduce((sum, val) => sum + val * val, 0));
-  if (magnitude > 0) {
-    for (let i = 0; i < dimensions; i++) {
-      embedding[i] = embedding[i] / magnitude;
-    }
-  }
-  
-  return embedding;
-}
-
-/**
- * Query Pinecone
- */
-async function queryPinecone(
-  indexHost: string,
-  apiKey: string,
-  vector: number[],
-  topK: number,
-  filter: Record<string, unknown>
-): Promise<QueryResult[]> {
-  const queryBody: Record<string, unknown> = {
-    vector,
-    topK,
-    includeMetadata: true,
-    namespace: 'payanarss-types',
-  };
-
-  if (Object.keys(filter).length > 0) {
-    queryBody.filter = filter;
-  }
-
-  const response = await fetch(`https://${indexHost}/query`, {
-    method: 'POST',
-    headers: {
-      'Api-Key': apiKey,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(queryBody),
-  });
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    console.error('Pinecone query error:', errorText);
-    throw new Error(`Pinecone query failed: ${errorText}`);
-  }
-
-  const data = await response.json();
-  return (data.matches || []).map((match: { id: string; score: number; metadata: Record<string, unknown> }) => ({
-    id: match.id,
-    score: match.score,
-    metadata: match.metadata,
-  }));
-}
-
-/**
- * Generate AI summary
- */
 async function generateAISummary(
   query: string,
-  domain: string,
+  sector: string,
   results: QueryResult[],
   apiKey: string
 ): Promise<string> {
   if (results.length === 0) {
-    return 'No matching types found. Try describing your business needs differently or re-embed the types from the Admin tab.';
+    return 'No matching types found. Try describing your business needs differently.';
   }
 
   try {
-    const coreTypes = results.filter(r => r.metadata.purpose === 'Core');
-    const lookupTypes = results.filter(r => r.metadata.purpose === 'Lookup');
-    const supportingTypes = results.filter(r => r.metadata.purpose === 'Supporting' || r.metadata.purpose === 'Relationship');
+    // Group results by level
+    const modules = results.filter(r => r.metadata.level === 'module');
+    const submodules = results.filter(r => r.metadata.level === 'submodule');
+    const usecases = results.filter(r => r.metadata.level === 'usecase');
+    const tables = results.filter(r => r.metadata.level === 'table');
+    const commonResults = results.filter(r => r.metadata.is_common);
 
     const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
       method: 'POST',
@@ -388,48 +278,93 @@ async function generateAISummary(
         messages: [
           {
             role: 'system',
-            content: `You are an ERP solution architect. Provide a structured recommendation for building the user's ${domain} module. Format:
+            content: `You are Viki, an ERP solution architect for MAA ERP. Recommend modules and tables for the user's business. Format:
 
-**Recommended Core Tables:**
-[List main tables with brief explanation]
+**Recommended Modules:**
+[List with brief explanation]
 
-**Supporting & Lookup Tables:**
-[List supporting tables]
+**Core Tables:**
+[Key tables with column highlights]
 
-**Suggested Workflows:**
-[2-3 key workflows]
+**Common Modules (always included):**
+[HR, Finance, etc.]
 
-**Implementation Priority:**
-[What to implement first]
+**Next Steps:**
+[What to configure first]
 
-Keep under 300 words.`,
+Keep under 300 words. Be specific to ${sector}.`,
           },
           {
             role: 'user',
-            content: `User requirement: "${query}"
-Domain: ${domain}
+            content: `Business requirement: "${query}"
+Sector: ${sector}
 
-Core Tables (${coreTypes.length}):
-${coreTypes.slice(0, 5).map(r => `- ${r.metadata.name} (${(r.score * 100).toFixed(0)}%)`).join('\n')}
+Modules found (${modules.length}):
+${modules.slice(0, 5).map(r => `- ${r.metadata.name} [${r.metadata.sector}] (${r.metadata.table_count} tables, score: ${(r.score * 100).toFixed(0)}%)`).join('\n')}
 
-Lookup Tables (${lookupTypes.length}):
-${lookupTypes.slice(0, 5).map(r => `- ${r.metadata.name}`).join('\n')}
+Sub-modules (${submodules.length}):
+${submodules.slice(0, 5).map(r => `- ${r.metadata.name} under ${r.metadata.module}`).join('\n')}
 
-Supporting Tables (${supportingTypes.length}):
-${supportingTypes.slice(0, 5).map(r => `- ${r.metadata.name}`).join('\n')}`,
+Use Cases (${usecases.length}):
+${usecases.slice(0, 5).map(r => `- ${r.metadata.name}`).join('\n')}
+
+Tables (${tables.length}):
+${tables.slice(0, 5).map(r => `- ${r.metadata.name} (${r.metadata.column_count} cols: ${r.metadata.column_names?.split(',').slice(0, 5).join(', ')})`).join('\n')}
+
+Common Modules:
+${commonResults.slice(0, 3).map(r => `- ${r.metadata.name}`).join('\n')}`,
           },
         ],
         max_tokens: 500,
       }),
     });
 
-    if (!response.ok) {
-      return `Found ${results.length} relevant types for ${domain}. Top: ${results.slice(0, 5).map(r => r.metadata.name).join(', ')}.`;
-    }
+    if (!response.ok) return buildBasicSummary(results);
 
     const data = await response.json();
-    return data.choices?.[0]?.message?.content?.trim() || '';
+    return data.choices?.[0]?.message?.content?.trim() || buildBasicSummary(results);
   } catch {
-    return `Found ${results.length} matching types. Top: ${results.slice(0, 5).map(r => r.metadata.name).join(', ')}.`;
+    return buildBasicSummary(results);
   }
+}
+
+function buildBasicSummary(results: QueryResult[]): string {
+  const modules = results.filter(r => r.metadata.level === 'module');
+  const tables = results.filter(r => r.metadata.level === 'table');
+  return `Found ${results.length} matching items. Modules: ${modules.map(r => r.metadata.name).join(', ') || 'none'}. Tables: ${tables.map(r => r.metadata.name).join(', ') || 'none'}.`;
+}
+
+// ═══════════════════════════════════════
+// FALLBACK: Local Embedding
+// MUST match embed-types exactly
+// ═══════════════════════════════════════
+
+function generateLocalEmbedding(text: string, dimensions = 1024): number[] {
+  const embedding = new Array(dimensions).fill(0);
+  const words = text.toLowerCase().split(/[\s,.\-_:;()]+/).filter(w => w.length > 1);
+
+  const freq: Record<string, number> = {};
+  for (const w of words) freq[w] = (freq[w] || 0) + 1;
+
+  for (const [word, count] of Object.entries(freq)) {
+    let hash = 0;
+    for (let j = 0; j < word.length; j++) {
+      hash = ((hash << 5) - hash + word.charCodeAt(j)) | 0;
+    }
+    const weight = Math.log(1 + count);
+    embedding[Math.abs(hash) % dimensions] += 3 * weight;
+    embedding[Math.abs(hash * 31) % dimensions] += 2 * weight;
+    embedding[Math.abs(hash * 97) % dimensions] += 1 * weight;
+  }
+
+  for (let i = 0; i < words.length - 1; i++) {
+    const bg = words[i] + '_' + words[i + 1];
+    let hash = 0;
+    for (let j = 0; j < bg.length; j++) hash = ((hash << 5) - hash + bg.charCodeAt(j)) | 0;
+    embedding[Math.abs(hash) % dimensions] += 4;
+  }
+
+  const mag = Math.sqrt(embedding.reduce((s, v) => s + v * v, 0));
+  if (mag > 0) for (let i = 0; i < dimensions; i++) embedding[i] /= mag;
+  return embedding;
 }

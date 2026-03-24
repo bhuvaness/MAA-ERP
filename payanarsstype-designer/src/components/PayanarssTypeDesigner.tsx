@@ -8,7 +8,7 @@ import { TypeEditor } from "./designer/TypeEditor";
 import { AIPromptBar } from "./designer/AIPromptBar";
 import { Breadcrumb } from "./designer/Breadcrumb";
 import { toast } from "@/hooks/use-toast";
-import { generateTypes, GeneratedField } from "@/services/aiService";
+import { generateTypes, GeneratedField, PayanarssTypeSummary } from "@/services/aiService";
 
 export function PayanarssTypeDesigner() {
     const {
@@ -43,8 +43,8 @@ export function PayanarssTypeDesigner() {
     // Get children of current parent
     const currentChildren = useMemo(() => {
         if (!selectedParentId) {
-            // Show root types
-            return types.filter((t) => t.Id === t.ParentId);
+            // Root level: only show nodes with PayanarssTypeId === BusinessSolutions
+            return types.filter((t) => t.Id === t.ParentId && t.PayanarssTypeId === ROOT_TYPE_IDS.BUSINESS_SOLUTIONS);
         }
         return getChildren(selectedParentId);
     }, [selectedParentId, types, getChildren]);
@@ -151,42 +151,112 @@ export function PayanarssTypeDesigner() {
         });
     }, [selectedParentId, deleteChildren, currentParent?.Name]);
 
-    // Handle AI prompt - calls the Lovable AI gateway
+    // Resolve human-readable type name for the current parent
+    const currentParentTypeName = useMemo(() => {
+        if (!currentParent) return undefined;
+        const typeIdToName: Record<string, string> = {
+            [ROOT_TYPE_IDS.VALUE_TYPE]:        "ValueType",
+            [ROOT_TYPE_IDS.TABLE_TYPE]:        "TableType",
+            [ROOT_TYPE_IDS.CHILD_TABLE_TYPE]:  "ChildTableType",
+            [ROOT_TYPE_IDS.LOOKUP_TYPE]:       "LookupType",
+            [ROOT_TYPE_IDS.GROUP_TYPE]:        "GroupType",
+            [ROOT_TYPE_IDS.ATTRIBUTE_TYPE]:    "AttributeType",
+            [ROOT_TYPE_IDS.BUSINESS_USE_CASE]: "BusinessUseCase",
+            [ROOT_TYPE_IDS.BUSINESS_MODULES]:  "BusinessModules",
+            [ROOT_TYPE_IDS.BUSINESS_SOLUTIONS]:"BusinessSolutions",
+        };
+        return typeIdToName[currentParent.PayanarssTypeId] ?? "Unknown";
+    }, [currentParent]);
+
+    // Handle AI prompt - passes parent name, parent type, AND focused context subtree
     const handleAIGenerate = useCallback(
         async (prompt: string): Promise<GeneratedField[]> => {
-            return await generateTypes(prompt, currentParent?.Name);
+            // Build focused context: ancestors path + current node + its existing children only
+            // This avoids exceeding token limits while still giving Claude relevant structure
+            const contextNodes: PayanarssTypeSummary[] = [];
+            const seen = new Set<string>();
+
+            const addNode = (t: PayanarssType) => {
+                if (seen.has(t.Id)) return;
+                seen.add(t.Id);
+                contextNodes.push({
+                    Id: t.Id,
+                    ParentId: t.ParentId,
+                    Name: t.Name,
+                    PayanarssTypeId: t.PayanarssTypeId,
+                    Description: t.Description,
+                });
+            };
+
+            // 1. Walk ancestors from current parent up to root
+            let cursor = currentParent ?? null;
+            while (cursor) {
+                addNode(cursor);
+                if (cursor.Id === cursor.ParentId) break; // root node
+                cursor = types.find((t) => t.Id === cursor!.ParentId) ?? null;
+            }
+
+            // 2. Add siblings of current parent (children of its parent)
+            if (currentParent) {
+                types
+                    .filter((t) => t.ParentId === currentParent.ParentId && t.Id !== currentParent.Id)
+                    .forEach(addNode);
+            }
+
+            // 3. Add existing children of current parent (so Claude avoids duplicates)
+            if (currentParent) {
+                types
+                    .filter((t) => t.ParentId === currentParent.Id && t.Id !== currentParent.Id)
+                    .forEach(addNode);
+            }
+
+            return await generateTypes(prompt, currentParent?.Name, currentParentTypeName, contextNodes);
         },
-        [currentParent?.Name]
+        [currentParent, currentParentTypeName, types]
     );
 
-    // Handle generated fields from AI
+    // Handle generated fields from AI — supports nested children
     const handleFieldsGenerated = useCallback(
         (fields: GeneratedField[]) => {
             const parentId = selectedParentId || "";
-            let createdCount = 0;
 
             // Map AI type names to actual PayanarssTypeId values
             const typeNameToId: Record<string, string> = {
-                GroupType: ROOT_TYPE_IDS.GROUP_TYPE,
-                TableType: ROOT_TYPE_IDS.TABLE_TYPE,
-                ChildTableType: ROOT_TYPE_IDS.CHILD_TABLE_TYPE,
-                LookupType: ROOT_TYPE_IDS.LOOKUP_TYPE,
-                ValueType: ROOT_TYPE_IDS.VALUE_TYPE,
-                AttributeType: ROOT_TYPE_IDS.ATTRIBUTE_TYPE,
+                GroupType:        ROOT_TYPE_IDS.GROUP_TYPE,
+                TableType:        ROOT_TYPE_IDS.TABLE_TYPE,
+                ChildTableType:   ROOT_TYPE_IDS.CHILD_TABLE_TYPE,
+                LookupType:       ROOT_TYPE_IDS.LOOKUP_TYPE,
+                ValueType:        ROOT_TYPE_IDS.VALUE_TYPE,
+                AttributeType:    ROOT_TYPE_IDS.ATTRIBUTE_TYPE,
+                BusinessUseCase:  ROOT_TYPE_IDS.BUSINESS_USE_CASE,
+                BusinessModules:  ROOT_TYPE_IDS.BUSINESS_MODULES,
+                BusinessSolutions: ROOT_TYPE_IDS.BUSINESS_SOLUTIONS,
             };
 
-            fields.forEach((field) => {
+            // Recursively create a field and all its children
+            const createNode = (field: GeneratedField, nodeParentId: string): number => {
                 const payanarssTypeId = typeNameToId[field.type] || ROOT_TYPE_IDS.VALUE_TYPE;
-                addType(parentId, field.name, {
+                const created = addType(nodeParentId, field.name, {
                     description: field.description,
                     payanarssTypeId,
                 });
-                createdCount++;
-            });
+                let count = 1;
+                if (field.children && field.children.length > 0) {
+                    for (const child of field.children) {
+                        count += createNode(child, created.Id);
+                    }
+                }
+                return count;
+            };
+
+            let totalCreated = 0;
+            for (const field of fields) {
+                totalCreated += createNode(field, parentId);
+            }
 
             toast({
                 title: "Types Generated by Claude AI",
-                description: `Created ${createdCount} new type${createdCount !== 1 ? "s" : ""}.`,
+                description: `Created ${totalCreated} node${totalCreated !== 1 ? "s" : ""} with correct hierarchy.`,
             });
         },
         [selectedParentId, addType]

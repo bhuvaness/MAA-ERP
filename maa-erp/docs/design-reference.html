@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAA ERP — Enhanced Design V2</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Core palette */
+  --bg: #faf7f2;
+  --bg-warm: #f5f0e8;
+  --bg-sidebar: #f0ebe2;
+  --surface: #ffffff;
+  --border: #e8e0d4;
+  --border-light: #f0ebe2;
+  
+  /* Text */
+  --text-primary: #2c2417;
+  --text-secondary: #7a6f60;
+  --text-tertiary: #a89f91;
+  --text-inverse: #faf7f2;
+  
+  /* Accent - Terracotta */
+  --accent: #c4704b;
+  --accent-hover: #b5623e;
+  --accent-light: #f8ede7;
+  --accent-glow: rgba(196, 112, 75, 0.12);
+  
+  /* Status */
+  --green: #5a8a6a;
+  --green-light: #eef5f0;
+  --amber: #c49a3c;
+  --amber-light: #fdf6e3;
+  --red: #c45b5b;
+  --red-light: #fdf0f0;
+  --blue: #5b7ec4;
+  --blue-light: #eef2fa;
+  
+  /* Layout */
+  --sidebar-w: 272px;
+  --context-w: 300px;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-xs: 6px;
+  
+  /* Typography */
+  --font-display: 'Source Serif 4', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(44, 36, 23, 0.06);
+  --shadow-md: 0 4px 12px rgba(44, 36, 23, 0.08);
+  --shadow-lg: 0 8px 30px rgba(44, 36, 23, 0.12);
+  --shadow-card: 0 1px 4px rgba(44, 36, 23, 0.05), 0 0 0 1px rgba(44, 36, 23, 0.03);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text-primary);
+  height: 100vh;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════
+   SHELL — 3-Column Layout
+   ═══════════════════════════════════════ */
+.shell {
+  display: flex;
+  height: 100vh;
+}
+
+/* ═══════════════════════════════════════
+   LEFT SIDEBAR
+   ═══════════════════════════════════════ */
+.sidebar {
+  width: var(--sidebar-w);
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.sidebar-brand {
+  padding: 20px 20px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--accent);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.brand-text {
+  flex: 1;
+}
+
+.brand-text h1 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.brand-text span {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* Current context indicator */
+.current-context {
+  margin: 0 16px 12px;
+  padding: 10px 14px;
+  background: var(--accent-light);
+  border: 1px solid rgba(196, 112, 75, 0.15);
+  border-radius: var(--radius-sm);
+}
+
+.current-context-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 2px;
+}
+
+.current-context-value {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.current-context-sub {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+/* Search */
+.sidebar-search {
+  margin: 0 16px 16px;
+  position: relative;
+}
+
+.sidebar-search input {
+  width: 100%;
+  padding: 9px 12px 9px 34px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text-primary);
+  outline: none;
+  transition: all 0.2s;
+}
+
+.sidebar-search input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.sidebar-search input::placeholder { color: var(--text-tertiary); }
+
+.sidebar-search .search-icon {
+  position: absolute;
+  left: 11px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-tertiary);
+  font-size: 14px;
+}
+
+.sidebar-search .search-shortcut {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-tertiary);
+  background: var(--bg-warm);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+
+/* Module list */
+.sidebar-modules {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 8px;
+}
+
+.sidebar-section-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-tertiary);
+  padding: 12px 12px 6px;
+}
+
+.module-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.15s;
+  position: relative;
+}
+
+.module-item:hover {
+  background: rgba(196, 112, 75, 0.06);
+}
+
+.module-item.active {
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+.module-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.module-icon.hr { background: var(--accent-light); }
+.module-icon.finance { background: var(--amber-light); }
+.module-icon.gym { background: var(--green-light); }
+.module-icon.setup { background: var(--bg-warm); }
+.module-icon.inventory { background: var(--blue-light); }
+
+.module-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.module-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.module-item.active .module-name {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.module-preview {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.module-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.module-time {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.module-badge {
+  background: var(--accent);
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+}
+
+/* Sidebar footer */
+.sidebar-footer {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 6px;
+}
+
+.sidebar-footer button {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  background: var(--surface);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.sidebar-footer button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ═══════════════════════════════════════
+   MIDDLE — Chat Area
+   ═══════════════════════════════════════ */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--bg);
+}
+
+/* Header */
+.main-header {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface);
+}
+
+.main-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.viki-avatar-header {
+  width: 32px;
+  height: 32px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.main-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.main-subtitle {
+  font-size: 12px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  display: inline-block;
+}
+
+.header-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.header-btn {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  background: var(--surface);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 15px;
+  transition: all 0.15s;
+}
+
+.header-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.header-btn.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+/* Chat area */
+.chat-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── IMPROVEMENT 1: Date divider ── */
+.date-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 4px 0;
+}
+
+.date-divider::before,
+.date-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-light);
+}
+
+.date-divider span {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+/* Viki messages */
+.msg-viki {
+  display: flex;
+  gap: 12px;
+  max-width: 640px;
+}
+
+.msg-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.msg-content {
+  flex: 1;
+}
+
+.msg-sender {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.msg-time {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-tertiary);
+}
+
+.msg-bubble {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 2px var(--radius) var(--radius) var(--radius);
+  padding: 14px 18px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ── IMPROVEMENT 2: Status banner with better visual ── */
+.status-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+.status-banner.success {
+  background: var(--green-light);
+  color: var(--green);
+  border: 1px solid rgba(90, 138, 106, 0.15);
+}
+
+.status-banner.warning {
+  background: var(--amber-light);
+  color: var(--amber);
+  border: 1px solid rgba(196, 154, 60, 0.15);
+}
+
+/* ── IMPROVEMENT 3: Better suggestion chips ── */
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--surface);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-light);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.chip .chip-icon {
+  font-size: 15px;
+}
+
+/* User messages */
+.msg-user {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  max-width: 640px;
+  align-self: flex-end;
+}
+
+.msg-user .msg-bubble {
+  background: var(--text-primary);
+  color: var(--text-inverse);
+  border: none;
+  border-radius: var(--radius) 2px var(--radius) var(--radius);
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--bg-warm);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 13px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ── IMPROVEMENT 4: Rich data cards ── */
+.data-card {
+  margin-top: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.data-card-header {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg);
+}
+
+.data-card-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.data-card-tag {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.tag-hr { background: var(--accent-light); color: var(--accent); }
+.tag-finance { background: var(--amber-light); color: var(--amber); }
+.tag-success { background: var(--green-light); color: var(--green); }
+
+.data-card-body {
+  padding: 16px;
+}
+
+.data-card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.data-field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.data-field.full { grid-column: 1 / -1; }
+
+.field-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.field-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.field-value.highlight {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+.data-card-footer {
+  padding: 10px 16px;
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg);
+}
+
+.data-card-footer .status {
+  font-size: 12px;
+  color: var(--green);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.data-card-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.card-action-btn {
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  background: var(--surface);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.card-action-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.card-action-btn.primary {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.card-action-btn.primary:hover {
+  background: var(--accent-hover);
+}
+
+/* ── IMPROVEMENT 5: Employee summary card ── */
+.employee-card {
+  margin-top: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.employee-card-main {
+  padding: 16px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.employee-avatar-lg {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.employee-info {
+  flex: 1;
+}
+
+.employee-name {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.employee-code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin-top: 2px;
+}
+
+.employee-role {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.employee-status-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--green-light);
+  color: var(--green);
+}
+
+.employee-progress {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border-light);
+  background: var(--bg);
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.progress-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.progress-pct {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.progress-bar {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--border);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--green));
+  transition: width 0.8s ease;
+}
+
+/* ── IMPROVEMENT 6: Better notification cards ── */
+.notification-card {
+  margin-top: 10px;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  animation: slideIn 0.3s ease;
+}
+
+.notification-card.success {
+  background: var(--green-light);
+  border: 1px solid rgba(90, 138, 106, 0.2);
+}
+
+.notification-card .notif-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.notification-card .notif-body {
+  flex: 1;
+}
+
+.notification-card .notif-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.notification-card .notif-detail {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.notification-card .notif-detail code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+  background: rgba(196, 112, 75, 0.08);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Input bar ── */
+.input-area {
+  padding: 16px 24px 20px;
+  border-top: 1px solid var(--border-light);
+  background: var(--bg);
+}
+
+.input-wrapper {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.input-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 4px 6px 4px 16px;
+  transition: all 0.2s;
+  box-shadow: var(--shadow-sm);
+}
+
+.input-bar:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow), var(--shadow-md);
+}
+
+.input-user-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--bg-warm);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.input-bar input {
+  flex: 1;
+  border: none;
+  background: none;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-primary);
+  outline: none;
+  padding: 10px 0;
+}
+
+.input-bar input::placeholder { color: var(--text-tertiary); }
+
+.send-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 16px;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.send-btn:hover {
+  background: var(--accent-hover);
+  transform: scale(1.05);
+}
+
+/* ── IMPROVEMENT 7: Action strip with better grouping ── */
+.action-strip {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-top: 8px;
+  padding: 0 4px;
+}
+
+.action-strip-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.action-strip-divider {
+  width: 1px;
+  height: 16px;
+  background: var(--border);
+  margin: 0 8px;
+}
+
+.strip-btn {
+  padding: 5px 10px;
+  border: none;
+  border-radius: var(--radius-xs);
+  background: none;
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s;
+}
+
+.strip-btn:hover {
+  color: var(--accent);
+  background: var(--accent-light);
+}
+
+/* ═══════════════════════════════════════
+   RIGHT PANEL — Context
+   ═══════════════════════════════════════ */
+.context-panel {
+  width: var(--context-w);
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  overflow-y: auto;
+}
+
+.context-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.context-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-tertiary);
+}
+
+.context-close {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: var(--radius-xs);
+  background: none;
+  cursor: pointer;
+  color: var(--text-tertiary);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.context-close:hover {
+  background: var(--bg-warm);
+  color: var(--text-primary);
+}
+
+/* ── IMPROVEMENT 8: Stats with better visual hierarchy ── */
+.context-section {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.context-section-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+  margin-bottom: 12px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.stat-card {
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  border: 1px solid var(--border-light);
+  transition: all 0.15s;
+}
+
+.stat-card:hover {
+  border-color: var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.stat-value {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.stat-value.green { color: var(--green); }
+.stat-value.amber { color: var(--amber); }
+.stat-value.accent { color: var(--accent); }
+.stat-value.blue { color: var(--blue); }
+
+.stat-label {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  margin-top: 2px;
+}
+
+/* ── IMPROVEMENT 9: To-do / Checklist with interactivity ── */
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.todo-item:hover {
+  background: var(--bg);
+}
+
+.todo-check {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.todo-item.done .todo-check {
+  background: var(--green);
+  border-color: var(--green);
+  color: white;
+  font-size: 10px;
+}
+
+.todo-item.in-progress .todo-check {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: white;
+  font-size: 10px;
+}
+
+.todo-item.pending .todo-check {
+  border-color: var(--border);
+}
+
+.todo-text {
+  font-size: 13px;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.todo-item.done .todo-text {
+  color: var(--text-secondary);
+}
+
+.todo-item.pending .todo-text {
+  color: var(--text-tertiary);
+}
+
+.todo-arrow {
+  color: var(--text-tertiary);
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.todo-item:hover .todo-arrow { opacity: 1; }
+
+/* ── Quick actions ── */
+.quick-action {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.quick-action:hover {
+  background: var(--accent-light);
+  color: var(--accent);
+}
+
+.quick-action-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-xs);
+  background: var(--bg);
+  border: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+/* ── IMPROVEMENT 10: Activity feed ── */
+.activity-item {
+  display: flex;
+  gap: 10px;
+  padding: 8px 0;
+}
+
+.activity-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+.activity-dot.green { background: var(--green); }
+.activity-dot.amber { background: var(--amber); }
+.activity-dot.accent { background: var(--accent); }
+
+.activity-text {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.activity-time {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  margin-top: 2px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-tertiary); }
+</style>
+</head>
+<body>
+<div class="shell">
+  
+  <!-- ═══ LEFT SIDEBAR ═══ -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon">M</div>
+      <div class="brand-text">
+        <h1>MAA ERP</h1>
+        <span>Gym Business</span>
+      </div>
+    </div>
+
+    <div class="current-context">
+      <div class="current-context-label">Current Context</div>
+      <div class="current-context-value">Dashboard</div>
+      <div class="current-context-sub">Home</div>
+    </div>
+
+    <div class="sidebar-search">
+      <span class="search-icon">⌕</span>
+      <input type="text" placeholder="Search or ⌘K...">
+      <span class="search-shortcut">⌘K</span>
+    </div>
+
+    <div class="sidebar-modules">
+      <div class="sidebar-section-label">Active</div>
+      
+      <div class="module-item active">
+        <div class="module-icon hr">👤</div>
+        <div class="module-info">
+          <div class="module-name">HR & Employees</div>
+          <div class="module-preview">Salary for Ahmed...</div>
+        </div>
+        <div class="module-meta">
+          <span class="module-badge">3</span>
+        </div>
+      </div>
+
+      <div class="module-item">
+        <div class="module-icon finance">💰</div>
+        <div class="module-info">
+          <div class="module-name">Finance & Accounts</div>
+          <div class="module-preview">Chart of accounts ready</div>
+        </div>
+        <div class="module-meta">
+          <span class="module-time">11:30</span>
+        </div>
+      </div>
+
+      <div class="module-item">
+        <div class="module-icon gym">🏋️</div>
+        <div class="module-info">
+          <div class="module-name">Gym Members</div>
+          <div class="module-preview">45 members imported</div>
+        </div>
+        <div class="module-meta">
+          <span class="module-badge">2</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section-label">Earlier</div>
+
+      <div class="module-item">
+        <div class="module-icon setup">⚙️</div>
+        <div class="module-info">
+          <div class="module-name">Business Setup</div>
+          <div class="module-preview">Modules configured</div>
+        </div>
+        <div class="module-meta">
+          <span class="module-time">Tue</span>
+        </div>
+      </div>
+
+      <div class="module-item">
+        <div class="module-icon inventory">📦</div>
+        <div class="module-info">
+          <div class="module-name">Equipment & Inventory</div>
+          <div class="module-preview">Treadmills ordered</div>
+        </div>
+        <div class="module-meta">
+          <span class="module-time">Mon</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-footer">
+      <button>+ New</button>
+      <button>⚙ Settings</button>
+      <button>▤ Data</button>
+    </div>
+  </aside>
+
+  <!-- ═══ MIDDLE — CHAT ═══ -->
+  <main class="main">
+    <div class="main-header">
+      <div class="main-header-left">
+        <div class="viki-avatar-header">V</div>
+        <div>
+          <div class="main-title">Dashboard</div>
+          <div class="main-subtitle">
+            <span class="status-dot"></span>
+            Viki is ready · Home
+          </div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="header-btn active" title="Search">🔍</button>
+        <button class="header-btn" title="List view">☰</button>
+        <button class="header-btn" title="Card view">▤</button>
+      </div>
+    </div>
+
+    <div class="chat-area">
+      <!-- Date divider -->
+      <div class="date-divider"><span>Today · March 4, 2026</span></div>
+
+      <!-- Viki welcome -->
+      <div class="msg-viki">
+        <div class="msg-avatar">V</div>
+        <div class="msg-content">
+          <div class="msg-sender">Viki <span class="msg-time">9:15 AM</span></div>
+          <div class="msg-bubble">
+            Welcome back! 👋 You have <strong>3 employees</strong> registered and <strong>22.5K AED</strong> in monthly payroll. Ahmed's profile is 65% complete — want to finish it?
+          </div>
+          <div class="status-banner success">✓ Your Business is configured and ready</div>
+          <div class="suggestions">
+            <button class="chip"><span class="chip-icon">👤</span> Add Employee</button>
+            <button class="chip"><span class="chip-icon">📥</span> Import Data</button>
+            <button class="chip"><span class="chip-icon">🔍</span> Explore Modules</button>
+            <button class="chip"><span class="chip-icon">📄</span> Finish Ahmed's Profile</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- User message -->
+      <div class="msg-user">
+        <div class="msg-content">
+          <div class="msg-bubble">Add salary structure for Ahmed Al Mansoori, basic 5000, housing 2000, transport 500</div>
+        </div>
+        <div class="user-avatar">B</div>
+      </div>
+
+      <!-- Viki response with data card -->
+      <div class="msg-viki">
+        <div class="msg-avatar">V</div>
+        <div class="msg-content">
+          <div class="msg-sender">Viki <span class="msg-time">9:16 AM</span></div>
+          
+          <div class="notification-card success">
+            <span class="notif-icon">✅</span>
+            <div class="notif-body">
+              <div class="notif-title">Salary Structure Created</div>
+              <div class="notif-detail">Created for <code>EMP-003</code> Ahmed Al Mansoori · Effective March 2026</div>
+            </div>
+          </div>
+
+          <div class="data-card">
+            <div class="data-card-header">
+              <div class="data-card-title">💰 Salary Structure</div>
+              <span class="data-card-tag tag-finance">Finance</span>
+            </div>
+            <div class="data-card-body">
+              <div class="data-card-grid">
+                <div class="data-field">
+                  <span class="field-label">Basic Salary</span>
+                  <span class="field-value">AED 5,000</span>
+                </div>
+                <div class="data-field">
+                  <span class="field-label">Housing</span>
+                  <span class="field-value">AED 2,000</span>
+                </div>
+                <div class="data-field">
+                  <span class="field-label">Transport</span>
+                  <span class="field-value">AED 500</span>
+                </div>
+                <div class="data-field">
+                  <span class="field-label">Total Package</span>
+                  <span class="field-value highlight">AED 7,500/mo</span>
+                </div>
+              </div>
+            </div>
+            <div class="data-card-footer">
+              <span class="status">● Auto-saved</span>
+              <div class="data-card-actions">
+                <button class="card-action-btn">Edit</button>
+                <button class="card-action-btn primary">Confirm</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Employee summary -->
+          <div class="employee-card">
+            <div class="employee-card-main">
+              <div class="employee-avatar-lg">A</div>
+              <div class="employee-info">
+                <div class="employee-name">Ahmed Al Mansoori</div>
+                <div class="employee-code">EMP-003 · Technical Dept</div>
+                <div class="employee-role">Personal Trainer</div>
+              </div>
+              <span class="employee-status-badge">Active</span>
+            </div>
+            <div class="employee-progress">
+              <div class="progress-header">
+                <span class="progress-label">Profile Completion</span>
+                <span class="progress-pct">65%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 65%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="suggestions">
+            <button class="chip"><span class="chip-icon">📄</span> Upload Documents</button>
+            <button class="chip"><span class="chip-icon">🏦</span> Add Bank Account</button>
+            <button class="chip"><span class="chip-icon">📞</span> Emergency Contact</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input -->
+    <div class="input-area">
+      <div class="input-wrapper">
+        <div class="input-bar">
+          <div class="input-user-avatar">B</div>
+          <input type="text" placeholder='Talk to Viki... "Add employee" or "Show report"'>
+          <button class="send-btn">↑</button>
+        </div>
+        <div class="action-strip">
+          <div class="action-strip-group">
+            <button class="strip-btn">📎 Attach</button>
+            <button class="strip-btn">📊 Excel</button>
+            <button class="strip-btn">📋 CSV</button>
+            <button class="strip-btn">{ } JSON</button>
+          </div>
+          <div class="action-strip-divider"></div>
+          <div class="action-strip-group">
+            <button class="strip-btn">📈 Reports</button>
+            <button class="strip-btn">📅 Schedule</button>
+          </div>
+          <div class="action-strip-divider"></div>
+          <button class="strip-btn">⌘K</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ═══ RIGHT — CONTEXT PANEL ═══ -->
+  <aside class="context-panel">
+    <div class="context-header">
+      <span class="context-title">Context</span>
+      <button class="context-close">✕</button>
+    </div>
+
+    <div class="context-section">
+      <div class="context-section-title">Quick Stats</div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value green">3</div>
+          <div class="stat-label">Employees</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value accent">22.5K</div>
+          <div class="stat-label">Payroll (AED)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value blue">2</div>
+          <div class="stat-label">Departments</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value amber">65%</div>
+          <div class="stat-label">Avg Complete</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="context-section">
+      <div class="context-section-title">Ahmed Al Mansoori</div>
+      <div class="todo-list">
+        <div class="todo-item done">
+          <div class="todo-check">✓</div>
+          <span class="todo-text">Employee Profile</span>
+          <span class="todo-arrow">→</span>
+        </div>
+        <div class="todo-item done">
+          <div class="todo-check">✓</div>
+          <span class="todo-text">Salary Structure</span>
+          <span class="todo-arrow">→</span>
+        </div>
+        <div class="todo-item in-progress">
+          <div class="todo-check">◐</div>
+          <span class="todo-text">Documents</span>
+          <span class="todo-arrow">→</span>
+        </div>
+        <div class="todo-item pending">
+          <div class="todo-check"></div>
+          <span class="todo-text">Bank Account</span>
+          <span class="todo-arrow">→</span>
+        </div>
+        <div class="todo-item pending">
+          <div class="todo-check"></div>
+          <span class="todo-text">Emergency Contact</span>
+          <span class="todo-arrow">→</span>
+        </div>
+        <div class="todo-item pending">
+          <div class="todo-check"></div>
+          <span class="todo-text">Leave Policy</span>
+          <span class="todo-arrow">→</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="context-section">
+      <div class="context-section-title">Quick Actions</div>
+      <div class="quick-action">
+        <div class="quick-action-icon">📄</div>
+        Print Offer Letter
+      </div>
+      <div class="quick-action">
+        <div class="quick-action-icon">📝</div>
+        Generate Contract
+      </div>
+      <div class="quick-action">
+        <div class="quick-action-icon">📊</div>
+        Payroll Report
+      </div>
+      <div class="quick-action">
+        <div class="quick-action-icon">📧</div>
+        Send Welcome Email
+      </div>
+    </div>
+
+    <div class="context-section">
+      <div class="context-section-title">Recent Activity</div>
+      <div class="activity-item">
+        <div class="activity-dot green"></div>
+        <div>
+          <div class="activity-text">Salary structure created for Ahmed</div>
+          <div class="activity-time">2 min ago</div>
+        </div>
+      </div>
+      <div class="activity-item">
+        <div class="activity-dot accent"></div>
+        <div>
+          <div class="activity-text">45 gym members imported from CSV</div>
+          <div class="activity-time">1 hour ago</div>
+        </div>
+      </div>
+      <div class="activity-item">
+        <div class="activity-dot amber"></div>
+        <div>
+          <div class="activity-text">Chart of accounts configured</div>
+          <div class="activity-time">Yesterday</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+</div>
+</body>
+</html>

@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from "react";
-import { Pencil, Trash2, Plus, ChevronRight, Settings2, Upload } from "lucide-react";
+import { Pencil, Trash2, Plus, ChevronRight, Settings2, Upload, Database, Loader2, Check } from "lucide-react";
 import { PayanarssType } from "@/types/PayanarssType";
 import { TypeSelectModal } from "./TypeSelectModal";
 import { Input } from "@/components/ui/input";
@@ -7,6 +7,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
 import { v4 as uuidv4 } from "uuid";
+import { loadPayanarssTypes } from "@/services/pineconeService";
+import { supabase } from "@/integrations/supabase/client";
 
 // ============================================================================
 // IMPORT TYPES & INTERFACES
@@ -258,6 +260,194 @@ export function TypeEditor({
     const [importResult, setImportResult] = useState<ImportResult | null>(null);
     const [showImportResult, setShowImportResult] = useState(false);
 
+    // Embed to Pinecone state
+    const [embedStatus, setEmbedStatus] = useState<"idle" | "embedding" | "complete" | "error">("idle");
+    const [embedProgress, setEmbedProgress] = useState({ current: 0, total: 0, embedded: 0, skipped: 0 });
+
+    const PINECONE_INDEX_HOST = "maa-erp-types-y3f7eec.svc.aped-4627-b74a.pinecone.io";
+
+    // ── Client-side enrichment helpers ──
+
+    const getAncestors = (type: PayanarssType, byId: Map<string, PayanarssType>): PayanarssType[] => {
+        const ancestors: PayanarssType[] = [];
+        let current = type;
+        const visited = new Set<string>();
+        while (current.ParentId && current.ParentId !== current.Id && !visited.has(current.ParentId)) {
+            visited.add(current.Id);
+            const parent = byId.get(current.ParentId);
+            if (!parent) break;
+            ancestors.unshift(parent);
+            current = parent;
+        }
+        return ancestors;
+    };
+
+    const getLevel = (ancestors: PayanarssType[]): string => {
+        const d = ancestors.length;
+        if (d === 0) return 'root';
+        if (d === 1) return 'sector';
+        if (d === 2) return 'module';
+        if (d === 3) return 'submodule';
+        if (d === 4) return 'usecase';
+        if (d === 5) return 'table';
+        return 'column';
+    };
+
+    const inferColType = (desc: string): string => {
+        const d = (desc || '').toUpperCase();
+        if (d.includes('LOOKUP')) return 'LOOKUP';
+        if (d.includes('DATETIME')) return 'DATETIME';
+        if (d.includes('DATE')) return 'DATE';
+        if (d.includes('BOOLEAN')) return 'BOOLEAN';
+        if (d.includes('DECIMAL') || d.includes('INTEGER') || d.includes('INT')) return 'NUMBER';
+        return 'STRING';
+    };
+
+    const EMBEDDABLE = ['sector', 'module', 'submodule', 'usecase', 'table'];
+
+    const enrichAllTypes = (allTypes: PayanarssType[]) => {
+        const byId = new Map(allTypes.map(t => [t.Id, t]));
+        const childrenMap = new Map<string, PayanarssType[]>();
+        for (const t of allTypes) {
+            if (t.ParentId && t.ParentId !== t.Id) {
+                if (!childrenMap.has(t.ParentId)) childrenMap.set(t.ParentId, []);
+                childrenMap.get(t.ParentId)!.push(t);
+            }
+        }
+
+        const records: { id: string; text: string; metadata: Record<string, unknown> }[] = [];
+
+        for (const type of allTypes) {
+            const ancestors = getAncestors(type, byId);
+            const level = getLevel(ancestors);
+            if (!EMBEDDABLE.includes(level)) continue;
+
+            const kids = childrenMap.get(type.Id) || [];
+            const sector = ancestors[1]?.Name || '';
+            const module = ancestors[2]?.Name || '';
+            const submodule = ancestors[3]?.Name || '';
+            const desc = type.Description || '';
+
+            // Build embed text based on level
+            let text = '';
+            switch (level) {
+                case 'sector':
+                    text = `${type.Name} industry sector. Modules: ${kids.map(c => c.Name).join(', ')}. ${desc}`;
+                    break;
+                case 'module': {
+                    const useCases: string[] = [];
+                    for (const k of kids) {
+                        const gcs = childrenMap.get(k.Id) || [];
+                        useCases.push(...gcs.slice(0, 10).map(gc => gc.Name));
+                    }
+                    text = `${type.Name} module in ${sector}. ${desc}. Sub-modules: ${kids.map(c => c.Name).join(', ')}. Use cases: ${useCases.slice(0, 25).join(', ')}`;
+                    break;
+                }
+                case 'submodule':
+                    text = `${type.Name} for ${module} in ${sector}. ${desc}. Use cases: ${kids.map(c => c.Name).join(', ')}`;
+                    break;
+                case 'usecase': {
+                    const tables = kids.map(t => {
+                        const cols = (childrenMap.get(t.Id) || []).slice(0, 8).map(c => c.Name);
+                        return `${t.Name}(${cols.join(', ')})`;
+                    });
+                    text = `${type.Name} business process in ${module}, ${sector}. ${desc}. Tables: ${tables.join('; ')}`;
+                    break;
+                }
+                case 'table': {
+                    const colDescs = kids.map(c => `${c.Name}:${inferColType(c.Description || '')}`);
+                    text = `${type.Name} table for ${submodule || module} in ${sector}. ${desc}. Columns: ${colDescs.join(', ')}`;
+                    break;
+                }
+            }
+
+            const colNames = level === 'table' ? kids.map(c => c.Name).join(',') : '';
+            const colTypes = level === 'table' ? kids.map(c => inferColType(c.Description || '')).join(',') : '';
+
+            records.push({
+                id: type.Id,
+                text: text.trim(),
+                metadata: {
+                    name: type.Name,
+                    description: desc,
+                    level,
+                    sector,
+                    module,
+                    submodule,
+                    usecase: ancestors[4]?.Name || '',
+                    path: [...ancestors.map(a => a.Name), type.Name].join(' > '),
+                    is_common: sector === 'Common Modules',
+                    parent_name: ancestors[ancestors.length - 1]?.Name || '',
+                    child_count: kids.length,
+                    column_names: colNames,
+                    column_types: colTypes,
+                    column_count: level === 'table' ? kids.length : 0,
+                },
+            });
+        }
+        return records;
+    };
+
+    // ── Main embed handler ──
+
+    const handleEmbedToPinecone = async () => {
+        setEmbedStatus("embedding");
+        setEmbedProgress({ current: 0, total: 0, embedded: 0, skipped: 0 });
+        toast({ title: "Embedding Started", description: "Enriching types and sending to Pinecone..." });
+
+        try {
+            // Step 1: Load all types
+            const allTypes = await loadPayanarssTypes();
+
+            // Step 2: Enrich client-side (has full tree for hierarchy resolution)
+            const records = enrichAllTypes(allTypes);
+            const skipped = allTypes.length - records.length;
+
+            toast({ title: "Enrichment Done", description: `${records.length} embeddable, ${skipped} skipped (columns/root)` });
+
+            // Step 3: Send to edge function in small batches (just upsert, no heavy processing)
+            const batchSize = 20;
+            const totalBatches = Math.ceil(records.length / batchSize);
+            setEmbedProgress({ current: 0, total: totalBatches, embedded: 0, skipped });
+
+            let totalEmbedded = 0;
+
+            for (let i = 0; i < records.length; i += batchSize) {
+                const batch = records.slice(i, i + batchSize);
+                const batchNum = Math.floor(i / batchSize) + 1;
+                setEmbedProgress(p => ({ ...p, current: batchNum }));
+
+                const { data, error } = await supabase.functions.invoke("embed-types", {
+                    body: { records: batch, indexHost: PINECONE_INDEX_HOST },
+                });
+
+                if (error) throw new Error(error.message);
+                if (!data?.success) throw new Error(data?.error || "Upsert failed");
+
+                totalEmbedded += data.upserted || batch.length;
+
+                // Small delay to avoid rate limits
+                if (i + batchSize < records.length) {
+                    await new Promise(r => setTimeout(r, 300));
+                }
+            }
+
+            setEmbedProgress(p => ({ ...p, embedded: totalEmbedded }));
+            setEmbedStatus("complete");
+            toast({
+                title: "Embedding Complete",
+                description: `${totalEmbedded} types embedded, ${skipped} skipped`,
+            });
+        } catch (err) {
+            setEmbedStatus("error");
+            toast({
+                title: "Embedding Failed",
+                description: err instanceof Error ? err.message : "Unknown error",
+                variant: "destructive",
+            });
+        }
+    };
+
     const startEditing = (type: PayanarssType) => {
         setEditing({
             id: type.Id,
@@ -414,6 +604,37 @@ export function TypeEditor({
                         >
                             <Upload className="w-3.5 h-3.5" />
                             {isImporting ? "Importing..." : "Import JSON"}
+                        </button>
+
+                        {/* EMBED TO PINECONE BUTTON */}
+                        <button
+                            onClick={handleEmbedToPinecone}
+                            disabled={embedStatus === "embedding"}
+                            className={`flex items-center gap-1 px-3 py-1.5 rounded text-xs font-medium transition-colors ${
+                                embedStatus === "complete"
+                                    ? "bg-green-100 text-green-700 border border-green-300"
+                                    : embedStatus === "error"
+                                    ? "bg-red-100 text-red-700 border border-red-300"
+                                    : embedStatus === "embedding"
+                                    ? "bg-purple-100 text-purple-700 border border-purple-300 animate-pulse"
+                                    : "bg-purple-600 text-white hover:bg-purple-700"
+                            }`}
+                            title="Embed all PayanarssTypes to Pinecone Vector DB"
+                        >
+                            {embedStatus === "embedding" ? (
+                                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                            ) : embedStatus === "complete" ? (
+                                <Check className="w-3.5 h-3.5" />
+                            ) : (
+                                <Database className="w-3.5 h-3.5" />
+                            )}
+                            {embedStatus === "embedding"
+                                ? `Embedding ${embedProgress.current}/${embedProgress.total}...`
+                                : embedStatus === "complete"
+                                ? `✓ ${embedProgress.embedded} Embedded`
+                                : embedStatus === "error"
+                                ? "Retry Embed"
+                                : "Embed to Pinecone"}
                         </button>
 
                         {parentType && children.length > 0 && (

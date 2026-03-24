@@ -270,13 +270,12 @@ export function usePayanarssTypes() {
             });
 
             // Phase 4: Determine visible roots
-            // RULE: Only GroupType nodes (PayanarssTypeId === GROUP_TYPE_ID) appear at root level
+            // Only nodes with PayanarssTypeId === BusinessSolutions appear at root
             const roots = items
                 .filter((t) => {
                     const isTopLevel = t.Id === t.ParentId || !allIds.has(t.ParentId);
                     if (!isTopLevel) return false;
-                    // Root-level filter: only GroupType
-                    return t.PayanarssTypeId === GROUP_TYPE_ID;
+                    return t.PayanarssTypeId === ROOT_TYPE_IDS.BUSINESS_SOLUTIONS;
                 })
                 .map((t) => itemMap.get(t.Id)!)
                 .filter(Boolean);
@@ -293,12 +292,12 @@ export function usePayanarssTypes() {
     const getChildren = useCallback(
         (parentId: string): PayanarssType[] => {
             if (!parentId) {
-                // Root level: only GroupType nodes
+                // Root level: only show BusinessSolutions types
                 const allIds = new Set(types.map((t) => t.Id));
                 return types.filter(
                     (t) =>
                         (t.Id === t.ParentId || !allIds.has(t.ParentId)) &&
-                        t.PayanarssTypeId === GROUP_TYPE_ID
+                        t.PayanarssTypeId === ROOT_TYPE_IDS.BUSINESS_SOLUTIONS
                 );
             }
             return types.filter(
@@ -328,9 +327,9 @@ export function usePayanarssTypes() {
         return types.filter(
             (t) =>
                 (t.Id === t.ParentId || !allIds.has(t.ParentId)) &&
-                t.PayanarssTypeId === GROUP_TYPE_ID
+                t.PayanarssTypeId === ROOT_TYPE_IDS.BUSINESS_SOLUTIONS
         );
-    }, [types, GROUP_TYPE_ID]);
+    }, [types]);
 
     // ─── EXPAND / COLLAPSE ───
 

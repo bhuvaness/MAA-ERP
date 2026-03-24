@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run build:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm install)",
+      "Bash(node_modules/.bin/tsc:*)",
+      "Bash(node_modules/.bin/vite build:*)",
+      "Bash(ls:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(tasklist:*)",
+      "Bash(taskkill:*)",
+      "Bash(timeout:*)",
+      "Bash(ping:*)",
+      "Bash(npx vite:*)",
+      "Bash(curl:*)",
+      "WebFetch(domain:docs.pinecone.io)",
+      "WebFetch(domain:sdk.pinecone.io)",
+      "WebFetch(domain:cookbook.openai.com)",
+      "WebFetch(domain:github.com)",
+      "Bash(npm install:*)",
+      "Bash(pip install:*)",
+      "Bash(python:*)",
+      "Bash(where:*)",
+      "Bash(\"C:\\\\Users\\\\KITS\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python313\\\\Scripts\\\\pip.exe\" install:*)",
+      "Bash(\"C:\\\\Users\\\\KITS\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python313\\\\python.exe\":*)",
+      "Bash(\"C:\\\\Users\\\\KITS\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python313\\\\python.exe\" -c:*)",
+      "Bash(\"C:\\\\Users\\\\KITS\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python313\\\\python.exe\" -c \"\nimport json\nwith open\\(r''E:\\\\Bhu\\\\CS\\\\Phps\\\\Practices\\\\MAA-ERP\\\\.claude\\\\worktrees\\\\inspiring-einstein\\\\payanarsstype-designer\\\\public\\\\data\\\\VanakkamPayanarssTypes.json'', ''r'', encoding=''utf-8''\\) as f:\n    data = json.load\\(f\\)\n\n# Find max numeric suffix for each prefix\nprefixes = {}\nfor d in data:\n    id_val = d[''Id'']\n    # Extract prefix \\(letters\\) and numeric part\n    prefix = ''''\n    num_part = ''''\n    for i, ch in enumerate\\(id_val\\):\n        if ch.isdigit\\(\\):\n            prefix = id_val[:i]\n            num_part = id_val[i:]\n            break\n    if prefix and num_part:\n        num = int\\(num_part\\)\n        if prefix not in prefixes or num > prefixes[prefix]:\n            prefixes[prefix] = num\n\nfor p in sorted\\(prefixes.keys\\(\\)\\):\n    print\\(p + '': max='' + str\\(prefixes[p]\\)\\)\n\")",
+      "Bash(\"C:\\\\Users\\\\KITS\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python313\\\\python.exe\" \"E:\\\\Bhu\\\\CS\\\\Phps\\\\Practices\\\\MAA-ERP\\\\.claude\\\\worktrees\\\\inspiring-einstein\\\\generate_industries.py\")",
+      "Bash(\"C:\\\\Users\\\\KITS\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python313\\\\python.exe\" -c \"\nimport json\nwith open\\(r''E:\\\\Bhu\\\\CS\\\\Phps\\\\Practices\\\\MAA-ERP\\\\.claude\\\\worktrees\\\\inspiring-einstein\\\\payanarsstype-designer\\\\public\\\\data\\\\VanakkamPayanarssTypes.json'', ''r'', encoding=''utf-8''\\) as f:\n    data = json.load\\(f\\)\n\nby_parent = {}\nfor d in data:\n    pid = d[''ParentId'']\n    if pid not in by_parent:\n        by_parent[pid] = []\n    by_parent[pid].append\\(d\\)\n\nTYPE_IDS = {\n    ''100000000000000000000000000000005'': ''MODULE'',\n    ''100000000000000000000000000000004'': ''GROUP'',\n}\n\ndef count_desc\\(nid\\):\n    c = by_parent.get\\(nid, []\\)\n    total = 0\n    for ch in c:\n        if ch[''Id''] != ch[''ParentId'']:\n            total += 1\n            total += count_desc\\(ch[''Id'']\\)\n    return total\n\nsectors = [d for d in data if d[''ParentId''] == ''MAAERP0000000000000000000000001'' and d[''Id''] != d[''ParentId'']]\nprint\\(''Sector Summary:''\\)\nprint\\(''-'' * 70\\)\nfor s in sectors:\n    children = by_parent.get\\(s[''Id''], []\\)\n    modules = [c for c in children if c[''PayanarssTypeId''] == ''100000000000000000000000000000005'' and c[''Id''] != c[''ParentId'']]\n    desc_count = count_desc\\(s[''Id'']\\)\n    status = ''POPULATED'' if modules else ''EMPTY''\n    print\\(s[''Name''].ljust\\(30\\) + str\\(desc_count\\).rjust\\(6\\) + '' nodes  '' + str\\(len\\(modules\\)\\).rjust\\(3\\) + '' modules  '' + status\\)\nprint\\(''-'' * 70\\)\nprint\\(''Total nodes: '' + str\\(len\\(data\\)\\)\\)\n\n# Verify JSON is valid by re-reading\njson.dumps\\(data\\)\nprint\\(''JSON validation: PASSED''\\)\n\")",
+      "Bash(dir:*)",
+      "Bash(\"C:\\\\Users\\\\KITS\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python313\\\\python.exe\" -c \"\nimport json, os\nfp = r''E:\\\\Bhu\\\\CS\\\\Phps\\\\Practices\\\\MAA-ERP\\\\.claude\\\\worktrees\\\\inspiring-einstein\\\\payanarsstype-designer\\\\public\\\\data\\\\VanakkamPayanarssTypes.json''\nsize_mb = os.path.getsize\\(fp\\) / \\(1024*1024\\)\nwith open\\(fp, ''r'', encoding=''utf-8''\\) as f:\n    data = json.load\\(f\\)\nprint\\(''File size: %.2f MB'' % size_mb\\)\nprint\\(''Total nodes: %d'' % len\\(data\\)\\)\n\n# Check if new sectors are populated\nsectors = {d[''Name'']: d[''Id''] for d in data if d[''ParentId''] == ''MAAERP0000000000000000000000001'' and d[''Id''] != d[''ParentId'']}\nby_parent = {}\nfor d in data:\n    pid = d[''ParentId'']\n    if pid not in by_parent:\n        by_parent[pid] = []\n    by_parent[pid].append\\(d\\)\n\nfor name in [''Financial Services'', ''Sports & Recreation'', ''Gym & Fitness Center'']:\n    sid = sectors.get\\(name\\)\n    if not sid:\n        # Check sub-industries\n        for d in data:\n            if d[''Name''] == name:\n                sid = d[''Id'']\n                break\n    if sid:\n        children = by_parent.get\\(sid, []\\)\n        modules = [c for c in children if c[''PayanarssTypeId''] == ''100000000000000000000000000000005'']\n        print\\(''%s: %d modules'' % \\(name, len\\(modules\\)\\)\\)\n        for m in modules:\n            print\\(''  - %s'' % m[''Name'']\\)\n\")",
+      "Bash(copy:*)",
+      "Bash(powershell -Command \"Copy-Item -Path ''E:\\\\Bhu\\\\CS\\\\Phps\\\\Practices\\\\MAA-ERP\\\\.claude\\\\worktrees\\\\inspiring-einstein\\\\payanarsstype-designer\\\\public\\\\data\\\\VanakkamPayanarssTypes.json'' -Destination ''E:\\\\Bhu\\\\CS\\\\Phps\\\\Practices\\\\MAA-ERP\\\\payanarsstype-designer\\\\public\\\\data\\\\VanakkamPayanarssTypes.json'' -Force\")",
+      "Bash(powershell -Command \"\\(Get-Content ''E:\\\\Bhu\\\\CS\\\\Phps\\\\Practices\\\\MAA-ERP\\\\payanarsstype-designer\\\\public\\\\data\\\\VanakkamPayanarssTypes.json'' | ConvertFrom-Json\\).Count\")",
+      "Bash(powershell -Command:*)"
+    ]
+  }
+}

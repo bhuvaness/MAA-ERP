@@ -68,18 +68,25 @@ const ChatInput: React.FC<Props> = ({ setupComplete, onSendMessage, onMenuAction
         <div className="chat-input-row">
           <div className="chat-input-avatar">B</div>
           <div className="chat-input-box">
-            <input ref={inputRef} className="chat-input" placeholder="Type to talk, search modules, or run actions..." onInput={handleInputChange} onKeyDown={onKeyDown} onFocus={handleFocus} />
+            <input ref={inputRef} className="chat-input" placeholder='Talk to Viki... "Add employee" or "Show report"' onInput={handleInputChange} onKeyDown={onKeyDown} onFocus={handleFocus} />
             <button className="chat-send" onClick={handleSend}>↑</button>
           </div>
         </div>
         {setupComplete && (
           <div className="chat-actions-strip">
-            <button className="chat-action-btn" onClick={onImport}><span className="btn-icon">📎</span> Import Excel / CSV</button>
-            <button className="chat-action-btn" onClick={onTriggerFile}><span className="btn-icon">📃</span> Import JSON</button>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              <button className="chat-action-btn" onClick={onImport}><span className="btn-icon">📎</span> Attach</button>
+              <button className="chat-action-btn" onClick={onImport}><span className="btn-icon">📊</span> Excel</button>
+              <button className="chat-action-btn" onClick={onImport}><span className="btn-icon">📋</span> CSV</button>
+              <button className="chat-action-btn" onClick={onTriggerFile}><span className="btn-icon">{'{ }'}</span> JSON</button>
+            </div>
             <div className="chat-action-divider" />
-            <button className="chat-action-btn" onClick={onTriggerFile}><span className="btn-icon">📎</span> Attach</button>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              <button className="chat-action-btn"><span className="btn-icon">📈</span> Reports</button>
+              <button className="chat-action-btn"><span className="btn-icon">📅</span> Schedule</button>
+            </div>
             <div className="chat-action-divider" />
-            <button className="chat-action-btn"><span className="btn-icon">📊</span> Reports</button>
+            <button className="chat-action-btn" style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-tertiary)' }}>⌘K</button>
           </div>
         )}
       </div>

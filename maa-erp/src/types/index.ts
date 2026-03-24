@@ -68,3 +68,7 @@ export interface RelatedFormDef {
 
 export type PostSetupType = 'employee' | 'explore';
 export type RelatedType = 'salary' | 'address' | 'documents' | 'bank';
+
+// Re-export record types for convenience
+export type { RecordType, SavedRecord, SaveRecordResponse, ListRecordsResponse } from './Record';
+export { TABLE_IDS, COL, COL_LABELS, RECORD_TYPE_LABELS, RECORD_TYPE_MODULE } from './Record';
