@@ -1,7 +1,7 @@
 import { supabase } from "@/integrations/supabase/client";
 import { PayanarssType } from "@/types/PayanarssType";
 
-const PINECONE_INDEX_HOST = "payanarss-type-y3f7eec.svc.aped-4627-b74a.pinecone.io";
+const PINECONE_INDEX_HOST = "maa-erp-types-y3f7eec.svc.aped-4627-b74a.pinecone.io";
 
 export interface EmbedProgress {
   totalTypes: number;
@@ -16,24 +16,33 @@ export interface QueryResult {
   score: number;
   metadata: {
     name: string;
-    parentId: string;
-    payanarssTypeId: string;
     description: string;
-    hasAttributes: boolean;
-    // Enriched metadata fields
-    domain?: string;
-    purpose?: string;
-    module?: string;
-    keywords?: string;
-    parentName?: string;
-    childCount?: number;
+    // Hierarchy
+    level: string;          // sector|module|submodule|usecase|table
+    sector: string;         // "Personal Services"
+    module: string;         // "Gym & Fitness Center"
+    submodule: string;      // "Membership Management"
+    usecase: string;        // "Member Registration"
+    path: string;           // "MAA ERP > Personal Services > Gym... > Table"
+    is_common: boolean;     // true if under Common Modules
+    // Relations
+    parent_name: string;
+    child_count: number;
+    // Table-specific
+    column_names: string;   // comma-separated column names
+    column_types: string;   // comma-separated types (STRING, LOOKUP, DATE...)
+    column_count: number;
+    table_count: number;    // how many tables under this node
+    // Debug
+    embedding_text: string;
   };
 }
 
 export interface QueryResponse {
   success: boolean;
   query: string;
-  detectedDomain?: string;
+  detectedSector?: string;
+  searchMethod?: string;
   results: QueryResult[];
   aiSummary: string;
   error?: string;
@@ -42,6 +51,8 @@ export interface QueryResponse {
 export interface EmbedResponse {
   success: boolean;
   totalProcessed: number;
+  totalSkipped?: number;
+  method?: string;
   batches: Array<{
     batch: number;
     count: number;
@@ -52,6 +63,11 @@ export interface EmbedResponse {
 
 /**
  * Embed all PayanarssTypes into Pinecone Vector DB
+ * The edge function handles:
+ * - Hierarchy extraction (sector > module > submodule > usecase > table)
+ * - Selective embedding (only sector/module/submodule/usecase/table levels)
+ * - Rich metadata (column names, types, paths, is_common flag)
+ * - Integrated inference or fallback embedding
  */
 export async function embedTypes(
   types: PayanarssType[],
@@ -113,11 +129,19 @@ export async function embedTypes(
 }
 
 /**
- * Query Pinecone for matching PayanarssTypes based on user requirements
+ * Query Pinecone for matching PayanarssTypes based on user requirements.
+ * Supports:
+ * - Natural language queries ("I need gym membership management")
+ * - Sector filtering (auto-detected or manual)
+ * - Level filtering (module, table, usecase, etc.)
  */
 export async function queryTypes(
   query: string,
-  topK: number = 10
+  topK: number = 15,
+  options?: {
+    sectorFilter?: string;
+    levelFilter?: string;
+  }
 ): Promise<QueryResponse> {
   try {
     const { data, error } = await supabase.functions.invoke<QueryResponse>(
@@ -127,6 +151,8 @@ export async function queryTypes(
           query,
           indexHost: PINECONE_INDEX_HOST,
           topK,
+          sectorFilter: options?.sectorFilter,
+          levelFilter: options?.levelFilter,
         },
       }
     );
@@ -165,4 +191,44 @@ export async function loadPayanarssTypes(): Promise<PayanarssType[]> {
     throw new Error("Failed to load PayanarssTypes");
   }
   return response.json();
+}
+
+/**
+ * Get business configuration — returns full PayanarssType tree
+ * for selected modules (used by MAA ERP at runtime)
+ */
+export async function getBusinessConfig(
+  selectedModuleIds: string[],
+  businessType: string
+): Promise<{
+  success: boolean;
+  businessType: string;
+  commonModules: QueryResult[];
+  selectedModules: QueryResult[];
+  error?: string;
+}> {
+  try {
+    const { data, error } = await supabase.functions.invoke(
+      "get-business-config",
+      {
+        body: {
+          selectedModuleIds,
+          businessType,
+          indexHost: PINECONE_INDEX_HOST,
+        },
+      }
+    );
+
+    if (error) throw new Error(error.message);
+    return data;
+  } catch (err) {
+    const errorMessage = err instanceof Error ? err.message : "Unknown error";
+    return {
+      success: false,
+      businessType,
+      commonModules: [],
+      selectedModules: [],
+      error: errorMessage,
+    };
+  }
 }

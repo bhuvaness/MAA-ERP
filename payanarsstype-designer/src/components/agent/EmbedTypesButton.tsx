@@ -6,8 +6,8 @@ import { toast } from "@/hooks/use-toast";
 import { loadPayanarssTypes, EmbedProgress } from "@/services/pineconeService";
 import { supabase } from "@/integrations/supabase/client";
 
-const PINECONE_INDEX_HOST = "payanarss-type-y3f7eec.svc.aped-4627-b74a.pinecone.io";
-const BATCH_SIZE = 50; // Smaller batches to avoid timeouts
+const PINECONE_INDEX_HOST = "maa-erp-types-y3f7eec.svc.aped-4627-b74a.pinecone.io";
+const BATCH_SIZE = 50;
 const MAX_RETRIES = 3;
 const DELAY_BETWEEN_BATCHES_MS = 1000;
 
@@ -18,14 +18,19 @@ export function EmbedTypesButton() {
     totalBatches: 0,
     status: "idle",
   });
+  const [lastResult, setLastResult] = useState<{
+    processed: number;
+    skipped: number;
+    method: string;
+  } | null>(null);
 
   const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const embedBatchWithRetry = async (
-    batch: any[],
+    batch: unknown[],
     batchNum: number,
     retries = 0
-  ): Promise<{ success: boolean; count: number }> => {
+  ): Promise<{ success: boolean; count: number; skipped: number; method: string }> => {
     try {
       const { data, error } = await supabase.functions.invoke("embed-types", {
         body: {
@@ -42,25 +47,29 @@ export function EmbedTypesButton() {
         throw new Error(data?.error || "Embedding failed");
       }
 
-      return { success: true, count: batch.length };
+      return {
+        success: true,
+        count: data.totalProcessed || batch.length,
+        skipped: data.totalSkipped || 0,
+        method: data.method || 'unknown',
+      };
     } catch (err) {
       console.error(`Batch ${batchNum} attempt ${retries + 1} failed:`, err);
 
       if (retries < MAX_RETRIES) {
-        // Exponential backoff
         await sleep(1000 * Math.pow(2, retries));
         return embedBatchWithRetry(batch, batchNum, retries + 1);
       }
 
-      return { success: false, count: 0 };
+      return { success: false, count: 0, skipped: 0, method: 'failed' };
     }
   };
 
   const handleEmbed = async () => {
     try {
       setProgress((prev) => ({ ...prev, status: "embedding", error: undefined }));
+      setLastResult(null);
 
-      // Load types from JSON
       const allTypes = await loadPayanarssTypes();
       const totalBatches = Math.ceil(allTypes.length / BATCH_SIZE);
 
@@ -73,13 +82,14 @@ export function EmbedTypesButton() {
 
       toast({
         title: "Starting Embedding",
-        description: `Embedding ${allTypes.length} types in ${totalBatches} batches...`,
+        description: `Processing ${allTypes.length} types in ${totalBatches} batches (only embeddable levels will be stored)...`,
       });
 
       let successCount = 0;
+      let skippedCount = 0;
       let errorCount = 0;
+      let method = 'unknown';
 
-      // Process in batches from client side
       for (let i = 0; i < allTypes.length; i += BATCH_SIZE) {
         const batch = allTypes.slice(i, i + BATCH_SIZE);
         const batchNum = Math.floor(i / BATCH_SIZE) + 1;
@@ -88,6 +98,8 @@ export function EmbedTypesButton() {
 
         if (result.success) {
           successCount += result.count;
+          skippedCount += result.skipped;
+          method = result.method;
         } else {
           errorCount++;
         }
@@ -97,23 +109,24 @@ export function EmbedTypesButton() {
           processedBatches: batchNum,
         }));
 
-        // Delay between batches to avoid rate limiting
         if (i + BATCH_SIZE < allTypes.length) {
           await sleep(DELAY_BETWEEN_BATCHES_MS);
         }
       }
 
+      setLastResult({ processed: successCount, skipped: skippedCount, method });
+
       if (errorCount === 0) {
         setProgress((prev) => ({ ...prev, status: "complete" }));
         toast({
           title: "Embedding Complete",
-          description: `Successfully embedded ${successCount} types.`,
+          description: `${successCount} types embedded, ${skippedCount} skipped (columns/rules). Method: ${method}`,
         });
       } else {
         setProgress((prev) => ({
           ...prev,
           status: "error",
-          error: `${errorCount} batch(es) failed after retries. ${successCount} types embedded.`,
+          error: `${errorCount} batch(es) failed. ${successCount} types embedded.`,
         }));
         toast({
           title: "Embedding Partially Complete",
@@ -171,11 +184,22 @@ export function EmbedTypesButton() {
           <p className="text-xs text-muted-foreground text-center">
             Batch {progress.processedBatches} of {progress.totalBatches} ({progress.totalTypes} types total)
           </p>
+          <p className="text-xs text-muted-foreground text-center">
+            Only sector/module/submodule/usecase/table levels are embedded. Columns are stored as metadata.
+          </p>
         </div>
       )}
 
       {progress.status === "error" && progress.error && (
         <p className="text-xs text-destructive">{progress.error}</p>
+      )}
+
+      {lastResult && progress.status === "complete" && (
+        <div className="text-xs text-muted-foreground space-y-1 p-2 rounded bg-muted">
+          <p>✅ Embedded: <strong>{lastResult.processed}</strong> nodes</p>
+          <p>⏭️ Skipped: <strong>{lastResult.skipped}</strong> (columns, rules — stored as metadata)</p>
+          <p>🔧 Method: <strong>{lastResult.method}</strong></p>
+        </div>
       )}
     </div>
   );

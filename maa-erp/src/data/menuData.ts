@@ -1,4 +1,5 @@
 import type { MenuItem, CategoryLabel, SetupStep, RelatedFormDef } from '../types';
+import { COL } from '../types/Record';
 
 export const MENU_DATA: MenuItem[] = [
   { cat: 'module', icon: '👤', bg: 'var(--green-soft)', color: 'var(--green)', name: 'HR & Payroll', desc: 'Employees, Attendance, Leave, Payroll', keywords: 'hr human resources payroll staff people team', action: 'employee' },
@@ -59,22 +60,22 @@ export const RELATED_FORMS: Record<string, RelatedFormDef> = {
   salary: {
     title: 'Salary Structure', dot: 'var(--yellow)', badge: 'FINANCE',
     bc: 'var(--yellow-soft)', bcc: 'var(--yellow)',
-    fields: '<div class="fc-row"><div class="fc-field"><label class="fc-label">Basic (AED)</label><input class="fc-input" type="number" placeholder="0.00"/></div><div class="fc-field"><label class="fc-label">Housing</label><input class="fc-input" type="number" placeholder="0.00"/></div></div><div class="fc-row"><div class="fc-field"><label class="fc-label">Transport</label><input class="fc-input" type="number" placeholder="0.00"/></div><div class="fc-field"><label class="fc-label">Effective From</label><input class="fc-input" type="date"/></div></div>',
+    fields: `<div class="fc-row"><div class="fc-field"><label class="fc-label">Basic (AED)</label><input class="fc-input" type="number" placeholder="0.00" id="${COL.SAL_BASIC}"/></div><div class="fc-field"><label class="fc-label">Housing</label><input class="fc-input" type="number" placeholder="0.00" id="${COL.SAL_HOUSING}"/></div></div><div class="fc-row"><div class="fc-field"><label class="fc-label">Transport</label><input class="fc-input" type="number" placeholder="0.00" id="${COL.SAL_TRANSPORT}"/></div><div class="fc-field"><label class="fc-label">Effective From</label><input class="fc-input" type="date" id="${COL.SAL_EFFECTIVE}"/></div></div>`,
   },
   address: {
     title: 'Address', dot: 'var(--blue)', badge: 'PERSONAL',
     bc: 'var(--blue-soft)', bcc: 'var(--blue)',
-    fields: '<div class="fc-field"><label class="fc-label">Address</label><input class="fc-input" placeholder="Building, Street, Area"/></div><div class="fc-row"><div class="fc-field"><label class="fc-label">City</label><select class="fc-input"><option>Abu Dhabi</option><option>Dubai</option><option>Sharjah</option></select></div><div class="fc-field"><label class="fc-label">Country</label><select class="fc-input"><option>UAE</option></select></div></div>',
+    fields: `<div class="fc-field"><label class="fc-label">Address</label><input class="fc-input" placeholder="Building, Street, Area" id="${COL.ADDR_LINE1}"/></div><div class="fc-row"><div class="fc-field"><label class="fc-label">City</label><select class="fc-input" id="${COL.ADDR_CITY}"><option>Abu Dhabi</option><option>Dubai</option><option>Sharjah</option></select></div><div class="fc-field"><label class="fc-label">Country</label><select class="fc-input" id="${COL.ADDR_COUNTRY}"><option>UAE</option></select></div></div>`,
   },
   documents: {
     title: 'Document', dot: 'var(--pink)', badge: 'COMPLIANCE',
     bc: 'var(--pink-soft)', bcc: 'var(--pink)',
-    fields: '<div class="fc-row"><div class="fc-field"><label class="fc-label">Type</label><select class="fc-input"><option>Passport</option><option>Visa</option><option>Emirates ID</option></select></div><div class="fc-field"><label class="fc-label">Number</label><input class="fc-input" placeholder="Enter number"/></div></div><div class="fc-field"><label class="fc-label">Expiry</label><input class="fc-input" type="date"/></div>',
+    fields: `<div class="fc-row"><div class="fc-field"><label class="fc-label">Type</label><select class="fc-input" id="${COL.DOC_TYPE}"><option>Passport</option><option>Visa</option><option>Emirates ID</option></select></div><div class="fc-field"><label class="fc-label">Number</label><input class="fc-input" placeholder="Enter number" id="${COL.DOC_NUMBER}"/></div></div><div class="fc-field"><label class="fc-label">Expiry</label><input class="fc-input" type="date" id="${COL.DOC_EXPIRY}"/></div>`,
   },
   bank: {
     title: 'Bank Account', dot: 'var(--teal)', badge: 'WPS',
     bc: 'var(--teal-soft)', bcc: 'var(--teal)',
-    fields: '<div class="fc-field"><label class="fc-label">Bank</label><select class="fc-input"><option>ADCB</option><option>Emirates NBD</option><option>FAB</option><option>ADIB</option></select></div><div class="fc-field"><label class="fc-label">IBAN</label><input class="fc-input" placeholder="AE XX XXXX..."/></div>',
+    fields: `<div class="fc-field"><label class="fc-label">Bank</label><select class="fc-input" id="${COL.BANK_CONFIG_KEY}"><option>ADCB</option><option>Emirates NBD</option><option>FAB</option><option>ADIB</option></select></div><div class="fc-field"><label class="fc-label">IBAN</label><input class="fc-input" placeholder="AE XX XXXX..." id="${COL.BANK_CONFIG_VALUE}"/></div>`,
   },
 };
 
