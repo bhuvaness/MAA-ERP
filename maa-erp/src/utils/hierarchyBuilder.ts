@@ -1,4 +1,4 @@
-import { PayanarssType } from "../types/core";
+import type { PayanarssType } from "../../src/types/core";
 
 export interface PayanarssTypeNode extends PayanarssType {
   children: PayanarssTypeNode[];

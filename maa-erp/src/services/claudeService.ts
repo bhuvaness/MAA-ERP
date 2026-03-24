@@ -11,14 +11,24 @@
  *   4. Return structured response with matched types
  */
 
-import { PayanarssType } from "../types/core";
+/**
+ * Claude AI Service — Direct Browser → Claude API
+ * ================================================
+ * Sends full PayanarssType metadata + user prompt to Claude.
+ * Claude reads the metadata and returns relevant business types.
+ *
+ * Flow:
+ *   1. Load all PayanarssTypes (cached)
+ *   2. Build compact representation (~38K tokens)
+ *   3. Send to Claude with user's business description
+ *   4. Return structured response with matched types
+ */
+import type { PayanarssType } from "../types/core";
 import { fetchAllTypes } from "./payanarssTypeService";
 import {
-  HierarchyIndex,
+  type HierarchyIndex,
   buildHierarchyIndex,
   getChildren,
-  getNodeById,
-  getAncestorPath,
 } from "../utils/hierarchyBuilder";
 
 // ═══════════════════════════════════════════════════════════════

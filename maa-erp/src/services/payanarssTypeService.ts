@@ -1,4 +1,4 @@
-import { PayanarssType } from "../types/core";
+import type { PayanarssType } from "../types/core";
 
 const DATA_SOURCE = "/data/VanakkamPayanarssTypes.json";
 let cachedTypes: PayanarssType[] | null = null;

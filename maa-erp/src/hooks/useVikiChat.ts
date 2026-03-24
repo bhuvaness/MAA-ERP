@@ -16,8 +16,8 @@ import { useState, useCallback } from "react";
 import {
   queryViki,
   getGymMetadataDirect,
-  VikiResponse,
-  GymSchemaInfo,
+  type VikiResponse,
+  type GymSchemaInfo,
 } from "../services/claudeService";
 
 export type VikiPhase =

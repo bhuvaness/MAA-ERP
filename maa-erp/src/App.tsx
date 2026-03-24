@@ -29,6 +29,7 @@ const App: React.FC = () => {
   const chat = useChat();
   const [importOpen, setImportOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [configuredModuleIds, setConfiguredModuleIds] = useState<string[]>([]);
 
   /**
    * Controls which screen is visible.
@@ -179,6 +180,8 @@ const App: React.FC = () => {
         <button class="action-chip" data-action="explore"><span class="chip-icon">🔍</span> Explore Modules</button>
       </div>`
     );
+
+    setConfiguredModuleIds(selectedIds);
 
     localStorage.setItem('maa-erp-business-config', JSON.stringify({
       selectedTypeIds: selectedIds,
