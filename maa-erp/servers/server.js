@@ -1,223 +1,113 @@
 /**
- * server.js — MAA ERP Express Backend (POC)
- * ==========================================
- * Loads VanakkamPayanarssTypes.json at startup, extracts a navigable
- * catalog of Modules / Use Cases / Solutions / Groups, and sends it
- * to Claude API so Claude can ONLY match from real data.
- *
- * Claude NEVER invents IDs — it picks from the catalog we send.
- *
- * Usage:
- *   CLAUDE_API_KEY=sk-ant-... node server.js
- *
+ * server.js — MAA ERP Express Backend
+ * =====================================
  * Endpoints:
- *   POST /api/claude-match  { prompt: "gym business" }
- *     → { matchedIds: [...], summary: "..." }
+ *   POST /api/query           — NLP query from third-party apps
+ *   POST /api/query/explain   — NLP query + Claude explanation
+ *   GET  /api/query/health    — Pinecone connectivity check
+ *   POST /api/records/save    — Save table record
+ *   GET  /api/records/:tableId — List records
+ *   GET  /api/lookup/:id      — Resolve lookup Id → Name
+ *   POST /api/types/reload    — Hot reload VanakkamPayanarssTypes.json
+ *   GET  /api/health          — Server health
  */
 
 import 'dotenv/config';
-import express from "express";
-import cors from "cors";
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
+import express from 'express';
+import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import registry from './TypeRegistry.js';
+import recordsRouter from './api/records.js';
+import queryRouter from './api/queryRoutes.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
+
+// Allow cross-origin requests from any third-party app
 app.use(cors());
-app.use(express.json({ limit: "10mb" }));
+app.use(express.json({ limit: '10mb' }));
 
-const PORT = process.env.PORT || 3001;
-const CLAUDE_API_KEY = process.env.CLAUDE_API_KEY;
-
-if (!CLAUDE_API_KEY) {
-  console.error("❌  Missing CLAUDE_API_KEY environment variable.");
-  console.error("   Run: CLAUDE_API_KEY=sk-ant-... node server.js");
-  process.exit(1);
-}
+const PORT     = process.env.PORT || 3001;
+const JSON_PATH = path.join(__dirname, 'public', 'data', 'VanakkamPayanarssTypes.json');
 
 // ═══════════════════════════════════════════════════════════════
-// 1. LOAD & INDEX VanakkamPayanarssTypes.json AT STARTUP
+// 1. LOAD TypeRegistry AT STARTUP
 // ═══════════════════════════════════════════════════════════════
-
-const JSON_PATH = path.join(__dirname, "public", "data", "VanakkamPayanarssTypes.json");
-
-let allNodes = [];
-let catalogText = "";    // Compact text sent to Claude
-let idMap = new Map();   // Quick lookup by Id
-
-// PayanarssTypeIds we send to Claude (navigable levels only)
-const CATALOG_TYPE_IDS = new Set([
-  "10000000000000000000000000000011111",   // BusinessSolutions
-  "10000000000000000000000000000001111",   // BusinessModules
-  "10000000000000000000000000000000111",   // BusinessUseCase
-  "100000000000000000000000000000004",     // GroupType
-]);
-
-function loadCatalog() {
-  console.log(`📦 Loading ${JSON_PATH} ...`);
-  const raw = fs.readFileSync(JSON_PATH, "utf-8");
-  allNodes = JSON.parse(raw);
-  console.log(`   Total nodes: ${allNodes.length}`);
-
-  // Build lookup
-  for (const n of allNodes) idMap.set(n.Id, n);
-
-  // Extract navigable nodes → compact "Id | Name | ParentName" lines
-  const catalogLines = [];
-  for (const n of allNodes) {
-    if (!CATALOG_TYPE_IDS.has(n.PayanarssTypeId)) continue;
-
-    const parent = idMap.get(n.ParentId);
-    const parentName = parent && parent.Id !== n.Id ? parent.Name : "";
-    catalogLines.push(`${n.Id} | ${n.Name} | ${parentName}`);
-  }
-
-  catalogText = catalogLines.join("\n");
-  console.log(`   Catalog nodes: ${catalogLines.length} (${(catalogText.length / 1024).toFixed(1)} KB)`);
-  console.log(`✅ Catalog ready.\n`);
-}
 
 try {
-  loadCatalog();
+  registry.load(JSON_PATH);
 } catch (err) {
-  console.error(`❌  Failed to load JSON: ${err.message}`);
-  console.error(`   Expected at: ${JSON_PATH}`);
-  console.error(`   Make sure VanakkamPayanarssTypes.json is in public/data/`);
+  console.error(`❌ Failed to load VanakkamPayanarssTypes.json: ${err.message}`);
   process.exit(1);
 }
 
+// Attach registry to every request
+app.use((req, _res, next) => { req.registry = registry; next(); });
+
 // ═══════════════════════════════════════════════════════════════
-// 2. CLAUDE MATCH ENDPOINT
+// 2. MOUNT ROUTERS
 // ═══════════════════════════════════════════════════════════════
 
-app.post("/api/claude-match", async (req, res) => {
-  const { prompt } = req.body;
-  if (!prompt || typeof prompt !== "string") {
-    return res.status(400).json({ error: "Missing 'prompt' in request body" });
-  }
+app.use('/api/records', recordsRouter);
+app.use('/api/query',   queryRouter);
 
-  console.log(`\n🔍 Claude match request: "${prompt}"`);
+// ═══════════════════════════════════════════════════════════════
+// 3. LOOKUP API
+// ═══════════════════════════════════════════════════════════════
 
+app.get('/api/lookup/:id', (req, res) => {
+  const name = registry.resolveLookup(req.params.id);
+  res.json({ id: req.params.id, name });
+});
+
+app.post('/api/lookup/resolve', (req, res) => {
+  const { ids = [] } = req.body;
+  const result = {};
+  for (const id of ids) result[id] = registry.resolveLookup(id);
+  res.json(result);
+});
+
+app.get('/api/lookup/options/:lookupTypeId', (req, res) => {
+  const options = registry.getLookupOptions(req.params.lookupTypeId);
+  res.json(options.map(n => ({ id: n.Id, name: n.Name, description: n.Description })));
+});
+
+app.get('/api/types/:id/children', (req, res) => {
+  res.json(registry.getChildren(req.params.id));
+});
+
+app.post('/api/types/reload', (_req, res) => {
   try {
-    const systemPrompt = `You are the MAA ERP module matcher. You will receive:
-1. A USER REQUEST describing a business type or need.
-2. A CATALOG of PayanarssType nodes in the format: Id | Name | ParentName
-
-The catalog is a HIERARCHY. Each node has a ParentName showing where it sits in the tree.
-Example hierarchy: "Personal Services" → "Gym Business DB Schema" → "Register Business" → "Choose Business Name"
-
-YOUR TASK:
-- Read the CATALOG carefully and find nodes that SPECIFICALLY match the user's business.
-- PRIORITIZE SPECIFIC MATCHES over broad sector categories:
-  • If user says "gym business", match "Gym Business DB Schema" and ALL its descendants (children, grandchildren, etc.) — NOT the broad "Sports & Recreation" sector.
-  • If user says "restaurant", match "Restaurant Management" and its descendants — NOT the broad "Food & Beverage" sector.
-  • Look for nodes whose Name contains the business keyword (e.g., "Gym", "Restaurant", "Hotel").
-  • Then include ALL nodes whose ParentName chain traces back to that specific match.
-- RETURN ALL DESCENDANTS: When you find the specific business root (e.g., "Gym Business DB Schema"), return its Id AND the Ids of ALL nodes that are children/grandchildren of it in the catalog.
-- Also include the PARENT SECTOR of the matched business (e.g., "Personal Services" for "Gym Business DB Schema").
-- NEVER invent, fabricate, or hallucinate any Id. Every Id you return MUST exist exactly as shown in the catalog.
-- Return as many matching Ids as needed — for a full business like "gym", this could be 100-500 Ids.
-
-RESPONSE FORMAT — respond with ONLY this JSON, no markdown fences, no explanation:
-{
-  "matchedIds": ["id1", "id2", ...],
-  "summary": "One sentence describing what was matched"
-}`;
-
-    const userMessage = `USER REQUEST: ${prompt}
-
-CATALOG (Id | Name | ParentName):
-${catalogText}`;
-
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": CLAUDE_API_KEY,
-        "anthropic-version": "2023-06-01",
-      },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
-        max_tokens: 16000,
-        system: systemPrompt,
-        messages: [{ role: "user", content: userMessage }],
-      }),
-    });
-
-    if (!response.ok) {
-      const errBody = await response.text();
-      console.error(`❌ Claude API ${response.status}: ${errBody}`);
-      return res.status(502).json({ error: `Claude API error: ${response.status}` });
-    }
-
-    const data = await response.json();
-
-    // Extract text from response
-    const text = data.content
-      .filter((b) => b.type === "text")
-      .map((b) => b.text)
-      .join("");
-
-    // Parse JSON response
-    const cleaned = text.replace(/```json\s*/g, "").replace(/```\s*/g, "").trim();
-    let parsed;
-    try {
-      parsed = JSON.parse(cleaned);
-    } catch (parseErr) {
-      console.error("❌ Failed to parse Claude response:", text.substring(0, 500));
-      return res.status(502).json({ error: "Invalid response from Claude", raw: text.substring(0, 500) });
-    }
-
-    const matchedIds = parsed.matchedIds || [];
-    const summary = parsed.summary || "";
-
-    // VALIDATE: Only allow IDs that actually exist in our data
-    const validIds = matchedIds.filter((id) => idMap.has(id));
-    const rejected = matchedIds.length - validIds.length;
-
-    if (rejected > 0) {
-      console.warn(`⚠️  Rejected ${rejected} hallucinated IDs out of ${matchedIds.length}`);
-    }
-
-    console.log(`✅ Matched ${validIds.length} valid IDs (rejected ${rejected} invalid)`);
-    console.log(`   Summary: ${summary}`);
-
-    res.json({
-      matchedIds: validIds,
-      summary,
-      stats: {
-        requested: matchedIds.length,
-        valid: validIds.length,
-        rejected,
-      },
-    });
+    registry.reload();
+    res.json({ success: true, status: registry.status });
   } catch (err) {
-    console.error("❌ Error:", err.message);
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ success: false, error: err.message });
   }
 });
 
 // ═══════════════════════════════════════════════════════════════
-// 3. HEALTH CHECK
+// 4. HEALTH CHECK
 // ═══════════════════════════════════════════════════════════════
 
-app.get("/api/health", (_req, res) => {
-  res.json({
-    status: "ok",
-    catalogNodes: allNodes.length,
-    catalogSize: `${(catalogText.length / 1024).toFixed(1)} KB`,
-  });
+app.get('/api/health', (_req, res) => {
+  res.json({ status: 'ok', registry: registry.status });
 });
 
 // ═══════════════════════════════════════════════════════════════
-// 4. START
+// 5. START
 // ═══════════════════════════════════════════════════════════════
 
 app.listen(PORT, () => {
-  console.log(`🚀 MAA ERP Express server running on http://localhost:${PORT}`);
-  console.log(`   POST /api/claude-match   — AI module matching`);
-  console.log(`   GET  /api/health         — Health check\n`);
+  console.log(`\n🚀 MAA ERP server on http://localhost:${PORT}`);
+  console.log(`\n── Query API (Third-party) ──`);
+  console.log(`   POST /api/query            — NLP query → transaction results`);
+  console.log(`   POST /api/query/explain    — NLP query + Claude explanation`);
+  console.log(`   GET  /api/query/health     — Pinecone connectivity`);
+  console.log(`\n── Records API ──`);
+  console.log(`   POST /api/records/save     — Save record`);
+  console.log(`   GET  /api/records/:tableId — List records`);
+  console.log(`\n── Lookup API ──`);
+  console.log(`   GET  /api/lookup/:id       — Resolve Id → Name`);
+  console.log(`   GET  /api/types/reload     — Hot reload JSON\n`);
 });

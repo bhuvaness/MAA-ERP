@@ -7,8 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
 import { v4 as uuidv4 } from "uuid";
-import { loadPayanarssTypes } from "@/services/pineconeService";
-import { supabase } from "@/integrations/supabase/client";
+import { loadPayanarssTypes, embedTypes, EmbedProgress } from "@/services/pineconeService";
 
 // ============================================================================
 // IMPORT TYPES & INTERFACES
@@ -41,6 +40,8 @@ interface EditingState {
     name: string;
     description: string;
     payanarssTypeId: string;
+    requiredFlags: string[];
+    alwaysOn: boolean;
 }
 
 // ============================================================================
@@ -261,182 +262,58 @@ export function TypeEditor({
     const [showImportResult, setShowImportResult] = useState(false);
 
     // Embed to Pinecone state
-    const [embedStatus, setEmbedStatus] = useState<"idle" | "embedding" | "complete" | "error">("idle");
-    const [embedProgress, setEmbedProgress] = useState({ current: 0, total: 0, embedded: 0, skipped: 0 });
-
-    const PINECONE_INDEX_HOST = "maa-erp-types-y3f7eec.svc.aped-4627-b74a.pinecone.io";
+    const [embedStatus, setEmbedStatus] = useState<
+        "idle" | "enriching" | "embedding" | "upserting" | "complete" | "error"
+    >("idle");
+    const [embedProgress, setEmbedProgress] = useState<EmbedProgress>({
+        totalNodes: 0,
+        totalVectors: 0,
+        embeddedVectors: 0,
+        skippedNodes: 0,
+        currentBatch: 0,
+        totalBatches: 0,
+        status: "idle",
+    });
 
     // ── Client-side enrichment helpers ──
 
-    const getAncestors = (type: PayanarssType, byId: Map<string, PayanarssType>): PayanarssType[] => {
-        const ancestors: PayanarssType[] = [];
-        let current = type;
-        const visited = new Set<string>();
-        while (current.ParentId && current.ParentId !== current.Id && !visited.has(current.ParentId)) {
-            visited.add(current.Id);
-            const parent = byId.get(current.ParentId);
-            if (!parent) break;
-            ancestors.unshift(parent);
-            current = parent;
-        }
-        return ancestors;
-    };
-
-    const getLevel = (ancestors: PayanarssType[]): string => {
-        const d = ancestors.length;
-        if (d === 0) return 'root';
-        if (d === 1) return 'sector';
-        if (d === 2) return 'module';
-        if (d === 3) return 'submodule';
-        if (d === 4) return 'usecase';
-        if (d === 5) return 'table';
-        return 'column';
-    };
-
-    const inferColType = (desc: string): string => {
-        const d = (desc || '').toUpperCase();
-        if (d.includes('LOOKUP')) return 'LOOKUP';
-        if (d.includes('DATETIME')) return 'DATETIME';
-        if (d.includes('DATE')) return 'DATE';
-        if (d.includes('BOOLEAN')) return 'BOOLEAN';
-        if (d.includes('DECIMAL') || d.includes('INTEGER') || d.includes('INT')) return 'NUMBER';
-        return 'STRING';
-    };
-
-    const EMBEDDABLE = ['sector', 'module', 'submodule', 'usecase', 'table'];
-
-    const enrichAllTypes = (allTypes: PayanarssType[]) => {
-        const byId = new Map(allTypes.map(t => [t.Id, t]));
-        const childrenMap = new Map<string, PayanarssType[]>();
-        for (const t of allTypes) {
-            if (t.ParentId && t.ParentId !== t.Id) {
-                if (!childrenMap.has(t.ParentId)) childrenMap.set(t.ParentId, []);
-                childrenMap.get(t.ParentId)!.push(t);
-            }
-        }
-
-        const records: { id: string; text: string; metadata: Record<string, unknown> }[] = [];
-
-        for (const type of allTypes) {
-            const ancestors = getAncestors(type, byId);
-            const level = getLevel(ancestors);
-            if (!EMBEDDABLE.includes(level)) continue;
-
-            const kids = childrenMap.get(type.Id) || [];
-            const sector = ancestors[1]?.Name || '';
-            const module = ancestors[2]?.Name || '';
-            const submodule = ancestors[3]?.Name || '';
-            const desc = type.Description || '';
-
-            // Build embed text based on level
-            let text = '';
-            switch (level) {
-                case 'sector':
-                    text = `${type.Name} industry sector. Modules: ${kids.map(c => c.Name).join(', ')}. ${desc}`;
-                    break;
-                case 'module': {
-                    const useCases: string[] = [];
-                    for (const k of kids) {
-                        const gcs = childrenMap.get(k.Id) || [];
-                        useCases.push(...gcs.slice(0, 10).map(gc => gc.Name));
-                    }
-                    text = `${type.Name} module in ${sector}. ${desc}. Sub-modules: ${kids.map(c => c.Name).join(', ')}. Use cases: ${useCases.slice(0, 25).join(', ')}`;
-                    break;
-                }
-                case 'submodule':
-                    text = `${type.Name} for ${module} in ${sector}. ${desc}. Use cases: ${kids.map(c => c.Name).join(', ')}`;
-                    break;
-                case 'usecase': {
-                    const tables = kids.map(t => {
-                        const cols = (childrenMap.get(t.Id) || []).slice(0, 8).map(c => c.Name);
-                        return `${t.Name}(${cols.join(', ')})`;
-                    });
-                    text = `${type.Name} business process in ${module}, ${sector}. ${desc}. Tables: ${tables.join('; ')}`;
-                    break;
-                }
-                case 'table': {
-                    const colDescs = kids.map(c => `${c.Name}:${inferColType(c.Description || '')}`);
-                    text = `${type.Name} table for ${submodule || module} in ${sector}. ${desc}. Columns: ${colDescs.join(', ')}`;
-                    break;
-                }
-            }
-
-            const colNames = level === 'table' ? kids.map(c => c.Name).join(',') : '';
-            const colTypes = level === 'table' ? kids.map(c => inferColType(c.Description || '')).join(',') : '';
-
-            records.push({
-                id: type.Id,
-                text: text.trim(),
-                metadata: {
-                    name: type.Name,
-                    description: desc,
-                    level,
-                    sector,
-                    module,
-                    submodule,
-                    usecase: ancestors[4]?.Name || '',
-                    path: [...ancestors.map(a => a.Name), type.Name].join(' > '),
-                    is_common: sector === 'Common Modules',
-                    parent_name: ancestors[ancestors.length - 1]?.Name || '',
-                    child_count: kids.length,
-                    column_names: colNames,
-                    column_types: colTypes,
-                    column_count: level === 'table' ? kids.length : 0,
-                },
-            });
-        }
-        return records;
-    };
-
     // ── Main embed handler ──
+    // When parentType is set, embeds only that node's subtree (targeted re-index).
+    // When at root (no parentType), embeds everything.
 
     const handleEmbedToPinecone = async () => {
-        setEmbedStatus("embedding");
-        setEmbedProgress({ current: 0, total: 0, embedded: 0, skipped: 0 });
-        toast({ title: "Embedding Started", description: "Enriching types and sending to Pinecone..." });
+        const isTargeted = !!parentType;
+        const label = isTargeted ? `"${parentType!.Name}"` : "all types";
+
+        setEmbedStatus("enriching");
+        setEmbedProgress(p => ({ ...p, status: "enriching" }));
+        toast({
+            title: isTargeted ? "Targeted Embed Started" : "Full Embed Started",
+            description: isTargeted
+                ? `Re-indexing ${label} and its descendants...`
+                : "Enriching all PayanarssTypes and sending to Pinecone...",
+        });
 
         try {
-            // Step 1: Load all types
+            // Always load full type tree — needed for ancestor path resolution
             const allTypes = await loadPayanarssTypes();
 
-            // Step 2: Enrich client-side (has full tree for hierarchy resolution)
-            const records = enrichAllTypes(allTypes);
-            const skipped = allTypes.length - records.length;
+            await embedTypes(
+                allTypes,
+                (progress) => {
+                    setEmbedProgress(progress);
+                    setEmbedStatus(progress.status as typeof embedStatus);
+                },
+                // Pass the current node ID for targeted embed, undefined for full embed
+                isTargeted ? parentType!.Id : undefined
+            );
 
-            toast({ title: "Enrichment Done", description: `${records.length} embeddable, ${skipped} skipped (columns/root)` });
-
-            // Step 3: Send to edge function in small batches (just upsert, no heavy processing)
-            const batchSize = 20;
-            const totalBatches = Math.ceil(records.length / batchSize);
-            setEmbedProgress({ current: 0, total: totalBatches, embedded: 0, skipped });
-
-            let totalEmbedded = 0;
-
-            for (let i = 0; i < records.length; i += batchSize) {
-                const batch = records.slice(i, i + batchSize);
-                const batchNum = Math.floor(i / batchSize) + 1;
-                setEmbedProgress(p => ({ ...p, current: batchNum }));
-
-                const { data, error } = await supabase.functions.invoke("embed-types", {
-                    body: { records: batch, indexHost: PINECONE_INDEX_HOST },
-                });
-
-                if (error) throw new Error(error.message);
-                if (!data?.success) throw new Error(data?.error || "Upsert failed");
-
-                totalEmbedded += data.upserted || batch.length;
-
-                // Small delay to avoid rate limits
-                if (i + batchSize < records.length) {
-                    await new Promise(r => setTimeout(r, 300));
-                }
-            }
-
-            setEmbedProgress(p => ({ ...p, embedded: totalEmbedded }));
             setEmbedStatus("complete");
             toast({
-                title: "Embedding Complete",
-                description: `${totalEmbedded} types embedded, ${skipped} skipped`,
+                title: "Embedding Complete ✓",
+                description: isTargeted
+                    ? `${embedProgress.totalVectors} vectors re-indexed for ${label}`
+                    : `${embedProgress.totalVectors} vectors embedded (3-layer strategy)`,
             });
         } catch (err) {
             setEmbedStatus("error");
@@ -454,18 +331,23 @@ export function TypeEditor({
             name: type.Name,
             description: type.Description || "",
             payanarssTypeId: type.PayanarssTypeId,
+            requiredFlags: type.requiredFlags ?? [],
+            alwaysOn: type.alwaysOn !== undefined ? type.alwaysOn : (type.requiredFlags ?? []).length === 0,
         });
     };
 
     const saveEditing = () => {
         if (!editing) return;
+        const original = children.find((t) => t.Id === editing.id);
         onEditType({
             Id: editing.id,
-            ParentId: "", // Will be ignored
+            ParentId: original?.ParentId ?? "",
             Name: editing.name,
             PayanarssTypeId: editing.payanarssTypeId,
-            Attributes: [],
+            Attributes: original?.Attributes ?? [],
             Description: editing.description || null,
+            requiredFlags: editing.requiredFlags,
+            alwaysOn: editing.alwaysOn,
         });
         setEditing(null);
     };
@@ -609,32 +491,38 @@ export function TypeEditor({
                         {/* EMBED TO PINECONE BUTTON */}
                         <button
                             onClick={handleEmbedToPinecone}
-                            disabled={embedStatus === "embedding"}
+                            disabled={embedStatus === "enriching" || embedStatus === "embedding" || embedStatus === "upserting"}
                             className={`flex items-center gap-1 px-3 py-1.5 rounded text-xs font-medium transition-colors ${
                                 embedStatus === "complete"
                                     ? "bg-green-100 text-green-700 border border-green-300"
                                     : embedStatus === "error"
                                     ? "bg-red-100 text-red-700 border border-red-300"
-                                    : embedStatus === "embedding"
+                                    : embedStatus !== "idle"
                                     ? "bg-purple-100 text-purple-700 border border-purple-300 animate-pulse"
                                     : "bg-purple-600 text-white hover:bg-purple-700"
                             }`}
-                            title="Embed all PayanarssTypes to Pinecone Vector DB"
+                            title={parentType
+                                ? `Re-index "${parentType.Name}" subtree in Pinecone`
+                                : "Embed all PayanarssTypes to Pinecone"}
                         >
-                            {embedStatus === "embedding" ? (
+                            {embedStatus !== "idle" && embedStatus !== "complete" && embedStatus !== "error" ? (
                                 <Loader2 className="w-3.5 h-3.5 animate-spin" />
                             ) : embedStatus === "complete" ? (
                                 <Check className="w-3.5 h-3.5" />
                             ) : (
                                 <Database className="w-3.5 h-3.5" />
                             )}
-                            {embedStatus === "embedding"
-                                ? `Embedding ${embedProgress.current}/${embedProgress.total}...`
+                            {embedStatus === "enriching"
+                                ? "Enriching..."
+                                : embedStatus === "embedding"
+                                ? `Embedding ${embedProgress.currentBatch}/${embedProgress.totalBatches}...`
+                                : embedStatus === "upserting"
+                                ? `Upserting ${embedProgress.currentBatch}/${embedProgress.totalBatches}...`
                                 : embedStatus === "complete"
-                                ? `✓ ${embedProgress.embedded} Embedded`
+                                ? `✓ ${embedProgress.totalVectors} Vectors`
                                 : embedStatus === "error"
                                 ? "Retry Embed"
-                                : "Embed to Pinecone"}
+                                : parentType ? "Embed to Pinecone" : "Embed All to Pinecone"}
                         </button>
 
                         {parentType && children.length > 0 && (
@@ -812,9 +700,23 @@ export function TypeEditor({
                                                     className="text-sm resize-none"
                                                 />
                                             ) : (
-                                                <span className="text-sm text-muted-foreground line-clamp-2">
-                                                    {type.Description || "—"}
-                                                </span>
+                                                <div className="flex flex-col gap-1">
+                                                    <span className="text-sm text-muted-foreground line-clamp-2">
+                                                        {type.Description || "—"}
+                                                    </span>
+                                                    {(type.requiredFlags ?? []).length > 0 && (
+                                                        <div className="flex flex-wrap gap-1">
+                                                            {(type.requiredFlags ?? []).map((f) => (
+                                                                <span
+                                                                    key={f}
+                                                                    className="px-1.5 py-0 rounded-full text-[10px] font-medium bg-purple-50 text-purple-700 border border-purple-200"
+                                                                >
+                                                                    {f}
+                                                                </span>
+                                                            ))}
+                                                        </div>
+                                                    )}
+                                                </div>
                                             )}
                                         </div>
 
@@ -886,6 +788,80 @@ export function TypeEditor({
                                                 </>
                                             )}
                                         </div>
+
+                                        {/* BusinessProfileFlags panel — visible only while editing */}
+                                        {isEditing && (
+                                            <div className="col-span-12 mt-1 mb-2 px-2 py-3 rounded-md border border-border bg-muted/40">
+                                                <div className="flex items-center gap-2 mb-2">
+                                                    <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+                                                        Business profile flags
+                                                    </span>
+                                                    <label className="flex items-center gap-1.5 ml-auto cursor-pointer">
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={editing.alwaysOn}
+                                                            onChange={(e) =>
+                                                                setEditing({
+                                                                    ...editing,
+                                                                    alwaysOn: e.target.checked,
+                                                                    requiredFlags: e.target.checked ? [] : editing.requiredFlags,
+                                                                })
+                                                            }
+                                                            className="w-3.5 h-3.5"
+                                                        />
+                                                        <span className="text-xs text-muted-foreground">Always on (no flag required)</span>
+                                                    </label>
+                                                </div>
+                                                {!editing.alwaysOn && (
+                                                    <div className="flex flex-wrap gap-1.5">
+                                                        {[
+                                                            { key: "hasSales",         label: "Has sales" },
+                                                            { key: "hasRetail",        label: "Has retail / POS" },
+                                                            { key: "hasOnlineBooking", label: "Has online booking" },
+                                                            { key: "hasSubscription",  label: "Has subscriptions" },
+                                                            { key: "hasInventory",     label: "Has inventory" },
+                                                            { key: "hasDelivery",      label: "Has delivery" },
+                                                            { key: "hasManufacturing", label: "Has manufacturing" },
+                                                            { key: "hasMultiBranch",   label: "Has multi-branch" },
+                                                            { key: "hasStaff",         label: "Has staff" },
+                                                            { key: "hasOnlineSales",   label: "Has online sales" },
+                                                        ].map(({ key, label }) => {
+                                                            const active = editing.requiredFlags.includes(key);
+                                                            return (
+                                                                <button
+                                                                    key={key}
+                                                                    type="button"
+                                                                    onClick={() =>
+                                                                        setEditing({
+                                                                            ...editing,
+                                                                            requiredFlags: active
+                                                                                ? editing.requiredFlags.filter((f) => f !== key)
+                                                                                : [...editing.requiredFlags, key],
+                                                                        })
+                                                                    }
+                                                                    className={cn(
+                                                                        "px-2 py-0.5 rounded-full text-xs font-medium border transition-colors",
+                                                                        active
+                                                                            ? "bg-purple-100 text-purple-800 border-purple-300"
+                                                                            : "bg-background text-muted-foreground border-border hover:border-purple-300"
+                                                                    )}
+                                                                >
+                                                                    {active ? "✓ " : ""}{label}
+                                                                </button>
+                                                            );
+                                                        })}
+                                                    </div>
+                                                )}
+                                                {editing.requiredFlags.length > 0 && !editing.alwaysOn && (
+                                                    <p className="mt-2 text-xs text-muted-foreground">
+                                                        This node will only appear when:{" "}
+                                                        <span className="font-medium text-foreground">
+                                                            {editing.requiredFlags.join(", ")}
+                                                        </span>
+                                                    </p>
+                                                )}
+                                            </div>
+                                        )}
                                     </div>
                                 );
                             })

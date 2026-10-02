@@ -3,44 +3,65 @@
  * ================
  * Manages the Viki AI conversation flow:
  *   1. User describes their business
- *   2. Viki reads PTS metadata via Claude API
- *   3. Returns matched modules + customer segments
- *   4. User drills into specific segments
+ *   2. Viki asks intent questions → builds BusinessProfile
+ *   3. BusinessProfile gates which PTS nodes are in the active subgraph
+ *   4. Viki queries Pinecone with flag-filtered results
+ *   5. User drills into specific segments
  *
- * Two modes:
- *   - FAST: keyword detection → direct metadata lookup (no API call)
- *   - FULL: Claude API → reads full PTS library → returns structured response
+ * Phase machine:
+ *   idle → thinking → intent_questions → responded → drilldown
  */
 
 import { useState, useCallback } from "react";
+import type { VikiResponse, GymSchemaInfo } from "../services/claudeService";
 import {
-  queryViki,
-  getGymMetadataDirect,
-  type VikiResponse,
-  type GymSchemaInfo,
-} from "../services/claudeService";
+  type BusinessProfile,
+  type BusinessSettingsValue,
+  loadBusinessSettingsValues,
+  searchModules,
+  extractSectorKeyword,
+} from "../services/ptSearchService";
+
+// ─── Types ────────────────────────────────────────────────────
 
 export type VikiPhase =
-  | "idle"          // Waiting for user input
-  | "thinking"      // Calling Claude API
-  | "responded"     // Got response, showing results
-  | "drilldown"     // User is exploring a specific segment
-  | "error";        // Something went wrong
+  | "idle"             // Waiting for user input
+  | "thinking"         // Calling Claude API / loading
+  | "intent_questions" // Asking BusinessProfile flag questions
+  | "responded"        // Got response, showing results
+  | "drilldown"        // User is exploring a specific segment
+  | "error";           // Something went wrong
+
+export interface BusinessSettingsQuestion extends BusinessSettingsValue {
+  answered: boolean;
+  answer: boolean | null;
+}
 
 export interface VikiChatState {
   phase: VikiPhase;
   userPrompt: string;
   response: VikiResponse | null;
+  /** @deprecated Always null now — use response.matchedModules instead.
+   *  Kept to avoid breaking VikiBusinessChat UI until it is refactored
+   *  to render generically from matchedModules. */
   gymSchema: GymSchemaInfo | null;
   selectedSegment: string | null;
   error: string | null;
 
+  // BusinessProfile session state
+  businessProfile: BusinessProfile | null;
+  intentQuestions: BusinessSettingsQuestion[];
+  currentQuestionIndex: number;
+
   // Actions
   submitPrompt: (prompt: string) => Promise<void>;
+  answerIntentQuestion: (key: string, answer: boolean) => Promise<void>;
   selectSegment: (segmentName: string) => void;
   clearSegment: () => void;
   reset: () => void;
 }
+
+// ─── Hook ─────────────────────────────────────────────────────
 
 export function useVikiChat(): VikiChatState {
   const [phase, setPhase] = useState<VikiPhase>("idle");
@@ -50,76 +71,141 @@ export function useVikiChat(): VikiChatState {
   const [selectedSegment, setSelectedSegment] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  // BusinessProfile
+  const [businessProfile, setBusinessProfile] = useState<BusinessProfile | null>(null);
+  const [intentQuestions, setIntentQuestions] = useState<BusinessSettingsQuestion[]>([]);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+
+  // Holds the prompt while intent questions are being answered
+  const [pendingPrompt, setPendingPrompt] = useState("");
+
   /**
-   * Submit the user's business description to Viki.
-   *
-   * Fast path: if "gym" is mentioned, directly extract metadata.
-   * Full path: send to Claude API for analysis.
+   * Step 1 — User submits their business description.
+   * We start intent questions immediately; metadata search
+   * runs after all questions are answered.
    */
   const submitPrompt = useCallback(async (prompt: string) => {
     setUserPrompt(prompt);
-    setPhase("thinking");
     setError(null);
     setSelectedSegment(null);
+    setPendingPrompt(prompt);
+    setBusinessProfile(null);
+
+    // Detect sector from prompt to load only relevant flags
+    const keyword = extractSectorKeyword(prompt);
+
+    // Load intent flag nodes from VanakkamPayanarssTypes.json dynamically.
+    // Filters by detected sector so a gym user only sees gym-relevant flags.
+    // Falls back to all flags if no sector detected.
+    let rawFlags: BusinessSettingsValue[] = [];
+    try {
+      rawFlags = await loadBusinessSettingsValues(
+        keyword ? undefined : undefined, // sector filter once flags are authored
+        undefined
+      );
+    } catch {
+      // If JSON not available yet (no flags authored), proceed with empty set
+      // — goes straight to search with no profile filtering
+    }
+
+    if (rawFlags.length === 0) {
+      // No flags in JSON yet — skip questions and go straight to search
+      setIntentQuestions([]);
+      setCurrentQuestionIndex(0);
+      setPendingPrompt(prompt);
+      runSearch(prompt, { description: prompt, flags: {} });
+      return;
+    }
+
+    const questions: BusinessSettingsQuestion[] = rawFlags.map((f) => ({
+      ...f,
+      answered: false,
+      answer: null,
+    }));
+
+    setIntentQuestions(questions);
+    setCurrentQuestionIndex(0);
+    setPhase("intent_questions");
+  }, []);
+
+  /**
+   * Step 2 — User answers one intent question (Yes / No).
+   * When all are answered, build the BusinessProfile and run the search.
+   */
+  const answerIntentQuestion = useCallback(
+    async (key: string, answer: boolean) => {
+      setIntentQuestions((prev) => {
+        const updated = prev.map((q) =>
+          q.key === key ? { ...q, answered: true, answer } : q
+        );
+
+        const nextUnanswered = updated.findIndex((q) => !q.answered);
+
+        if (nextUnanswered === -1) {
+          // All answered — build profile and run search
+          const flags: Record<string, boolean> = {};
+          for (const q of updated) {
+            flags[q.key] = q.answer === true;
+          }
+
+          const profile: BusinessProfile = {
+            description: pendingPrompt,
+            flags,
+          };
+
+          setBusinessProfile(profile);
+          runSearch(pendingPrompt, profile);
+        } else {
+          setCurrentQuestionIndex(nextUnanswered);
+        }
+
+        return updated;
+      });
+    },
+    [pendingPrompt]
+  );
+
+  /**
+   * Step 3 — Run Pinecone search with the BusinessProfile.
+   *
+   * Fully generic — no sector-specific branching.
+   * searchModules() handles sector detection internally via
+   * detectSector() + extractSectorKeyword(). Every business type
+   * — gym, restaurant, clinic, retail — goes through the same path.
+   *
+   * BusinessProfile flags filter the active subgraph so only
+   * flag-matching nodes are returned for this specific company.
+   */
+  async function runSearch(prompt: string, profile: BusinessProfile) {
+    setPhase("thinking");
 
     try {
-      const lowerPrompt = prompt.toLowerCase();
-      const isGym =
-        lowerPrompt.includes("gym") ||
-        lowerPrompt.includes("fitness") ||
-        lowerPrompt.includes("workout");
+      const keyword = extractSectorKeyword(prompt) ?? prompt;
+      console.log("[useVikiChat] Searching Pinecone for:", keyword, "| flags:", profile.flags);
 
-      if (isGym) {
-        // ── FAST PATH: Direct metadata extraction ──
-        console.log("🏋️ Gym detected — using fast path (direct metadata)");
-        const { gymSchema: schema } = await getGymMetadataDirect();
-        setGymSchema(schema);
+      const modules = await searchModules(keyword, 20, profile);
+      console.log(`[useVikiChat] Pinecone returned ${modules.length} modules`);
 
-        // Also call Claude for the natural language response
-        const vikiResponse = await queryViki(prompt);
-        setResponse(vikiResponse);
+      const vikiResponse: VikiResponse = {
+        success: true,
+        answer: modules.length > 0
+          ? `Found ${modules.length} business modules from the PTS Library${
+              Object.keys(profile.flags).length > 0
+                ? `, filtered to match your business profile`
+                : ""
+            }.`
+          : "I couldn't find modules matching your business profile. Try describing your business differently.",
+        matchedModules: modules,
+      };
 
-        if (vikiResponse.success) {
-          // Override gymSchema with the extracted one (more complete)
-          if (schema) {
-            vikiResponse.gymSchema = schema;
-          }
-          setPhase("responded");
-        } else {
-          // Even if Claude fails, we have the direct metadata
-          setResponse({
-            success: true,
-            answer: `Great! I found the complete Gym Business metadata in our PTS Library. Here's what's available for your gym business:
+      setResponse(vikiResponse);
+      setPhase("responded");
 
-The Gym Business DB Schema contains ${schema?.totalNodes || 400} pre-built types organized into ${schema?.phases.length || 15} lifecycle phases — from defining your business vision to daily operations and compliance.
-
-Under "Identify Target Customer Segment", we have ${schema?.customerSegments.length || 10} pre-configured gym types, each with tailored Equipment, Staffing, Facility, Marketing, Pricing, and Revenue Model recommendations.
-
-Select a customer segment below to see the full business configuration for your gym type.`,
-            matchedModules: [],
-            gymSchema: schema || undefined,
-          });
-          setPhase("responded");
-        }
-      } else {
-        // ── FULL PATH: Claude API ──
-        console.log("🤖 Using Claude API for analysis");
-        const vikiResponse = await queryViki(prompt);
-        setResponse(vikiResponse);
-
-        if (vikiResponse.success) {
-          setGymSchema(vikiResponse.gymSchema || null);
-          setPhase("responded");
-        } else {
-          setError(vikiResponse.error || "Failed to get response");
-          setPhase("error");
-        }
-      }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Unknown error");
       setPhase("error");
     }
-  }, []);
+  }
 
   const selectSegment = useCallback((segmentName: string) => {
     setSelectedSegment(segmentName);
@@ -138,6 +224,10 @@ Select a customer segment below to see the full business configuration for your 
     setGymSchema(null);
     setSelectedSegment(null);
     setError(null);
+    setBusinessProfile(null);
+    setIntentQuestions([]);
+    setCurrentQuestionIndex(0);
+    setPendingPrompt("");
   }, []);
 
   return {
@@ -147,7 +237,11 @@ Select a customer segment below to see the full business configuration for your 
     gymSchema,
     selectedSegment,
     error,
+    businessProfile,
+    intentQuestions,
+    currentQuestionIndex,
     submitPrompt,
+    answerIntentQuestion,
     selectSegment,
     clearSegment,
     reset,

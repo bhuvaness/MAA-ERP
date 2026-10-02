@@ -1,6 +1,7 @@
 [
   {
     "Id": "100000000000000000000000000000000",
+    "Loo": null,
     "ParentId": "100000000000000000000000000000000",
     "Name": "ValueType",
     "PayanarssTypeId": "100000000000000000000000000000000",
@@ -40,6 +41,30 @@
     "Description": null
   },
   {
+    "Id": "10000000000000000000000000000121111",
+    "ParentId": "10000000000000000000000000000121111",
+    "Name": "BusinessProfileSettings",
+    "PayanarssTypeId": "10000000000000000000000000000121111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "10000000000000000000000000000131111",
+    "ParentId": "10000000000000000000000000000131111",
+    "Name": "BusinessUseCaseSettings",
+    "PayanarssTypeId": "10000000000000000000000000000131111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "10000000000000000000000000000141111",
+    "ParentId": "10000000000000000000000000000141111",
+    "Name": "BusinessUseCaseSettingsValue",
+    "PayanarssTypeId": "10000000000000000000000000000141111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
     "Id": "100000000000000000000000000000002",
     "ParentId": "100000000000000000000000000000002",
     "Name": "ChildTableType",
@@ -59,6 +84,14 @@
     "Id": "1000000000000000000000000000000031",
     "ParentId": "1000000000000000000000000000000031",
     "Name": "LookupValueType",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "1000000000000000000000000000000331",
+    "ParentId": "1000000000000000000000000000000331",
+    "Name": "Country Lookups",
     "PayanarssTypeId": "1000000000000000000000000000000031",
     "Attributes": [],
     "Description": null
@@ -110,8 +143,7 @@
     "ParentId": "100000000000000000030000000000000",
     "Name": "ArithmeticOperator",
     "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [
-    ],
+    "Attributes": [],
     "Description": "Arithmetic operator group; Takes two Number inputs; Returns Number result"
   },
   {
@@ -119,8 +151,7 @@
     "ParentId": "100000000000000000030000000000001",
     "Name": "+",
     "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [
-    ],
+    "Attributes": [],
     "Description": "Add operator; Left + Right; Returns sum of two Number values"
   },
   {
@@ -128,8 +159,7 @@
     "ParentId": "100000000000000000030000000000001",
     "Name": "-",
     "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [
-    ],
+    "Attributes": [],
     "Description": "Subtract operator; Left - Right; Returns difference of two Number values"
   },
   {
@@ -137,8 +167,7 @@
     "ParentId": "100000000000000000030000000000001",
     "Name": "*",
     "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [
-    ],
+    "Attributes": [],
     "Description": "Multiply operator; Left * Right; Returns product of two Number values"
   },
   {
@@ -146,8 +175,7 @@
     "ParentId": "100000000000000000030000000000001",
     "Name": "/",
     "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [
-    ],
+    "Attributes": [],
     "Description": "Divide operator; Left / Right; Returns quotient; Right must not be zero"
   },
   {
@@ -155,8 +183,7 @@
     "ParentId": "100000000000000000030000000000001",
     "Name": "%",
     "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [
-    ],
+    "Attributes": [],
     "Description": "Modulus operator; Left % Right; Returns remainder of division"
   },
   {
@@ -164,18 +191,15 @@
     "ParentId": "100000000000000000030000000000001",
     "Name": "=",
     "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [
-    ],
+    "Attributes": [],
     "Description": "Assign operator; Left = Right; Assigns right-side result to left-side column"
   },
-
   {
     "Id": "100000000000000000030000000000010",
     "ParentId": "100000000000000000030000000000000",
     "Name": "ComparisonOperator",
     "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [
-    ],
+    "Attributes": [],
     "Description": "Comparison operator group; Takes two inputs of any ValueType; Returns Boolean result"
   },
   {
@@ -183,8 +207,7 @@
     "ParentId": "100000000000000000030000000000010",
     "Name": "==",
     "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [
-    ],
+    "Attributes": [],
     "Description": "Equal operator; Left == Right; Returns true if both values are equal"
   },
   {
@@ -192,8 +215,7 @@
     "ParentId": "100000000000000000030000000000010",
     "Name": "!=",
     "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [
-    ],
+    "Attributes": [],
     "Description": "Not equal operator; Left != Right; Returns true if values are different"
   },
   {
@@ -201,8 +223,7 @@
     "ParentId": "100000000000000000030000000000010",
     "Name": ">",
     "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [
-    ],
+    "Attributes": [],
     "Description": "Greater than operator; Left > Right; Returns true if left exceeds right"
   },
   {
@@ -210,8 +231,7 @@
     "ParentId": "100000000000000000030000000000010",
     "Name": "<",
     "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [
-    ],
+    "Attributes": [],
     "Description": "Less than operator; Left < Right; Returns true if left is smaller than right"
   },
   {
@@ -219,8 +239,7 @@
     "ParentId": "100000000000000000030000000000010",
     "Name": ">=",
     "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [
-    ],
+    "Attributes": [],
     "Description": "Greater than or equal operator; Left >= Right; Returns true if left is equal or exceeds right"
   },
   {
@@ -228,18 +247,15 @@
     "ParentId": "100000000000000000030000000000010",
     "Name": "<=",
     "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [
-    ],
+    "Attributes": [],
     "Description": "Less than or equal operator; Left <= Right; Returns true if left is equal or smaller than right"
   },
-
   {
     "Id": "100000000000000000030000000000020",
     "ParentId": "100000000000000000030000000000000",
     "Name": "LogicalOperator",
     "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [
-    ],
+    "Attributes": [],
     "Description": "Logical operator group; Takes Boolean inputs; Returns Boolean result; Used in if conditions and rule expressions"
   },
   {
@@ -247,8 +263,7 @@
     "ParentId": "100000000000000000030000000000020",
     "Name": "AND",
     "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [
-    ],
+    "Attributes": [],
     "Description": "Logical AND; Left AND Right; Returns true only if both conditions are true"
   },
   {
@@ -256,8 +271,7 @@
     "ParentId": "100000000000000000030000000000020",
     "Name": "OR",
     "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [
-    ],
+    "Attributes": [],
     "Description": "Logical OR; Left OR Right; Returns true if either condition is true"
   },
   {
@@ -1957,790 +1971,6 @@
     "PayanarssTypeId": "100000000000000000000000000000001",
     "Attributes": [],
     "Description": "Target customer segment definition for Gym Business; Tree-structured domain model with max 3-4 columns per node"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000002",
-    "ParentId": "GYMTC000000000000000000000000001",
-    "Name": "Identity",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "Core identification of target customer segment; Code, Name, Status"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000003",
-    "ParentId": "GYMTC000000000000000000000000001",
-    "Name": "Audit",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "System tracking fields; Creation and modification metadata"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000004",
-    "ParentId": "GYMTC000000000000000000000000001",
-    "Name": "Demographics",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "Who is the target customer; Age, gender, income, fitness level"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000005",
-    "ParentId": "GYMTC000000000000000000000000001",
-    "Name": "Behavior",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "How the target customer behaves; Training preferences, engagement patterns"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000006",
-    "ParentId": "GYMTC000000000000000000000000001",
-    "Name": "Financials",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "Money profile; Budget, pricing, revenue potential"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000007",
-    "ParentId": "GYMTC000000000000000000000000001",
-    "Name": "Marketing",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "How to reach and retain; Channels, messaging, retention"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000008",
-    "ParentId": "GYMTC000000000000000000000000001",
-    "Name": "Metrics",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "Measurable performance; Market size, member counts, conversion"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000009",
-    "ParentId": "GYMTC000000000000000000000000001",
-    "Name": "Insights",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "Qualitative knowledge; Competitor analysis, notes, media"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000010",
-    "ParentId": "GYMTC000000000000000000000000001",
-    "Name": "Rules",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "Business rules; Validations, calculations, alerts, workflows"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000011",
-    "ParentId": "GYMTC000000000000000000000000001",
-    "Name": "LookupValues",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "Reference data; All lookup value lists for this entity"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000012",
-    "ParentId": "GYMTC000000000000000000000000002",
-    "Name": "Code",
-    "PayanarssTypeId": "100000000000000000000000000000006",
-    "Attributes": [],
-    "Description": "Unique TargetCustomer code (STRING)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000013",
-    "ParentId": "GYMTC000000000000000000000000002",
-    "Name": "Name",
-    "PayanarssTypeId": "100000000000000000000000000000006",
-    "Attributes": [],
-    "Description": "Target customer segment name (STRING)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000014",
-    "ParentId": "GYMTC000000000000000000000000002",
-    "Name": "Status",
-    "PayanarssTypeId": "100000000000000000000000000000003",
-    "Attributes": [],
-    "Description": "Active/Inactive/Draft (LOOKUP)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000015",
-    "ParentId": "GYMTC000000000000000000000000003",
-    "Name": "CreationTrack",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "Record creation tracking; Who created and when"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000016",
-    "ParentId": "GYMTC000000000000000000000000015",
-    "Name": "CreatedBy",
-    "PayanarssTypeId": "100000000000000000000000000000006",
-    "Attributes": [],
-    "Description": "Created by user (STRING)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000017",
-    "ParentId": "GYMTC000000000000000000000000015",
-    "Name": "CreatedOn",
-    "PayanarssTypeId": "100000000000000000000000000000008",
-    "Attributes": [],
-    "Description": "Creation timestamp (DATETIME)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000018",
-    "ParentId": "GYMTC000000000000000000000000003",
-    "Name": "ModificationTrack",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "Record modification tracking; Who modified and when"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000019",
-    "ParentId": "GYMTC000000000000000000000000018",
-    "Name": "ModifiedBy",
-    "PayanarssTypeId": "100000000000000000000000000000006",
-    "Attributes": [],
-    "Description": "Last modified by (STRING)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000020",
-    "ParentId": "GYMTC000000000000000000000000018",
-    "Name": "ModifiedOn",
-    "PayanarssTypeId": "100000000000000000000000000000008",
-    "Attributes": [],
-    "Description": "Last modification timestamp (DATETIME)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000021",
-    "ParentId": "GYMTC000000000000000000000000003",
-    "Name": "LifecycleTrack",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "Record lifecycle; Soft delete flag"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000022",
-    "ParentId": "GYMTC000000000000000000000000021",
-    "Name": "IsActive",
-    "PayanarssTypeId": "100000000000000000000000000000009",
-    "Attributes": [],
-    "Description": "Soft-delete flag (BOOLEAN)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000023",
-    "ParentId": "GYMTC000000000000000000000000004",
-    "Name": "SegmentProfile",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "What type of customer; Segment classification and income"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000024",
-    "ParentId": "GYMTC000000000000000000000000023",
-    "Name": "SegmentType",
-    "PayanarssTypeId": "100000000000000000000000000000003",
-    "Attributes": [],
-    "Description": "Bodybuilders/General Fitness/Women-Only/CrossFit/Senior/Youth/Corporate/Athletes/24-Hour/Boutique (LOOKUP)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000025",
-    "ParentId": "GYMTC000000000000000000000000023",
-    "Name": "IncomeLevel",
-    "PayanarssTypeId": "100000000000000000000000000000003",
-    "Attributes": [],
-    "Description": "Budget/Mid-Range/Premium/Luxury (LOOKUP)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000026",
-    "ParentId": "GYMTC000000000000000000000000023",
-    "Name": "Occupation",
-    "PayanarssTypeId": "100000000000000000000000000000006",
-    "Attributes": [],
-    "Description": "Primary occupation of target segment (STRING)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000027",
-    "ParentId": "GYMTC000000000000000000000000004",
-    "Name": "AgeProfile",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "Age targeting; Minimum and maximum age range"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000028",
-    "ParentId": "GYMTC000000000000000000000000027",
-    "Name": "AgeRangeMin",
-    "PayanarssTypeId": "100000000000000000000000000000007",
-    "Attributes": [],
-    "Description": "Minimum target age (INTEGER)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000029",
-    "ParentId": "GYMTC000000000000000000000000027",
-    "Name": "AgeRangeMax",
-    "PayanarssTypeId": "100000000000000000000000000000007",
-    "Attributes": [],
-    "Description": "Maximum target age (INTEGER)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000030",
-    "ParentId": "GYMTC000000000000000000000000027",
-    "Name": "Gender",
-    "PayanarssTypeId": "100000000000000000000000000000003",
-    "Attributes": [],
-    "Description": "Male/Female/All (LOOKUP)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000031",
-    "ParentId": "GYMTC000000000000000000000000004",
-    "Name": "FitnessProfile",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "Fitness characteristics; Current fitness level of segment"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000032",
-    "ParentId": "GYMTC000000000000000000000000031",
-    "Name": "FitnessLevel",
-    "PayanarssTypeId": "100000000000000000000000000000003",
-    "Attributes": [],
-    "Description": "Beginner/Intermediate/Advanced/Professional (LOOKUP)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000033",
-    "ParentId": "GYMTC000000000000000000000000031",
-    "Name": "PrimaryGoal",
-    "PayanarssTypeId": "100000000000000000000000000000003",
-    "Attributes": [],
-    "Description": "Weight Loss/Muscle Gain/General Health/Sports Performance/Rehabilitation/Social (LOOKUP)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000034",
-    "ParentId": "GYMTC000000000000000000000000005",
-    "Name": "TrainingPreference",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "When and how long; Time, duration, frequency"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000035",
-    "ParentId": "GYMTC000000000000000000000000034",
-    "Name": "PreferredTrainingTime",
-    "PayanarssTypeId": "100000000000000000000000000000003",
-    "Attributes": [],
-    "Description": "Early Morning/Morning/Afternoon/Evening/Late Night/Flexible (LOOKUP)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000036",
-    "ParentId": "GYMTC000000000000000000000000034",
-    "Name": "SessionDurationMinutes",
-    "PayanarssTypeId": "100000000000000000000000000000007",
-    "Attributes": [],
-    "Description": "Average session duration in minutes (INTEGER)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000037",
-    "ParentId": "GYMTC000000000000000000000000034",
-    "Name": "WeeklyFrequency",
-    "PayanarssTypeId": "100000000000000000000000000000007",
-    "Attributes": [],
-    "Description": "Expected visits per week (INTEGER)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000038",
-    "ParentId": "GYMTC000000000000000000000000005",
-    "Name": "EngagementStyle",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "Group vs individual; Class and trainer preferences"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000039",
-    "ParentId": "GYMTC000000000000000000000000038",
-    "Name": "GroupClassPreference",
-    "PayanarssTypeId": "100000000000000000000000000000009",
-    "Attributes": [],
-    "Description": "Prefers group classes over individual training (BOOLEAN)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000040",
-    "ParentId": "GYMTC000000000000000000000000038",
-    "Name": "PersonalTrainerRequired",
-    "PayanarssTypeId": "100000000000000000000000000000009",
-    "Attributes": [],
-    "Description": "Requires personal trainer (BOOLEAN)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000041",
-    "ParentId": "GYMTC000000000000000000000000005",
-    "Name": "FacilityPreference",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "Equipment and amenity needs; What the segment expects"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000042",
-    "ParentId": "GYMTC000000000000000000000000041",
-    "Name": "EquipmentFocus",
-    "PayanarssTypeId": "100000000000000000000000000000003",
-    "Attributes": [],
-    "Description": "Free Weights/Machines/Cardio/Functional/Mixed (LOOKUP)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000043",
-    "ParentId": "GYMTC000000000000000000000000041",
-    "Name": "FacilityRequirements",
-    "PayanarssTypeId": "100000000000000000000000000000006",
-    "Attributes": [],
-    "Description": "Specific facility needs for this segment (STRING)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000044",
-    "ParentId": "GYMTC000000000000000000000000041",
-    "Name": "SpecialAmenities",
-    "PayanarssTypeId": "100000000000000000000000000000006",
-    "Attributes": [],
-    "Description": "Required amenities like sauna, pool, cafe, childcare (STRING)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000045",
-    "ParentId": "GYMTC000000000000000000000000006",
-    "Name": "BudgetProfile",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "Willingness to pay; Price sensitivity and budget range"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000046",
-    "ParentId": "GYMTC000000000000000000000000045",
-    "Name": "PriceSensitivity",
-    "PayanarssTypeId": "100000000000000000000000000000003",
-    "Attributes": [],
-    "Description": "Low/Medium/High (LOOKUP)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000047",
-    "ParentId": "GYMTC000000000000000000000000045",
-    "Name": "MonthlyBudgetMin",
-    "PayanarssTypeId": "100000000000000000000000000000007",
-    "Attributes": [],
-    "Description": "Minimum monthly willingness to pay (DECIMAL)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000048",
-    "ParentId": "GYMTC000000000000000000000000045",
-    "Name": "MonthlyBudgetMax",
-    "PayanarssTypeId": "100000000000000000000000000000007",
-    "Attributes": [],
-    "Description": "Maximum monthly willingness to pay (DECIMAL)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000049",
-    "ParentId": "GYMTC000000000000000000000000006",
-    "Name": "RevenueProfile",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "Revenue potential; Plan preference and upsell opportunity"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000050",
-    "ParentId": "GYMTC000000000000000000000000049",
-    "Name": "PreferredPlanType",
-    "PayanarssTypeId": "100000000000000000000000000000003",
-    "Attributes": [],
-    "Description": "Monthly/Quarterly/Annual/Pay-Per-Visit/Class-Pack (LOOKUP)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000051",
-    "ParentId": "GYMTC000000000000000000000000049",
-    "Name": "UpsellPotential",
-    "PayanarssTypeId": "100000000000000000000000000000003",
-    "Attributes": [],
-    "Description": "Low/Medium/High (LOOKUP)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000052",
-    "ParentId": "GYMTC000000000000000000000000007",
-    "Name": "Acquisition",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "How to attract; Channel and message strategy"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000053",
-    "ParentId": "GYMTC000000000000000000000000052",
-    "Name": "MarketingChannel",
-    "PayanarssTypeId": "100000000000000000000000000000003",
-    "Attributes": [],
-    "Description": "Social Media/Google Ads/Referral/Corporate Partnership/Local Flyers/Influencer (LOOKUP)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000054",
-    "ParentId": "GYMTC000000000000000000000000052",
-    "Name": "MarketingMessage",
-    "PayanarssTypeId": "100000000000000000000000000000006",
-    "Attributes": [],
-    "Description": "Key marketing message for this segment (STRING)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000055",
-    "ParentId": "GYMTC000000000000000000000000007",
-    "Name": "Retention",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "How to keep; Retention strategy and churn monitoring"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000056",
-    "ParentId": "GYMTC000000000000000000000000055",
-    "Name": "RetentionStrategy",
-    "PayanarssTypeId": "100000000000000000000000000000006",
-    "Attributes": [],
-    "Description": "Retention approach for this segment (STRING)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000057",
-    "ParentId": "GYMTC000000000000000000000000055",
-    "Name": "ChurnRiskLevel",
-    "PayanarssTypeId": "100000000000000000000000000000003",
-    "Attributes": [],
-    "Description": "Low/Medium/High (LOOKUP)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000058",
-    "ParentId": "GYMTC000000000000000000000000008",
-    "Name": "MarketSizing",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "Market opportunity; Total addressable and current penetration"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000059",
-    "ParentId": "GYMTC000000000000000000000000058",
-    "Name": "EstimatedMarketSize",
-    "PayanarssTypeId": "100000000000000000000000000000007",
-    "Attributes": [],
-    "Description": "Estimated number of potential customers in area (INTEGER)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000060",
-    "ParentId": "GYMTC000000000000000000000000058",
-    "Name": "CurrentMemberCount",
-    "PayanarssTypeId": "100000000000000000000000000000007",
-    "Attributes": [],
-    "Description": "Current members in this segment (INTEGER)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000061",
-    "ParentId": "GYMTC000000000000000000000000058",
-    "Name": "TargetMemberCount",
-    "PayanarssTypeId": "100000000000000000000000000000007",
-    "Attributes": [],
-    "Description": "Target members to acquire (INTEGER)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000062",
-    "ParentId": "GYMTC000000000000000000000000008",
-    "Name": "Performance",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "Conversion and lifetime; How well segment converts and retains"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000063",
-    "ParentId": "GYMTC000000000000000000000000062",
-    "Name": "ConversionRate",
-    "PayanarssTypeId": "100000000000000000000000000000007",
-    "Attributes": [],
-    "Description": "Expected lead-to-member conversion rate percentage (DECIMAL)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000064",
-    "ParentId": "GYMTC000000000000000000000000062",
-    "Name": "AverageLifetimeMonths",
-    "PayanarssTypeId": "100000000000000000000000000000007",
-    "Attributes": [],
-    "Description": "Average membership duration in months (DECIMAL)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000065",
-    "ParentId": "GYMTC000000000000000000000000009",
-    "Name": "CompetitorAnalysis",
-    "PayanarssTypeId": "100000000000000000000000000000006",
-    "Attributes": [],
-    "Description": "How competitors serve this segment (STRING)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000066",
-    "ParentId": "GYMTC000000000000000000000000009",
-    "Name": "Notes",
-    "PayanarssTypeId": "100000000000000000000000000000006",
-    "Attributes": [],
-    "Description": "Additional notes (STRING)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000067",
-    "ParentId": "GYMTC000000000000000000000000009",
-    "Name": "Photo",
-    "PayanarssTypeId": "100000000000000000000000000000010",
-    "Attributes": [],
-    "Description": "Segment representative image or marketing material (FILE)"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000068",
-    "ParentId": "GYMTC000000000000000000000000010",
-    "Name": "AutoGenerationRules",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "Automatic code and uniqueness; System-managed field rules"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000069",
-    "ParentId": "GYMTC000000000000000000000000068",
-    "Name": "AUTO-NUMBER: Code auto-generated in format TCS-YYYYMMDD-NNNN",
-    "PayanarssTypeId": "100000000000000000000000000000005",
-    "Attributes": [],
-    "Description": "Auto-number rule for TargetCustomer"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000070",
-    "ParentId": "GYMTC000000000000000000000000068",
-    "Name": "UNIQUE: Code must be unique",
-    "PayanarssTypeId": "100000000000000000000000000000005",
-    "Attributes": [],
-    "Description": "Uniqueness constraint on TargetCustomer code"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000071",
-    "ParentId": "GYMTC000000000000000000000000010",
-    "Name": "RequiredFieldRules",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "Mandatory field enforcement; Fields that must have values"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000072",
-    "ParentId": "GYMTC000000000000000000000000071",
-    "Name": "REQUIRED: Name is mandatory",
-    "PayanarssTypeId": "100000000000000000000000000000005",
-    "Attributes": [],
-    "Description": "Required field rule for TargetCustomer"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000073",
-    "ParentId": "GYMTC000000000000000000000000071",
-    "Name": "REQUIRED: SegmentType is mandatory",
-    "PayanarssTypeId": "100000000000000000000000000000005",
-    "Attributes": [],
-    "Description": "Required field rule for segment type"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000074",
-    "ParentId": "GYMTC000000000000000000000000071",
-    "Name": "REQUIRED: PrimaryGoal is mandatory",
-    "PayanarssTypeId": "100000000000000000000000000000005",
-    "Attributes": [],
-    "Description": "Required field rule for primary goal"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000075",
-    "ParentId": "GYMTC000000000000000000000000010",
-    "Name": "ValidationRules",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "Data integrity checks; Range and boundary validations"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000076",
-    "ParentId": "GYMTC000000000000000000000000075",
-    "Name": "RULE: VALIDATION: AgeRangeMax must be greater than AgeRangeMin",
-    "PayanarssTypeId": "100000000000000000000000000000005",
-    "Attributes": [],
-    "Description": "Age range validation rule"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000077",
-    "ParentId": "GYMTC000000000000000000000000075",
-    "Name": "RULE: VALIDATION: MonthlyBudgetMax must be greater than or equal to MonthlyBudgetMin",
-    "PayanarssTypeId": "100000000000000000000000000000005",
-    "Attributes": [],
-    "Description": "Budget range validation rule"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000078",
-    "ParentId": "GYMTC000000000000000000000000075",
-    "Name": "RULE: VALIDATION: ConversionRate must be between 0 and 100",
-    "PayanarssTypeId": "100000000000000000000000000000005",
-    "Attributes": [],
-    "Description": "Conversion rate range validation"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000079",
-    "ParentId": "GYMTC000000000000000000000000010",
-    "Name": "CalculationRules",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "Auto-computed fields; Derived values from other columns"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000080",
-    "ParentId": "GYMTC000000000000000000000000079",
-    "Name": "RULE: CALCULATION: MarketPenetration = (CurrentMemberCount / EstimatedMarketSize) * 100",
-    "PayanarssTypeId": "100000000000000000000000000000005",
-    "Attributes": [],
-    "Description": "Auto-calculate market penetration percentage"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000081",
-    "ParentId": "GYMTC000000000000000000000000079",
-    "Name": "RULE: CALCULATION: GrowthGap = TargetMemberCount - CurrentMemberCount",
-    "PayanarssTypeId": "100000000000000000000000000000005",
-    "Attributes": [],
-    "Description": "Auto-calculate remaining members to acquire"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000082",
-    "ParentId": "GYMTC000000000000000000000000079",
-    "Name": "RULE: CALCULATION: EstimatedMonthlyRevenue = CurrentMemberCount * MonthlyBudgetMin",
-    "PayanarssTypeId": "100000000000000000000000000000005",
-    "Attributes": [],
-    "Description": "Auto-calculate estimated revenue from segment"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000083",
-    "ParentId": "GYMTC000000000000000000000000079",
-    "Name": "RULE: CALCULATION: LifetimeValue = AverageLifetimeMonths * MonthlyBudgetMin",
-    "PayanarssTypeId": "100000000000000000000000000000005",
-    "Attributes": [],
-    "Description": "Auto-calculate customer lifetime value"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000084",
-    "ParentId": "GYMTC000000000000000000000000010",
-    "Name": "AlertRules",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "Notification triggers; Conditions that generate alerts"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000085",
-    "ParentId": "GYMTC000000000000000000000000084",
-    "Name": "ALERT: Notify when CurrentMemberCount exceeds TargetMemberCount",
-    "PayanarssTypeId": "100000000000000000000000000000005",
-    "Attributes": [],
-    "Description": "Target achievement alert"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000086",
-    "ParentId": "GYMTC000000000000000000000000084",
-    "Name": "ALERT: Notify when ChurnRiskLevel is High",
-    "PayanarssTypeId": "100000000000000000000000000000005",
-    "Attributes": [],
-    "Description": "High churn risk alert"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000087",
-    "ParentId": "GYMTC000000000000000000000000010",
-    "Name": "WorkflowRules",
-    "PayanarssTypeId": "100000000000000000000000000000002",
-    "Attributes": [],
-    "Description": "State management; Status transition constraints"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000088",
-    "ParentId": "GYMTC000000000000000000000000087",
-    "Name": "WORKFLOW: Status changes must follow valid transitions",
-    "PayanarssTypeId": "100000000000000000000000000000005",
-    "Attributes": [],
-    "Description": "Status workflow rule; Draft->Active->Inactive"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000089",
-    "ParentId": "GYMTC000000000000000000000000011",
-    "Name": "SegmentTypeLookupValues",
-    "PayanarssTypeId": "1000000000000000000000000000000031",
-    "Attributes": [],
-    "Description": "Lookup values for SegmentType column"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000090",
-    "ParentId": "GYMTC000000000000000000000000089",
-    "Name": "Bodybuilders",
-    "PayanarssTypeId": "1000000000000000000000000000000031",
-    "Attributes": [],
-    "Description": "Target customer segment: Serious weight trainers focused on muscle mass and strength"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000091",
-    "ParentId": "GYMTC000000000000000000000000089",
-    "Name": "General Fitness",
-    "PayanarssTypeId": "1000000000000000000000000000000031",
-    "Attributes": [],
-    "Description": "Target customer segment: Health-conscious individuals seeking overall fitness and wellness"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000092",
-    "ParentId": "GYMTC000000000000000000000000089",
-    "Name": "Women-Only",
-    "PayanarssTypeId": "1000000000000000000000000000000031",
-    "Attributes": [],
-    "Description": "Target customer segment: Female members preferring women-exclusive training environment"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000093",
-    "ParentId": "GYMTC000000000000000000000000089",
-    "Name": "CrossFit / Functional Training",
-    "PayanarssTypeId": "1000000000000000000000000000000031",
-    "Attributes": [],
-    "Description": "Target customer segment: High-intensity functional fitness enthusiasts"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000094",
-    "ParentId": "GYMTC000000000000000000000000089",
-    "Name": "Senior / Rehabilitation",
-    "PayanarssTypeId": "1000000000000000000000000000000031",
-    "Attributes": [],
-    "Description": "Target customer segment: Older adults and injury recovery focused members"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000095",
-    "ParentId": "GYMTC000000000000000000000000089",
-    "Name": "Youth / Teen Fitness",
-    "PayanarssTypeId": "1000000000000000000000000000000031",
-    "Attributes": [],
-    "Description": "Target customer segment: Young members aged 13-18 with age-appropriate programs"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000096",
-    "ParentId": "GYMTC000000000000000000000000089",
-    "Name": "Corporate / Office Workers",
-    "PayanarssTypeId": "1000000000000000000000000000000031",
-    "Attributes": [],
-    "Description": "Target customer segment: Working professionals seeking convenient fitness solutions"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000097",
-    "ParentId": "GYMTC000000000000000000000000089",
-    "Name": "Athletes / Sports Training",
-    "PayanarssTypeId": "1000000000000000000000000000000031",
-    "Attributes": [],
-    "Description": "Target customer segment: Competitive athletes requiring sport-specific training"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000098",
-    "ParentId": "GYMTC000000000000000000000000089",
-    "Name": "24-Hour / Budget",
-    "PayanarssTypeId": "1000000000000000000000000000000031",
-    "Attributes": [],
-    "Description": "Target customer segment: Cost-conscious members needing flexible access hours"
-  },
-  {
-    "Id": "GYMTC000000000000000000000000099",
-    "ParentId": "GYMTC000000000000000000000000089",
-    "Name": "Boutique / Luxury",
-    "PayanarssTypeId": "1000000000000000000000000000000031",
-    "Attributes": [],
-    "Description": "Target customer segment: Premium members expecting high-end experience and amenities"
   },
   {
     "Id": "100000000000000000000000000000008",
@@ -101869,46 +101099,6 @@
     "Description": null
   },
   {
-    "Id": "GYM2000000000000000000000000012",
-    "ParentId": "GYM2000000000000000000000000011",
-    "Name": "Recruit Gym Manager",
-    "PayanarssTypeId": "10000000000000000000000000000000111",
-    "Attributes": [],
-    "Description": null
-  },
-  {
-    "Id": "GYM2000000000000000000000000013",
-    "ParentId": "GYM2000000000000000000000000011",
-    "Name": "Recruit Front Desk Staff",
-    "PayanarssTypeId": "10000000000000000000000000000000111",
-    "Attributes": [],
-    "Description": null
-  },
-  {
-    "Id": "GYM2000000000000000000000000014",
-    "ParentId": "GYM2000000000000000000000000011",
-    "Name": "Recruit Certified Fitness Trainers",
-    "PayanarssTypeId": "10000000000000000000000000000000111",
-    "Attributes": [],
-    "Description": null
-  },
-  {
-    "Id": "GYM2000000000000000000000000015",
-    "ParentId": "GYM2000000000000000000000000011",
-    "Name": "Recruit Cleaning Staff",
-    "PayanarssTypeId": "10000000000000000000000000000000111",
-    "Attributes": [],
-    "Description": null
-  },
-  {
-    "Id": "GYM2000000000000000000000000016",
-    "ParentId": "GYM2000000000000000000000000011",
-    "Name": "Recruit Security Staff",
-    "PayanarssTypeId": "10000000000000000000000000000000111",
-    "Attributes": [],
-    "Description": null
-  },
-  {
     "Id": "GYM2000000000000000000000000017",
     "ParentId": "300000000000000000000000000000001",
     "Name": "Get Insurance",
@@ -105214,7 +104404,7 @@
   },
   {
     "Id": "GYMSEG000000000000000000001001",
-    "ParentId": "GYM2000000000000000000000000002",
+    "ParentId": "mn8mlohmr73qpjffvsk",
     "Name": "Bodybuilders",
     "PayanarssTypeId": "1000000000000000000000000000000031",
     "Attributes": [],
@@ -105270,7 +104460,7 @@
   },
   {
     "Id": "GYMSEG000000000000000000001008",
-    "ParentId": "GYM2000000000000000000000000002",
+    "ParentId": "mn8mlohmr73qpjffvsk",
     "Name": "General Fitness",
     "PayanarssTypeId": "1000000000000000000000000000000031",
     "Attributes": [],
@@ -105326,7 +104516,7 @@
   },
   {
     "Id": "GYMSEG000000000000000000001015",
-    "ParentId": "GYM2000000000000000000000000002",
+    "ParentId": "mn8mlohmr73qpjffvsk",
     "Name": "Women-Only",
     "PayanarssTypeId": "1000000000000000000000000000000031",
     "Attributes": [],
@@ -105382,7 +104572,7 @@
   },
   {
     "Id": "GYMSEG000000000000000000001022",
-    "ParentId": "GYM2000000000000000000000000002",
+    "ParentId": "mn8mlohmr73qpjffvsk",
     "Name": "CrossFit / Functional Training",
     "PayanarssTypeId": "1000000000000000000000000000000031",
     "Attributes": [],
@@ -105438,7 +104628,7 @@
   },
   {
     "Id": "GYMSEG000000000000000000001029",
-    "ParentId": "GYM2000000000000000000000000002",
+    "ParentId": "mn8mlohmr73qpjffvsk",
     "Name": "Senior / Rehabilitation",
     "PayanarssTypeId": "1000000000000000000000000000000031",
     "Attributes": [],
@@ -105494,7 +104684,7 @@
   },
   {
     "Id": "GYMSEG000000000000000000001036",
-    "ParentId": "GYM2000000000000000000000000002",
+    "ParentId": "mn8mlohmr73qpjffvsk",
     "Name": "Youth / Teen Fitness",
     "PayanarssTypeId": "1000000000000000000000000000000031",
     "Attributes": [],
@@ -105550,7 +104740,7 @@
   },
   {
     "Id": "GYMSEG000000000000000000001043",
-    "ParentId": "GYM2000000000000000000000000002",
+    "ParentId": "mn8mlohmr73qpjffvsk",
     "Name": "Corporate / Office Workers",
     "PayanarssTypeId": "1000000000000000000000000000000031",
     "Attributes": [],
@@ -105606,7 +104796,7 @@
   },
   {
     "Id": "GYMSEG000000000000000000001050",
-    "ParentId": "GYM2000000000000000000000000002",
+    "ParentId": "mn8mlohmr73qpjffvsk",
     "Name": "Athletes / Sports Training",
     "PayanarssTypeId": "1000000000000000000000000000000031",
     "Attributes": [],
@@ -105662,7 +104852,7 @@
   },
   {
     "Id": "GYMSEG000000000000000000001057",
-    "ParentId": "GYM2000000000000000000000000002",
+    "ParentId": "mn8mlohmr73qpjffvsk",
     "Name": "24-Hour / Budget",
     "PayanarssTypeId": "1000000000000000000000000000000031",
     "Attributes": [],
@@ -105718,7 +104908,7 @@
   },
   {
     "Id": "GYMSEG000000000000000000001064",
-    "ParentId": "GYM2000000000000000000000000002",
+    "ParentId": "mn8mlohmr73qpjffvsk",
     "Name": "Boutique / Luxury",
     "PayanarssTypeId": "1000000000000000000000000000000031",
     "Attributes": [],
@@ -111763,5 +110953,2713 @@
     "PayanarssTypeId": "10000000000000000000000000000000111",
     "Attributes": [],
     "Description": "Handle billing and invoicing for commercial cleaning contracts."
+  },
+  {
+    "Id": "mn7iappyroad67381wj",
+    "ParentId": "",
+    "Name": "TargetCustomerId",
+    "PayanarssTypeId": "100000000000000000000000000000018",
+    "Attributes": [],
+    "Description": "Unique identifier for target customer segment."
+  },
+  {
+    "Id": "mn7iappzoaqplmae0cl",
+    "ParentId": "",
+    "Name": "SegmentName",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": "Name of the customer segment."
+  },
+  {
+    "Id": "mn7iappzs5kbdp9951",
+    "ParentId": "GYMTC000000000000000000000000001",
+    "Name": "Description",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Detailed description of segment characteristics."
+  },
+  {
+    "Id": "mn7iappzcwm73row1qu",
+    "ParentId": "GYMTC000000000000000000000000001",
+    "Name": "IsActive",
+    "PayanarssTypeId": "100000000000000000000000000000009",
+    "Attributes": [],
+    "Description": "Whether this segment is currently active."
+  },
+  {
+    "Id": "mn7iappzddvs6fi68l",
+    "ParentId": "GYMTC000000000000000000000000001",
+    "Name": "PriorityLevel",
+    "PayanarssTypeId": "100000000000000000000000000000007",
+    "Attributes": [],
+    "Description": "Business priority ranking for this segment."
+  },
+  {
+    "Id": "mn8k50iju0ayyk5lsmd",
+    "ParentId": "",
+    "Name": "SegmentTypeId",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mn8kly5dlr5ew3y9ahh",
+    "ParentId": "GYMTC000000000000000000000000001",
+    "Name": "CustomerSegmentTypeName",
+    "PayanarssTypeId": "mn8mlohmr73qpjffvsk",
+    "Attributes": [],
+    "Description": "Customer Segment Type Name"
+  },
+  {
+    "Id": "mn8mlohmr73qpjffvsk",
+    "ParentId": "GYM2000000000000000000000000002",
+    "Name": "CustomerSegmentTypes",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": "Its purpose is to define the valid set of gym customer segment classifications that can be selected anywhere in the system where a segment needs to be identified."
+  },
+  {
+    "Id": "mn9zuhjlygof1y9ixja",
+    "ParentId": "",
+    "Name": "Id",
+    "PayanarssTypeId": "100000000000000000000000000000018",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mna09ro0xvly37lkoo",
+    "ParentId": "GYMTC000000000000000000000000001",
+    "Name": "Id",
+    "PayanarssTypeId": "100000000000000000000000000000018",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mnogqaubskwllgxcmu",
+    "ParentId": "GYM2000000000000000000000000221",
+    "Name": "GymEquipmentMaster",
+    "PayanarssTypeId": "100000000000000000000000000000001",
+    "Attributes": [],
+    "Description": "Master table containing all gym equipment inventory and specifications."
+  },
+  {
+    "Id": "mnogqaubby4o92qdwyi",
+    "ParentId": "mnogqaubskwllgxcmu",
+    "Name": "EquipmentId",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Unique equipment identifier."
+  },
+  {
+    "Id": "mnogqaub2zkwe1dd54i",
+    "ParentId": "mnogqaubskwllgxcmu",
+    "Name": "EquipmentName",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Name of the gym equipment."
+  },
+  {
+    "Id": "mnogqaubf3e8yj1res",
+    "ParentId": "mnogqaubskwllgxcmu",
+    "Name": "EquipmentCode",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Internal equipment code reference."
+  },
+  {
+    "Id": "mnogqaubgdi9vgzikq",
+    "ParentId": "mnogqaubskwllgxcmu",
+    "Name": "Category",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Equipment category classification."
+  },
+  {
+    "Id": "mnogqauby8ucv9kiga",
+    "ParentId": "mnogqaubskwllgxcmu",
+    "Name": "Brand",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Equipment manufacturer brand."
+  },
+  {
+    "Id": "mnogqauby0s5lazz0f",
+    "ParentId": "mnogqaubskwllgxcmu",
+    "Name": "Model",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Specific equipment model number."
+  },
+  {
+    "Id": "mnogqaubj7eqylj7z88",
+    "ParentId": "mnogqaubskwllgxcmu",
+    "Name": "SerialNumber",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Equipment serial number."
+  },
+  {
+    "Id": "mnogqaub1z99h6mv7gm",
+    "ParentId": "mnogqaubskwllgxcmu",
+    "Name": "PurchaseDate",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Date equipment was purchased."
+  },
+  {
+    "Id": "mnogqaub67j9fd53o5o",
+    "ParentId": "mnogqaubskwllgxcmu",
+    "Name": "PurchasePrice",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Original purchase cost amount."
+  },
+  {
+    "Id": "mnogqaub8ej0epzadg",
+    "ParentId": "mnogqaubskwllgxcmu",
+    "Name": "WarrantyPeriod",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Equipment warranty duration in months."
+  },
+  {
+    "Id": "mnogqaubgzhaebrwrq",
+    "ParentId": "mnogqaubskwllgxcmu",
+    "Name": "Status",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Current operational status of equipment."
+  },
+  {
+    "Id": "mnogqaubnqmw4fyeoql",
+    "ParentId": "mnogqaubskwllgxcmu",
+    "Name": "MaintenanceSchedule",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Scheduled maintenance frequency requirements."
+  },
+  {
+    "Id": "CONT00000000000000000000000000001",
+    "ParentId": "1000000000000000000000000000000331",
+    "Name": "Asia",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CONT00000000000000000000000000002",
+    "ParentId": "1000000000000000000000000000000331",
+    "Name": "Europe",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CONT00000000000000000000000000003",
+    "ParentId": "1000000000000000000000000000000331",
+    "Name": "Africa",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CONT00000000000000000000000000004",
+    "ParentId": "1000000000000000000000000000000331",
+    "Name": "North America",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CONT00000000000000000000000000005",
+    "ParentId": "1000000000000000000000000000000331",
+    "Name": "South America",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CONT00000000000000000000000000006",
+    "ParentId": "1000000000000000000000000000000331",
+    "Name": "Oceania",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "REG000000000000000000000000000101",
+    "ParentId": "CONT00000000000000000000000000001",
+    "Name": "Middle East",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "REG000000000000000000000000000102",
+    "ParentId": "CONT00000000000000000000000000001",
+    "Name": "South Asia",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "REG000000000000000000000000000103",
+    "ParentId": "CONT00000000000000000000000000001",
+    "Name": "Southeast Asia",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "REG000000000000000000000000000104",
+    "ParentId": "CONT00000000000000000000000000001",
+    "Name": "East Asia",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "REG000000000000000000000000000105",
+    "ParentId": "CONT00000000000000000000000000001",
+    "Name": "Central Asia",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "REG000000000000000000000000000201",
+    "ParentId": "CONT00000000000000000000000000002",
+    "Name": "Western Europe",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "REG000000000000000000000000000202",
+    "ParentId": "CONT00000000000000000000000000002",
+    "Name": "Eastern Europe",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "REG000000000000000000000000000203",
+    "ParentId": "CONT00000000000000000000000000002",
+    "Name": "Northern Europe",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "REG000000000000000000000000000204",
+    "ParentId": "CONT00000000000000000000000000002",
+    "Name": "Southern Europe",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "REG000000000000000000000000000301",
+    "ParentId": "CONT00000000000000000000000000003",
+    "Name": "North Africa",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "REG000000000000000000000000000302",
+    "ParentId": "CONT00000000000000000000000000003",
+    "Name": "West Africa",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "REG000000000000000000000000000303",
+    "ParentId": "CONT00000000000000000000000000003",
+    "Name": "East Africa",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "REG000000000000000000000000000304",
+    "ParentId": "CONT00000000000000000000000000003",
+    "Name": "Southern Africa",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "REG000000000000000000000000000401",
+    "ParentId": "CONT00000000000000000000000000004",
+    "Name": "Northern America",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "REG000000000000000000000000000402",
+    "ParentId": "CONT00000000000000000000000000004",
+    "Name": "Central America",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "REG000000000000000000000000000403",
+    "ParentId": "CONT00000000000000000000000000004",
+    "Name": "Caribbean",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "REG000000000000000000000000000501",
+    "ParentId": "CONT00000000000000000000000000005",
+    "Name": "Northern South America",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "REG000000000000000000000000000502",
+    "ParentId": "CONT00000000000000000000000000005",
+    "Name": "Southern South America",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "REG000000000000000000000000000601",
+    "ParentId": "CONT00000000000000000000000000006",
+    "Name": "Australia & New Zealand",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "REG000000000000000000000000000602",
+    "ParentId": "CONT00000000000000000000000000006",
+    "Name": "Pacific Islands",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000001",
+    "ParentId": "REG000000000000000000000000000101",
+    "Name": "United Arab Emirates",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000002",
+    "ParentId": "REG000000000000000000000000000101",
+    "Name": "Saudi Arabia",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000003",
+    "ParentId": "REG000000000000000000000000000101",
+    "Name": "Qatar",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000004",
+    "ParentId": "REG000000000000000000000000000101",
+    "Name": "Kuwait",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000005",
+    "ParentId": "REG000000000000000000000000000101",
+    "Name": "Bahrain",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000006",
+    "ParentId": "REG000000000000000000000000000101",
+    "Name": "Oman",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000007",
+    "ParentId": "REG000000000000000000000000000101",
+    "Name": "Jordan",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000008",
+    "ParentId": "REG000000000000000000000000000101",
+    "Name": "Lebanon",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000009",
+    "ParentId": "REG000000000000000000000000000101",
+    "Name": "Iraq",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000010",
+    "ParentId": "REG000000000000000000000000000101",
+    "Name": "Syria",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000011",
+    "ParentId": "REG000000000000000000000000000101",
+    "Name": "Yemen",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000012",
+    "ParentId": "REG000000000000000000000000000101",
+    "Name": "Iran",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000101",
+    "ParentId": "REG000000000000000000000000000102",
+    "Name": "India",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000102",
+    "ParentId": "REG000000000000000000000000000102",
+    "Name": "Pakistan",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000103",
+    "ParentId": "REG000000000000000000000000000102",
+    "Name": "Bangladesh",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000104",
+    "ParentId": "REG000000000000000000000000000102",
+    "Name": "Sri Lanka",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000105",
+    "ParentId": "REG000000000000000000000000000102",
+    "Name": "Nepal",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000106",
+    "ParentId": "REG000000000000000000000000000102",
+    "Name": "Afghanistan",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000107",
+    "ParentId": "REG000000000000000000000000000102",
+    "Name": "Maldives",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000201",
+    "ParentId": "REG000000000000000000000000000103",
+    "Name": "Philippines",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000202",
+    "ParentId": "REG000000000000000000000000000103",
+    "Name": "Indonesia",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000203",
+    "ParentId": "REG000000000000000000000000000103",
+    "Name": "Malaysia",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000204",
+    "ParentId": "REG000000000000000000000000000103",
+    "Name": "Thailand",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000205",
+    "ParentId": "REG000000000000000000000000000103",
+    "Name": "Vietnam",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000206",
+    "ParentId": "REG000000000000000000000000000103",
+    "Name": "Singapore",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000207",
+    "ParentId": "REG000000000000000000000000000103",
+    "Name": "Myanmar",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000208",
+    "ParentId": "REG000000000000000000000000000103",
+    "Name": "Cambodia",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000301",
+    "ParentId": "REG000000000000000000000000000104",
+    "Name": "China",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000302",
+    "ParentId": "REG000000000000000000000000000104",
+    "Name": "Japan",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000303",
+    "ParentId": "REG000000000000000000000000000104",
+    "Name": "South Korea",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000304",
+    "ParentId": "REG000000000000000000000000000104",
+    "Name": "Taiwan",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000305",
+    "ParentId": "REG000000000000000000000000000104",
+    "Name": "Hong Kong",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000401",
+    "ParentId": "REG000000000000000000000000000105",
+    "Name": "Kazakhstan",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000402",
+    "ParentId": "REG000000000000000000000000000105",
+    "Name": "Uzbekistan",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000403",
+    "ParentId": "REG000000000000000000000000000105",
+    "Name": "Azerbaijan",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000501",
+    "ParentId": "REG000000000000000000000000000201",
+    "Name": "United Kingdom",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000502",
+    "ParentId": "REG000000000000000000000000000201",
+    "Name": "Germany",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000503",
+    "ParentId": "REG000000000000000000000000000201",
+    "Name": "France",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000504",
+    "ParentId": "REG000000000000000000000000000201",
+    "Name": "Netherlands",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000505",
+    "ParentId": "REG000000000000000000000000000201",
+    "Name": "Belgium",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000506",
+    "ParentId": "REG000000000000000000000000000201",
+    "Name": "Switzerland",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000507",
+    "ParentId": "REG000000000000000000000000000201",
+    "Name": "Austria",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000508",
+    "ParentId": "REG000000000000000000000000000201",
+    "Name": "Ireland",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000601",
+    "ParentId": "REG000000000000000000000000000202",
+    "Name": "Russia",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000602",
+    "ParentId": "REG000000000000000000000000000202",
+    "Name": "Poland",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000603",
+    "ParentId": "REG000000000000000000000000000202",
+    "Name": "Ukraine",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000604",
+    "ParentId": "REG000000000000000000000000000202",
+    "Name": "Czech Republic",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000605",
+    "ParentId": "REG000000000000000000000000000202",
+    "Name": "Romania",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000701",
+    "ParentId": "REG000000000000000000000000000203",
+    "Name": "Sweden",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000702",
+    "ParentId": "REG000000000000000000000000000203",
+    "Name": "Norway",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000703",
+    "ParentId": "REG000000000000000000000000000203",
+    "Name": "Denmark",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000704",
+    "ParentId": "REG000000000000000000000000000203",
+    "Name": "Finland",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000801",
+    "ParentId": "REG000000000000000000000000000204",
+    "Name": "Italy",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000802",
+    "ParentId": "REG000000000000000000000000000204",
+    "Name": "Spain",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000803",
+    "ParentId": "REG000000000000000000000000000204",
+    "Name": "Portugal",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000804",
+    "ParentId": "REG000000000000000000000000000204",
+    "Name": "Greece",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000805",
+    "ParentId": "REG000000000000000000000000000204",
+    "Name": "Turkey",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000901",
+    "ParentId": "REG000000000000000000000000000301",
+    "Name": "Egypt",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000902",
+    "ParentId": "REG000000000000000000000000000301",
+    "Name": "Morocco",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000903",
+    "ParentId": "REG000000000000000000000000000301",
+    "Name": "Tunisia",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000904",
+    "ParentId": "REG000000000000000000000000000301",
+    "Name": "Libya",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000905",
+    "ParentId": "REG000000000000000000000000000301",
+    "Name": "Algeria",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000000906",
+    "ParentId": "REG000000000000000000000000000301",
+    "Name": "Sudan",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001001",
+    "ParentId": "REG000000000000000000000000000302",
+    "Name": "Nigeria",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001002",
+    "ParentId": "REG000000000000000000000000000302",
+    "Name": "Ghana",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001003",
+    "ParentId": "REG000000000000000000000000000302",
+    "Name": "Senegal",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001004",
+    "ParentId": "REG000000000000000000000000000302",
+    "Name": "Ivory Coast",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001101",
+    "ParentId": "REG000000000000000000000000000303",
+    "Name": "Ethiopia",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001102",
+    "ParentId": "REG000000000000000000000000000303",
+    "Name": "Kenya",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001103",
+    "ParentId": "REG000000000000000000000000000303",
+    "Name": "Tanzania",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001104",
+    "ParentId": "REG000000000000000000000000000303",
+    "Name": "Uganda",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001201",
+    "ParentId": "REG000000000000000000000000000304",
+    "Name": "South Africa",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001202",
+    "ParentId": "REG000000000000000000000000000304",
+    "Name": "Zimbabwe",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001203",
+    "ParentId": "REG000000000000000000000000000304",
+    "Name": "Zambia",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001204",
+    "ParentId": "REG000000000000000000000000000304",
+    "Name": "Mozambique",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001301",
+    "ParentId": "REG000000000000000000000000000401",
+    "Name": "United States",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001302",
+    "ParentId": "REG000000000000000000000000000401",
+    "Name": "Canada",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001303",
+    "ParentId": "REG000000000000000000000000000401",
+    "Name": "Mexico",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001401",
+    "ParentId": "REG000000000000000000000000000402",
+    "Name": "Guatemala",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001402",
+    "ParentId": "REG000000000000000000000000000402",
+    "Name": "Costa Rica",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001403",
+    "ParentId": "REG000000000000000000000000000402",
+    "Name": "Panama",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001501",
+    "ParentId": "REG000000000000000000000000000403",
+    "Name": "Cuba",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001502",
+    "ParentId": "REG000000000000000000000000000403",
+    "Name": "Jamaica",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001503",
+    "ParentId": "REG000000000000000000000000000403",
+    "Name": "Trinidad and Tobago",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001601",
+    "ParentId": "REG000000000000000000000000000501",
+    "Name": "Brazil",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001602",
+    "ParentId": "REG000000000000000000000000000501",
+    "Name": "Colombia",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001603",
+    "ParentId": "REG000000000000000000000000000501",
+    "Name": "Venezuela",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001604",
+    "ParentId": "REG000000000000000000000000000501",
+    "Name": "Peru",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001701",
+    "ParentId": "REG000000000000000000000000000502",
+    "Name": "Argentina",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001702",
+    "ParentId": "REG000000000000000000000000000502",
+    "Name": "Chile",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001703",
+    "ParentId": "REG000000000000000000000000000502",
+    "Name": "Uruguay",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001801",
+    "ParentId": "REG000000000000000000000000000601",
+    "Name": "Australia",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001802",
+    "ParentId": "REG000000000000000000000000000601",
+    "Name": "New Zealand",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001901",
+    "ParentId": "REG000000000000000000000000000602",
+    "Name": "Fiji",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "CTRY0000000000000000000000001902",
+    "ParentId": "REG000000000000000000000000000602",
+    "Name": "Papua New Guinea",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000021",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "FitnessGoal",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": "Member's primary fitness objective"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000022",
+    "ParentId": "GYMMBR00000000000000000000000021",
+    "Name": "Weight Loss",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000023",
+    "ParentId": "GYMMBR00000000000000000000000021",
+    "Name": "Muscle Gain",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000024",
+    "ParentId": "GYMMBR00000000000000000000000021",
+    "Name": "Endurance",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000025",
+    "ParentId": "GYMMBR00000000000000000000000021",
+    "Name": "Flexibility",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000026",
+    "ParentId": "GYMMBR00000000000000000000000021",
+    "Name": "General Fitness",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000027",
+    "ParentId": "GYMMBR00000000000000000000000021",
+    "Name": "Rehabilitation",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000028",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "FitnessLevel",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": "Self-declared or assessed fitness level at time of joining"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000029",
+    "ParentId": "GYMMBR00000000000000000000000028",
+    "Name": "Beginner",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000030",
+    "ParentId": "GYMMBR00000000000000000000000028",
+    "Name": "Intermediate",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000031",
+    "ParentId": "GYMMBR00000000000000000000000028",
+    "Name": "Advanced",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000051",
+    "ParentId": "GYMMBR00000000000000000000000022",
+    "Name": "Assess Current Weight and BMI",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Record member's current weight, height and BMI at time of joining as baseline for Weight Loss goal tracking"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000052",
+    "ParentId": "GYMMBR00000000000000000000000022",
+    "Name": "Set Weight Loss Target",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Define target weight and timeline for the member's weight loss plan"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000053",
+    "ParentId": "GYMMBR00000000000000000000000022",
+    "Name": "Assign Cardio Training Plan",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Assign a structured cardio program suited to the member's weight loss goal and current fitness level"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000061",
+    "ParentId": "GYMMBR00000000000000000000000023",
+    "Name": "Record Body Measurements",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Capture chest, waist, arm and leg measurements as baseline for muscle gain tracking"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000062",
+    "ParentId": "GYMMBR00000000000000000000000023",
+    "Name": "Set Muscle Gain Targets",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Define target muscle groups and strength milestones for the member"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000063",
+    "ParentId": "GYMMBR00000000000000000000000023",
+    "Name": "Assign Strength Training Plan",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Assign a progressive overload strength training plan aligned to muscle gain goal"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000071",
+    "ParentId": "GYMMBR00000000000000000000000024",
+    "Name": "Record Baseline Cardio Performance",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Record resting heart rate, VO2 max estimate and baseline run/cycle time for endurance tracking"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000072",
+    "ParentId": "GYMMBR00000000000000000000000024",
+    "Name": "Set Endurance Milestones",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Define distance or time targets e.g. run 10km, cycle 50km, complete a half marathon"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000073",
+    "ParentId": "GYMMBR00000000000000000000000024",
+    "Name": "Assign Endurance Training Plan",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Assign a periodised endurance program with progressive cardio sessions"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000081",
+    "ParentId": "GYMMBR00000000000000000000000025",
+    "Name": "Assess Current Flexibility Range",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Measure current range of motion in key joints as baseline for flexibility tracking"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000082",
+    "ParentId": "GYMMBR00000000000000000000000025",
+    "Name": "Set Flexibility Goals",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Define flexibility targets e.g. full splits, improved hamstring reach, shoulder mobility"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000083",
+    "ParentId": "GYMMBR00000000000000000000000025",
+    "Name": "Assign Stretching and Yoga Plan",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Assign a daily stretching and yoga routine suited to the member's flexibility goal"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000091",
+    "ParentId": "GYMMBR00000000000000000000000026",
+    "Name": "Record General Health Baseline",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Record general health indicators — weight, resting heart rate, energy levels — as starting point"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000092",
+    "ParentId": "GYMMBR00000000000000000000000026",
+    "Name": "Assign General Fitness Plan",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Assign a balanced program combining cardio, strength and flexibility for general wellbeing"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000093",
+    "ParentId": "GYMMBR00000000000000000000000026",
+    "Name": "Schedule Monthly Fitness Review",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Set a recurring monthly check-in with trainer to review overall progress and adjust plan"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000101",
+    "ParentId": "GYMMBR00000000000000000000000027",
+    "Name": "Collect Medical Clearance",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Obtain doctor's clearance letter or physiotherapy referral before starting rehabilitation program"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000102",
+    "ParentId": "GYMMBR00000000000000000000000027",
+    "Name": "Record Injury or Condition Details",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Document the member's injury, condition or post-surgery status to inform safe training plan"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000103",
+    "ParentId": "GYMMBR00000000000000000000000027",
+    "Name": "Assign Rehabilitation Exercise Plan",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Assign a low-impact rehabilitation program designed in coordination with physiotherapy guidelines"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000111",
+    "ParentId": "GYMMBR00000000000000000000000029",
+    "Name": "Conduct Beginner Orientation Session",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Introduce beginner member to gym equipment, safety rules and basic exercise technique"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000112",
+    "ParentId": "GYMMBR00000000000000000000000029",
+    "Name": "Assign Beginner Training Plan",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Assign a structured beginner program with light weights, basic movements and adequate rest days"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000113",
+    "ParentId": "GYMMBR00000000000000000000000029",
+    "Name": "Schedule Weekly Trainer Check-In",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Set weekly trainer check-in for the first month to monitor beginner progress and correct form"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000121",
+    "ParentId": "GYMMBR00000000000000000000000030",
+    "Name": "Review Previous Training History",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Collect information on member's previous training background and current performance levels"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000122",
+    "ParentId": "GYMMBR00000000000000000000000030",
+    "Name": "Assign Intermediate Training Plan",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Assign a progressive intermediate program building on existing fitness base with increased intensity"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000123",
+    "ParentId": "GYMMBR00000000000000000000000030",
+    "Name": "Set Performance Benchmarks",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Define measurable benchmarks e.g. squat 1RM, 5km run time to track intermediate progression"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000131",
+    "ParentId": "GYMMBR00000000000000000000000031",
+    "Name": "Conduct Advanced Fitness Assessment",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Run a comprehensive fitness assessment including strength, VO2 max and body composition tests"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000132",
+    "ParentId": "GYMMBR00000000000000000000000031",
+    "Name": "Assign Advanced Periodised Program",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Assign a periodised advanced training program with mesocycles for strength, hypertrophy and deload"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000133",
+    "ParentId": "GYMMBR00000000000000000000000031",
+    "Name": "Track Competition or Peak Performance Goals",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Set competition dates or peak performance targets and build training plan backwards from event date"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000001",
+    "ParentId": "GYM2000000000000000000000000278",
+    "Name": "MemberProfile",
+    "PayanarssTypeId": "100000000000000000000000000000001",
+    "Attributes": [],
+    "Description": "Core master record for each gym member. One record per member. All other member-related tables reference this by MemberId."
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000002",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "MemberId",
+    "PayanarssTypeId": "100000000000000000000000000000018",
+    "Attributes": [],
+    "Description": "Auto-generated unique member identifier in format MBR-YYYYMMDD-NNNN"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000003",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "FirstName",
+    "PayanarssTypeId": "100000000000000000000000000000006",
+    "Attributes": [],
+    "Description": "Member's legal first name"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000004",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "LastName",
+    "PayanarssTypeId": "100000000000000000000000000000006",
+    "Attributes": [],
+    "Description": "Member's legal last name"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000005",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "DateOfBirth",
+    "PayanarssTypeId": "100000000000000000000000000000008",
+    "Attributes": [],
+    "Description": "Member's date of birth — used to calculate age and verify age eligibility"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000006",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "Gender",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": "Member's gender — lookup value"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000007",
+    "ParentId": "GYMMBR00000000000000000000000006",
+    "Name": "Male",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000008",
+    "ParentId": "GYMMBR00000000000000000000000006",
+    "Name": "Female",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000009",
+    "ParentId": "GYMMBR00000000000000000000000006",
+    "Name": "Prefer Not to Say",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000010",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "NationalityId",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": "Member's nationality — references common nationality lookup"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000011",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "NationalId",
+    "PayanarssTypeId": "100000000000000000000000000000006",
+    "Attributes": [],
+    "Description": "Emirates ID, passport number, or national ID card number"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000012",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "IdType",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": "Type of identification document provided"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000013",
+    "ParentId": "GYMMBR00000000000000000000000012",
+    "Name": "Emirates ID",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000014",
+    "ParentId": "GYMMBR00000000000000000000000012",
+    "Name": "Passport",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000015",
+    "ParentId": "GYMMBR00000000000000000000000012",
+    "Name": "National ID",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000016",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "MobileNumber",
+    "PayanarssTypeId": "100000000000000000000000000000006",
+    "Attributes": [],
+    "Description": "Primary mobile number including country code e.g. +971-50-XXXXXXX"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000017",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "Email",
+    "PayanarssTypeId": "100000000000000000000000000000006",
+    "Attributes": [],
+    "Description": "Member's email address — used for invoices, reminders, communications"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000018",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "Address",
+    "PayanarssTypeId": "100000000000000000000000000000006",
+    "Attributes": [],
+    "Description": "Member's residential address"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000019",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "City",
+    "PayanarssTypeId": "100000000000000000000000000000006",
+    "Attributes": [],
+    "Description": "City of residence"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000020",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "CustomerSegmentId",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": "Which customer segment this member belongs to — references existing segment lookup (Bodybuilders, General Fitness, Women-Only etc.)"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000032",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "Photo",
+    "PayanarssTypeId": "100000000000000000000000000000010",
+    "Attributes": [],
+    "Description": "Member profile photo — used for ID verification at entry"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000033",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "JoinDate",
+    "PayanarssTypeId": "100000000000000000000000000000008",
+    "Attributes": [],
+    "Description": "Date the member first registered at the gym"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000034",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "MembershipStatus",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": "Current membership status"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000035",
+    "ParentId": "GYMMBR00000000000000000000000034",
+    "Name": "Active",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000036",
+    "ParentId": "GYMMBR00000000000000000000000034",
+    "Name": "Suspended",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000037",
+    "ParentId": "GYMMBR00000000000000000000000034",
+    "Name": "Expired",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000038",
+    "ParentId": "GYMMBR00000000000000000000000034",
+    "Name": "Cancelled",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000039",
+    "ParentId": "GYMMBR00000000000000000000000034",
+    "Name": "Frozen",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": "Member has temporarily paused membership"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000040",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "AssignedTrainerId",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": "Personal trainer assigned to this member — references StaffProfile"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000041",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "ReferredByMemberId",
+    "PayanarssTypeId": "100000000000000000000000000000006",
+    "Attributes": [],
+    "Description": "MemberId of the member who referred this person — for referral tracking"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000042",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "Notes",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Free-text notes about the member — injuries, preferences, special needs"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000043",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "CreatedBy",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": "Staff member who created this record"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000044",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "CreatedOn",
+    "PayanarssTypeId": "100000000000000000000000000000008",
+    "Attributes": [],
+    "Description": "Timestamp when record was created"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000045",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "IsActive",
+    "PayanarssTypeId": "100000000000000000000000000000009",
+    "Attributes": [],
+    "Description": "Whether this member record is active in the system"
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000046",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "AUTO-NUMBER: MemberId format MBR-YYYYMMDD-NNNN",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000047",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "UNIQUE: Email must be unique per gym",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000048",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "UNIQUE: MobileNumber must be unique per gym",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000049",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "REQUIRED: FirstName, LastName, MobileNumber, DateOfBirth, CustomerSegmentId are mandatory",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMMBR00000000000000000000000050",
+    "ParentId": "GYMMBR00000000000000000000000001",
+    "Name": "ALERT: Notify when membership is 7 days from expiry",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mnpotarnbt8nuuro9hl",
+    "ParentId": "300000000000000000000000000000001",
+    "Name": "Settings",
+    "PayanarssTypeId": "1000000000000000000000000000000041",
+    "Attributes": [],
+    "Description": "Business Settings",
+    "requiredFlags": [],
+    "alwaysOn": true
+  },
+  {
+    "Id": "1000000000000000000000000000000041",
+    "ParentId": "MAAERP0000000000000000000000001",
+    "Name": "BusinessSettings",
+    "PayanarssTypeId": "1000000000000000000000000000000041",
+    "Attributes": [],
+    "Description": "Global root for all business settings across all sectors. Contains lookup values and master data common to every business."
+  },
+  {
+    "Id": "GBL000000000000000000000000000001",
+    "ParentId": "1000000000000000000000000000000041",
+    "Name": "Currency",
+    "PayanarssTypeId": "1000000000000000000000000000000041",
+    "Attributes": [],
+    "Description": "Supported currencies across all sectors"
+  },
+  {
+    "Id": "GBL000000000000000000000000000002",
+    "ParentId": "GBL000000000000000000000000000001",
+    "Name": "AED - UAE Dirham",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GBL000000000000000000000000000003",
+    "ParentId": "GBL000000000000000000000000000001",
+    "Name": "USD - US Dollar",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GBL000000000000000000000000000004",
+    "ParentId": "GBL000000000000000000000000000001",
+    "Name": "EUR - Euro",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GBL000000000000000000000000000005",
+    "ParentId": "GBL000000000000000000000000000001",
+    "Name": "GBP - British Pound",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GBL000000000000000000000000000006",
+    "ParentId": "GBL000000000000000000000000000001",
+    "Name": "SAR - Saudi Riyal",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GBL000000000000000000000000000007",
+    "ParentId": "GBL000000000000000000000000000001",
+    "Name": "INR - Indian Rupee",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GBL000000000000000000000000000010",
+    "ParentId": "1000000000000000000000000000000041",
+    "Name": "Language",
+    "PayanarssTypeId": "1000000000000000000000000000000041",
+    "Attributes": [],
+    "Description": "Supported languages for the business interface"
+  },
+  {
+    "Id": "GBL000000000000000000000000000011",
+    "ParentId": "GBL000000000000000000000000000010",
+    "Name": "English",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GBL000000000000000000000000000012",
+    "ParentId": "GBL000000000000000000000000000010",
+    "Name": "Arabic",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GBL000000000000000000000000000013",
+    "ParentId": "GBL000000000000000000000000000010",
+    "Name": "Hindi",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GBL000000000000000000000000000014",
+    "ParentId": "GBL000000000000000000000000000010",
+    "Name": "French",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GBL000000000000000000000000000020",
+    "ParentId": "1000000000000000000000000000000041",
+    "Name": "TaxRate",
+    "PayanarssTypeId": "1000000000000000000000000000000041",
+    "Attributes": [],
+    "Description": "Standard tax rate types applicable across all business sectors"
+  },
+  {
+    "Id": "GBL000000000000000000000000000021",
+    "ParentId": "GBL000000000000000000000000000020",
+    "Name": "VAT 5%",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": "UAE standard VAT rate"
+  },
+  {
+    "Id": "GBL000000000000000000000000000022",
+    "ParentId": "GBL000000000000000000000000000020",
+    "Name": "VAT 15%",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": "Saudi Arabia standard VAT rate"
+  },
+  {
+    "Id": "GBL000000000000000000000000000023",
+    "ParentId": "GBL000000000000000000000000000020",
+    "Name": "Tax Exempt",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": "Zero-rated or exempt transactions"
+  },
+  {
+    "Id": "GBL000000000000000000000000000030",
+    "ParentId": "1000000000000000000000000000000041",
+    "Name": "PaymentMethod",
+    "PayanarssTypeId": "1000000000000000000000000000000041",
+    "Attributes": [],
+    "Description": "Payment methods accepted across all business sectors"
+  },
+  {
+    "Id": "GBL000000000000000000000000000031",
+    "ParentId": "GBL000000000000000000000000000030",
+    "Name": "Cash",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GBL000000000000000000000000000032",
+    "ParentId": "GBL000000000000000000000000000030",
+    "Name": "Credit Card",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GBL000000000000000000000000000033",
+    "ParentId": "GBL000000000000000000000000000030",
+    "Name": "Debit Card",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GBL000000000000000000000000000034",
+    "ParentId": "GBL000000000000000000000000000030",
+    "Name": "Bank Transfer",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GBL000000000000000000000000000035",
+    "ParentId": "GBL000000000000000000000000000030",
+    "Name": "Online Payment",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GBL000000000000000000000000000036",
+    "ParentId": "GBL000000000000000000000000000030",
+    "Name": "Cheque",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GBL000000000000000000000000000040",
+    "ParentId": "1000000000000000000000000000000041",
+    "Name": "RecordStatus",
+    "PayanarssTypeId": "1000000000000000000000000000000041",
+    "Attributes": [],
+    "Description": "Standard record status values shared across all tables in all sectors"
+  },
+  {
+    "Id": "GBL000000000000000000000000000041",
+    "ParentId": "GBL000000000000000000000000000040",
+    "Name": "Active",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GBL000000000000000000000000000042",
+    "ParentId": "GBL000000000000000000000000000040",
+    "Name": "Inactive",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GBL000000000000000000000000000043",
+    "ParentId": "GBL000000000000000000000000000040",
+    "Name": "Pending",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GBL000000000000000000000000000044",
+    "ParentId": "GBL000000000000000000000000000040",
+    "Name": "Cancelled",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GBL000000000000000000000000000045",
+    "ParentId": "GBL000000000000000000000000000040",
+    "Name": "Draft",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GBL000000000000000000000000000050",
+    "ParentId": "1000000000000000000000000000000041",
+    "Name": "UnitOfMeasure",
+    "PayanarssTypeId": "1000000000000000000000000000000041",
+    "Attributes": [],
+    "Description": "Standard units of measure used across procurement, inventory and operations"
+  },
+  {
+    "Id": "GBL000000000000000000000000000051",
+    "ParentId": "GBL000000000000000000000000000050",
+    "Name": "Each",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GBL000000000000000000000000000052",
+    "ParentId": "GBL000000000000000000000000000050",
+    "Name": "Kilogram",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GBL000000000000000000000000000053",
+    "ParentId": "GBL000000000000000000000000000050",
+    "Name": "Litre",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GBL000000000000000000000000000054",
+    "ParentId": "GBL000000000000000000000000000050",
+    "Name": "Box",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GBL000000000000000000000000000055",
+    "ParentId": "GBL000000000000000000000000000050",
+    "Name": "Set",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000001",
+    "ParentId": "300000000000000000000000000000001",
+    "Name": "BusinessSettings",
+    "PayanarssTypeId": "1000000000000000000000000000000041",
+    "Attributes": [],
+    "Description": "Sector-level settings for Gym and Fitness businesses. Contains lookup values specific to gym operations."
+  },
+  {
+    "Id": "GYMSET0000000000000000000000010",
+    "ParentId": "GYMSET0000000000000000000000001",
+    "Name": "GymType",
+    "PayanarssTypeId": "1000000000000000000000000000000041",
+    "Attributes": [],
+    "Description": "Types of gym business model"
+  },
+  {
+    "Id": "GYMSET0000000000000000000000011",
+    "ParentId": "GYMSET0000000000000000000000010",
+    "Name": "Traditional Gym",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000012",
+    "ParentId": "GYMSET0000000000000000000000010",
+    "Name": "Boutique Studio",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000013",
+    "ParentId": "GYMSET0000000000000000000000010",
+    "Name": "CrossFit Box",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000014",
+    "ParentId": "GYMSET0000000000000000000000010",
+    "Name": "24-Hour Gym",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000015",
+    "ParentId": "GYMSET0000000000000000000000010",
+    "Name": "Women-Only Studio",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000016",
+    "ParentId": "GYMSET0000000000000000000000010",
+    "Name": "Rehabilitation Centre",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000020",
+    "ParentId": "GYMSET0000000000000000000000001",
+    "Name": "MembershipType",
+    "PayanarssTypeId": "1000000000000000000000000000000041",
+    "Attributes": [],
+    "Description": "Types of membership plans offered by the gym"
+  },
+  {
+    "Id": "GYMSET0000000000000000000000021",
+    "ParentId": "GYMSET0000000000000000000000020",
+    "Name": "Monthly",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000022",
+    "ParentId": "GYMSET0000000000000000000000020",
+    "Name": "Quarterly",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000023",
+    "ParentId": "GYMSET0000000000000000000000020",
+    "Name": "Annual",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000024",
+    "ParentId": "GYMSET0000000000000000000000020",
+    "Name": "Day Pass",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000025",
+    "ParentId": "GYMSET0000000000000000000000020",
+    "Name": "Class Pack",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000026",
+    "ParentId": "GYMSET0000000000000000000000020",
+    "Name": "Corporate",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000030",
+    "ParentId": "GYMSET0000000000000000000000001",
+    "Name": "EquipmentCategory",
+    "PayanarssTypeId": "1000000000000000000000000000000041",
+    "Attributes": [],
+    "Description": "High-level equipment categories used across all gym types"
+  },
+  {
+    "Id": "GYMSET0000000000000000000000031",
+    "ParentId": "GYMSET0000000000000000000000030",
+    "Name": "Cardio",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000032",
+    "ParentId": "GYMSET0000000000000000000000030",
+    "Name": "Strength",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000033",
+    "ParentId": "GYMSET0000000000000000000000030",
+    "Name": "Functional",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000034",
+    "ParentId": "GYMSET0000000000000000000000030",
+    "Name": "Flexibility & Recovery",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000035",
+    "ParentId": "GYMSET0000000000000000000000030",
+    "Name": "Free Weights",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000040",
+    "ParentId": "GYMSET0000000000000000000000001",
+    "Name": "StaffRole",
+    "PayanarssTypeId": "1000000000000000000000000000000041",
+    "Attributes": [],
+    "Description": "Staff roles specific to gym operations"
+  },
+  {
+    "Id": "GYMSET0000000000000000000000041",
+    "ParentId": "GYMSET0000000000000000000000040",
+    "Name": "Personal Trainer",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000042",
+    "ParentId": "GYMSET0000000000000000000000040",
+    "Name": "Group Fitness Instructor",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000043",
+    "ParentId": "GYMSET0000000000000000000000040",
+    "Name": "Receptionist",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000044",
+    "ParentId": "GYMSET0000000000000000000000040",
+    "Name": "Gym Manager",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000045",
+    "ParentId": "GYMSET0000000000000000000000040",
+    "Name": "Physiotherapist",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000046",
+    "ParentId": "GYMSET0000000000000000000000040",
+    "Name": "Nutritionist",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000047",
+    "ParentId": "GYMSET0000000000000000000000040",
+    "Name": "Maintenance Staff",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000050",
+    "ParentId": "GYMSET0000000000000000000000001",
+    "Name": "ZoneType",
+    "PayanarssTypeId": "1000000000000000000000000000000041",
+    "Attributes": [],
+    "Description": "Physical zone types within a gym facility"
+  },
+  {
+    "Id": "GYMSET0000000000000000000000051",
+    "ParentId": "GYMSET0000000000000000000000050",
+    "Name": "Cardio Zone",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000052",
+    "ParentId": "GYMSET0000000000000000000000050",
+    "Name": "Strength Zone",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000053",
+    "ParentId": "GYMSET0000000000000000000000050",
+    "Name": "Functional Zone",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000054",
+    "ParentId": "GYMSET0000000000000000000000050",
+    "Name": "Stretching / Yoga Zone",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000055",
+    "ParentId": "GYMSET0000000000000000000000050",
+    "Name": "Group Class Area",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000056",
+    "ParentId": "GYMSET0000000000000000000000050",
+    "Name": "Locker Room",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000057",
+    "ParentId": "GYMSET0000000000000000000000050",
+    "Name": "Reception",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000100",
+    "ParentId": "GYM2000000000000000000000000266",
+    "Name": "BusinessSettings",
+    "PayanarssTypeId": "1000000000000000000000000000000041",
+    "Attributes": [],
+    "Description": "Module-level settings for Add Members. Contains lookup values specific to member onboarding and profile management."
+  },
+  {
+    "Id": "GYMSET0000000000000000000000101",
+    "ParentId": "GYMSET0000000000000000000000100",
+    "Name": "FitnessGoal",
+    "PayanarssTypeId": "1000000000000000000000000000000041",
+    "Attributes": [],
+    "Description": "Member's primary fitness objective"
+  },
+  {
+    "Id": "GYMSET0000000000000000000000102",
+    "ParentId": "GYMSET0000000000000000000000101",
+    "Name": "Weight Loss",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000103",
+    "ParentId": "GYMSET0000000000000000000000101",
+    "Name": "Muscle Gain",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000104",
+    "ParentId": "GYMSET0000000000000000000000101",
+    "Name": "Endurance",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000105",
+    "ParentId": "GYMSET0000000000000000000000101",
+    "Name": "Flexibility",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000106",
+    "ParentId": "GYMSET0000000000000000000000101",
+    "Name": "General Fitness",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000107",
+    "ParentId": "GYMSET0000000000000000000000101",
+    "Name": "Rehabilitation",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000110",
+    "ParentId": "GYMSET0000000000000000000000100",
+    "Name": "FitnessLevel",
+    "PayanarssTypeId": "1000000000000000000000000000000041",
+    "Attributes": [],
+    "Description": "Self-declared or assessed fitness level at time of joining"
+  },
+  {
+    "Id": "GYMSET0000000000000000000000111",
+    "ParentId": "GYMSET0000000000000000000000110",
+    "Name": "Beginner",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000112",
+    "ParentId": "GYMSET0000000000000000000000110",
+    "Name": "Intermediate",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000113",
+    "ParentId": "GYMSET0000000000000000000000110",
+    "Name": "Advanced",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000120",
+    "ParentId": "GYMSET0000000000000000000000100",
+    "Name": "MembershipStatus",
+    "PayanarssTypeId": "1000000000000000000000000000000041",
+    "Attributes": [],
+    "Description": "Current status of a member's gym membership"
+  },
+  {
+    "Id": "GYMSET0000000000000000000000121",
+    "ParentId": "GYMSET0000000000000000000000120",
+    "Name": "Active",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000122",
+    "ParentId": "GYMSET0000000000000000000000120",
+    "Name": "Suspended",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000123",
+    "ParentId": "GYMSET0000000000000000000000120",
+    "Name": "Expired",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000124",
+    "ParentId": "GYMSET0000000000000000000000120",
+    "Name": "Frozen",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000125",
+    "ParentId": "GYMSET0000000000000000000000120",
+    "Name": "Cancelled",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000200",
+    "ParentId": "GYM2000000000000000000000000318",
+    "Name": "BusinessSettings",
+    "PayanarssTypeId": "1000000000000000000000000000000041",
+    "Attributes": [],
+    "Description": "Module-level settings for Equipment Maintenance Plan"
+  },
+  {
+    "Id": "GYMSET0000000000000000000000201",
+    "ParentId": "GYMSET0000000000000000000000200",
+    "Name": "MaintenanceFrequency",
+    "PayanarssTypeId": "1000000000000000000000000000000041",
+    "Attributes": [],
+    "Description": "How often equipment maintenance is scheduled"
+  },
+  {
+    "Id": "GYMSET0000000000000000000000202",
+    "ParentId": "GYMSET0000000000000000000000201",
+    "Name": "Daily",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000203",
+    "ParentId": "GYMSET0000000000000000000000201",
+    "Name": "Weekly",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000204",
+    "ParentId": "GYMSET0000000000000000000000201",
+    "Name": "Monthly",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000205",
+    "ParentId": "GYMSET0000000000000000000000201",
+    "Name": "Quarterly",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000206",
+    "ParentId": "GYMSET0000000000000000000000201",
+    "Name": "Annual",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000210",
+    "ParentId": "GYMSET0000000000000000000000200",
+    "Name": "MaintenanceType",
+    "PayanarssTypeId": "1000000000000000000000000000000041",
+    "Attributes": [],
+    "Description": "Type of maintenance activity performed on equipment"
+  },
+  {
+    "Id": "GYMSET0000000000000000000000211",
+    "ParentId": "GYMSET0000000000000000000000210",
+    "Name": "Preventive",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000212",
+    "ParentId": "GYMSET0000000000000000000000210",
+    "Name": "Corrective",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000213",
+    "ParentId": "GYMSET0000000000000000000000210",
+    "Name": "Inspection",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000214",
+    "ParentId": "GYMSET0000000000000000000000210",
+    "Name": "Deep Clean",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000300",
+    "ParentId": "GYM2000000000000000000000000354",
+    "Name": "BusinessSettings",
+    "PayanarssTypeId": "1000000000000000000000000000000041",
+    "Attributes": [],
+    "Description": "Module-level settings for Marketing and Promotions"
+  },
+  {
+    "Id": "GYMSET0000000000000000000000301",
+    "ParentId": "GYMSET0000000000000000000000300",
+    "Name": "MarketingChannel",
+    "PayanarssTypeId": "1000000000000000000000000000000041",
+    "Attributes": [],
+    "Description": "Channels used to market and promote the gym"
+  },
+  {
+    "Id": "GYMSET0000000000000000000000302",
+    "ParentId": "GYMSET0000000000000000000000301",
+    "Name": "Social Media",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000303",
+    "ParentId": "GYMSET0000000000000000000000301",
+    "Name": "WhatsApp",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000304",
+    "ParentId": "GYMSET0000000000000000000000301",
+    "Name": "Email Campaign",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000305",
+    "ParentId": "GYMSET0000000000000000000000301",
+    "Name": "Referral Program",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000306",
+    "ParentId": "GYMSET0000000000000000000000301",
+    "Name": "Walk-In",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000310",
+    "ParentId": "GYMSET0000000000000000000000300",
+    "Name": "PromotionType",
+    "PayanarssTypeId": "1000000000000000000000000000000041",
+    "Attributes": [],
+    "Description": "Types of promotional offers available"
+  },
+  {
+    "Id": "GYMSET0000000000000000000000311",
+    "ParentId": "GYMSET0000000000000000000000310",
+    "Name": "Free Trial",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000312",
+    "ParentId": "GYMSET0000000000000000000000310",
+    "Name": "Discount",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000313",
+    "ParentId": "GYMSET0000000000000000000000310",
+    "Name": "Seasonal Offer",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "GYMSET0000000000000000000000314",
+    "ParentId": "GYMSET0000000000000000000000310",
+    "Name": "Referral Bonus",
+    "PayanarssTypeId": "1000000000000000000000000000000031",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mur37gjqwxhj51a35un",
+    "ParentId": "SUB00000000000000000000095080000",
+    "Name": "TruckLoadPlanner",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Method to calculate and arrange goods in Lorry.",
+    "requiredFlags": [],
+    "alwaysOn": true
   }
 ]

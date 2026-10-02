@@ -5,6 +5,7 @@ import { RELATED_FORMS, KNOWN_COLUMNS, EXT_COLORS } from './data/menuData';
 import { useSetupFlow } from './hooks/useSetupFlow';
 import { useChat } from './hooks/useChat';
 import { saveRecord, saveBusinessConfig, loadBusinessConfig } from './services/recordService';
+import { fetchAllTypes } from './services/payanarssTypeService';
 import { initPinecone, upsertToVector, queryVectors } from './services/pineconeService';
 import ContextPanel from './components/ContextPanel';
 import RightContextPanel from './components/RightContextPanel';
@@ -22,9 +23,16 @@ import {
   searchResultsHTML, noResultsHTML,
 } from './utils/htmlBuilders';
 import VikiBusinessChat from './components/VikiBusinessChat';
+import type { VikiConfigureData } from './components/VikiBusinessChat';
+import BusinessDataEntry from './components/BusinessDataEntry';
 import './styles/viki-chat.css';
 
 const App: React.FC = () => {
+
+  /* ═══ Phase icon helper ═══ */
+  const phaseIcons = ['🎯', '📋', '👥', '🏗️', '💰', '📊', '🔧', '📦', '🏢', '📱', '🎓', '⚖️', '🚀', '💡', '🔒'];
+  const getPhaseIcon = (idx: number) => phaseIcons[idx % phaseIcons.length];
+
   const setup = useSetupFlow();
   const chat = useChat();
   const [importOpen, setImportOpen] = useState(false);
@@ -33,11 +41,14 @@ const App: React.FC = () => {
 
   /**
    * Controls which screen is visible.
-   *   'welcome' -> Viki welcome screen
-   *   'wizard'  -> BusinessSetupWizard
-   *   'chat'    -> Chat interface (post-setup)
+   *   'viki-setup'  -> Viki business configurator
+   *   'welcome'     -> Welcome screen
+   *   'wizard'      -> BusinessSetupWizard
+   *   'chat'        -> Chat interface
+   *   'data-entry'  -> BusinessDataEntry (PTS-driven CRUD)
    */
-  const [screen, setScreen] = useState<'viki-setup' | 'welcome' | 'wizard' | 'chat'>('viki-setup');
+  const [screen, setScreen] = useState<'viki-setup' | 'welcome' | 'wizard' | 'chat' | 'data-entry'>('viki-setup');
+  const [activePhase, setActivePhase] = useState<{ id: string; name: string } | null>(null);
   const [lastEmployeeId, setLastEmployeeId] = useState<string | null>(null);
 
   /* ═══════════════════════════════════════════════════════════
@@ -51,6 +62,7 @@ const App: React.FC = () => {
   const handleSetupAnswerRef = useRef<(stepId: string, value: string) => void>(() => {});
   const handleSkipRef = useRef<(step: string) => void>(() => {});
   const handleAddRelatedRef = useRef<(type: RelatedType) => void>(() => {});
+  const handleConfigurePhaseRef = useRef<(phaseIdx: number) => void>(() => {});
 
   /* ═══ Delegated click handlers for dynamic HTML ═══ */
   useEffect(() => {
@@ -104,6 +116,10 @@ const App: React.FC = () => {
           const id = actionEl.dataset.id || '';
           if (id) handleSelectSegment(id);
         }
+        if (action === 'configure-phase') {
+          const phaseIdx = parseInt(actionEl.dataset.phase || '0', 10);
+          handleConfigurePhaseRef.current(phaseIdx);
+        }
         if (action === 'tc-root') {
           handleTcRoot();
         }
@@ -132,25 +148,104 @@ const App: React.FC = () => {
 
   /* ═══ Load saved business config on mount ═══ */
   useEffect(() => {
-    loadBusinessConfig().then(res => {
-      if (res.success && res.exists && res.config?.setupComplete) {
-        console.log('Restored business config from file system');
-        setup.restoreSetup(res.config.setupData || {});
+    if (screen !== 'viki-setup') return;
+
+    const restoreConfig = async () => {
+      try {
+        // 1. Try localStorage first, then fall back to server config
+        let raw = localStorage.getItem('maa-erp-business-config');
+
+        if (!raw) {
+          // Try server-side config (Vite plugin)
+          try {
+            const res = await loadBusinessConfig();
+            if (res.success && res.exists && res.config) {
+              raw = JSON.stringify(res.config);
+            }
+          } catch { /* server not available — ignore */ }
+        }
+
+        if (!raw) return;
+        const config = JSON.parse(raw);
+        if (!config?.setupComplete) return;
+
+        const savedIds: string[] = config.selectedTypeIds || [];
+        const name: string = config.setupData?.name || 'Your Business';
+
+        // 2. Validate IDs against local JSON — re-resolve if they are fake slugs
+        let realIds: string[] = [];
+        try {
+          const allTypes = await fetchAllTypes();
+          const idSet = new Set(allTypes.map(t => t.Id));
+          const nameToId = new Map(allTypes.map(t => [t.Name.trim().toLowerCase(), t.Id]));
+
+          // Check if saved IDs are real node IDs
+          const validIds = savedIds.filter(id => idSet.has(id));
+
+          if (validIds.length > 0) {
+            // IDs are real — use them directly
+            realIds = validIds;
+          } else {
+            // IDs are fake slugs — convert slug to name and look up
+            realIds = savedIds
+              .map(slug => {
+                // "gym-business-schema" → "gym business schema" → lookup
+                const name = slug.replace(/-/g, ' ').toLowerCase();
+                return nameToId.get(name) ?? null;
+              })
+              .filter((id): id is string => Boolean(id));
+          }
+
+          console.log(`[App] Restored ${realIds.length} real IDs (from ${savedIds.length} saved)`);
+        } catch (err) {
+          console.warn('[App] ID resolution failed on restore:', err);
+          realIds = savedIds; // use as-is if lookup fails
+        }
+
+        // 3. Sync to localStorage with real IDs for next reload
+        localStorage.setItem('maa-erp-business-config', JSON.stringify({
+          ...config,
+          selectedTypeIds: realIds,
+          savedAt: new Date().toISOString(),
+        }));
+
+        setup.restoreSetup(config.setupData || {});
+        setConfiguredModuleIds(realIds);
         setScreen('chat');
-        const name = res.config.setupData?.name || 'Your Business';
+
+        // Build action chips from first 3 restored modules
+        const firstModules = realIds.slice(0, 3);
+        let moduleChips = '';
+        try {
+          const allTypes = await fetchAllTypes();
+          const idMap = new Map(allTypes.map(t => [t.Id, t]));
+          moduleChips = firstModules
+            .map((id, idx) => idMap.get(id))
+            .filter(Boolean)
+            .map((n, idx) => `<button class="action-chip" data-action="configure-phase" data-phase="${idx}"><span class="chip-icon">📋</span> ${n!.Name}</button>`)
+            .join('');
+        } catch { /* ignore */ }
+
+        if (!moduleChips) {
+          moduleChips = `
+            <button class="action-chip" data-action="add-employee"><span class="chip-icon">👤</span> Add Employee</button>
+            <button class="action-chip" data-action="open-import"><span class="chip-icon">📎</span> Import Data</button>
+            <button class="action-chip" data-action="explore"><span class="chip-icon">🔍</span> Explore Modules</button>`;
+        }
+
         chat.addVikiMessage(
           `<div class="msg-text">Welcome back! 👋</div>
           ${successHTML(`<strong>${name}</strong> is configured and ready`)}
-          <div class="msg-text" style="margin-top:12px">What would you like to do?</div>
-          <div class="msg-actions">
-            <button class="action-chip" data-action="add-employee"><span class="chip-icon">👤</span> Add Employee</button>
-            <button class="action-chip" data-action="open-import"><span class="chip-icon">📎</span> Import Data</button>
-            <button class="action-chip" data-action="explore"><span class="chip-icon">🔍</span> Explore Modules</button>
-          </div>`
+          <div class="msg-text" style="margin-top:12px">Where would you like to continue?</div>
+          <div class="msg-actions">${moduleChips}</div>`
         );
+      } catch (err) {
+        console.warn('[App] Failed to restore config:', err);
       }
-    });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    };
+
+    restoreConfig();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   /* ═══ SETUP FLOW ═══ */
@@ -158,6 +253,105 @@ const App: React.FC = () => {
   const handleBeginSetup = useCallback(() => {
     setScreen('wizard');
   }, []);
+
+  /* ═══ VIKI CONFIGURE — Guided chat flow from Business Configurator ═══ */
+  const handleVikiConfigure = useCallback(async (data: VikiConfigureData) => {
+    setup.completeSetup();
+    setup.setShowChat(true);
+    setScreen('chat');
+
+    const segment = data.selectedSegment || 'your business';
+    const phases = data.gymSchema?.phases || [];
+    const totalNodes = data.gymSchema?.totalNodes || 0;
+
+    // ── Resolve REAL IDs from local JSON by phase name ──────────────────
+    // Claude's matchedModules carry approximate IDs — look up actual IDs
+    // from VanakkamPayanarssTypes.json using phase names from gymSchema.
+    let moduleIds: string[] = [];
+    try {
+      const allTypes = await fetchAllTypes();
+      const nameToId = new Map(allTypes.map(t => [t.Name.trim().toLowerCase(), t.Id]));
+      moduleIds = phases
+        .map(p => nameToId.get(p.name.trim().toLowerCase()))
+        .filter((id): id is string => Boolean(id));
+
+      // Fallback: if no phases matched, try matchedModules names
+      if (moduleIds.length === 0) {
+        const matchedNames = (data.response?.matchedModules || []).map(m => m.name);
+        moduleIds = matchedNames
+          .map(n => nameToId.get(n.trim().toLowerCase()))
+          .filter((id): id is string => Boolean(id));
+      }
+
+      console.log(`[handleVikiConfigure] Resolved ${moduleIds.length} real module IDs`);
+    } catch (err) {
+      console.warn('[handleVikiConfigure] ID lookup failed, falling back to approximate IDs:', err);
+      moduleIds = (data.response?.matchedModules || []).map(m => m.id);
+    }
+
+    setConfiguredModuleIds(moduleIds);
+
+    // Welcome message with summary
+    await chat.addVikiMessage(
+      `<div class="msg-text">Great choice! Let's configure <strong>${segment}</strong> step by step. 🚀</div>
+      ${successHTML(`<strong>${phases.length} business phases</strong> with <strong>${totalNodes} total use cases</strong> to configure`)}
+      <div class="msg-text" style="margin-top:12px">
+        I'll walk you through each business lifecycle phase. Fill in the details for your business and I'll set everything up.
+      </div>`
+    , 400);
+
+    // Present phases as use cases to fill one by one
+    if (phases.length > 0) {
+      const phaseButtons = phases.map((phase, idx) =>
+        `<button class="action-chip" data-action="configure-phase" data-phase="${idx}">
+          <span class="chip-icon">${getPhaseIcon(idx)}</span> ${phase.name}
+          <span style="font-size:11px;opacity:0.7;margin-left:4px">(${phase.nodeCount})</span>
+        </button>`
+      ).join('');
+
+      await chat.addVikiMessage(
+        `<div class="msg-text" style="font-weight:600;margin-bottom:8px">📋 Business Lifecycle Phases</div>
+        <div class="msg-text" style="font-size:13px;color:var(--text-4);margin-bottom:12px">
+          Click on a phase to start filling in your business details:
+        </div>
+        <div class="msg-actions" style="flex-wrap:wrap;gap:8px">
+          ${phaseButtons}
+        </div>`
+      , 600);
+
+      // Auto-start with the first phase
+      const firstPhase = phases[0];
+      await chat.addVikiMessage(
+        `<div class="msg-text">Let's start with <strong>${firstPhase.name}</strong>.</div>
+        <div class="msg-text" style="font-size:13px;color:var(--text-4);margin-top:4px">
+          This phase has ${firstPhase.nodeCount} items to configure:
+        </div>
+        <div style="margin-top:10px;display:flex;flex-direction:column;gap:6px">
+          ${firstPhase.children.slice(0, 8).map((child, i) =>
+            `<div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--surface,#f9f6f1);border-radius:8px;font-size:13px">
+              <span style="color:var(--terracotta,#c4704b);font-weight:600">${i + 1}.</span>
+              <span>${child}</span>
+            </div>`
+          ).join('')}
+          ${firstPhase.children.length > 8 ? `<div style="font-size:12px;color:var(--text-4);padding:4px 12px">+${firstPhase.children.length - 8} more items</div>` : ''}
+        </div>
+        <div class="msg-text" style="margin-top:14px">
+          Tell me about your <strong>${firstPhase.children[0] || firstPhase.name}</strong> — or type your details below:
+        </div>`
+      , 800);
+    }
+
+    chat.updateContext('Business Setup', `Configure › ${segment}`);
+
+    // Persist to localStorage — survives reload without needing server plugin
+    localStorage.setItem('maa-erp-business-config', JSON.stringify({
+      setupComplete: true,
+      setupData: { name: segment, ...setup.setupData },
+      selectedTypeIds: moduleIds,
+      savedAt: new Date().toISOString(),
+    }));
+    console.log(`[App] Saved ${moduleIds.length} module IDs to localStorage`);
+  }, [setup, chat]);
 
   const handleWizardComplete = useCallback(async (selectedIds: string[]) => {
     setup.beginSetup();
@@ -183,20 +377,14 @@ const App: React.FC = () => {
 
     setConfiguredModuleIds(selectedIds);
 
+    // Persist to localStorage — survives reload without needing server plugin
     localStorage.setItem('maa-erp-business-config', JSON.stringify({
-      selectedTypeIds: selectedIds,
-      configuredAt: new Date().toISOString(),
-    }));
-
-    // Persist business config to file system
-    saveBusinessConfig({
       setupComplete: true,
       setupData: setup.setupData,
       selectedTypeIds: selectedIds,
-    }).then(r => r.success
-      ? console.log('Business config saved to file system')
-      : console.warn('Business config save skipped:', r.error)
-    );
+      savedAt: new Date().toISOString(),
+    }));
+    console.log(`[App] Saved ${selectedIds.length} module IDs to localStorage`);
   }, [setup, chat]);
 
   const handleWizardCancel = useCallback(() => {
@@ -260,14 +448,13 @@ const App: React.FC = () => {
         <button class="action-chip" data-action="explore"><span class="chip-icon">🔍</span> Explore Modules</button>
       </div>`, 500);
 
-      // Persist business config to file system (chat-based setup)
-      saveBusinessConfig({
+      // Persist to localStorage
+      localStorage.setItem('maa-erp-business-config', JSON.stringify({
         setupComplete: true,
         setupData: { ...d, contact: value },
-      }).then(r => r.success
-        ? console.log('Business config saved to file system')
-        : console.warn('Business config save skipped:', r.error)
-      );
+        selectedTypeIds: [],
+        savedAt: new Date().toISOString(),
+      }));
     }
   }, [setup, chat]);
 
@@ -437,6 +624,33 @@ const App: React.FC = () => {
   handleSkipRef.current = handleSkip;
   handleAddRelatedRef.current = handleAddRelated;
 
+  // ── Configure phase: open data entry for a phase by index ──
+  // Phases are stored in the localStorage config as resolved IDs
+  // We look up the node name from allTypes to pass to BusinessDataEntry
+  handleConfigurePhaseRef.current = useCallback((phaseIdx: number) => {
+    try {
+      const raw = localStorage.getItem('maa-erp-business-config');
+      if (!raw) return;
+      const config = JSON.parse(raw);
+      const ids: string[] = config.selectedTypeIds || [];
+      const phaseId = ids[phaseIdx];
+      if (!phaseId) return;
+
+      // Fetch name from local JSON (already cached by fetchAllTypes)
+      import('./services/payanarssTypeService').then(({ fetchAllTypes }) => {
+        fetchAllTypes().then(types => {
+          const node = types.find(t => t.Id === phaseId);
+          const name = node?.Name || `Phase ${phaseIdx + 1}`;
+          setActivePhase({ id: phaseId, name });
+          setScreen('data-entry');
+          chat.updateContext(name, `Data Entry › ${name}`);
+        });
+      });
+    } catch (err) {
+      console.warn('[handleConfigurePhase] Failed:', err);
+    }
+  }, [chat]);
+
   /* ═══ IMPORT ═══ */
   const handleFileSelected = useCallback((file: File) => {
     setup.setShowChat(true);
@@ -500,6 +714,14 @@ const App: React.FC = () => {
     }
   }, [setup, chat, handleBeginSetup, handlePostSetup]);
 
+  /* ═══ STUB HANDLERS — referenced in click delegator, not yet implemented ═══ */
+  const handleDrillUseCase = useCallback((_id: string) => {}, []);
+  const handleDrillSegment = useCallback((_id: string) => {}, []);
+  const handleBackToSegments = useCallback(() => {}, []);
+  const handleSelectSegment = useCallback((_id: string) => {}, []);
+  const handleTcRoot = useCallback(() => {}, []);
+  const handleTcNav = useCallback((_idx: number) => {}, []);
+
   /* ═══ MENU ACTION ═══ */
   const handleMenuAction = useCallback((item: MenuItem) => {
     setup.setShowChat(true);
@@ -523,11 +745,20 @@ const App: React.FC = () => {
   return (
     <>
       <div className={`app${!setup.setupComplete ? ' onboarding' : ''}`}>
-        <ContextPanel context={chat.context} onImport={() => setImportOpen(true)} selectedModuleIds={configuredModuleIds} />
+        <ContextPanel
+          context={chat.context}
+          onImport={() => setImportOpen(true)}
+          selectedModuleIds={configuredModuleIds}
+          onThreadClick={(moduleId, moduleName) => {
+            setActivePhase({ id: moduleId, name: moduleName });
+            setScreen('data-entry');
+            chat.updateContext(moduleName, `Data Entry › ${moduleName}`);
+          }}
+        />
         <main className="conversation-panel" onDragOver={handleDragOver} onDrop={handleDrop}>
 
-          {/* Conversation top bar */}
-          {screen === 'chat' && (
+          {/* Conversation top bar — chat and data-entry screens */}
+          {(screen === 'chat' || screen === 'data-entry') && (
             <div className="conv-top">
               <div className="conv-top-left">
                 <div className="conv-top-av">V</div>
@@ -537,6 +768,9 @@ const App: React.FC = () => {
                 </div>
               </div>
               <div className="conv-top-actions">
+                {screen === 'data-entry' && (
+                  <button className="top-btn" onClick={() => { setScreen('chat'); chat.updateContext('Dashboard', 'Home'); }} title="Back to chat">←</button>
+                )}
                 <button className="top-btn active">🔍</button>
                 <button className="top-btn">☰</button>
                 <button className="top-btn">▤</button>
@@ -546,7 +780,7 @@ const App: React.FC = () => {
 
           {/* SCREEN SWITCHER */}
           {screen === 'viki-setup' && (
-            <VikiBusinessChat />
+            <VikiBusinessChat onConfigure={handleVikiConfigure} />
           )}
           {screen === 'welcome' && (
             <WelcomeScreen onBeginSetup={handleBeginSetup} />
@@ -556,6 +790,18 @@ const App: React.FC = () => {
               onComplete={handleWizardComplete}
               onCancel={handleWizardCancel}
             />
+          )}
+          {screen === 'data-entry' && activePhase && (
+            <div style={{ flex: 1, overflowY: 'auto', padding: '24px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
+              <BusinessDataEntry
+                phaseId={activePhase.id}
+                phaseName={activePhase.name}
+                onClose={() => {
+                  setScreen('chat');
+                  chat.updateContext('Dashboard', 'Home');
+                }}
+              />
+            </div>
           )}
           {screen === 'chat' && (
             <MessageList messages={chat.messages} isTyping={chat.isTyping} scrollRef={chat.scrollRef} />

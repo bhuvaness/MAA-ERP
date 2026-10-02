@@ -323,12 +323,7 @@ export function usePayanarssTypes() {
     );
 
     const selectableTypes = useMemo(() => {
-        const allIds = new Set(types.map((t) => t.Id));
-        return types.filter(
-            (t) =>
-                (t.Id === t.ParentId || !allIds.has(t.ParentId)) &&
-                t.PayanarssTypeId === ROOT_TYPE_IDS.BUSINESS_SOLUTIONS
-        );
+        return [...types].sort((a, b) => a.Name.localeCompare(b.Name));
     }, [types]);
 
     // ─── EXPAND / COLLAPSE ───

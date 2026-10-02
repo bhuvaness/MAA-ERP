@@ -8,11 +8,23 @@
  *   1. User types: "I run a gym business"
  *   2. Viki shows matched modules + customer segments
  *   3. User clicks a segment → sees full business config
+ *   4. User clicks "Configure Business" → enters guided chat flow
  */
 
 import React, { useState, useRef, useEffect } from "react";
 import { useVikiChat } from "../hooks/useVikiChat";
-import type { GymSchemaInfo } from "../services/claudeService";
+import type { GymSchemaInfo, VikiResponse } from "../services/claudeService";
+
+// ═══════════════════════════════════════════════════════════════
+// TYPES
+// ═══════════════════════════════════════════════════════════════
+
+export interface VikiConfigureData {
+  userPrompt: string;
+  gymSchema: GymSchemaInfo | null;
+  response: VikiResponse | null;
+  selectedSegment: string | null;
+}
 
 // ═══════════════════════════════════════════════════════════════
 // SUB-COMPONENTS
@@ -104,7 +116,7 @@ const ModuleCard: React.FC<{
 // MAIN COMPONENT
 // ═══════════════════════════════════════════════════════════════
 
-const VikiBusinessChat: React.FC = () => {
+const VikiBusinessChat: React.FC<{ onConfigure?: (data: VikiConfigureData) => void }> = ({ onConfigure }) => {
   const viki = useVikiChat();
   const [input, setInput] = useState("");
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -134,6 +146,17 @@ const VikiBusinessChat: React.FC = () => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSubmit();
+    }
+  };
+
+  const handleConfigure = () => {
+    if (onConfigure) {
+      onConfigure({
+        userPrompt: viki.userPrompt,
+        gymSchema: viki.gymSchema,
+        response: viki.response,
+        selectedSegment: viki.selectedSegment,
+      });
     }
   };
 
@@ -208,6 +231,56 @@ const VikiBusinessChat: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* ── INTENT QUESTIONS: Build BusinessProfile ── */}
+      {viki.phase === "intent_questions" && (() => {
+        const q = viki.intentQuestions[viki.currentQuestionIndex];
+        if (!q) return null;
+        const answered = viki.intentQuestions.filter(iq => iq.answered).length;
+        const total = viki.intentQuestions.length;
+        return (
+          <div className="viki-intent-questions">
+            <div className="viki-intent-header">
+              <p className="viki-intent-prompt">
+                A few quick questions to personalise your setup
+              </p>
+              <div className="viki-intent-progress">
+                <div
+                  className="viki-intent-bar"
+                  style={{ width: `${(answered / total) * 100}%` }}
+                />
+              </div>
+              <p className="viki-intent-counter">{answered} of {total}</p>
+            </div>
+            <div className="viki-intent-card">
+              <p className="viki-intent-question">{q.question}</p>
+              <div className="viki-intent-actions">
+                <button
+                  className="viki-intent-yes"
+                  onClick={() => viki.answerIntentQuestion(q.key, true)}
+                >
+                  Yes
+                </button>
+                <button
+                  className="viki-intent-no"
+                  onClick={() => viki.answerIntentQuestion(q.key, false)}
+                >
+                  No
+                </button>
+              </div>
+            </div>
+            {answered > 0 && (
+              <div className="viki-intent-answered">
+                {viki.intentQuestions.filter(iq => iq.answered).map(iq => (
+                  <span key={iq.key} className={`viki-intent-tag ${iq.answer ? "yes" : "no"}`}>
+                    {iq.answer ? "✓" : "✗"} {iq.key.replace(/^has/, "")}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        );
+      })()}
 
       {/* ── THINKING: Loading ── */}
       {viki.phase === "thinking" && (
@@ -334,6 +407,15 @@ const VikiBusinessChat: React.FC = () => {
                   />
                 ))}
               </div>
+            </div>
+          )}
+
+          {/* Configure Business Button */}
+          {onConfigure && (
+            <div className="viki-configure-section">
+              <button className="viki-configure-btn" onClick={handleConfigure}>
+                🚀 Configure Business
+              </button>
             </div>
           )}
         </div>

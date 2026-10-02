@@ -98,6 +98,1848 @@
     "Description": null
   },
   {
+    "Id": "100000000000000000030000000000000",
+    "ParentId": "100000000000000000030000000000000",
+    "Name": "OperatorType",
+    "PayanarssTypeId": "100000000000000000030000000000000",
+    "Attributes": [],
+    "Description": "Root type for all operators; Arithmetic, Comparison, Logical, and Assignment"
+  },
+  {
+    "Id": "100000000000000000030000000000001",
+    "ParentId": "100000000000000000030000000000000",
+    "Name": "ArithmeticOperator",
+    "PayanarssTypeId": "100000000000000000030000000000000",
+    "Attributes": [],
+    "Description": "Arithmetic operator group; Takes two Number inputs; Returns Number result"
+  },
+  {
+    "Id": "100000000000000000030000000000002",
+    "ParentId": "100000000000000000030000000000001",
+    "Name": "+",
+    "PayanarssTypeId": "100000000000000000030000000000000",
+    "Attributes": [],
+    "Description": "Add operator; Left + Right; Returns sum of two Number values"
+  },
+  {
+    "Id": "100000000000000000030000000000003",
+    "ParentId": "100000000000000000030000000000001",
+    "Name": "-",
+    "PayanarssTypeId": "100000000000000000030000000000000",
+    "Attributes": [],
+    "Description": "Subtract operator; Left - Right; Returns difference of two Number values"
+  },
+  {
+    "Id": "100000000000000000030000000000004",
+    "ParentId": "100000000000000000030000000000001",
+    "Name": "*",
+    "PayanarssTypeId": "100000000000000000030000000000000",
+    "Attributes": [],
+    "Description": "Multiply operator; Left * Right; Returns product of two Number values"
+  },
+  {
+    "Id": "100000000000000000030000000000005",
+    "ParentId": "100000000000000000030000000000001",
+    "Name": "/",
+    "PayanarssTypeId": "100000000000000000030000000000000",
+    "Attributes": [],
+    "Description": "Divide operator; Left / Right; Returns quotient; Right must not be zero"
+  },
+  {
+    "Id": "100000000000000000030000000000006",
+    "ParentId": "100000000000000000030000000000001",
+    "Name": "%",
+    "PayanarssTypeId": "100000000000000000030000000000000",
+    "Attributes": [],
+    "Description": "Modulus operator; Left % Right; Returns remainder of division"
+  },
+  {
+    "Id": "100000000000000000030000000000007",
+    "ParentId": "100000000000000000030000000000001",
+    "Name": "=",
+    "PayanarssTypeId": "100000000000000000030000000000000",
+    "Attributes": [],
+    "Description": "Assign operator; Left = Right; Assigns right-side result to left-side column"
+  },
+  {
+    "Id": "100000000000000000030000000000010",
+    "ParentId": "100000000000000000030000000000000",
+    "Name": "ComparisonOperator",
+    "PayanarssTypeId": "100000000000000000030000000000000",
+    "Attributes": [],
+    "Description": "Comparison operator group; Takes two inputs of any ValueType; Returns Boolean result"
+  },
+  {
+    "Id": "100000000000000000030000000000011",
+    "ParentId": "100000000000000000030000000000010",
+    "Name": "==",
+    "PayanarssTypeId": "100000000000000000030000000000000",
+    "Attributes": [],
+    "Description": "Equal operator; Left == Right; Returns true if both values are equal"
+  },
+  {
+    "Id": "100000000000000000030000000000012",
+    "ParentId": "100000000000000000030000000000010",
+    "Name": "!=",
+    "PayanarssTypeId": "100000000000000000030000000000000",
+    "Attributes": [],
+    "Description": "Not equal operator; Left != Right; Returns true if values are different"
+  },
+  {
+    "Id": "100000000000000000030000000000013",
+    "ParentId": "100000000000000000030000000000010",
+    "Name": ">",
+    "PayanarssTypeId": "100000000000000000030000000000000",
+    "Attributes": [],
+    "Description": "Greater than operator; Left > Right; Returns true if left exceeds right"
+  },
+  {
+    "Id": "100000000000000000030000000000014",
+    "ParentId": "100000000000000000030000000000010",
+    "Name": "<",
+    "PayanarssTypeId": "100000000000000000030000000000000",
+    "Attributes": [],
+    "Description": "Less than operator; Left < Right; Returns true if left is smaller than right"
+  },
+  {
+    "Id": "100000000000000000030000000000015",
+    "ParentId": "100000000000000000030000000000010",
+    "Name": ">=",
+    "PayanarssTypeId": "100000000000000000030000000000000",
+    "Attributes": [],
+    "Description": "Greater than or equal operator; Left >= Right; Returns true if left is equal or exceeds right"
+  },
+  {
+    "Id": "100000000000000000030000000000016",
+    "ParentId": "100000000000000000030000000000010",
+    "Name": "<=",
+    "PayanarssTypeId": "100000000000000000030000000000000",
+    "Attributes": [],
+    "Description": "Less than or equal operator; Left <= Right; Returns true if left is equal or smaller than right"
+  },
+  {
+    "Id": "100000000000000000030000000000020",
+    "ParentId": "100000000000000000030000000000000",
+    "Name": "LogicalOperator",
+    "PayanarssTypeId": "100000000000000000030000000000000",
+    "Attributes": [],
+    "Description": "Logical operator group; Takes Boolean inputs; Returns Boolean result; Used in if conditions and rule expressions"
+  },
+  {
+    "Id": "100000000000000000030000000000021",
+    "ParentId": "100000000000000000030000000000020",
+    "Name": "AND",
+    "PayanarssTypeId": "100000000000000000030000000000000",
+    "Attributes": [],
+    "Description": "Logical AND; Left AND Right; Returns true only if both conditions are true"
+  },
+  {
+    "Id": "100000000000000000030000000000022",
+    "ParentId": "100000000000000000030000000000020",
+    "Name": "OR",
+    "PayanarssTypeId": "100000000000000000030000000000000",
+    "Attributes": [],
+    "Description": "Logical OR; Left OR Right; Returns true if either condition is true"
+  },
+  {
+    "Id": "100000000000000000030000000000023",
+    "ParentId": "100000000000000000030000000000020",
+    "Name": "NOT",
+    "PayanarssTypeId": "100000000000000000030000000000000",
+    "Attributes": [
+      "100000000000000000000000000000009"
+    ],
+    "Description": "Logical NOT; NOT Right; Returns true if condition is false; Takes only one input"
+  },
+  {
+    "Id": "100000000000000000040000000000000",
+    "ParentId": "100000000000000000040000000000000",
+    "Name": "BuiltInFunctionType",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Root type for all built-in functions; Modelled after Excel function library; 201 functions across 8 categories"
+  },
+  {
+    "Id": "100000000000000000040000000000001",
+    "ParentId": "100000000000000000040000000000000",
+    "Name": "MathFunction",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Mathematical and trigonometric functions; Numeric calculations, rounding, random numbers"
+  },
+  {
+    "Id": "100000000000000000040000000001001",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "SUM",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns the sum of values; SUM(number1, number2, ...); Adds all numbers in a range"
+  },
+  {
+    "Id": "100000000000000000040000000001002",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "ABS",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns absolute value; ABS(number); Removes the sign from a number"
+  },
+  {
+    "Id": "100000000000000000040000000001003",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "ROUND",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Rounds to specified digits; ROUND(number, num_digits); Standard rounding"
+  },
+  {
+    "Id": "100000000000000000040000000001004",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "ROUNDUP",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Rounds up away from zero; ROUNDUP(number, num_digits); Always rounds up"
+  },
+  {
+    "Id": "100000000000000000040000000001005",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "ROUNDDOWN",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Rounds down toward zero; ROUNDDOWN(number, num_digits); Always rounds down"
+  },
+  {
+    "Id": "100000000000000000040000000001006",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "CEILING",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Rounds up to nearest multiple; CEILING(number, significance); Rounds up to multiple"
+  },
+  {
+    "Id": "100000000000000000040000000001007",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "FLOOR",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Rounds down to nearest multiple; FLOOR(number, significance); Rounds down to multiple"
+  },
+  {
+    "Id": "100000000000000000040000000001008",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "INT",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Rounds down to nearest integer; INT(number); Truncates to whole number"
+  },
+  {
+    "Id": "100000000000000000040000000001009",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "MOD",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns remainder of division; MOD(number, divisor); Modulus operation"
+  },
+  {
+    "Id": "100000000000000000040000000001010",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "POWER",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns number raised to power; POWER(number, power); Exponentiation"
+  },
+  {
+    "Id": "100000000000000000040000000001011",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "SQRT",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns square root; SQRT(number); Number must be positive"
+  },
+  {
+    "Id": "100000000000000000040000000001012",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "SIGN",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns sign of number; SIGN(number); Returns 1, 0, or -1"
+  },
+  {
+    "Id": "100000000000000000040000000001013",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "RAND",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns random number between 0 and 1; RAND(); Recalculates on each evaluation"
+  },
+  {
+    "Id": "100000000000000000040000000001014",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "RANDBETWEEN",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns random integer in range; RANDBETWEEN(bottom, top); Inclusive range"
+  },
+  {
+    "Id": "100000000000000000040000000001015",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "PRODUCT",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Multiplies all values; PRODUCT(number1, number2, ...); Returns product of all numbers"
+  },
+  {
+    "Id": "100000000000000000040000000001016",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "QUOTIENT",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns integer portion of division; QUOTIENT(numerator, denominator); Discards remainder"
+  },
+  {
+    "Id": "100000000000000000040000000001017",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "SUBTOTAL",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns subtotal with function number; SUBTOTAL(function_num, range); Ignores filtered rows"
+  },
+  {
+    "Id": "100000000000000000040000000001018",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "SUMPRODUCT",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns sum of products of arrays; SUMPRODUCT(array1, array2, ...); Multiplies then sums"
+  },
+  {
+    "Id": "100000000000000000040000000001019",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "PI",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns value of Pi; PI(); Returns 3.14159265358979"
+  },
+  {
+    "Id": "100000000000000000040000000001020",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "EXP",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns e raised to power; EXP(number); Base e exponential"
+  },
+  {
+    "Id": "100000000000000000040000000001021",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "LN",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns natural logarithm; LN(number); Base e logarithm"
+  },
+  {
+    "Id": "100000000000000000040000000001022",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "LOG",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns logarithm to specified base; LOG(number, base); Default base 10"
+  },
+  {
+    "Id": "100000000000000000040000000001023",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "LOG10",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns base-10 logarithm; LOG10(number); Common logarithm"
+  },
+  {
+    "Id": "100000000000000000040000000001024",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "SIN",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns sine of angle; SIN(number); Angle in radians"
+  },
+  {
+    "Id": "100000000000000000040000000001025",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "COS",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns cosine of angle; COS(number); Angle in radians"
+  },
+  {
+    "Id": "100000000000000000040000000001026",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "TAN",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns tangent of angle; TAN(number); Angle in radians"
+  },
+  {
+    "Id": "100000000000000000040000000001027",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "ASIN",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns arcsine; ASIN(number); Returns angle in radians"
+  },
+  {
+    "Id": "100000000000000000040000000001028",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "ACOS",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns arccosine; ACOS(number); Returns angle in radians"
+  },
+  {
+    "Id": "100000000000000000040000000001029",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "ATAN",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns arctangent; ATAN(number); Returns angle in radians"
+  },
+  {
+    "Id": "100000000000000000040000000001030",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "DEGREES",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Converts radians to degrees; DEGREES(angle); Radian to degree conversion"
+  },
+  {
+    "Id": "100000000000000000040000000001031",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "RADIANS",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Converts degrees to radians; RADIANS(angle); Degree to radian conversion"
+  },
+  {
+    "Id": "100000000000000000040000000001032",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "EVEN",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Rounds up to nearest even integer; EVEN(number); Always rounds away from zero"
+  },
+  {
+    "Id": "100000000000000000040000000001033",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "ODD",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Rounds up to nearest odd integer; ODD(number); Always rounds away from zero"
+  },
+  {
+    "Id": "100000000000000000040000000001034",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "TRUNC",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Truncates to specified digits; TRUNC(number, num_digits); Removes decimal without rounding"
+  },
+  {
+    "Id": "100000000000000000040000000001035",
+    "ParentId": "100000000000000000040000000000001",
+    "Name": "MROUND",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Rounds to nearest multiple; MROUND(number, multiple); Rounds to closest multiple"
+  },
+  {
+    "Id": "100000000000000000040000000000002",
+    "ParentId": "100000000000000000040000000000000",
+    "Name": "TextFunction",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Text and string manipulation functions; Concatenation, extraction, formatting, search"
+  },
+  {
+    "Id": "100000000000000000040000000002001",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "CONCAT",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Joins text strings; CONCAT(text1, text2, ...); Combines multiple texts into one"
+  },
+  {
+    "Id": "100000000000000000040000000002002",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "CONCATENATE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Joins text strings; CONCATENATE(text1, text2, ...); Legacy version of CONCAT"
+  },
+  {
+    "Id": "100000000000000000040000000002003",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "LEFT",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns leftmost characters; LEFT(text, num_chars); Extracts from start of text"
+  },
+  {
+    "Id": "100000000000000000040000000002004",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "RIGHT",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns rightmost characters; RIGHT(text, num_chars); Extracts from end of text"
+  },
+  {
+    "Id": "100000000000000000040000000002005",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "MID",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns characters from middle; MID(text, start_num, num_chars); Extracts substring"
+  },
+  {
+    "Id": "100000000000000000040000000002006",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "LEN",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns length of text; LEN(text); Counts all characters including spaces"
+  },
+  {
+    "Id": "100000000000000000040000000002007",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "TRIM",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Removes extra spaces; TRIM(text); Leaves single spaces between words"
+  },
+  {
+    "Id": "100000000000000000040000000002008",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "UPPER",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Converts to uppercase; UPPER(text); All characters to uppercase"
+  },
+  {
+    "Id": "100000000000000000040000000002009",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "LOWER",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Converts to lowercase; LOWER(text); All characters to lowercase"
+  },
+  {
+    "Id": "100000000000000000040000000002010",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "PROPER",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Capitalizes first letter of each word; PROPER(text); Title case conversion"
+  },
+  {
+    "Id": "100000000000000000040000000002011",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "FIND",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Finds text position case-sensitive; FIND(find_text, within_text, start_num); Returns position number"
+  },
+  {
+    "Id": "100000000000000000040000000002012",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "SEARCH",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Finds text position case-insensitive; SEARCH(find_text, within_text, start_num); Supports wildcards"
+  },
+  {
+    "Id": "100000000000000000040000000002013",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "SUBSTITUTE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Replaces text by matching; SUBSTITUTE(text, old_text, new_text, instance_num); Find and replace"
+  },
+  {
+    "Id": "100000000000000000040000000002014",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "REPLACE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Replaces text by position; REPLACE(old_text, start_num, num_chars, new_text); Position-based replace"
+  },
+  {
+    "Id": "100000000000000000040000000002015",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "TEXT",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Formats number as text; TEXT(value, format_text); Applies number format to value"
+  },
+  {
+    "Id": "100000000000000000040000000002016",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "VALUE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Converts text to number; VALUE(text); Parses numeric text string"
+  },
+  {
+    "Id": "100000000000000000040000000002017",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "FIXED",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Formats number with fixed decimals; FIXED(number, decimals, no_commas); Returns formatted text"
+  },
+  {
+    "Id": "100000000000000000040000000002018",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "REPT",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Repeats text; REPT(text, number_times); Duplicates text string"
+  },
+  {
+    "Id": "100000000000000000040000000002019",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "CHAR",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns character from code; CHAR(number); ASCII/Unicode code to character"
+  },
+  {
+    "Id": "100000000000000000040000000002020",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "CODE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns code of first character; CODE(text); Character to ASCII/Unicode code"
+  },
+  {
+    "Id": "100000000000000000040000000002021",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "CLEAN",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Removes non-printable characters; CLEAN(text); Strips control characters"
+  },
+  {
+    "Id": "100000000000000000040000000002022",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "EXACT",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Compares two texts case-sensitive; EXACT(text1, text2); Returns TRUE if identical"
+  },
+  {
+    "Id": "100000000000000000040000000002023",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "T",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns text if value is text; T(value); Returns empty string if not text"
+  },
+  {
+    "Id": "100000000000000000040000000002024",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "NUMBERVALUE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Converts text to number with locale; NUMBERVALUE(text, decimal_sep, group_sep); Locale-aware parsing"
+  },
+  {
+    "Id": "100000000000000000040000000002025",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "TEXTJOIN",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Joins text with delimiter; TEXTJOIN(delimiter, ignore_empty, text1, ...); Joins with separator"
+  },
+  {
+    "Id": "100000000000000000040000000002026",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "TEXTBEFORE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns text before delimiter; TEXTBEFORE(text, delimiter, instance_num); Extracts before match"
+  },
+  {
+    "Id": "100000000000000000040000000002027",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "TEXTAFTER",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns text after delimiter; TEXTAFTER(text, delimiter, instance_num); Extracts after match"
+  },
+  {
+    "Id": "100000000000000000040000000002028",
+    "ParentId": "100000000000000000040000000000002",
+    "Name": "TEXTSPLIT",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Splits text by delimiter; TEXTSPLIT(text, col_delimiter, row_delimiter); Returns array"
+  },
+  {
+    "Id": "100000000000000000040000000000003",
+    "ParentId": "100000000000000000040000000000000",
+    "Name": "DateTimeFunction",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Date and time functions; Date creation, extraction, arithmetic, workday calculations"
+  },
+  {
+    "Id": "100000000000000000040000000003001",
+    "ParentId": "100000000000000000040000000000003",
+    "Name": "TODAY",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns current date; TODAY(); No arguments; Recalculates daily"
+  },
+  {
+    "Id": "100000000000000000040000000003002",
+    "ParentId": "100000000000000000040000000000003",
+    "Name": "NOW",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns current date and time; NOW(); No arguments; Recalculates on each evaluation"
+  },
+  {
+    "Id": "100000000000000000040000000003003",
+    "ParentId": "100000000000000000040000000000003",
+    "Name": "DATE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Creates date from components; DATE(year, month, day); Returns date value"
+  },
+  {
+    "Id": "100000000000000000040000000003004",
+    "ParentId": "100000000000000000040000000000003",
+    "Name": "YEAR",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Extracts year from date; YEAR(date); Returns year as number"
+  },
+  {
+    "Id": "100000000000000000040000000003005",
+    "ParentId": "100000000000000000040000000000003",
+    "Name": "MONTH",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Extracts month from date; MONTH(date); Returns 1 to 12"
+  },
+  {
+    "Id": "100000000000000000040000000003006",
+    "ParentId": "100000000000000000040000000000003",
+    "Name": "DAY",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Extracts day from date; DAY(date); Returns 1 to 31"
+  },
+  {
+    "Id": "100000000000000000040000000003007",
+    "ParentId": "100000000000000000040000000000003",
+    "Name": "HOUR",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Extracts hour from time; HOUR(time); Returns 0 to 23"
+  },
+  {
+    "Id": "100000000000000000040000000003008",
+    "ParentId": "100000000000000000040000000000003",
+    "Name": "MINUTE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Extracts minute from time; MINUTE(time); Returns 0 to 59"
+  },
+  {
+    "Id": "100000000000000000040000000003009",
+    "ParentId": "100000000000000000040000000000003",
+    "Name": "SECOND",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Extracts second from time; SECOND(time); Returns 0 to 59"
+  },
+  {
+    "Id": "100000000000000000040000000003010",
+    "ParentId": "100000000000000000040000000000003",
+    "Name": "TIME",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Creates time from components; TIME(hour, minute, second); Returns time value"
+  },
+  {
+    "Id": "100000000000000000040000000003011",
+    "ParentId": "100000000000000000040000000000003",
+    "Name": "DATEVALUE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Converts text to date; DATEVALUE(date_text); Parses date string"
+  },
+  {
+    "Id": "100000000000000000040000000003012",
+    "ParentId": "100000000000000000040000000000003",
+    "Name": "TIMEVALUE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Converts text to time; TIMEVALUE(time_text); Parses time string"
+  },
+  {
+    "Id": "100000000000000000040000000003013",
+    "ParentId": "100000000000000000040000000000003",
+    "Name": "DATEDIF",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns difference between dates; DATEDIF(start_date, end_date, unit); Unit: Y, M, D, YM, MD, YD"
+  },
+  {
+    "Id": "100000000000000000040000000003014",
+    "ParentId": "100000000000000000040000000000003",
+    "Name": "EDATE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns date months away; EDATE(start_date, months); Positive or negative months"
+  },
+  {
+    "Id": "100000000000000000040000000003015",
+    "ParentId": "100000000000000000040000000000003",
+    "Name": "EOMONTH",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns last day of month; EOMONTH(start_date, months); End of month calculation"
+  },
+  {
+    "Id": "100000000000000000040000000003016",
+    "ParentId": "100000000000000000040000000000003",
+    "Name": "WEEKDAY",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns day of week; WEEKDAY(date, return_type); 1=Sunday through 7=Saturday"
+  },
+  {
+    "Id": "100000000000000000040000000003017",
+    "ParentId": "100000000000000000040000000000003",
+    "Name": "WEEKNUM",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns week number of year; WEEKNUM(date, return_type); Week numbering system"
+  },
+  {
+    "Id": "100000000000000000040000000003018",
+    "ParentId": "100000000000000000040000000000003",
+    "Name": "ISOWEEKNUM",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns ISO week number; ISOWEEKNUM(date); ISO 8601 week numbering"
+  },
+  {
+    "Id": "100000000000000000040000000003019",
+    "ParentId": "100000000000000000040000000000003",
+    "Name": "WORKDAY",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns date after workdays; WORKDAY(start_date, days, holidays); Skips weekends and holidays"
+  },
+  {
+    "Id": "100000000000000000040000000003020",
+    "ParentId": "100000000000000000040000000000003",
+    "Name": "NETWORKDAYS",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns workdays between dates; NETWORKDAYS(start_date, end_date, holidays); Counts business days"
+  },
+  {
+    "Id": "100000000000000000040000000003021",
+    "ParentId": "100000000000000000040000000000003",
+    "Name": "DAYS",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns days between dates; DAYS(end_date, start_date); Simple day count"
+  },
+  {
+    "Id": "100000000000000000040000000003022",
+    "ParentId": "100000000000000000040000000000003",
+    "Name": "DAYS360",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns days on 360-day year; DAYS360(start_date, end_date, method); Financial day count"
+  },
+  {
+    "Id": "100000000000000000040000000000004",
+    "ParentId": "100000000000000000040000000000000",
+    "Name": "LookupFunction",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Lookup and reference functions; Table lookups, array operations, dynamic references"
+  },
+  {
+    "Id": "100000000000000000040000000004001",
+    "ParentId": "100000000000000000040000000000004",
+    "Name": "VLOOKUP",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Vertical lookup in table; VLOOKUP(lookup_value, table_array, col_index, range_lookup); Searches first column"
+  },
+  {
+    "Id": "100000000000000000040000000004002",
+    "ParentId": "100000000000000000040000000000004",
+    "Name": "HLOOKUP",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Horizontal lookup in table; HLOOKUP(lookup_value, table_array, row_index, range_lookup); Searches first row"
+  },
+  {
+    "Id": "100000000000000000040000000004003",
+    "ParentId": "100000000000000000040000000000004",
+    "Name": "XLOOKUP",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Advanced lookup; XLOOKUP(lookup_value, lookup_array, return_array, if_not_found, match_mode, search_mode); Modern replacement for VLOOKUP"
+  },
+  {
+    "Id": "100000000000000000040000000004004",
+    "ParentId": "100000000000000000040000000000004",
+    "Name": "INDEX",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns value at position; INDEX(array, row_num, column_num); Direct cell reference by position"
+  },
+  {
+    "Id": "100000000000000000040000000004005",
+    "ParentId": "100000000000000000040000000000004",
+    "Name": "MATCH",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns position of value; MATCH(lookup_value, lookup_array, match_type); Finds position in range"
+  },
+  {
+    "Id": "100000000000000000040000000004006",
+    "ParentId": "100000000000000000040000000000004",
+    "Name": "XMATCH",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Advanced position match; XMATCH(lookup_value, lookup_array, match_mode, search_mode); Modern replacement for MATCH"
+  },
+  {
+    "Id": "100000000000000000040000000004007",
+    "ParentId": "100000000000000000040000000000004",
+    "Name": "CHOOSE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns value from list by index; CHOOSE(index_num, value1, value2, ...); Index-based selection"
+  },
+  {
+    "Id": "100000000000000000040000000004008",
+    "ParentId": "100000000000000000040000000000004",
+    "Name": "INDIRECT",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns reference from text; INDIRECT(ref_text, a1_style); Converts text to reference"
+  },
+  {
+    "Id": "100000000000000000040000000004009",
+    "ParentId": "100000000000000000040000000000004",
+    "Name": "OFFSET",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns reference offset from start; OFFSET(reference, rows, cols, height, width); Dynamic range reference"
+  },
+  {
+    "Id": "100000000000000000040000000004010",
+    "ParentId": "100000000000000000040000000000004",
+    "Name": "ROW",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns row number; ROW(reference); Current row number of reference"
+  },
+  {
+    "Id": "100000000000000000040000000004011",
+    "ParentId": "100000000000000000040000000000004",
+    "Name": "COLUMN",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns column number; COLUMN(reference); Current column number of reference"
+  },
+  {
+    "Id": "100000000000000000040000000004012",
+    "ParentId": "100000000000000000040000000000004",
+    "Name": "ROWS",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns number of rows; ROWS(array); Counts rows in range"
+  },
+  {
+    "Id": "100000000000000000040000000004013",
+    "ParentId": "100000000000000000040000000000004",
+    "Name": "COLUMNS",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns number of columns; COLUMNS(array); Counts columns in range"
+  },
+  {
+    "Id": "100000000000000000040000000004014",
+    "ParentId": "100000000000000000040000000000004",
+    "Name": "LOOKUP",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Searches for value; LOOKUP(lookup_value, lookup_vector, result_vector); Simplified lookup"
+  },
+  {
+    "Id": "100000000000000000040000000004015",
+    "ParentId": "100000000000000000040000000000004",
+    "Name": "ADDRESS",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Creates cell reference as text; ADDRESS(row_num, column_num, abs_num, a1_style, sheet_text); Text cell address"
+  },
+  {
+    "Id": "100000000000000000040000000004016",
+    "ParentId": "100000000000000000040000000000004",
+    "Name": "HYPERLINK",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Creates clickable link; HYPERLINK(link_location, friendly_name); URL or file link"
+  },
+  {
+    "Id": "100000000000000000040000000004017",
+    "ParentId": "100000000000000000040000000000004",
+    "Name": "FILTER",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Filters array by condition; FILTER(array, include, if_empty); Dynamic filtering"
+  },
+  {
+    "Id": "100000000000000000040000000004018",
+    "ParentId": "100000000000000000040000000000004",
+    "Name": "SORT",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Sorts array; SORT(array, sort_index, sort_order, by_col); Dynamic sorting"
+  },
+  {
+    "Id": "100000000000000000040000000004019",
+    "ParentId": "100000000000000000040000000000004",
+    "Name": "SORTBY",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Sorts array by another array; SORTBY(array, by_array1, sort_order1, ...); Multi-key sort"
+  },
+  {
+    "Id": "100000000000000000040000000004020",
+    "ParentId": "100000000000000000040000000000004",
+    "Name": "UNIQUE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns unique values; UNIQUE(array, by_col, exactly_once); Removes duplicates"
+  },
+  {
+    "Id": "100000000000000000040000000004021",
+    "ParentId": "100000000000000000040000000000004",
+    "Name": "TRANSPOSE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Transposes rows to columns; TRANSPOSE(array); Flips array orientation"
+  },
+  {
+    "Id": "100000000000000000040000000000005",
+    "ParentId": "100000000000000000040000000000000",
+    "Name": "LogicalFunction",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Logical and decision functions; Conditional logic, error handling, boolean operations"
+  },
+  {
+    "Id": "100000000000000000040000000005001",
+    "ParentId": "100000000000000000040000000000005",
+    "Name": "IF",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Conditional evaluation; IF(logical_test, value_if_true, value_if_false); Returns one of two values"
+  },
+  {
+    "Id": "100000000000000000040000000005002",
+    "ParentId": "100000000000000000040000000000005",
+    "Name": "IFS",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Multiple condition evaluation; IFS(logical_test1, value1, logical_test2, value2, ...); First true condition wins"
+  },
+  {
+    "Id": "100000000000000000040000000005003",
+    "ParentId": "100000000000000000040000000000005",
+    "Name": "IFERROR",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Error handling; IFERROR(value, value_if_error); Returns fallback if value is error; PTS equivalent of try/catch"
+  },
+  {
+    "Id": "100000000000000000040000000005004",
+    "ParentId": "100000000000000000040000000000005",
+    "Name": "IFNA",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "NA error handling; IFNA(value, value_if_na); Returns fallback only for #N/A errors"
+  },
+  {
+    "Id": "100000000000000000040000000005005",
+    "ParentId": "100000000000000000040000000000005",
+    "Name": "SWITCH",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Value matching; SWITCH(expression, value1, result1, value2, result2, ..., default); Matches expression to values"
+  },
+  {
+    "Id": "100000000000000000040000000005006",
+    "ParentId": "100000000000000000040000000000005",
+    "Name": "AND",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Logical AND; AND(logical1, logical2, ...); Returns TRUE if all conditions true"
+  },
+  {
+    "Id": "100000000000000000040000000005007",
+    "ParentId": "100000000000000000040000000000005",
+    "Name": "OR",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Logical OR; OR(logical1, logical2, ...); Returns TRUE if any condition true"
+  },
+  {
+    "Id": "100000000000000000040000000005008",
+    "ParentId": "100000000000000000040000000000005",
+    "Name": "NOT",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Logical NOT; NOT(logical); Reverses boolean value"
+  },
+  {
+    "Id": "100000000000000000040000000005009",
+    "ParentId": "100000000000000000040000000000005",
+    "Name": "XOR",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Exclusive OR; XOR(logical1, logical2, ...); Returns TRUE if odd number of conditions true"
+  },
+  {
+    "Id": "100000000000000000040000000005010",
+    "ParentId": "100000000000000000040000000000005",
+    "Name": "TRUE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns boolean TRUE; TRUE(); Constant true value"
+  },
+  {
+    "Id": "100000000000000000040000000005011",
+    "ParentId": "100000000000000000040000000000005",
+    "Name": "FALSE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns boolean FALSE; FALSE(); Constant false value"
+  },
+  {
+    "Id": "100000000000000000040000000005012",
+    "ParentId": "100000000000000000040000000000005",
+    "Name": "LET",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Defines named variables in formula; LET(name1, value1, name2, value2, ..., calculation); Reusable named values"
+  },
+  {
+    "Id": "100000000000000000040000000005013",
+    "ParentId": "100000000000000000040000000000005",
+    "Name": "LAMBDA",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Creates custom function; LAMBDA(parameter1, parameter2, ..., calculation); User-defined function"
+  },
+  {
+    "Id": "100000000000000000040000000000006",
+    "ParentId": "100000000000000000040000000000000",
+    "Name": "StatisticalFunction",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Statistical and aggregation functions; Counting, averaging, ranking, distribution, forecasting"
+  },
+  {
+    "Id": "100000000000000000040000000006001",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "COUNT",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Counts numeric values; COUNT(value1, value2, ...); Ignores text and blanks"
+  },
+  {
+    "Id": "100000000000000000040000000006002",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "COUNTA",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Counts non-empty values; COUNTA(value1, value2, ...); Counts any non-blank cell"
+  },
+  {
+    "Id": "100000000000000000040000000006003",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "COUNTBLANK",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Counts empty cells; COUNTBLANK(range); Counts blank cells in range"
+  },
+  {
+    "Id": "100000000000000000040000000006004",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "COUNTIF",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Counts by condition; COUNTIF(range, criteria); Single condition count"
+  },
+  {
+    "Id": "100000000000000000040000000006005",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "COUNTIFS",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Counts by multiple conditions; COUNTIFS(range1, criteria1, range2, criteria2, ...); Multi-condition count"
+  },
+  {
+    "Id": "100000000000000000040000000006006",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "SUMIF",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Sums by condition; SUMIF(range, criteria, sum_range); Conditional sum"
+  },
+  {
+    "Id": "100000000000000000040000000006007",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "SUMIFS",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Sums by multiple conditions; SUMIFS(sum_range, range1, criteria1, range2, criteria2, ...); Multi-condition sum"
+  },
+  {
+    "Id": "100000000000000000040000000006008",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "AVERAGEIF",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Averages by condition; AVERAGEIF(range, criteria, average_range); Conditional average"
+  },
+  {
+    "Id": "100000000000000000040000000006009",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "AVERAGEIFS",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Averages by multiple conditions; AVERAGEIFS(average_range, range1, criteria1, ...); Multi-condition average"
+  },
+  {
+    "Id": "100000000000000000040000000006010",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "MAX",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns largest value; MAX(number1, number2, ...); Maximum in range"
+  },
+  {
+    "Id": "100000000000000000040000000006011",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "MAXIFS",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns max by conditions; MAXIFS(max_range, range1, criteria1, ...); Conditional maximum"
+  },
+  {
+    "Id": "100000000000000000040000000006012",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "MIN",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns smallest value; MIN(number1, number2, ...); Minimum in range"
+  },
+  {
+    "Id": "100000000000000000040000000006013",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "MINIFS",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns min by conditions; MINIFS(min_range, range1, criteria1, ...); Conditional minimum"
+  },
+  {
+    "Id": "100000000000000000040000000006014",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "AVERAGE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns arithmetic mean; AVERAGE(number1, number2, ...); Mean of values"
+  },
+  {
+    "Id": "100000000000000000040000000006015",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "MEDIAN",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns middle value; MEDIAN(number1, number2, ...); Middle of sorted values"
+  },
+  {
+    "Id": "100000000000000000040000000006016",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "MODE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns most frequent value; MODE(number1, number2, ...); Most common value"
+  },
+  {
+    "Id": "100000000000000000040000000006017",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "MODE.SNGL",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns single mode; MODE.SNGL(number1, number2, ...); Single most frequent value"
+  },
+  {
+    "Id": "100000000000000000040000000006018",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "MODE.MULT",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns multiple modes; MODE.MULT(number1, number2, ...); All most frequent values"
+  },
+  {
+    "Id": "100000000000000000040000000006019",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "STDEV",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns standard deviation; STDEV(number1, number2, ...); Sample standard deviation"
+  },
+  {
+    "Id": "100000000000000000040000000006020",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "STDEV.S",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns sample standard deviation; STDEV.S(number1, number2, ...); Same as STDEV"
+  },
+  {
+    "Id": "100000000000000000040000000006021",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "STDEV.P",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns population standard deviation; STDEV.P(number1, number2, ...); Entire population"
+  },
+  {
+    "Id": "100000000000000000040000000006022",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "VAR",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns variance; VAR(number1, number2, ...); Sample variance"
+  },
+  {
+    "Id": "100000000000000000040000000006023",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "VAR.S",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns sample variance; VAR.S(number1, number2, ...); Same as VAR"
+  },
+  {
+    "Id": "100000000000000000040000000006024",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "VAR.P",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns population variance; VAR.P(number1, number2, ...); Entire population"
+  },
+  {
+    "Id": "100000000000000000040000000006025",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "LARGE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns kth largest value; LARGE(array, k); Kth largest in dataset"
+  },
+  {
+    "Id": "100000000000000000040000000006026",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "SMALL",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns kth smallest value; SMALL(array, k); Kth smallest in dataset"
+  },
+  {
+    "Id": "100000000000000000040000000006027",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "RANK",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns rank of number; RANK(number, ref, order); Position in sorted list"
+  },
+  {
+    "Id": "100000000000000000040000000006028",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "RANK.AVG",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns rank with average ties; RANK.AVG(number, ref, order); Average rank for ties"
+  },
+  {
+    "Id": "100000000000000000040000000006029",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "RANK.EQ",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns rank with top ties; RANK.EQ(number, ref, order); Highest rank for ties"
+  },
+  {
+    "Id": "100000000000000000040000000006030",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "PERCENTILE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns percentile value; PERCENTILE(array, k); Value at kth percentile"
+  },
+  {
+    "Id": "100000000000000000040000000006031",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "PERCENTRANK",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns percent rank; PERCENTRANK(array, x, significance); Rank as percentage"
+  },
+  {
+    "Id": "100000000000000000040000000006032",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "QUARTILE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns quartile value; QUARTILE(array, quart); 0=min, 1=Q1, 2=median, 3=Q3, 4=max"
+  },
+  {
+    "Id": "100000000000000000040000000006033",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "FREQUENCY",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns frequency distribution; FREQUENCY(data_array, bins_array); Counts per bin"
+  },
+  {
+    "Id": "100000000000000000040000000006034",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "FORECAST",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Predicts future value; FORECAST(x, known_ys, known_xs); Linear prediction"
+  },
+  {
+    "Id": "100000000000000000040000000006035",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "TREND",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns trend line values; TREND(known_ys, known_xs, new_xs, const); Linear trend"
+  },
+  {
+    "Id": "100000000000000000040000000006036",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "GROWTH",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns exponential growth values; GROWTH(known_ys, known_xs, new_xs, const); Exponential trend"
+  },
+  {
+    "Id": "100000000000000000040000000006037",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "CORREL",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns correlation coefficient; CORREL(array1, array2); Pearson correlation"
+  },
+  {
+    "Id": "100000000000000000040000000006038",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "COVARIANCE.S",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns sample covariance; COVARIANCE.S(array1, array2); Sample covariance"
+  },
+  {
+    "Id": "100000000000000000040000000006039",
+    "ParentId": "100000000000000000040000000000006",
+    "Name": "COVARIANCE.P",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns population covariance; COVARIANCE.P(array1, array2); Population covariance"
+  },
+  {
+    "Id": "100000000000000000040000000000007",
+    "ParentId": "100000000000000000040000000000000",
+    "Name": "InformationFunction",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Information and type checking functions; Type detection, error checking, cell information"
+  },
+  {
+    "Id": "100000000000000000040000000007001",
+    "ParentId": "100000000000000000040000000000007",
+    "Name": "ISNUMBER",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Checks if value is number; ISNUMBER(value); Returns TRUE for numeric values"
+  },
+  {
+    "Id": "100000000000000000040000000007002",
+    "ParentId": "100000000000000000040000000000007",
+    "Name": "ISTEXT",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Checks if value is text; ISTEXT(value); Returns TRUE for text values"
+  },
+  {
+    "Id": "100000000000000000040000000007003",
+    "ParentId": "100000000000000000040000000000007",
+    "Name": "ISBLANK",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Checks if cell is empty; ISBLANK(value); Returns TRUE for empty cells"
+  },
+  {
+    "Id": "100000000000000000040000000007004",
+    "ParentId": "100000000000000000040000000000007",
+    "Name": "ISERROR",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Checks if value is any error; ISERROR(value); Returns TRUE for any error type"
+  },
+  {
+    "Id": "100000000000000000040000000007005",
+    "ParentId": "100000000000000000040000000000007",
+    "Name": "ISNA",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Checks if value is #N/A; ISNA(value); Returns TRUE only for #N/A error"
+  },
+  {
+    "Id": "100000000000000000040000000007006",
+    "ParentId": "100000000000000000040000000000007",
+    "Name": "ISLOGICAL",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Checks if value is boolean; ISLOGICAL(value); Returns TRUE for TRUE/FALSE values"
+  },
+  {
+    "Id": "100000000000000000040000000007007",
+    "ParentId": "100000000000000000040000000000007",
+    "Name": "ISREF",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Checks if value is reference; ISREF(value); Returns TRUE for cell references"
+  },
+  {
+    "Id": "100000000000000000040000000007008",
+    "ParentId": "100000000000000000040000000000007",
+    "Name": "ISEVEN",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Checks if number is even; ISEVEN(number); Returns TRUE for even numbers"
+  },
+  {
+    "Id": "100000000000000000040000000007009",
+    "ParentId": "100000000000000000040000000000007",
+    "Name": "ISODD",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Checks if number is odd; ISODD(number); Returns TRUE for odd numbers"
+  },
+  {
+    "Id": "100000000000000000040000000007010",
+    "ParentId": "100000000000000000040000000000007",
+    "Name": "ISFORMULA",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Checks if cell has formula; ISFORMULA(reference); Returns TRUE for formula cells"
+  },
+  {
+    "Id": "100000000000000000040000000007011",
+    "ParentId": "100000000000000000040000000000007",
+    "Name": "TYPE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns type number; TYPE(value); 1=Number, 2=Text, 4=Logical, 16=Error, 64=Array"
+  },
+  {
+    "Id": "100000000000000000040000000007012",
+    "ParentId": "100000000000000000040000000000007",
+    "Name": "ERROR.TYPE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns error type number; ERROR.TYPE(error_val); Identifies specific error type; PTS equivalent of catch block error identification"
+  },
+  {
+    "Id": "100000000000000000040000000007013",
+    "ParentId": "100000000000000000040000000000007",
+    "Name": "INFO",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns system information; INFO(type_text); Environment information"
+  },
+  {
+    "Id": "100000000000000000040000000007014",
+    "ParentId": "100000000000000000040000000000007",
+    "Name": "CELL",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns cell information; CELL(info_type, reference); Format, address, contents"
+  },
+  {
+    "Id": "100000000000000000040000000007015",
+    "ParentId": "100000000000000000040000000000007",
+    "Name": "N",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Converts value to number; N(value); Non-numeric returns 0"
+  },
+  {
+    "Id": "100000000000000000040000000007016",
+    "ParentId": "100000000000000000040000000000007",
+    "Name": "NA",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns #N/A error; NA(); Marks intentionally missing data"
+  },
+  {
+    "Id": "100000000000000000040000000007017",
+    "ParentId": "100000000000000000040000000000007",
+    "Name": "SHEET",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns sheet number; SHEET(value); Sheet index number"
+  },
+  {
+    "Id": "100000000000000000040000000000008",
+    "ParentId": "100000000000000000040000000000000",
+    "Name": "FinancialFunction",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Financial calculation functions; Loan payments, investment returns, depreciation, bonds"
+  },
+  {
+    "Id": "100000000000000000040000000008001",
+    "ParentId": "100000000000000000040000000000008",
+    "Name": "PMT",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns loan payment; PMT(rate, nper, pv, fv, type); Periodic payment amount"
+  },
+  {
+    "Id": "100000000000000000040000000008002",
+    "ParentId": "100000000000000000040000000000008",
+    "Name": "FV",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns future value; FV(rate, nper, pmt, pv, type); Investment future value"
+  },
+  {
+    "Id": "100000000000000000040000000008003",
+    "ParentId": "100000000000000000040000000000008",
+    "Name": "PV",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns present value; PV(rate, nper, pmt, fv, type); Current value of investment"
+  },
+  {
+    "Id": "100000000000000000040000000008004",
+    "ParentId": "100000000000000000040000000000008",
+    "Name": "NPV",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns net present value; NPV(rate, value1, value2, ...); NPV of cash flows"
+  },
+  {
+    "Id": "100000000000000000040000000008005",
+    "ParentId": "100000000000000000040000000000008",
+    "Name": "XNPV",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns NPV for irregular periods; XNPV(rate, values, dates); Date-based NPV"
+  },
+  {
+    "Id": "100000000000000000040000000008006",
+    "ParentId": "100000000000000000040000000000008",
+    "Name": "IRR",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns internal rate of return; IRR(values, guess); Rate where NPV equals zero"
+  },
+  {
+    "Id": "100000000000000000040000000008007",
+    "ParentId": "100000000000000000040000000000008",
+    "Name": "XIRR",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns IRR for irregular periods; XIRR(values, dates, guess); Date-based IRR"
+  },
+  {
+    "Id": "100000000000000000040000000008008",
+    "ParentId": "100000000000000000040000000000008",
+    "Name": "MIRR",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns modified IRR; MIRR(values, finance_rate, reinvest_rate); Modified internal rate"
+  },
+  {
+    "Id": "100000000000000000040000000008009",
+    "ParentId": "100000000000000000040000000000008",
+    "Name": "RATE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns interest rate per period; RATE(nper, pmt, pv, fv, type, guess); Solves for rate"
+  },
+  {
+    "Id": "100000000000000000040000000008010",
+    "ParentId": "100000000000000000040000000000008",
+    "Name": "NPER",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns number of periods; NPER(rate, pmt, pv, fv, type); Loan or investment periods"
+  },
+  {
+    "Id": "100000000000000000040000000008011",
+    "ParentId": "100000000000000000040000000000008",
+    "Name": "IPMT",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns interest portion; IPMT(rate, per, nper, pv, fv, type); Interest part of payment"
+  },
+  {
+    "Id": "100000000000000000040000000008012",
+    "ParentId": "100000000000000000040000000000008",
+    "Name": "PPMT",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns principal portion; PPMT(rate, per, nper, pv, fv, type); Principal part of payment"
+  },
+  {
+    "Id": "100000000000000000040000000008013",
+    "ParentId": "100000000000000000040000000000008",
+    "Name": "CUMIPMT",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns cumulative interest; CUMIPMT(rate, nper, pv, start_period, end_period, type); Total interest over periods"
+  },
+  {
+    "Id": "100000000000000000040000000008014",
+    "ParentId": "100000000000000000040000000000008",
+    "Name": "CUMPRINC",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns cumulative principal; CUMPRINC(rate, nper, pv, start_period, end_period, type); Total principal over periods"
+  },
+  {
+    "Id": "100000000000000000040000000008015",
+    "ParentId": "100000000000000000040000000000008",
+    "Name": "SLN",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns straight-line depreciation; SLN(cost, salvage, life); Equal annual depreciation"
+  },
+  {
+    "Id": "100000000000000000040000000008016",
+    "ParentId": "100000000000000000040000000000008",
+    "Name": "SYD",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns sum-of-years depreciation; SYD(cost, salvage, life, per); Accelerated depreciation"
+  },
+  {
+    "Id": "100000000000000000040000000008017",
+    "ParentId": "100000000000000000040000000000008",
+    "Name": "DB",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns declining balance depreciation; DB(cost, salvage, life, period, month); Fixed-rate depreciation"
+  },
+  {
+    "Id": "100000000000000000040000000008018",
+    "ParentId": "100000000000000000040000000000008",
+    "Name": "DDB",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns double declining depreciation; DDB(cost, salvage, life, period, factor); Double rate depreciation"
+  },
+  {
+    "Id": "100000000000000000040000000008019",
+    "ParentId": "100000000000000000040000000000008",
+    "Name": "VDB",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns variable declining depreciation; VDB(cost, salvage, life, start_period, end_period, factor, no_switch); Flexible depreciation"
+  },
+  {
+    "Id": "100000000000000000040000000008020",
+    "ParentId": "100000000000000000040000000000008",
+    "Name": "EFFECT",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns effective annual rate; EFFECT(nominal_rate, npery); Nominal to effective conversion"
+  },
+  {
+    "Id": "100000000000000000040000000008021",
+    "ParentId": "100000000000000000040000000000008",
+    "Name": "NOMINAL",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns nominal annual rate; NOMINAL(effect_rate, npery); Effective to nominal conversion"
+  },
+  {
+    "Id": "100000000000000000040000000008022",
+    "ParentId": "100000000000000000040000000000008",
+    "Name": "DOLLARDE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Converts fractional to decimal; DOLLARDE(fractional_dollar, fraction); Price fraction to decimal"
+  },
+  {
+    "Id": "100000000000000000040000000008023",
+    "ParentId": "100000000000000000040000000000008",
+    "Name": "DOLLARFR",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Converts decimal to fractional; DOLLARFR(decimal_dollar, fraction); Decimal to price fraction"
+  },
+  {
+    "Id": "100000000000000000040000000008024",
+    "ParentId": "100000000000000000040000000000008",
+    "Name": "DISC",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns discount rate; DISC(settlement, maturity, pr, redemption, basis); Bond discount rate"
+  },
+  {
+    "Id": "100000000000000000040000000008025",
+    "ParentId": "100000000000000000040000000000008",
+    "Name": "PRICE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns bond price; PRICE(settlement, maturity, rate, yld, redemption, frequency, basis); Bond price per 100 face"
+  },
+  {
+    "Id": "100000000000000000040000000008026",
+    "ParentId": "100000000000000000040000000000008",
+    "Name": "YIELD",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Returns bond yield; YIELD(settlement, maturity, rate, pr, redemption, frequency, basis); Bond yield to maturity"
+  },
+  {
+    "Id": "GYMTC000000000000000000000000001",
+    "ParentId": "GYM2000000000000000000000000002",
+    "Name": "TargetCustomer",
+    "PayanarssTypeId": "100000000000000000000000000000001",
+    "Attributes": [],
+    "Description": "Target customer segment definition for Gym Business; Tree-structured domain model with max 3-4 columns per node"
+  },
+  {
     "Id": "100000000000000000000000000000008",
     "ParentId": "100000000000000000000000000000008",
     "Name": "DateTime",
@@ -813,7 +2655,7 @@
     "Name": "MAA ERP",
     "PayanarssTypeId": "10000000000000000000000000000011111",
     "Attributes": [],
-    "Description": "Root node \u2014 MAA ERP Industry Business Use Case Master"
+    "Description": "Root node — MAA ERP Industry Business Use Case Master"
   },
   {
     "Id": "CMR00000000000000000000000010000",
@@ -99133,7 +100975,7 @@
     "Name": "Gym Business DB Schema",
     "PayanarssTypeId": "100000000000000000000000000000004",
     "Attributes": [],
-    "Description": "Root node \u2014 Gym Business complete database schema"
+    "Description": "Root node — Gym Business complete database schema"
   },
   {
     "Id": "GYM2000000000000000000000000001",
@@ -102569,7 +104411,7 @@
   },
   {
     "Id": "GYMSEG000000000000000000001001",
-    "ParentId": "GYM2000000000000000000000000002",
+    "ParentId": "mn8mlohmr73qpjffvsk",
     "Name": "Bodybuilders",
     "PayanarssTypeId": "1000000000000000000000000000000031",
     "Attributes": [],
@@ -102625,7 +104467,7 @@
   },
   {
     "Id": "GYMSEG000000000000000000001008",
-    "ParentId": "GYM2000000000000000000000000002",
+    "ParentId": "mn8mlohmr73qpjffvsk",
     "Name": "General Fitness",
     "PayanarssTypeId": "1000000000000000000000000000000031",
     "Attributes": [],
@@ -102681,7 +104523,7 @@
   },
   {
     "Id": "GYMSEG000000000000000000001015",
-    "ParentId": "GYM2000000000000000000000000002",
+    "ParentId": "mn8mlohmr73qpjffvsk",
     "Name": "Women-Only",
     "PayanarssTypeId": "1000000000000000000000000000000031",
     "Attributes": [],
@@ -102737,7 +104579,7 @@
   },
   {
     "Id": "GYMSEG000000000000000000001022",
-    "ParentId": "GYM2000000000000000000000000002",
+    "ParentId": "mn8mlohmr73qpjffvsk",
     "Name": "CrossFit / Functional Training",
     "PayanarssTypeId": "1000000000000000000000000000000031",
     "Attributes": [],
@@ -102793,7 +104635,7 @@
   },
   {
     "Id": "GYMSEG000000000000000000001029",
-    "ParentId": "GYM2000000000000000000000000002",
+    "ParentId": "mn8mlohmr73qpjffvsk",
     "Name": "Senior / Rehabilitation",
     "PayanarssTypeId": "1000000000000000000000000000000031",
     "Attributes": [],
@@ -102849,7 +104691,7 @@
   },
   {
     "Id": "GYMSEG000000000000000000001036",
-    "ParentId": "GYM2000000000000000000000000002",
+    "ParentId": "mn8mlohmr73qpjffvsk",
     "Name": "Youth / Teen Fitness",
     "PayanarssTypeId": "1000000000000000000000000000000031",
     "Attributes": [],
@@ -102905,7 +104747,7 @@
   },
   {
     "Id": "GYMSEG000000000000000000001043",
-    "ParentId": "GYM2000000000000000000000000002",
+    "ParentId": "mn8mlohmr73qpjffvsk",
     "Name": "Corporate / Office Workers",
     "PayanarssTypeId": "1000000000000000000000000000000031",
     "Attributes": [],
@@ -102961,7 +104803,7 @@
   },
   {
     "Id": "GYMSEG000000000000000000001050",
-    "ParentId": "GYM2000000000000000000000000002",
+    "ParentId": "mn8mlohmr73qpjffvsk",
     "Name": "Athletes / Sports Training",
     "PayanarssTypeId": "1000000000000000000000000000000031",
     "Attributes": [],
@@ -103017,7 +104859,7 @@
   },
   {
     "Id": "GYMSEG000000000000000000001057",
-    "ParentId": "GYM2000000000000000000000000002",
+    "ParentId": "mn8mlohmr73qpjffvsk",
     "Name": "24-Hour / Budget",
     "PayanarssTypeId": "1000000000000000000000000000000031",
     "Attributes": [],
@@ -103073,7 +104915,7 @@
   },
   {
     "Id": "GYMSEG000000000000000000001064",
-    "ParentId": "GYM2000000000000000000000000002",
+    "ParentId": "mn8mlohmr73qpjffvsk",
     "Name": "Boutique / Luxury",
     "PayanarssTypeId": "1000000000000000000000000000000031",
     "Attributes": [],
@@ -108382,5 +110224,821 @@
     "PayanarssTypeId": "100000000000000000000000000000005",
     "Attributes": [],
     "Description": "Required field rule"
+  },
+  {
+    "Id": "mmq5ifakdczhnrkqg1f",
+    "ParentId": "SUB00000000000000000000098670000",
+    "Name": "CustomerManagement",
+    "PayanarssTypeId": "100000000000000000000000000000004",
+    "Attributes": [],
+    "Description": "Manages customer information, contracts, and service agreements."
+  },
+  {
+    "Id": "mmq5ifakeoul32solwm",
+    "ParentId": "SUB00000000000000000000098670000",
+    "Name": "AcquireNewCustomers",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Process of identifying and onboarding new pest control clients."
+  },
+  {
+    "Id": "mmq5ifakab8qltcj2uo",
+    "ParentId": "SUB00000000000000000000098670000",
+    "Name": "ManageServiceContracts",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Create and maintain ongoing pest control service agreements."
+  },
+  {
+    "Id": "mmq5ifak68vl9xm8874",
+    "ParentId": "SUB00000000000000000000098670000",
+    "Name": "ServiceScheduling",
+    "PayanarssTypeId": "100000000000000000000000000000004",
+    "Attributes": [],
+    "Description": "Handles appointment booking, route planning, and technician assignments."
+  },
+  {
+    "Id": "mmq5ifakpw2s25yojjp",
+    "ParentId": "SUB00000000000000000000098670000",
+    "Name": "ScheduleInspections",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Book initial property inspections and assessments."
+  },
+  {
+    "Id": "mmq5ifakl9nz26v0x",
+    "ParentId": "SUB00000000000000000000098670000",
+    "Name": "PlanServiceRoutes",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Optimize technician routes for efficient service delivery."
+  },
+  {
+    "Id": "mmq5ifakhhjbxrqy067",
+    "ParentId": "SUB00000000000000000000098670000",
+    "Name": "TreatmentManagement",
+    "PayanarssTypeId": "100000000000000000000000000000004",
+    "Attributes": [],
+    "Description": "Manages pest treatments, chemicals, and application procedures."
+  },
+  {
+    "Id": "mmq5ifakgefk4zoll8i",
+    "ParentId": "SUB00000000000000000000098670000",
+    "Name": "ConductTreatments",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Execute pest control treatments and document procedures."
+  },
+  {
+    "Id": "mmq5ifakrz161pib6sm",
+    "ParentId": "SUB00000000000000000000098670000",
+    "Name": "ManageChemicalInventory",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Track pesticide stock levels and regulatory compliance."
+  },
+  {
+    "Id": "mmq5ifak48clrd1uw05",
+    "ParentId": "SUB00000000000000000000098670000",
+    "Name": "InspectionReporting",
+    "PayanarssTypeId": "100000000000000000000000000000004",
+    "Attributes": [],
+    "Description": "Handles property inspections, pest identification, and findings documentation."
+  },
+  {
+    "Id": "mmq5ifak45bknqpw5ed",
+    "ParentId": "SUB00000000000000000000098670000",
+    "Name": "PerformInspections",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Conduct thorough property inspections for pest activity."
+  },
+  {
+    "Id": "mmq5ifak7fmsv0otw1o",
+    "ParentId": "SUB00000000000000000000098670000",
+    "Name": "GenerateReports",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Create detailed inspection and treatment reports for clients."
+  },
+  {
+    "Id": "mmq5ifakbolafz4hz1",
+    "ParentId": "SUB00000000000000000000098670000",
+    "Name": "ComplianceTracking",
+    "PayanarssTypeId": "100000000000000000000000000000004",
+    "Attributes": [],
+    "Description": "Ensures regulatory compliance and license management."
+  },
+  {
+    "Id": "mmq5ifakrawxa5qkcwm",
+    "ParentId": "SUB00000000000000000000098670000",
+    "Name": "MaintainLicenses",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Track technician certifications and regulatory requirements."
+  },
+  {
+    "Id": "mmq5ifaktkhx87lemmq",
+    "ParentId": "SUB00000000000000000000098670000",
+    "Name": "BillingInvoicing",
+    "PayanarssTypeId": "100000000000000000000000000000004",
+    "Attributes": [],
+    "Description": "Manages service billing, invoicing, and payment processing."
+  },
+  {
+    "Id": "mmq5ifakj3y0hsy7h9i",
+    "ParentId": "SUB00000000000000000000098670000",
+    "Name": "ProcessServiceBilling",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Generate invoices for completed pest control services."
+  },
+  {
+    "Id": "mmq5y3lpey7f1e7n7m",
+    "ParentId": "SUB00000000000000000000098660000",
+    "Name": "ResidentialCleaning",
+    "PayanarssTypeId": "100000000000000000000000000000004",
+    "Attributes": [],
+    "Description": "Module for managing residential cleaning services and operations."
+  },
+  {
+    "Id": "mmq5y3lp0368hy6glr73",
+    "ParentId": "SUB00000000000000000000098660000",
+    "Name": "CommercialCleaning",
+    "PayanarssTypeId": "100000000000000000000000000000004",
+    "Attributes": [],
+    "Description": "Module for managing commercial and office cleaning services."
+  },
+  {
+    "Id": "mmq5y3lpqttnxwa5nje",
+    "ParentId": "SUB00000000000000000000098660000",
+    "Name": "SpecializedCleaning",
+    "PayanarssTypeId": "100000000000000000000000000000004",
+    "Attributes": [],
+    "Description": "Module for specialized cleaning services like carpet and window cleaning."
+  },
+  {
+    "Id": "mmq5y3lp497vaeduyd7",
+    "ParentId": "SUB00000000000000000000098660000",
+    "Name": "ScheduleCleaningAppointment",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Schedule and book cleaning appointments with customers."
+  },
+  {
+    "Id": "mmq5y3lp1d61dzvlv9s",
+    "ParentId": "SUB00000000000000000000098660000",
+    "Name": "AssignCleaningCrew",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Assign cleaning staff and crew to scheduled appointments."
+  },
+  {
+    "Id": "mmq5y3lpk6iwubankt8",
+    "ParentId": "SUB00000000000000000000098660000",
+    "Name": "PerformCleaningService",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Execute the actual cleaning service at customer location."
+  },
+  {
+    "Id": "mmq5y3lpdb9ar1cxxzl",
+    "ParentId": "SUB00000000000000000000098660000",
+    "Name": "InspectCleaningQuality",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Conduct quality inspection after cleaning service completion."
+  },
+  {
+    "Id": "mmq5y3lpmwltzgvstvo",
+    "ParentId": "SUB00000000000000000000098660000",
+    "Name": "ProcessCleaningPayment",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Process payment collection for completed cleaning services."
+  },
+  {
+    "Id": "mmq5y3lp72akgzzi013",
+    "ParentId": "SUB00000000000000000000098660000",
+    "Name": "ManageCleaningSupplies",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Track and manage cleaning supplies and equipment inventory."
+  },
+  {
+    "Id": "mmq5y3lp4ldz2dk96v5",
+    "ParentId": "SUB00000000000000000000098660000",
+    "Name": "HandleCustomerFeedback",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Collect and process customer feedback and complaints."
+  },
+  {
+    "Id": "mmq5y3lp6p0cc644t1h",
+    "ParentId": "SUB00000000000000000000098660000",
+    "Name": "GenerateCleaningReports",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Generate reports on cleaning operations and performance metrics."
+  },
+  {
+    "Id": "mmq5y3lpsrq5paufc3",
+    "ParentId": "SUB00000000000000000000098660000",
+    "Name": "RescheduleCleaningService",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Handle rescheduling of cleaning appointments due to changes."
+  },
+  {
+    "Id": "mmq5zv8223ir2vvbvze",
+    "ParentId": "mmq5y3lpey7f1e7n7m",
+    "Name": "ScheduleCleaningAppointment",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Customer books a cleaning service appointment for their home."
+  },
+  {
+    "Id": "mmq5zv820vf2klyxarjn",
+    "ParentId": "mmq5y3lpey7f1e7n7m",
+    "Name": "AssignCleaningCrew",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Dispatch assigns cleaning crew to scheduled residential appointment."
+  },
+  {
+    "Id": "mmq5zv826ej4j4m1092",
+    "ParentId": "mmq5y3lpey7f1e7n7m",
+    "Name": "PrepareCleaningSupplies",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Crew gathers and loads necessary cleaning supplies and equipment."
+  },
+  {
+    "Id": "mmq5zv82615104hb6eo",
+    "ParentId": "mmq5y3lpey7f1e7n7m",
+    "Name": "PerformResidentialCleaning",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Cleaning crew executes cleaning tasks at customer residence."
+  },
+  {
+    "Id": "mmq5zv82w3kh3sfgzg",
+    "ParentId": "mmq5y3lpey7f1e7n7m",
+    "Name": "InspectCleaningQuality",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Supervisor or crew lead inspects completed cleaning work quality."
+  },
+  {
+    "Id": "mmq5zv82v7bpxa8rcja",
+    "ParentId": "mmq5y3lpey7f1e7n7m",
+    "Name": "CollectPaymentFromCustomer",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Process payment collection for completed residential cleaning service."
+  },
+  {
+    "Id": "mmq5zv82zdouzoq9059",
+    "ParentId": "mmq5y3lpey7f1e7n7m",
+    "Name": "UpdateCleaningJobStatus",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Mark cleaning job as completed in system and update records."
+  },
+  {
+    "Id": "mmq5zv82qqav3jy4ru8",
+    "ParentId": "mmq5y3lpey7f1e7n7m",
+    "Name": "HandleCustomerFeedback",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Collect and process customer satisfaction feedback and complaints."
+  },
+  {
+    "Id": "mmq5zv82clhhusm4lt",
+    "ParentId": "mmq5y3lpey7f1e7n7m",
+    "Name": "ScheduleRecurringCleanings",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Set up automatic recurring cleaning appointments for regular customers."
+  },
+  {
+    "Id": "mmq5zv82pdc9osaxt2",
+    "ParentId": "mmq5y3lpey7f1e7n7m",
+    "Name": "ManageCleaningInventory",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Track and replenish cleaning supplies and equipment inventory."
+  },
+  {
+    "Id": "mmq60qxqidig8ftjvaq",
+    "ParentId": "mmq5zv8223ir2vvbvze",
+    "Name": "CleaningAppointment",
+    "PayanarssTypeId": "100000000000000000000000000000001",
+    "Attributes": [],
+    "Description": "Main table storing scheduled cleaning appointments."
+  },
+  {
+    "Id": "mmq60qxqul7guw8iulh",
+    "ParentId": "mmq5zv8223ir2vvbvze",
+    "Name": "AppointmentId",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Unique identifier for the cleaning appointment."
+  },
+  {
+    "Id": "mmq60qxqa30s1vzhxo9",
+    "ParentId": "mmq5zv8223ir2vvbvze",
+    "Name": "CustomerId",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Reference to the customer requesting cleaning service."
+  },
+  {
+    "Id": "mmq60qxq6prz27eeewg",
+    "ParentId": "mmq5zv8223ir2vvbvze",
+    "Name": "ServiceTypeId",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Reference to the type of cleaning service requested."
+  },
+  {
+    "Id": "mmq60qxq1t153rirnmq",
+    "ParentId": "mmq5zv8223ir2vvbvze",
+    "Name": "ScheduledDateTime",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Date and time when cleaning is scheduled."
+  },
+  {
+    "Id": "mmq60qxqv2e96vemr7q",
+    "ParentId": "mmq5zv8223ir2vvbvze",
+    "Name": "EstimatedDuration",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Expected duration of the cleaning appointment in hours."
+  },
+  {
+    "Id": "mmq60qxq3qpn5oggr2a",
+    "ParentId": "mmq5zv8223ir2vvbvze",
+    "Name": "ServiceAddress",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "Complete address where cleaning service will be performed."
+  },
+  {
+    "Id": "mmq60qxqqvs5xp7mmra",
+    "ParentId": "mmq5zv8223ir2vvbvze",
+    "Name": "SpecialInstructions",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Additional notes or requirements for the cleaning service."
+  },
+  {
+    "Id": "mmq60qxqrw4gzebqbqe",
+    "ParentId": "mmq5zv8223ir2vvbvze",
+    "Name": "AppointmentStatus",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Current status of the appointment."
+  },
+  {
+    "Id": "mmq60qxq95rvwcq9jjb",
+    "ParentId": "mmq5zv8223ir2vvbvze",
+    "Name": "AssignedCleanerId",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Reference to the cleaner assigned to this appointment."
+  },
+  {
+    "Id": "mmq60qxq1s46eqd1flv",
+    "ParentId": "mmq5zv8223ir2vvbvze",
+    "Name": "EstimatedCost",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Estimated cost for the cleaning service."
+  },
+  {
+    "Id": "mmq60qxqsidohlr70jf",
+    "ParentId": "mmq5zv8223ir2vvbvze",
+    "Name": "CreatedDate",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Date when the appointment was initially created."
+  },
+  {
+    "Id": "mmq60qxqutgnsxv9qm",
+    "ParentId": "mmq5zv8223ir2vvbvze",
+    "Name": "LastModifiedDate",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Date when the appointment was last updated."
+  },
+  {
+    "Id": "mmq6a77ysn5okfexxwo",
+    "ParentId": "mmq5zv820vf2klyxarjn",
+    "Name": "AssignCleaningCrew",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Assign cleaning crew to specific locations and schedules."
+  },
+  {
+    "Id": "mmq6mq2a31ylhkfpncv",
+    "ParentId": "mmq5zv820vf2klyxarjn",
+    "Name": "CleaningCrewAssignment",
+    "PayanarssTypeId": "100000000000000000000000000000001",
+    "Attributes": [],
+    "Description": "Records crew assignments to cleaning appointments and locations."
+  },
+  {
+    "Id": "mmq6mq2azqctljaq0m",
+    "ParentId": "mmq5zv820vf2klyxarjn",
+    "Name": "CleaningCrew",
+    "PayanarssTypeId": "100000000000000000000000000000001",
+    "Attributes": [],
+    "Description": "Master data for cleaning crew teams and their capabilities."
+  },
+  {
+    "Id": "mmq6sw933kv1p8vjvtb",
+    "ParentId": "mmq5zv820vf2klyxarjn",
+    "Name": "CrewAssignmentRules",
+    "PayanarssTypeId": "100000000000000000000000000000001",
+    "Attributes": [],
+    "Description": "Business rules governing cleaning crew assignment logic."
+  },
+  {
+    "Id": "mmq6sw933ipnn0oqzeb",
+    "ParentId": "mmq6sw933kv1p8vjvtb",
+    "Name": "RuleId",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Unique rule identifier."
+  },
+  {
+    "Id": "mmq6sw93jtekafy19ob",
+    "ParentId": "mmq6sw933kv1p8vjvtb",
+    "Name": "RuleName",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Descriptive name of assignment rule."
+  },
+  {
+    "Id": "mmq6sw93ten3dc4ba39",
+    "ParentId": "mmq6sw933kv1p8vjvtb",
+    "Name": "RuleType",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Category of assignment rule."
+  },
+  {
+    "Id": "mmq6sw93flpv9ha2gc5",
+    "ParentId": "mmq6sw933kv1p8vjvtb",
+    "Name": "Condition",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Rule condition expression."
+  },
+  {
+    "Id": "mmq6sw932xbf84j7dsm",
+    "ParentId": "mmq6sw933kv1p8vjvtb",
+    "Name": "Action",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Action taken when rule fires."
+  },
+  {
+    "Id": "mmq6sw930arnnsbz63pg",
+    "ParentId": "mmq6sw933kv1p8vjvtb",
+    "Name": "Priority",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Rule execution priority order."
+  },
+  {
+    "Id": "mmq6sw93vsx1kfqesla",
+    "ParentId": "mmq6sw933kv1p8vjvtb",
+    "Name": "IsActive",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Rule activation status flag."
+  },
+  {
+    "Id": "mmq6sw9348i66b73j78",
+    "ParentId": "mmq6sw933kv1p8vjvtb",
+    "Name": "CreatedDate",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Date rule was created."
+  },
+  {
+    "Id": "mmq6sw931bgk9tmcme6",
+    "ParentId": "mmq6sw933kv1p8vjvtb",
+    "Name": "LastModified",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Last rule modification timestamp."
+  },
+  {
+    "Id": "mmq6sw9345ctcuus7xa",
+    "ParentId": "mmq5zv820vf2klyxarjn",
+    "Name": "CrewAssignmentHistory",
+    "PayanarssTypeId": "100000000000000000000000000000001",
+    "Attributes": [],
+    "Description": "Historical record of all crew assignment changes."
+  },
+  {
+    "Id": "mmq6sw93pby4cf36t6i",
+    "ParentId": "mmq6sw9345ctcuus7xa",
+    "Name": "HistoryId",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Unique history record identifier."
+  },
+  {
+    "Id": "mmq6sw93xg5642e5se",
+    "ParentId": "mmq6sw9345ctcuus7xa",
+    "Name": "AssignmentId",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Referenced assignment record."
+  },
+  {
+    "Id": "mmq6sw935lk7tjpbsf",
+    "ParentId": "mmq6sw9345ctcuus7xa",
+    "Name": "ChangeType",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Type of assignment change made."
+  },
+  {
+    "Id": "mmq6sw934hj879ppj2l",
+    "ParentId": "mmq6sw9345ctcuus7xa",
+    "Name": "PreviousValue",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Value before the change."
+  },
+  {
+    "Id": "mmq6sw93meex2trax2p",
+    "ParentId": "mmq6sw9345ctcuus7xa",
+    "Name": "NewValue",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Value after the change."
+  },
+  {
+    "Id": "mmq6sw93mxsewi3zthc",
+    "ParentId": "mmq6sw9345ctcuus7xa",
+    "Name": "ChangedBy",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "User who made the change."
+  },
+  {
+    "Id": "mmq6sw93vpnq2lb83dq",
+    "ParentId": "mmq6sw9345ctcuus7xa",
+    "Name": "ChangeDate",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Date and time of change."
+  },
+  {
+    "Id": "mmq6sw93hulqrgmfpp",
+    "ParentId": "mmq6sw9345ctcuus7xa",
+    "Name": "Reason",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Reason for assignment change."
+  },
+  {
+    "Id": "mmq6sw935yg6r6zaiby",
+    "ParentId": "mmq5zv820vf2klyxarjn",
+    "Name": "CrewSkillMatrix",
+    "PayanarssTypeId": "100000000000000000000000000000001",
+    "Attributes": [],
+    "Description": "Maps crew members to their cleaning skills and certifications."
+  },
+  {
+    "Id": "mmq6sw936vj2527md03",
+    "ParentId": "mmq6sw935yg6r6zaiby",
+    "Name": "MatrixId",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Unique skill matrix identifier."
+  },
+  {
+    "Id": "mmq6sw93z7s8rsqqqa",
+    "ParentId": "mmq6sw935yg6r6zaiby",
+    "Name": "CrewMemberId",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Reference to crew member."
+  },
+  {
+    "Id": "mmq6sw93ttvgaoq2ose",
+    "ParentId": "mmq6sw935yg6r6zaiby",
+    "Name": "SkillType",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Type of cleaning skill."
+  },
+  {
+    "Id": "mmq6sw93p26h3zxrwh",
+    "ParentId": "mmq6sw935yg6r6zaiby",
+    "Name": "ProficiencyLevel",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Skill proficiency rating level."
+  },
+  {
+    "Id": "mmq6sw93udjmv92j0k8",
+    "ParentId": "mmq6sw935yg6r6zaiby",
+    "Name": "CertificationDate",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Date skill was certified."
+  },
+  {
+    "Id": "mmq6sw9310ynwiz6y20n",
+    "ParentId": "mmq6sw935yg6r6zaiby",
+    "Name": "ExpirationDate",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Certification expiration date."
+  },
+  {
+    "Id": "mmq6sw93nu9gu7ch1mg",
+    "ParentId": "mmq6sw935yg6r6zaiby",
+    "Name": "IsActive",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Skill status active flag."
+  },
+  {
+    "Id": "mmq6sw93cozju2oy22h",
+    "ParentId": "mmq6sw935yg6r6zaiby",
+    "Name": "Supervisor",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Supervising manager for skill."
+  },
+  {
+    "Id": "mmq8mgcxsj9s4bvdhbo",
+    "ParentId": "mmq5y3lp0368hy6glr73",
+    "Name": "OfficeCleaningModule",
+    "PayanarssTypeId": "100000000000000000000000000000004",
+    "Attributes": [],
+    "Description": "Manages standard office and workspace cleaning operations."
+  },
+  {
+    "Id": "mmq8mgcxx1fiugel9hq",
+    "ParentId": "mmq5y3lp0368hy6glr73",
+    "Name": "IndustrialCleaningModule",
+    "PayanarssTypeId": "100000000000000000000000000000004",
+    "Attributes": [],
+    "Description": "Handles heavy-duty industrial and manufacturing facility cleaning."
+  },
+  {
+    "Id": "mmq8mgcxfp6ofmf3494",
+    "ParentId": "mmq5y3lp0368hy6glr73",
+    "Name": "RetailCleaningModule",
+    "PayanarssTypeId": "100000000000000000000000000000004",
+    "Attributes": [],
+    "Description": "Manages retail store and shopping center cleaning services."
+  },
+  {
+    "Id": "mmq8mgcx0ly7saiy4ac",
+    "ParentId": "mmq5y3lp0368hy6glr73",
+    "Name": "MedicalFacilityCleaningModule",
+    "PayanarssTypeId": "100000000000000000000000000000004",
+    "Attributes": [],
+    "Description": "Specialized cleaning for hospitals and medical facilities."
+  },
+  {
+    "Id": "mmq8mgcxgxdebbonrn",
+    "ParentId": "mmq5y3lp0368hy6glr73",
+    "Name": "NegotiateCommercialContract",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Negotiate and establish commercial cleaning service contracts."
+  },
+  {
+    "Id": "mmq8mgcxcuuar84cggc",
+    "ParentId": "mmq5y3lp0368hy6glr73",
+    "Name": "ConductSiteSurvey",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Perform initial site assessment for commercial cleaning requirements."
+  },
+  {
+    "Id": "mmq8mgcxc6gm827dh7u",
+    "ParentId": "mmq5y3lp0368hy6glr73",
+    "Name": "DevelopCleaningProtocols",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Create customized cleaning protocols for commercial clients."
+  },
+  {
+    "Id": "mmq8mgcx254ey4r7xzr",
+    "ParentId": "mmq5y3lp0368hy6glr73",
+    "Name": "ManageCommercialTeams",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Organize and manage specialized commercial cleaning teams."
+  },
+  {
+    "Id": "mmq8mgcx7vs13tk2y",
+    "ParentId": "mmq5y3lp0368hy6glr73",
+    "Name": "MonitorServiceCompliance",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Ensure adherence to commercial cleaning standards and regulations."
+  },
+  {
+    "Id": "mmq8mgcxp1hvncf7oar",
+    "ParentId": "mmq5y3lp0368hy6glr73",
+    "Name": "ProcessCommercialInvoicing",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Handle billing and invoicing for commercial cleaning contracts."
+  },
+  {
+    "Id": "mn7iappyroad67381wj",
+    "ParentId": "",
+    "Name": "TargetCustomerId",
+    "PayanarssTypeId": "100000000000000000000000000000018",
+    "Attributes": [],
+    "Description": "Unique identifier for target customer segment."
+  },
+  {
+    "Id": "mn7iappzoaqplmae0cl",
+    "ParentId": "",
+    "Name": "SegmentName",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": "Name of the customer segment."
+  },
+  {
+    "Id": "mn7iappzs5kbdp9951",
+    "ParentId": "GYMTC000000000000000000000000001",
+    "Name": "Description",
+    "PayanarssTypeId": "100000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Detailed description of segment characteristics."
+  },
+  {
+    "Id": "mn7iappzcwm73row1qu",
+    "ParentId": "GYMTC000000000000000000000000001",
+    "Name": "IsActive",
+    "PayanarssTypeId": "100000000000000000000000000000009",
+    "Attributes": [],
+    "Description": "Whether this segment is currently active."
+  },
+  {
+    "Id": "mn7iappzddvs6fi68l",
+    "ParentId": "GYMTC000000000000000000000000001",
+    "Name": "PriorityLevel",
+    "PayanarssTypeId": "100000000000000000000000000000007",
+    "Attributes": [],
+    "Description": "Business priority ranking for this segment."
+  },
+  {
+    "Id": "mn8k50iju0ayyk5lsmd",
+    "ParentId": "",
+    "Name": "SegmentTypeId",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mn8kly5dlr5ew3y9ahh",
+    "ParentId": "GYMTC000000000000000000000000001",
+    "Name": "CustomerSegmentTypeName",
+    "PayanarssTypeId": "mn8mlohmr73qpjffvsk",
+    "Attributes": [],
+    "Description": "Customer Segment Type Name"
+  },
+  {
+    "Id": "mn8mlohmr73qpjffvsk",
+    "ParentId": "GYM2000000000000000000000000002",
+    "Name": "CustomerSegmentTypes",
+    "PayanarssTypeId": "100000000000000000000000000000003",
+    "Attributes": [],
+    "Description": "Its purpose is to define the valid set of gym customer segment classifications that can be selected anywhere in the system where a segment needs to be identified."
+  },
+  {
+    "Id": "mn9zuhjlygof1y9ixja",
+    "ParentId": "",
+    "Name": "Id",
+    "PayanarssTypeId": "100000000000000000000000000000018",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mna09ro0xvly37lkoo",
+    "ParentId": "GYMTC000000000000000000000000001",
+    "Name": "Id",
+    "PayanarssTypeId": "100000000000000000000000000000018",
+    "Attributes": [],
+    "Description": null
   }
 ]

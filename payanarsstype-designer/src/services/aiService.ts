@@ -37,7 +37,7 @@ export interface GenerateTypesError {
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 const ANTHROPIC_API_URL = "https://api.anthropic.com/v1/messages";
-const MODEL = "claude-sonnet-4-20250514";
+const MODEL = "claude-fable-5-1";
 
 // Compact PayanarssType shape — only what we need to send to Claude
 export interface PayanarssTypeSummary {

@@ -1,0 +1,18 @@
+{
+  "setupComplete": false,
+  "setupData": {
+    "name": "your business"
+  },
+  "selectedTypeIds": [
+    "gym-business-db-schema",
+    "identify-target-customer-segment",
+    "appointment-booking",
+    "service-catalog",
+    "client-profile-history",
+    "hr-payroll",
+    "finance-accounting",
+    "sales-crm"
+  ],
+  "updatedAt": "2026-03-24T09:17:59.536Z",
+  "createdAt": "2026-03-24T09:17:59.536Z"
+}

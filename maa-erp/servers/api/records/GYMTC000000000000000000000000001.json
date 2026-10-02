@@ -1,0 +1,30 @@
+{
+  "tableId": "GYMTC000000000000000000000000001",
+  "tableName": "TargetCustomer",
+  "records": [
+    {
+      "id": "f5208e40-66a7-4744-a39a-4ac6b32c1e48",
+      "createdAt": "2026-03-28T09:20:13.114Z",
+      "updatedAt": "2026-03-28T10:37:10.489Z",
+      "data": {
+        "mn7iappzs5kbdp9951": "1",
+        "mn7iappzcwm73row1qu": "true",
+        "mn7iappzddvs6fi68l": "1",
+        "mna09ro0xvly37lkoo": "b2808036-9a5a-404a-a665-b0cea2708d6e",
+        "mn8kly5dlr5ew3y9ahh": "GYMSEG000000000000000000001001"
+      }
+    },
+    {
+      "id": "1a7e4f0b-e9ae-4414-97f3-77aa378d7741",
+      "createdAt": "2026-03-28T09:20:28.465Z",
+      "updatedAt": "2026-03-28T10:37:32.156Z",
+      "data": {
+        "mn7iappzs5kbdp9951": "2",
+        "mn7iappzcwm73row1qu": "true",
+        "mn7iappzddvs6fi68l": "2",
+        "mna09ro0xvly37lkoo": "29245b87-b377-470a-bf9a-1cc65fcb3f4b",
+        "mn8kly5dlr5ew3y9ahh": "GYMSEG000000000000000000001008"
+      }
+    }
+  ]
+}

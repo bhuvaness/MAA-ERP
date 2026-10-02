@@ -1,204 +1,184 @@
+/**
+ * EmbedTypesButton.tsx
+ * ====================
+ * Admin button on AgentPage for embedding all PayanarssTypes into Pinecone.
+ * Uses the three-layer embedding strategy (ancestry / activated_context / path).
+ * Direct browser → Pinecone — no Supabase edge functions.
+ */
+
 import { useState } from "react";
-import { Database, Loader2, Check, AlertCircle } from "lucide-react";
+import { Database, Loader2, CheckCircle2, XCircle, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { embedTypes, loadPayanarssTypes, EmbedProgress } from "@/services/pineconeService";
 import { toast } from "@/hooks/use-toast";
-import { loadPayanarssTypes, EmbedProgress } from "@/services/pineconeService";
-import { supabase } from "@/integrations/supabase/client";
 
-const PINECONE_INDEX_HOST = "maa-erp-types-y3f7eec.svc.aped-4627-b74a.pinecone.io";
-const BATCH_SIZE = 50;
-const MAX_RETRIES = 3;
-const DELAY_BETWEEN_BATCHES_MS = 1000;
+const STATUS_LABEL: Record<EmbedProgress["status"], string> = {
+  idle: "Embed All Types",
+  enriching: "Enriching hierarchy...",
+  embedding: "Generating vectors...",
+  upserting: "Upserting to Pinecone...",
+  complete: "Embedding Complete",
+  error: "Embedding Failed — Retry",
+};
 
 export function EmbedTypesButton() {
   const [progress, setProgress] = useState<EmbedProgress>({
-    totalTypes: 0,
-    processedBatches: 0,
+    totalNodes: 0,
+    totalVectors: 0,
+    embeddedVectors: 0,
+    skippedNodes: 0,
+    currentBatch: 0,
     totalBatches: 0,
     status: "idle",
   });
-  const [lastResult, setLastResult] = useState<{
-    processed: number;
-    skipped: number;
-    method: string;
-  } | null>(null);
+  const [showDetails, setShowDetails] = useState(false);
 
-  const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
-  const embedBatchWithRetry = async (
-    batch: unknown[],
-    batchNum: number,
-    retries = 0
-  ): Promise<{ success: boolean; count: number; skipped: number; method: string }> => {
-    try {
-      const { data, error } = await supabase.functions.invoke("embed-types", {
-        body: {
-          types: batch,
-          indexHost: PINECONE_INDEX_HOST,
-        },
-      });
-
-      if (error) {
-        throw new Error(error.message || "Edge function error");
-      }
-
-      if (!data?.success) {
-        throw new Error(data?.error || "Embedding failed");
-      }
-
-      return {
-        success: true,
-        count: data.totalProcessed || batch.length,
-        skipped: data.totalSkipped || 0,
-        method: data.method || 'unknown',
-      };
-    } catch (err) {
-      console.error(`Batch ${batchNum} attempt ${retries + 1} failed:`, err);
-
-      if (retries < MAX_RETRIES) {
-        await sleep(1000 * Math.pow(2, retries));
-        return embedBatchWithRetry(batch, batchNum, retries + 1);
-      }
-
-      return { success: false, count: 0, skipped: 0, method: 'failed' };
-    }
-  };
-
-  const handleEmbed = async () => {
-    try {
-      setProgress((prev) => ({ ...prev, status: "embedding", error: undefined }));
-      setLastResult(null);
-
-      const allTypes = await loadPayanarssTypes();
-      const totalBatches = Math.ceil(allTypes.length / BATCH_SIZE);
-
-      setProgress({
-        totalTypes: allTypes.length,
-        processedBatches: 0,
-        totalBatches,
-        status: "embedding",
-      });
-
-      toast({
-        title: "Starting Embedding",
-        description: `Processing ${allTypes.length} types in ${totalBatches} batches (only embeddable levels will be stored)...`,
-      });
-
-      let successCount = 0;
-      let skippedCount = 0;
-      let errorCount = 0;
-      let method = 'unknown';
-
-      for (let i = 0; i < allTypes.length; i += BATCH_SIZE) {
-        const batch = allTypes.slice(i, i + BATCH_SIZE);
-        const batchNum = Math.floor(i / BATCH_SIZE) + 1;
-
-        const result = await embedBatchWithRetry(batch, batchNum);
-
-        if (result.success) {
-          successCount += result.count;
-          skippedCount += result.skipped;
-          method = result.method;
-        } else {
-          errorCount++;
-        }
-
-        setProgress((prev) => ({
-          ...prev,
-          processedBatches: batchNum,
-        }));
-
-        if (i + BATCH_SIZE < allTypes.length) {
-          await sleep(DELAY_BETWEEN_BATCHES_MS);
-        }
-      }
-
-      setLastResult({ processed: successCount, skipped: skippedCount, method });
-
-      if (errorCount === 0) {
-        setProgress((prev) => ({ ...prev, status: "complete" }));
-        toast({
-          title: "Embedding Complete",
-          description: `${successCount} types embedded, ${skippedCount} skipped (columns/rules). Method: ${method}`,
-        });
-      } else {
-        setProgress((prev) => ({
-          ...prev,
-          status: "error",
-          error: `${errorCount} batch(es) failed. ${successCount} types embedded.`,
-        }));
-        toast({
-          title: "Embedding Partially Complete",
-          description: `${successCount} types embedded, ${errorCount} batch(es) failed.`,
-          variant: "destructive",
-        });
-      }
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : "Unknown error";
-      toast({
-        title: "Embedding Failed",
-        description: errorMessage,
-        variant: "destructive",
-      });
-      setProgress((prev) => ({ ...prev, status: "error", error: errorMessage }));
-    }
-  };
+  const isRunning =
+    progress.status === "enriching" ||
+    progress.status === "embedding" ||
+    progress.status === "upserting";
 
   const progressPercent =
     progress.totalBatches > 0
-      ? (progress.processedBatches / progress.totalBatches) * 100
+      ? Math.round((progress.currentBatch / progress.totalBatches) * 100)
+      : progress.status === "enriching"
+      ? 5
       : 0;
 
+  const handleEmbed = async () => {
+    try {
+      const allTypes = await loadPayanarssTypes();
+
+      toast({
+        title: "Embedding Started",
+        description: `Loaded ${allTypes.length} PayanarssTypes. Building three-layer vectors...`,
+      });
+
+      await embedTypes(allTypes, (p) => {
+        setProgress(p);
+      });
+
+      toast({
+        title: "✓ Embedding Complete",
+        description: `${progress.totalVectors} vectors embedded using 3-layer strategy.`,
+      });
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Unknown error";
+      setProgress((p) => ({ ...p, status: "error", error: msg }));
+      toast({
+        title: "Embedding Failed",
+        description: msg,
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
-    <div className="flex flex-col gap-3">
+    <div className="space-y-3">
+      {/* Main button */}
       <Button
         onClick={handleEmbed}
-        disabled={progress.status === "embedding"}
-        variant={progress.status === "complete" ? "outline" : "default"}
-        className="gap-2"
+        disabled={isRunning}
+        className="w-full gap-2"
+        variant={
+          progress.status === "complete"
+            ? "outline"
+            : progress.status === "error"
+            ? "destructive"
+            : "default"
+        }
       >
-        {progress.status === "embedding" && (
+        {isRunning ? (
           <Loader2 className="h-4 w-4 animate-spin" />
+        ) : progress.status === "complete" ? (
+          <CheckCircle2 className="h-4 w-4 text-green-600" />
+        ) : progress.status === "error" ? (
+          <XCircle className="h-4 w-4" />
+        ) : (
+          <Database className="h-4 w-4" />
         )}
-        {progress.status === "complete" && (
-          <Check className="h-4 w-4 text-green-500" />
-        )}
-        {progress.status === "error" && (
-          <AlertCircle className="h-4 w-4 text-destructive" />
-        )}
-        {progress.status === "idle" && <Database className="h-4 w-4" />}
-
-        {progress.status === "embedding"
-          ? `Embedding... (${progress.processedBatches}/${progress.totalBatches})`
-          : progress.status === "complete"
-          ? "Embedded Successfully"
-          : progress.status === "error"
-          ? "Retry Embedding"
-          : "Embed All Types to Pinecone"}
+        {STATUS_LABEL[progress.status]}
       </Button>
 
-      {progress.status === "embedding" && (
-        <div className="space-y-2">
+      {/* Progress bar — shown while running */}
+      {isRunning && progress.totalBatches > 0 && (
+        <div className="space-y-1">
           <Progress value={progressPercent} className="h-2" />
           <p className="text-xs text-muted-foreground text-center">
-            Batch {progress.processedBatches} of {progress.totalBatches} ({progress.totalTypes} types total)
-          </p>
-          <p className="text-xs text-muted-foreground text-center">
-            Only sector/module/submodule/usecase/table levels are embedded. Columns are stored as metadata.
+            {progress.status === "embedding"
+              ? `Embedding batch ${progress.currentBatch} / ${progress.totalBatches}`
+              : progress.status === "upserting"
+              ? `Upserting batch ${progress.currentBatch} / ${progress.totalBatches}`
+              : "Enriching nodes..."}
           </p>
         </div>
       )}
 
-      {progress.status === "error" && progress.error && (
-        <p className="text-xs text-destructive">{progress.error}</p>
+      {/* Summary — shown on complete */}
+      {progress.status === "complete" && (
+        <div className="rounded-md border border-green-200 bg-green-50 p-3 space-y-1 text-sm">
+          <div className="flex items-center justify-between">
+            <span className="font-medium text-green-800">Embedding Summary</span>
+            <button
+              onClick={() => setShowDetails((v) => !v)}
+              className="text-green-700 hover:text-green-900 flex items-center gap-1 text-xs"
+            >
+              {showDetails ? (
+                <>Less <ChevronUp className="h-3 w-3" /></>
+              ) : (
+                <>Details <ChevronDown className="h-3 w-3" /></>
+              )}
+            </button>
+          </div>
+
+          {showDetails && (
+            <div className="space-y-0.5 text-xs text-green-700 pt-1">
+              <div className="flex justify-between">
+                <span>Source nodes</span>
+                <span className="font-mono">{progress.totalNodes.toLocaleString()}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Vectors stored</span>
+                <span className="font-mono">{progress.totalVectors.toLocaleString()}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Skipped (columns / root)</span>
+                <span className="font-mono">{progress.skippedNodes.toLocaleString()}</span>
+              </div>
+              <div className="pt-1 border-t border-green-200 text-green-600 italic">
+                3-layer strategy: ancestry + activated_context + path
+              </div>
+            </div>
+          )}
+        </div>
       )}
 
-      {lastResult && progress.status === "complete" && (
-        <div className="text-xs text-muted-foreground space-y-1 p-2 rounded bg-muted">
-          <p>✅ Embedded: <strong>{lastResult.processed}</strong> nodes</p>
-          <p>⏭️ Skipped: <strong>{lastResult.skipped}</strong> (columns, rules — stored as metadata)</p>
-          <p>🔧 Method: <strong>{lastResult.method}</strong></p>
+      {/* Error detail */}
+      {progress.status === "error" && progress.error && (
+        <p className="text-xs text-destructive bg-destructive/5 border border-destructive/20 rounded p-2">
+          {progress.error}
+        </p>
+      )}
+
+      {/* Strategy info — idle state */}
+      {progress.status === "idle" && (
+        <div className="text-xs text-muted-foreground space-y-1 pt-1">
+          <p className="font-medium">Three-layer embedding per node:</p>
+          <ul className="space-y-0.5 list-none pl-0">
+            <li>
+              <span className="text-blue-600 font-mono">ancestry</span> — node + children list
+              (top-down discovery)
+            </li>
+            <li>
+              <span className="text-purple-600 font-mono">activated_context</span> — parent +
+              ActivationRule + branch conditions (RAG)
+            </li>
+            <li>
+              <span className="text-cyan-600 font-mono">path</span> — breadcrumb string
+              (navigation)
+            </li>
+          </ul>
         </div>
       )}
     </div>

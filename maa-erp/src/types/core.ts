@@ -5,6 +5,13 @@ export interface PayanarssType {
   PayanarssTypeId: string;
   Attributes: unknown[];
   Description: string | null;
+  /**
+   * BusinessProfileFlags that must be present in a user session
+   * for this node to appear in their active subgraph.
+   * Empty / undefined = alwaysOn.
+   */
+  requiredFlags?: string[];
+  alwaysOn?: boolean;
 }
 
 export interface PayanarssTypeNode extends PayanarssType {
@@ -23,6 +30,18 @@ export const TYPE_IDS = {
   VALUE_TYPE: "100000000000000000000000000000001",
   LOOKUP_TYPE: "100000000000000000000000000000003",
   RULE_TYPE: "100000000000000000000000000000008",
+  /**
+   * BusinessProfileSettings / BusinessUseCaseSettings — groups BusinessSettingsValueType children at sector or use-case level.
+   * Found by type ID, not by name.
+   */
+  BUSINESS_PROFILE_SETTINGS: "10000000000000000000000000000000333",
+  BUSINESS_USE_CASE_SETTINGS: "10000000000000000000000000000000444",
+  /**
+   * BusinessSettingsValueType — yes/no business profile flag.
+   * Name = flag key (e.g. "hasSales"), Description = intent question.
+   * Parent must be a BusinessProfileSettings / BusinessUseCaseSettings node.
+   */
+  BUSINESS_USE_CASE_SETTINGS_VALUE: "10000000000000000000000000000000222",
 } as const;
 
 export const TYPE_LABELS: Record<string, string> = {
@@ -35,6 +54,9 @@ export const TYPE_LABELS: Record<string, string> = {
   [TYPE_IDS.VALUE_TYPE]: "Field",
   [TYPE_IDS.LOOKUP_TYPE]: "Lookup",
   [TYPE_IDS.RULE_TYPE]: "Rule",
+  [TYPE_IDS.BUSINESS_PROFILE_SETTINGS]: "Profile Settings",
+  [TYPE_IDS.BUSINESS_USE_CASE_SETTINGS]: "Use Case Settings",
+  [TYPE_IDS.BUSINESS_USE_CASE_SETTINGS_VALUE]: "Settings Value",
 };
 
 export const TYPE_ICONS: Record<string, string> = {
@@ -47,4 +69,7 @@ export const TYPE_ICONS: Record<string, string> = {
   [TYPE_IDS.VALUE_TYPE]: "file",
   [TYPE_IDS.LOOKUP_TYPE]: "link",
   [TYPE_IDS.RULE_TYPE]: "ruler",
+  [TYPE_IDS.BUSINESS_PROFILE_SETTINGS]: "flag",
+  [TYPE_IDS.BUSINESS_USE_CASE_SETTINGS]: "settings",
+  [TYPE_IDS.BUSINESS_USE_CASE_SETTINGS_VALUE]: "toggle",
 };

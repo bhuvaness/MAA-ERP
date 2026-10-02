@@ -75,7 +75,7 @@ export function AIPromptBar({
             onChange={(e) => setPrompt(e.target.value)}
             placeholder={
               parentName
-                ? `Describe fields for ${parentName} (e.g., Customer with Name, Email, Phone)...`
+                ? `Describe fields for ${parentName}...`
                 : "Describe your table structure..."
             }
             disabled={loading}
