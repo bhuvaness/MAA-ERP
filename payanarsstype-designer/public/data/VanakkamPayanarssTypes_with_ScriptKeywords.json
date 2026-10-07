@@ -1,6 +1,7 @@
 [
   {
     "Id": "100000000000000000000000000000000",
+    "Loo": null,
     "ParentId": "100000000000000000000000000000000",
     "Name": "ValueType",
     "PayanarssTypeId": "100000000000000000000000000000000",
@@ -114972,8 +114973,7 @@
                 "Id": "100000000000000000030000000000013",
                 "Attributes": [
                   {
-                    "Id": "mutiujlom8c18ncz6ns",
-                    "Attributes": []
+                    "Id": "mutiujlom8c18ncz6ns"
                   }
                 ]
               }
@@ -114987,411 +114987,770 @@
     "alwaysOn": true
   },
   {
-    "Id": "100000000000000000010000000000013",
+    "Id": "100000000000000000010000000000009",
     "ParentId": "100000000000000000000000000000005",
     "Name": "while",
+    "PayanarssTypeId": "100000000000000000010000000000009",
+    "Attributes": [],
+    "Description": "While loop; while(condition) { block }; Repeats block while condition is true; Condition checked before each iteration"
+  },
+  {
+    "Id": "100000000000000000010000000000010",
+    "ParentId": "100000000000000000000000000000005",
+    "Name": "do",
+    "PayanarssTypeId": "100000000000000000010000000000010",
+    "Attributes": [
+      "100000000000000000010000000000009"
+    ],
+    "Description": "Do-while loop; do { block } while(condition); Executes block at least once, then repeats while condition is true"
+  },
+  {
+    "Id": "100000000000000000010000000000012",
+    "ParentId": "100000000000000000000000000000005",
+    "Name": "in",
+    "PayanarssTypeId": "100000000000000000010000000000012",
+    "Attributes": [],
+    "Description": "Iteration source; foreach(item in collection); Binds each row of a table or element of a List to the loop variable"
+  },
+  {
+    "Id": "100000000000000000010000000000013",
+    "ParentId": "100000000000000000000000000000005",
+    "Name": "try",
     "PayanarssTypeId": "100000000000000000010000000000013",
     "Attributes": [
-      "100000000000000000000000000000009"
+      "100000000000000000010000000000014",
+      "100000000000000000010000000000019"
     ],
-    "Description": "While loop; Repeats code block while condition is true; Condition is checked before each iteration; Best when the iteration count is unknown"
+    "Description": "Protected block; try { block } catch(Exception) { block } finally { block }; Intercepts runtime errors raised inside the block"
   },
   {
     "Id": "100000000000000000010000000000014",
-    "ParentId": "100000000000000000000000000000005",
-    "Name": "do while",
+    "ParentId": "100000000000000000010000000000013",
+    "Name": "catch",
     "PayanarssTypeId": "100000000000000000010000000000014",
     "Attributes": [
-      "100000000000000000000000000000009"
+      "100000000000000000010000000000018"
     ],
-    "Description": "Do-while loop; Runs code block once then repeats while condition is true; Condition is checked after each iteration; Body always runs at least once"
+    "Description": "Error handler; catch(Exception ex) { block }; Runs when the try block raises an Exception; Exception bound to variable"
+  },
+  {
+    "Id": "100000000000000000010000000000018",
+    "ParentId": "100000000000000000000000000000005",
+    "Name": "Exception",
+    "PayanarssTypeId": "100000000000000000010000000000018",
+    "Attributes": [],
+    "Description": "Error object; Exception(code, message); Value raised by throw and received by catch; Carries Code, Message and Source node"
   },
   {
     "Id": "100000000000000000010000000000019",
-    "ParentId": "100000000000000000000000000000005",
-    "Name": "goto",
+    "ParentId": "100000000000000000010000000000013",
+    "Name": "finally",
     "PayanarssTypeId": "100000000000000000010000000000019",
-    "Attributes": [
-      "100000000000000000010000000000020"
-    ],
-    "Description": "Goto statement; Transfers control to a label; Rarely needed; Prefer loops and conditions"
+    "Attributes": [],
+    "Description": "Cleanup block; finally { block }; Always runs after try/catch whether or not an error occurred"
   },
   {
     "Id": "100000000000000000010000000000020",
     "ParentId": "100000000000000000000000000000005",
-    "Name": "label",
+    "Name": "await",
     "PayanarssTypeId": "100000000000000000010000000000020",
     "Attributes": [],
-    "Description": "Label; Names a position that goto can jump to; Paired with goto"
+    "Description": "Await asynchronous result; await ASKAGENT(...); Suspends the program until the agent or external call returns a value"
   },
   {
-    "Id": "100000000000000000010000000000009",
-    "ParentId": "100000000000000000010000000000008",
-    "Name": "for init",
-    "PayanarssTypeId": "100000000000000000010000000000009",
+    "Id": "100000000000000000010000000000021",
+    "ParentId": "100000000000000000000000000000005",
+    "Name": "block",
+    "PayanarssTypeId": "100000000000000000010000000000021",
     "Attributes": [],
-    "Description": "For loop init part; Runs once before the first iteration; Usually sets the counter start value"
+    "Description": "Statement block; block [stmt1, stmt2, ...]; Ordered list of statements executed in sequence; Used as body of if, else, loops, try, catch, finally"
   },
   {
-    "Id": "100000000000000000010000000000010",
-    "ParentId": "100000000000000000010000000000008",
-    "Name": "for increment",
-    "PayanarssTypeId": "100000000000000000010000000000010",
+    "Id": "100000000000000000060000000000001",
+    "ParentId": "100000000000000000000000000000005",
+    "Name": "param",
+    "PayanarssTypeId": "100000000000000000060000000000001",
     "Attributes": [],
-    "Description": "For loop increment part; Runs after every iteration; Usually steps the counter"
+    "Description": "Input parameter marker; Add to a variable node's Attributes; Value is supplied by the caller when the Program or function is invoked"
+  },
+  {
+    "Id": "100000000000000000060000000000002",
+    "ParentId": "100000000000000000000000000000005",
+    "Name": "out",
+    "PayanarssTypeId": "100000000000000000060000000000002",
+    "Attributes": [],
+    "Description": "Output marker; Add to a variable node's Attributes; Value is returned to the caller after the Program completes"
+  },
+  {
+    "Id": "100000000000000000060000000000003",
+    "ParentId": "100000000000000000000000000000005",
+    "Name": "Literal",
+    "PayanarssTypeId": "100000000000000000060000000000003",
+    "Attributes": [],
+    "Description": "Inline constant in an expression tree; {Id: Literal, Value: 100, ValueTypeId: Number}; Allows constants such as A > 100 or \"AED\""
+  },
+  {
+    "Id": "100000000000000000060000000000004",
+    "ParentId": "100000000000000000000000000000005",
+    "Name": "null",
+    "PayanarssTypeId": "100000000000000000060000000000004",
+    "Attributes": [],
+    "Description": "Null literal; Represents absence of a value; Compare with IS NULL, ?? or ?."
+  },
+  {
+    "Id": "100000000000000000060000000000005",
+    "ParentId": "100000000000000000000000000000005",
+    "Name": "import",
+    "PayanarssTypeId": "100000000000000000060000000000005",
+    "Attributes": [],
+    "Description": "Program reference; Add an imported Program node Id to Attributes; Makes its functions and variables callable from this Program"
+  },
+  {
+    "Id": "100000000000000000060000000000006",
+    "ParentId": "100000000000000000000000000000005",
+    "Name": "this",
+    "PayanarssTypeId": "100000000000000000060000000000006",
+    "Attributes": [],
+    "Description": "Current record context; this.ColumnName; Refers to the row being created, updated or deleted inside an event handler"
+  },
+  {
+    "Id": "100000000000000000030000000000008",
+    "ParentId": "100000000000000000030000000000001",
+    "Name": "^",
+    "PayanarssTypeId": "100000000000000000030000000000000",
+    "Attributes": [],
+    "Description": "Power operator; Base ^ Exponent; Returns Base raised to Exponent"
   },
   {
     "Id": "100000000000000000030000000000030",
     "ParentId": "100000000000000000030000000000000",
-    "Name": "BitwiseOperator",
+    "Name": "AssignmentOperator",
     "PayanarssTypeId": "100000000000000000030000000000000",
     "Attributes": [],
-    "Description": "Bitwise operator group; Takes Number inputs treated as integers; Returns Number result; Works on individual bits"
+    "Description": "Compound assignment operators; Update a variable using its current value"
   },
   {
     "Id": "100000000000000000030000000000031",
     "ParentId": "100000000000000000030000000000030",
-    "Name": "&",
+    "Name": "+=",
     "PayanarssTypeId": "100000000000000000030000000000000",
     "Attributes": [],
-    "Description": "Bitwise AND; Left & Right; Result bit is 1 only if both bits are 1"
+    "Description": "Add-assign; X += Y; Equivalent to X = X + Y"
   },
   {
     "Id": "100000000000000000030000000000032",
     "ParentId": "100000000000000000030000000000030",
-    "Name": "|",
+    "Name": "-=",
     "PayanarssTypeId": "100000000000000000030000000000000",
     "Attributes": [],
-    "Description": "Bitwise OR; Left | Right; Result bit is 1 if either bit is 1"
+    "Description": "Subtract-assign; X -= Y; Equivalent to X = X - Y"
   },
   {
     "Id": "100000000000000000030000000000033",
     "ParentId": "100000000000000000030000000000030",
-    "Name": "^",
+    "Name": "*=",
     "PayanarssTypeId": "100000000000000000030000000000000",
     "Attributes": [],
-    "Description": "Bitwise XOR; Left ^ Right; Result bit is 1 if the bits are different"
+    "Description": "Multiply-assign; X *= Y; Equivalent to X = X * Y"
   },
   {
     "Id": "100000000000000000030000000000034",
     "ParentId": "100000000000000000030000000000030",
-    "Name": "~",
+    "Name": "/=",
     "PayanarssTypeId": "100000000000000000030000000000000",
     "Attributes": [],
-    "Description": "Bitwise NOT; ~ Right; Flips every bit; Takes only one input"
+    "Description": "Divide-assign; X /= Y; Equivalent to X = X / Y"
   },
   {
     "Id": "100000000000000000030000000000035",
     "ParentId": "100000000000000000030000000000030",
-    "Name": "<<",
+    "Name": "%=",
     "PayanarssTypeId": "100000000000000000030000000000000",
     "Attributes": [],
-    "Description": "Left shift; Left << Right; Shifts bits left by Right positions; Same as multiplying by a power of two"
-  },
-  {
-    "Id": "100000000000000000030000000000036",
-    "ParentId": "100000000000000000030000000000030",
-    "Name": ">>",
-    "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [],
-    "Description": "Right shift; Left >> Right; Shifts bits right by Right positions; Same as dividing by a power of two"
+    "Description": "Modulo-assign; X %= Y; Equivalent to X = X % Y"
   },
   {
     "Id": "100000000000000000030000000000040",
     "ParentId": "100000000000000000030000000000000",
-    "Name": "IncrementDecrementOperator",
+    "Name": "UnaryOperator",
     "PayanarssTypeId": "100000000000000000030000000000000",
     "Attributes": [],
-    "Description": "Increment and decrement operator group; Takes one Number input; Changes the value by 1; Prefix returns the new value, postfix returns the old value"
+    "Description": "Single-operand operators"
   },
   {
     "Id": "100000000000000000030000000000041",
     "ParentId": "100000000000000000030000000000040",
-    "Name": "++ (prefix)",
+    "Name": "++",
     "PayanarssTypeId": "100000000000000000030000000000000",
     "Attributes": [],
-    "Description": "Prefix increment; ++ Right; Adds 1 then returns the new value"
+    "Description": "Increment; X++; Adds 1 to a Number variable"
   },
   {
     "Id": "100000000000000000030000000000042",
     "ParentId": "100000000000000000030000000000040",
-    "Name": "++ (postfix)",
+    "Name": "--",
     "PayanarssTypeId": "100000000000000000030000000000000",
     "Attributes": [],
-    "Description": "Postfix increment; Left ++; Returns the old value then adds 1"
-  },
-  {
-    "Id": "100000000000000000030000000000043",
-    "ParentId": "100000000000000000030000000000040",
-    "Name": "-- (prefix)",
-    "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [],
-    "Description": "Prefix decrement; -- Right; Subtracts 1 then returns the new value"
-  },
-  {
-    "Id": "100000000000000000030000000000044",
-    "ParentId": "100000000000000000030000000000040",
-    "Name": "-- (postfix)",
-    "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [],
-    "Description": "Postfix decrement; Left --; Returns the old value then subtracts 1"
+    "Description": "Decrement; X--; Subtracts 1 from a Number variable"
   },
   {
     "Id": "100000000000000000030000000000050",
     "ParentId": "100000000000000000030000000000000",
-    "Name": "CompoundAssignmentOperator",
+    "Name": "StringOperator",
     "PayanarssTypeId": "100000000000000000030000000000000",
     "Attributes": [],
-    "Description": "Compound assignment operator group; Left op= Right; Same as Left = Left op Right; Assigns result to left-side cell"
+    "Description": "Text operators"
   },
   {
     "Id": "100000000000000000030000000000051",
     "ParentId": "100000000000000000030000000000050",
-    "Name": "+=",
+    "Name": "&",
     "PayanarssTypeId": "100000000000000000030000000000000",
     "Attributes": [],
-    "Description": "Compound assignment; Left += Right; Adds Left by Right and stores the result in Left"
-  },
-  {
-    "Id": "100000000000000000030000000000052",
-    "ParentId": "100000000000000000030000000000050",
-    "Name": "-=",
-    "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [],
-    "Description": "Compound assignment; Left -= Right; Subtracts Left by Right and stores the result in Left"
-  },
-  {
-    "Id": "100000000000000000030000000000053",
-    "ParentId": "100000000000000000030000000000050",
-    "Name": "*=",
-    "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [],
-    "Description": "Compound assignment; Left *= Right; Multiplies Left by Right and stores the result in Left"
-  },
-  {
-    "Id": "100000000000000000030000000000054",
-    "ParentId": "100000000000000000030000000000050",
-    "Name": "/=",
-    "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [],
-    "Description": "Compound assignment; Left /= Right; Divides Left by Right and stores the result in Left"
-  },
-  {
-    "Id": "100000000000000000030000000000055",
-    "ParentId": "100000000000000000030000000000050",
-    "Name": "%=",
-    "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [],
-    "Description": "Compound assignment; Left %= Right; Takes the remainder of Left by Right and stores the result in Left"
-  },
-  {
-    "Id": "100000000000000000030000000000056",
-    "ParentId": "100000000000000000030000000000050",
-    "Name": "&=",
-    "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [],
-    "Description": "Compound assignment; Left &= Right; Bitwise AND of Left and Right stored in Left"
-  },
-  {
-    "Id": "100000000000000000030000000000057",
-    "ParentId": "100000000000000000030000000000050",
-    "Name": "|=",
-    "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [],
-    "Description": "Compound assignment; Left |= Right; Bitwise OR of Left and Right stored in Left"
-  },
-  {
-    "Id": "100000000000000000030000000000058",
-    "ParentId": "100000000000000000030000000000050",
-    "Name": "^=",
-    "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [],
-    "Description": "Compound assignment; Left ^= Right; Bitwise XOR of Left and Right stored in Left"
-  },
-  {
-    "Id": "100000000000000000030000000000059",
-    "ParentId": "100000000000000000030000000000050",
-    "Name": "<<=",
-    "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [],
-    "Description": "Compound assignment; Left <<= Right; Left shifted left by Right stored in Left"
+    "Description": "Concatenate; Left & Right; Joins two values as Text"
   },
   {
     "Id": "100000000000000000030000000000060",
-    "ParentId": "100000000000000000030000000000050",
-    "Name": ">>=",
+    "ParentId": "100000000000000000030000000000000",
+    "Name": "NullOperator",
     "PayanarssTypeId": "100000000000000000030000000000000",
     "Attributes": [],
-    "Description": "Compound assignment; Left >>= Right; Left shifted right by Right stored in Left"
+    "Description": "Null-safe operators"
+  },
+  {
+    "Id": "100000000000000000030000000000061",
+    "ParentId": "100000000000000000030000000000060",
+    "Name": "??",
+    "PayanarssTypeId": "100000000000000000030000000000000",
+    "Attributes": [],
+    "Description": "Null-coalescing; X ?? Fallback; Returns X if not null, otherwise Fallback"
+  },
+  {
+    "Id": "100000000000000000030000000000062",
+    "ParentId": "100000000000000000030000000000060",
+    "Name": "?.",
+    "PayanarssTypeId": "100000000000000000030000000000000",
+    "Attributes": [],
+    "Description": "Null-conditional member access; Record?.Column; Returns null instead of failing when Record is null"
   },
   {
     "Id": "100000000000000000030000000000070",
     "ParentId": "100000000000000000030000000000000",
-    "Name": "PointerAndMemberOperator",
+    "Name": "ConditionalOperator",
     "PayanarssTypeId": "100000000000000000030000000000000",
     "Attributes": [],
-    "Description": "Pointer, member and subscript operator group; Address-of, dereference, member access and array subscript"
+    "Description": "Inline conditional"
   },
   {
     "Id": "100000000000000000030000000000071",
     "ParentId": "100000000000000000030000000000070",
-    "Name": "& (address-of)",
+    "Name": "?:",
     "PayanarssTypeId": "100000000000000000030000000000000",
     "Attributes": [],
-    "Description": "Address-of operator; & Right; Returns a reference to the right-side cell; Takes only one input"
-  },
-  {
-    "Id": "100000000000000000030000000000072",
-    "ParentId": "100000000000000000030000000000070",
-    "Name": "* (dereference)",
-    "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [],
-    "Description": "Dereference operator; * Right; Returns the value the reference points to; Takes only one input"
-  },
-  {
-    "Id": "100000000000000000030000000000073",
-    "ParentId": "100000000000000000030000000000070",
-    "Name": ". (member)",
-    "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [],
-    "Description": "Member access; Left . Right; Returns the named member of a record"
-  },
-  {
-    "Id": "100000000000000000030000000000074",
-    "ParentId": "100000000000000000030000000000070",
-    "Name": "-> (member via reference)",
-    "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [],
-    "Description": "Member access through a reference; Left -> Right; Same as (* Left) . Right"
-  },
-  {
-    "Id": "100000000000000000030000000000075",
-    "ParentId": "100000000000000000030000000000070",
-    "Name": "[] (subscript)",
-    "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [],
-    "Description": "Subscript operator; Left [ Right ]; Returns the element at index Right of array Left; First index is 0"
+    "Description": "Ternary; Condition ? ValueIfTrue : ValueIfFalse; Inline if-else expression returning a value"
   },
   {
     "Id": "100000000000000000030000000000080",
     "ParentId": "100000000000000000030000000000000",
-    "Name": "MiscellaneousOperator",
+    "Name": "TypeOperator",
     "PayanarssTypeId": "100000000000000000030000000000000",
     "Attributes": [],
-    "Description": "Miscellaneous operator group; Ternary conditional, comma, sizeof and cast"
+    "Description": "Type test and conversion"
   },
   {
     "Id": "100000000000000000030000000000081",
     "ParentId": "100000000000000000030000000000080",
-    "Name": "?: (ternary)",
+    "Name": "is",
     "PayanarssTypeId": "100000000000000000030000000000000",
     "Attributes": [],
-    "Description": "Conditional operator; Condition ? ValueIfTrue : ValueIfFalse; Takes three inputs; Same result as the IF function"
+    "Description": "Type test; X is Number; Returns TRUE if X is of the given PayanarssType"
   },
   {
     "Id": "100000000000000000030000000000082",
     "ParentId": "100000000000000000030000000000080",
-    "Name": ", (comma)",
+    "Name": "as",
     "PayanarssTypeId": "100000000000000000030000000000000",
     "Attributes": [],
-    "Description": "Comma operator; Left , Right; Evaluates Left then Right; Returns Right"
-  },
-  {
-    "Id": "100000000000000000030000000000083",
-    "ParentId": "100000000000000000030000000000080",
-    "Name": "sizeof",
-    "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [],
-    "Description": "Size operator; sizeof Right; Returns the size in bytes of a type or value; Takes only one input"
-  },
-  {
-    "Id": "100000000000000000030000000000084",
-    "ParentId": "100000000000000000030000000000080",
-    "Name": "(type) cast",
-    "PayanarssTypeId": "100000000000000000030000000000000",
-    "Attributes": [],
-    "Description": "Cast operator; (type) Right; Explicitly converts the right-side value to the given type; Explicit form of the implicit conversion the compiler inserts"
+    "Description": "Safe cast; X as Number; Converts X to the given type or returns null if not convertible"
   },
   {
     "Id": "100000000000000000030000000000090",
     "ParentId": "100000000000000000030000000000000",
-    "Name": "UnaryArithmeticOperator",
+    "Name": "AccessOperator",
     "PayanarssTypeId": "100000000000000000030000000000000",
     "Attributes": [],
-    "Description": "Unary arithmetic operator group; Takes one Number input; Returns Number result"
+    "Description": "Member and element access"
   },
   {
     "Id": "100000000000000000030000000000091",
     "ParentId": "100000000000000000030000000000090",
-    "Name": "unary -",
+    "Name": ".",
     "PayanarssTypeId": "100000000000000000030000000000000",
     "Attributes": [],
-    "Description": "Negation; - Right; Returns the right-side value with the opposite sign"
+    "Description": "Member access; Record.Column; Reads a column of a record, Program or Map entry"
   },
   {
     "Id": "100000000000000000030000000000092",
     "ParentId": "100000000000000000030000000000090",
-    "Name": "unary +",
+    "Name": "[]",
     "PayanarssTypeId": "100000000000000000030000000000000",
     "Attributes": [],
-    "Description": "Unary plus; + Right; Returns the right-side value unchanged"
+    "Description": "Index access; List[index] or Map[key]; Reads an element by position or key"
   },
   {
-    "Id": "100000000000000000060000000000000",
-    "ParentId": "100000000000000000060000000000000",
-    "Name": "LiteralType",
-    "PayanarssTypeId": "100000000000000000060000000000000",
+    "Id": "100000000000000000070000000000000",
+    "ParentId": "100000000000000000070000000000000",
+    "Name": "EventType",
+    "PayanarssTypeId": "100000000000000000070000000000000",
     "Attributes": [],
-    "Description": "Root type for all literal constants; A fixed value written directly in an expression; The literal value is stored in the Name of the literal node"
+    "Description": "Root type for event handlers; A FunctionType whose Attributes include an event node runs when that event fires"
   },
   {
-    "Id": "100000000000000000060000000000001",
-    "ParentId": "100000000000000000060000000000000",
-    "Name": "IntegerLiteral",
-    "PayanarssTypeId": "100000000000000000060000000000000",
-    "Attributes": [
-      "100000000000000000000000000000007"
-    ],
-    "Description": "Integer literal; Whole number constant such as 0, 1 or 42; Returns Number value"
+    "Id": "100000000000000000070000000000001",
+    "ParentId": "100000000000000000070000000000000",
+    "Name": "OnLoad",
+    "PayanarssTypeId": "100000000000000000070000000000000",
+    "Attributes": [],
+    "Description": "Fires when a record or form is opened; Use to set defaults or hide fields; this = record being opened"
   },
   {
-    "Id": "100000000000000000060000000000002",
-    "ParentId": "100000000000000000060000000000000",
-    "Name": "FloatingLiteral",
-    "PayanarssTypeId": "100000000000000000060000000000000",
-    "Attributes": [
-      "100000000000000000000000000000007"
-    ],
-    "Description": "Floating literal; Decimal number constant such as 3.14; Returns Number value"
+    "Id": "100000000000000000070000000000002",
+    "ParentId": "100000000000000000070000000000000",
+    "Name": "OnChange",
+    "PayanarssTypeId": "100000000000000000070000000000000",
+    "Attributes": [],
+    "Description": "Fires when a column value changes in the form; Use for dependent fields and recalculation; this = record, Literal column name in Attributes"
   },
   {
-    "Id": "100000000000000000060000000000003",
-    "ParentId": "100000000000000000060000000000000",
-    "Name": "CharacterLiteral",
-    "PayanarssTypeId": "100000000000000000060000000000000",
-    "Attributes": [
-      "100000000000000000000000000000006"
-    ],
-    "Description": "Character literal; Single character constant such as A; Returns Text value of length 1"
+    "Id": "100000000000000000070000000000003",
+    "ParentId": "100000000000000000070000000000000",
+    "Name": "OnBeforeDelete",
+    "PayanarssTypeId": "100000000000000000070000000000000",
+    "Attributes": [],
+    "Description": "Fires before a record is deleted; throw Exception to block the delete"
   },
   {
-    "Id": "100000000000000000060000000000004",
-    "ParentId": "100000000000000000060000000000000",
-    "Name": "StringLiteral",
-    "PayanarssTypeId": "100000000000000000060000000000000",
-    "Attributes": [
-      "100000000000000000000000000000006"
-    ],
-    "Description": "String literal; Text constant such as Both are equal; Returns Text value"
+    "Id": "100000000000000000070000000000004",
+    "ParentId": "100000000000000000070000000000000",
+    "Name": "OnAfterDelete",
+    "PayanarssTypeId": "100000000000000000070000000000000",
+    "Attributes": [],
+    "Description": "Fires after a record is deleted; Use for cleanup and cascading updates"
   },
   {
-    "Id": "100000000000000000060000000000005",
-    "ParentId": "100000000000000000060000000000000",
-    "Name": "BooleanLiteral",
-    "PayanarssTypeId": "100000000000000000060000000000000",
+    "Id": "100000000000000000070000000000005",
+    "ParentId": "100000000000000000070000000000000",
+    "Name": "OnApprove",
+    "PayanarssTypeId": "100000000000000000070000000000000",
+    "Attributes": [],
+    "Description": "Fires when a workflow step is approved; Use to advance Status and notify next approver"
+  },
+  {
+    "Id": "100000000000000000070000000000006",
+    "ParentId": "100000000000000000070000000000000",
+    "Name": "OnReject",
+    "PayanarssTypeId": "100000000000000000070000000000000",
+    "Attributes": [],
+    "Description": "Fires when a workflow step is rejected; Use to revert Status and notify requester"
+  },
+  {
+    "Id": "100000000000000000070000000000007",
+    "ParentId": "100000000000000000070000000000000",
+    "Name": "OnSchedule",
+    "PayanarssTypeId": "100000000000000000070000000000000",
+    "Attributes": [],
+    "Description": "Fires on a time schedule; Literal cron expression in Attributes, e.g. \"0 8 * * *\" for 08:00 daily"
+  },
+  {
+    "Id": "100000000000000000070000000000008",
+    "ParentId": "100000000000000000070000000000000",
+    "Name": "OnAgentMessage",
+    "PayanarssTypeId": "100000000000000000070000000000000",
+    "Attributes": [],
+    "Description": "Fires when this agent receives a message sent by SendMessageToAgent; Message payload bound to this"
+  },
+  {
+    "Id": "100000000000000000080000000000001",
+    "ParentId": "100000000000000000080000000000001",
+    "Name": "List",
+    "PayanarssTypeId": "100000000000000000080000000000001",
+    "Attributes": [],
+    "Description": "Ordered collection type; Holds zero or more values of one PayanarssType; Iterate with foreach ... in"
+  },
+  {
+    "Id": "100000000000000000080000000000002",
+    "ParentId": "100000000000000000080000000000002",
+    "Name": "Map",
+    "PayanarssTypeId": "100000000000000000080000000000002",
+    "Attributes": [],
+    "Description": "Key-value collection type; Text keys mapped to values; Access with Map[key] or Map.key"
+  },
+  {
+    "Id": "100000000000000000080000000000003",
+    "ParentId": "100000000000000000080000000000003",
+    "Name": "Void",
+    "PayanarssTypeId": "100000000000000000080000000000003",
+    "Attributes": [],
+    "Description": "No-value type; Return type of a function that performs actions but returns nothing"
+  },
+  {
+    "Id": "100000000000000000080000000000004",
+    "ParentId": "100000000000000000080000000000004",
+    "Name": "Any",
+    "PayanarssTypeId": "100000000000000000080000000000004",
+    "Attributes": [],
+    "Description": "Dynamic type; Accepts a value of any PayanarssType; Use 'is' to test and 'as' to convert"
+  },
+  {
+    "Id": "100000000000000000040000000000009",
+    "ParentId": "100000000000000000040000000000000",
+    "Name": "CollectionFunction",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "List and Map operations"
+  },
+  {
+    "Id": "100000000000000000040000000009001",
+    "ParentId": "100000000000000000040000000000009",
+    "Name": "APPEND",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Adds an element; APPEND(list, value); Returns the List with value added at the end"
+  },
+  {
+    "Id": "100000000000000000040000000009002",
+    "ParentId": "100000000000000000040000000000009",
+    "Name": "REMOVE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Removes an element; REMOVE(list, value) or REMOVE(map, key); Returns the updated collection"
+  },
+  {
+    "Id": "100000000000000000040000000009003",
+    "ParentId": "100000000000000000040000000000009",
+    "Name": "CONTAINS",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Membership test; CONTAINS(collection, value); Returns TRUE if value or key exists"
+  },
+  {
+    "Id": "100000000000000000040000000009004",
+    "ParentId": "100000000000000000040000000000009",
+    "Name": "SIZE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Element count; SIZE(collection); Returns number of elements in a List or Map"
+  },
+  {
+    "Id": "100000000000000000040000000009005",
+    "ParentId": "100000000000000000040000000000009",
+    "Name": "GET",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Element read; GET(list, index) or GET(map, key); Returns the element or null"
+  },
+  {
+    "Id": "100000000000000000040000000009006",
+    "ParentId": "100000000000000000040000000000009",
+    "Name": "SET",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Element write; SET(list, index, value) or SET(map, key, value); Returns the updated collection"
+  },
+  {
+    "Id": "100000000000000000040000000009007",
+    "ParentId": "100000000000000000040000000000009",
+    "Name": "KEYS",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Map keys; KEYS(map); Returns a List of all keys"
+  },
+  {
+    "Id": "100000000000000000040000000009008",
+    "ParentId": "100000000000000000040000000000009",
+    "Name": "FIRST",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "First element; FIRST(list); Returns the first element or null if empty"
+  },
+  {
+    "Id": "100000000000000000040000000009009",
+    "ParentId": "100000000000000000040000000000009",
+    "Name": "LAST",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Last element; LAST(list); Returns the last element or null if empty"
+  },
+  {
+    "Id": "100000000000000000040000000009010",
+    "ParentId": "100000000000000000040000000000009",
+    "Name": "ISEMPTY",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Emptiness test; ISEMPTY(collection); Returns TRUE if the collection has no elements"
+  },
+  {
+    "Id": "100000000000000000040000000000010",
+    "ParentId": "100000000000000000040000000000000",
+    "Name": "SystemFunction",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Runtime context, sequencing, logging, notification and agent calls"
+  },
+  {
+    "Id": "100000000000000000040000000010001",
+    "ParentId": "100000000000000000040000000000010",
+    "Name": "CURRENTUSER",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Logged-in user; CURRENTUSER(); Returns the user Id executing the program"
+  },
+  {
+    "Id": "100000000000000000040000000010002",
+    "ParentId": "100000000000000000040000000000010",
+    "Name": "CURRENTTENANT",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Current business; CURRENTTENANT(); Returns the tenant / business Id the program runs under"
+  },
+  {
+    "Id": "100000000000000000040000000010003",
+    "ParentId": "100000000000000000040000000000010",
+    "Name": "NEWID",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Unique identifier; NEWID(); Returns a new GUID"
+  },
+  {
+    "Id": "100000000000000000040000000010004",
+    "ParentId": "100000000000000000040000000000010",
+    "Name": "NEXTSEQUENCE",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Auto-number; NEXTSEQUENCE(prefix, format); e.g. NEXTSEQUENCE(\"BKG\", \"YYYYMMDD-NNNN\"); Implements AUTO-NUMBER rules"
+  },
+  {
+    "Id": "100000000000000000040000000010005",
+    "ParentId": "100000000000000000040000000000010",
+    "Name": "LOG",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Audit / debug log; LOG(level, message); Writes to the program execution trace"
+  },
+  {
+    "Id": "100000000000000000040000000010006",
+    "ParentId": "100000000000000000040000000000010",
+    "Name": "NOTIFY",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "User notification; NOTIFY(recipient, channel, message); Channel = InApp / Email / WhatsApp / SMS"
+  },
+  {
+    "Id": "100000000000000000040000000010007",
+    "ParentId": "100000000000000000040000000000010",
+    "Name": "ASKAGENT",
+    "PayanarssTypeId": "100000000000000000040000000000000",
+    "Attributes": [],
+    "Description": "Request-response agent call; await ASKAGENT(agentId, prompt, payload); Returns the agent's typed reply; Pair with SendMessageToAgent for fire-and-forget"
+  },
+  {
+    "Id": "mvxxaji0y6dpbhsahxt",
+    "ParentId": "muthm0y1wa57ghlxlmc",
+    "Name": "Business Rules (param, this, try/catch, throw)",
+    "PayanarssTypeId": "100000000000000000050000000000005",
+    "Attributes": [],
+    "Description": "Sample: credit limit check run before a Freight Booking is saved",
+    "requiredFlags": [],
+    "alwaysOn": true
+  },
+  {
+    "Id": "mvxhv3a3zmf8mdd4v30",
+    "ParentId": "mvxxaji0y6dpbhsahxt",
+    "Name": "BookingAmount",
+    "PayanarssTypeId": "100000000000000000000000000000007",
     "Attributes": [
-      "100000000000000000000000000000009"
+      "100000000000000000060000000000001"
     ],
-    "Description": "Boolean literal; Constant TRUE or FALSE; Returns Boolean value; Same result as the TRUE and FALSE functions"
+    "Description": "Booking value to approve",
+    "requiredFlags": [],
+    "alwaysOn": true
+  },
+  {
+    "Id": "mvxt9nt3w5uzbikcidk",
+    "ParentId": "mvxxaji0y6dpbhsahxt",
+    "Name": "CreditLimit",
+    "PayanarssTypeId": "100000000000000000000000000000007",
+    "Attributes": [
+      "100000000000000000060000000000001"
+    ],
+    "Description": "Customer credit limit",
+    "requiredFlags": [],
+    "alwaysOn": true
+  },
+  {
+    "Id": "mvxwnnhj7xvg0fn9xuy",
+    "ParentId": "mvxxaji0y6dpbhsahxt",
+    "Name": "OutstandingBalance",
+    "PayanarssTypeId": "100000000000000000000000000000007",
+    "Attributes": [
+      "100000000000000000060000000000001"
+    ],
+    "Description": "Customer unpaid balance",
+    "requiredFlags": [],
+    "alwaysOn": true
+  },
+  {
+    "Id": "mvx41ibljh75lxo6qji",
+    "ParentId": "mvxxaji0y6dpbhsahxt",
+    "Name": "IsApproved",
+    "PayanarssTypeId": "100000000000000000000000000000009",
+    "Attributes": [
+      "100000000000000000060000000000002"
+    ],
+    "Description": "Result returned to the caller",
+    "requiredFlags": [],
+    "alwaysOn": true
+  },
+  {
+    "Id": "mvxujv6oh9sdbdw2pcn",
+    "ParentId": "mvxxaji0y6dpbhsahxt",
+    "Name": "OnBeforeSave_CreditCheck",
+    "PayanarssTypeId": "1000000000000000000410000000000000",
+    "Attributes": [
+      {
+        "Id": "100000000000000000000000000000030"
+      },
+      {
+        "Id": "100000000000000000010000000000013",
+        "Attributes": [
+          {
+            "Id": "100000000000000000010000000000021",
+            "Attributes": [
+              {
+                "Id": "100000000000000000010000000000001",
+                "Attributes": [
+                  {
+                    "Id": "100000000000000000030000000000013",
+                    "Attributes": [
+                      {
+                        "Id": "100000000000000000030000000000002",
+                        "Attributes": [
+                          {
+                            "Id": "mvxwnnhj7xvg0fn9xuy"
+                          },
+                          {
+                            "Id": "mvxhv3a3zmf8mdd4v30"
+                          }
+                        ]
+                      },
+                      {
+                        "Id": "mvxt9nt3w5uzbikcidk"
+                      }
+                    ]
+                  },
+                  {
+                    "Id": "100000000000000000010000000000021",
+                    "Attributes": [
+                      {
+                        "Id": "100000000000000000030000000000007",
+                        "Attributes": [
+                          {
+                            "Id": "mvx41ibljh75lxo6qji"
+                          },
+                          {
+                            "Id": "100000000000000000060000000000003",
+                            "Value": false,
+                            "ValueTypeId": "100000000000000000000000000000009"
+                          }
+                        ]
+                      },
+                      {
+                        "Id": "100000000000000000010000000000017",
+                        "Attributes": [
+                          {
+                            "Id": "100000000000000000010000000000018",
+                            "Attributes": [
+                              {
+                                "Id": "100000000000000000060000000000003",
+                                "Value": "CREDIT_LIMIT",
+                                "ValueTypeId": "100000000000000000000000000000006"
+                              },
+                              {
+                                "Id": "100000000000000000060000000000003",
+                                "Value": "Booking exceeds customer credit limit",
+                                "ValueTypeId": "100000000000000000000000000000006"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "Id": "100000000000000000010000000000002",
+                    "Attributes": [
+                      {
+                        "Id": "100000000000000000010000000000021",
+                        "Attributes": [
+                          {
+                            "Id": "100000000000000000030000000000007",
+                            "Attributes": [
+                              {
+                                "Id": "mvx41ibljh75lxo6qji"
+                              },
+                              {
+                                "Id": "100000000000000000060000000000003",
+                                "Value": true,
+                                "ValueTypeId": "100000000000000000000000000000009"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "Id": "100000000000000000010000000000014",
+            "Attributes": [
+              {
+                "Id": "100000000000000000010000000000021",
+                "Attributes": [
+                  {
+                    "Id": "100000000000000000040000000010005",
+                    "Attributes": [
+                      {
+                        "Id": "100000000000000000060000000000003",
+                        "Value": "WARN",
+                        "ValueTypeId": "100000000000000000000000000000006"
+                      },
+                      {
+                        "Id": "100000000000000000060000000000003",
+                        "Value": "Credit check blocked booking",
+                        "ValueTypeId": "100000000000000000000000000000006"
+                      }
+                    ]
+                  },
+                  {
+                    "Id": "100000000000000000010000000000017",
+                    "Attributes": [
+                      {
+                        "Id": "100000000000000000010000000000018"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "Description": "Runs on OnBeforeSave of FreightBooking; blocks save when credit limit is exceeded",
+    "requiredFlags": [],
+    "alwaysOn": true
   }
 ]
