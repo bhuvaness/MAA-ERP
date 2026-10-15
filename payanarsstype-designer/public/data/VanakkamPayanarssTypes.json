@@ -114842,7 +114842,7 @@
     "Id": "muthndo4rn8bjv08bf",
     "ParentId": "muthm0y1wa57ghlxlmc",
     "Name": "Arithmetic Operators (+, -, *, /, %)",
-    "PayanarssTypeId": "100000000000000000050000000000005",
+    "PayanarssTypeId": "100000000000000000000000000000001",
     "Attributes": [],
     "Description": null,
     "requiredFlags": [],
@@ -114891,76 +114891,124 @@
     "alwaysOn": true
   },
   {
+    "Id": "muthoynsqpkbxh9p10at",
+    "ParentId": "muthoynsqpkbxh9p0at",
+    "PayanarssTypeId": "100000000000000000030000000000002",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "muthoynsqpkbxh9p20at",
+    "ParentId": "muthoynsqpkbxh9p10at",
+    "PayanarssTypeId": "mutho0r4pryucm9p7d",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "muthoynsqpkbxh9p30at",
+    "ParentId": "muthoynsqpkbxh9p10at",
+    "PayanarssTypeId": "muthoizmwi7deirw52q",
+    "Attributes": [],
+    "Description": null
+  },
+  {
     "Id": "muthqrsxfgli409b3wq",
     "ParentId": "muthndo4rn8bjv08bf",
     "Name": "Difference",
     "PayanarssTypeId": "1000000000000000000410000000000000",
-    "Attributes": [
-      {
-        "Id": "100000000000000000030000000000003",
-        "Attributes": [
-          {
-            "Id": "mutho0r4pryucm9p7d"
-          },
-          {
-            "Id": "muthoizmwi7deirw52q"
-          }
-        ]
-      }
-    ],
+    "Attributes": [],
     "Description": null,
     "requiredFlags": [],
     "alwaysOn": true
+  },
+  {
+    "Id": "muthqrsxfgli409b3wq10",
+    "ParentId": "muthqrsxfgli409b3wq",
+    "PayanarssTypeId": "100000000000000000030000000000003",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "muthqrsxfgli409b3wq20",
+    "ParentId": "muthqrsxfgli409b3wq10",
+    "PayanarssTypeId": "mutho0r4pryucm9p7d",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "muthqrsxfgli409b3wq30",
+    "ParentId": "muthqrsxfgli409b3wq10",
+    "PayanarssTypeId": "muthoizmwi7deirw52q",
+    "Attributes": [],
+    "Description": null
   },
   {
     "Id": "muthrf2xi5azhx4wnga",
     "ParentId": "muthndo4rn8bjv08bf",
     "Name": "Product",
     "PayanarssTypeId": "1000000000000000000410000000000000",
-    "Attributes": [
-      {
-        "Id": "100000000000000000030000000000004",
-        "Attributes": [
-          {
-            "Id": "mutho0r4pryucm9p7d"
-          },
-          {
-            "Id": "muthoizmwi7deirw52q"
-          }
-        ]
-      }
-    ],
+    "Attributes": [],
     "Description": null,
     "requiredFlags": [],
     "alwaysOn": true
+  },
+  {
+    "Id": "muthrf2xi5azhx4wnga10",
+    "ParentId": "muthrf2xi5azhx4wnga",
+    "PayanarssTypeId": "100000000000000000030000000000004",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "muthrf2xi5azhx4wnga20",
+    "ParentId": "muthrf2xi5azhx4wnga10",
+    "PayanarssTypeId": "mutho0r4pryucm9p7d",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "muthrf2xi5azhx4wnga30",
+    "ParentId": "muthrf2xi5azhx4wnga10",
+    "PayanarssTypeId": "muthoizmwi7deirw52q",
+    "Attributes": [],
+    "Description": null
   },
   {
     "Id": "muthruy4nschgykyjs",
     "ParentId": "muthndo4rn8bjv08bf",
     "Name": "Quotient",
     "PayanarssTypeId": "100000000000000000040000000000005",
-    "Attributes": [
-      {
-        "Id": "100000000000000000030000000000005",
-        "Attributes": [
-          {
-            "Id": "mutho0r4pryucm9p7d"
-          },
-          {
-            "Id": "muthoizmwi7deirw52q"
-          }
-        ]
-      }
-    ],
+    "Attributes": [],
     "Description": null,
     "requiredFlags": [],
     "alwaysOn": true
   },
   {
+    "Id": "muthruy4nschgykyjs10",
+    "ParentId": "muthruy4nschgykyjs",
+    "PayanarssTypeId": "100000000000000000030000000000005",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "muthruy4nschgykyjs20",
+    "ParentId": "muthruy4nschgykyjs10",
+    "PayanarssTypeId": "mutho0r4pryucm9p7d",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "muthruy4nschgykyjs30",
+    "ParentId": "muthruy4nschgykyjs10",
+    "PayanarssTypeId": "muthoizmwi7deirw52q",
+    "Attributes": [],
+    "Description": null
+  },
+  {
     "Id": "mutio37s8kevtmbmfqx",
     "ParentId": "muthm0y1wa57ghlxlmc",
     "Name": "Relational Operators (==, !=, >, <, >=, <=)",
-    "PayanarssTypeId": "100000000000000000050000000000005",
+    "PayanarssTypeId": "100000000000000000000000000000001",
     "Attributes": [],
     "Description": null,
     "requiredFlags": [],
@@ -115445,7 +115493,7 @@
     "Id": "mv3lxmlfql27180j1rj",
     "ParentId": "muthm0y1wa57ghlxlmc",
     "Name": "Logical Operators (&&, ||, !)",
-    "PayanarssTypeId": "100000000000000000050000000000005",
+    "PayanarssTypeId": "100000000000000000000000000000001",
     "Attributes": [],
     "Description": null,
     "requiredFlags": [],
@@ -115515,7 +115563,7 @@
     "Id": "mv3mr76z6f8s7bddvi4",
     "ParentId": "muthm0y1wa57ghlxlmc",
     "Name": "Check if a year is a leap year",
-    "PayanarssTypeId": "100000000000000000050000000000005",
+    "PayanarssTypeId": "100000000000000000000000000000001",
     "Attributes": [],
     "Description": null,
     "requiredFlags": [],
@@ -115625,7 +115673,7 @@
     "Id": "mv3pd01dwlrx60p2nu",
     "ParentId": "muthm0y1wa57ghlxlmc",
     "Name": "Build a simple calculator (add, subtract, multiply, divide) using switch.",
-    "PayanarssTypeId": "100000000000000000050000000000005",
+    "PayanarssTypeId": "100000000000000000000000000000001",
     "Attributes": [],
     "Description": null,
     "requiredFlags": [],
@@ -115756,7 +115804,7 @@
     "Id": "mv3vo5n8lna5fjhmyu",
     "ParentId": "muthm0y1wa57ghlxlmc",
     "Name": "Print numbers from 1 to 10",
-    "PayanarssTypeId": "100000000000000000050000000000005",
+    "PayanarssTypeId": "100000000000000000000000000000001",
     "Attributes": [],
     "Description": null,
     "requiredFlags": [],

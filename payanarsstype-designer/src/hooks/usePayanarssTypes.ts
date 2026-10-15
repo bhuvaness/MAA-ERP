@@ -323,7 +323,7 @@ export function usePayanarssTypes() {
     );
 
     const selectableTypes = useMemo(() => {
-        return [...types].sort((a, b) => a.Name.localeCompare(b.Name));
+        return [...types].sort((a, b) => (a.Name ?? "").localeCompare(b.Name));
     }, [types]);
 
     // ─── EXPAND / COLLAPSE ───

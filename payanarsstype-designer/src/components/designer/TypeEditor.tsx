@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from "react";
-import { Pencil, Trash2, Plus, ChevronRight, Settings2, Upload, Database, Loader2, Check } from "lucide-react";
+import { Pencil, Trash2, Plus, ChevronRight, Settings2, Upload, Database, Loader2, Check, Table2 } from "lucide-react";
 import { PayanarssType } from "@/types/PayanarssType";
 import { TypeSelectModal } from "./TypeSelectModal";
 import { Input } from "@/components/ui/input";
@@ -33,6 +33,8 @@ interface TypeEditorProps {
     isTypeOf: (type: PayanarssType, baseTypeName: string) => boolean;
     // NEW: Callback to add imported types into the system
     onImportTypes?: (types: PayanarssType[]) => void;
+    // Opens the Excel-style Table View for the current type
+    onOpenTableView?: () => void;
 }
 
 interface EditingState {
@@ -250,6 +252,7 @@ export function TypeEditor({
     onNavigateToChildren,
     isTypeOf,
     onImportTypes,
+    onOpenTableView,
 }: TypeEditorProps) {
     const [editing, setEditing] = useState<EditingState | null>(null);
     const [typeSelectOpen, setTypeSelectOpen] = useState(false);
@@ -524,6 +527,18 @@ export function TypeEditor({
                                 ? "Retry Embed"
                                 : parentType ? "Embed to Pinecone" : "Embed All to Pinecone"}
                         </button>
+
+                        {/* TABLE VIEW BUTTON */}
+                        {onOpenTableView && parentType && (
+                            <button
+                                onClick={onOpenTableView}
+                                className="flex items-center gap-1 px-3 py-1.5 rounded text-xs font-medium transition-colors bg-teal-600 text-white hover:bg-teal-700"
+                                title={`Open "${parentType.Name}" as a spreadsheet`}
+                            >
+                                <Table2 className="w-3.5 h-3.5" />
+                                Table View
+                            </button>
+                        )}
 
                         {parentType && children.length > 0 && (
                             <button

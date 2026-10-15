@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import { Loader2 } from "lucide-react";
 import { usePayanarssTypes } from "@/hooks/usePayanarssTypes";
 import { PayanarssType, ROOT_TYPE_IDS } from "@/types/PayanarssType";
@@ -6,6 +6,7 @@ import { Header } from "./designer/Header";
 import { TreeSidebar } from "./designer/TreeSidebar";
 import { TypeEditor } from "./designer/TypeEditor";
 import { AIPromptBar } from "./designer/AIPromptBar";
+import { TableView } from "./designer/TableView";
 import { Breadcrumb } from "./designer/Breadcrumb";
 import { toast } from "@/hooks/use-toast";
 import { generateTypes, GeneratedField, PayanarssTypeSummary } from "@/services/aiService";
@@ -34,6 +35,14 @@ export function PayanarssTypeDesigner() {
 
     // Current selected/active parent ID (what's shown in main content)
     const [selectedParentId, setSelectedParentId] = useState<string | null>(null);
+
+    // Table View (Excel-style grid of the current type's children)
+    const [tableViewOpen, setTableViewOpen] = useState(false);
+
+    // Close the table view whenever the user navigates to another type
+    useEffect(() => {
+        setTableViewOpen(false);
+    }, [selectedParentId]);
 
     // Get current parent type
     const currentParent = useMemo(() => {
@@ -262,6 +271,18 @@ export function PayanarssTypeDesigner() {
         [selectedParentId, addType]
     );
 
+    // Open the Excel-style table view for the current type
+    const handleOpenTableView = useCallback(() => {
+        if (!currentParent) {
+            toast({
+                title: "Select a type first",
+                description: "Open a type from the tree, then choose Table View to see its columns.",
+            });
+            return;
+        }
+        setTableViewOpen(true);
+    }, [currentParent]);
+
     // Navigate home
     const handleNavigateHome = useCallback(() => {
         setSelectedParentId(null);
@@ -330,6 +351,7 @@ export function PayanarssTypeDesigner() {
                         onDeleteChildren={handleDeleteChildren}
                         onNavigateToChildren={handleNavigateToChildren}
                         isTypeOf={isTypeOf}
+                        onOpenTableView={handleOpenTableView}
                     />
 
                     {/* AI Prompt Bar - Fixed at bottom of main content */}
@@ -340,6 +362,18 @@ export function PayanarssTypeDesigner() {
                     />
                 </main>
             </div>
+
+            {/* Table View - Excel-style grid; keyed so each type keeps its own rows */}
+            {tableViewOpen && currentParent && (
+                <TableView
+                    key={currentParent.Id}
+                    parentType={currentParent}
+                    columns={currentChildren}
+                    types={types}
+                    getTypeName={getTypeName}
+                    onClose={() => setTableViewOpen(false)}
+                />
+            )}
         </div>
     );
 }

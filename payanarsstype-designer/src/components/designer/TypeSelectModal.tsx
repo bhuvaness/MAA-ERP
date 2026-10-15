@@ -37,7 +37,7 @@ export function TypeSelectModal({
 
   const filterFn = (t: PayanarssType) =>
     !q ||
-    t.Name.toLowerCase().includes(q) ||
+    (t.Name?? "").toLowerCase().includes(q) ||
     t.Id.toLowerCase().includes(q) ||
     (t.Description || "").toLowerCase().includes(q);
 
