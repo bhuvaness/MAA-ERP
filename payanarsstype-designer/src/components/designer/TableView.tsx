@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { KeyboardEvent } from "react";
 import { PTSInterpreter, TypeRegistry } from "../../services/pts-interpreter";
 import type { CellResult, ColumnInfo, PTSNode } from "../../services/pts-interpreter";
@@ -58,16 +58,31 @@ const colLetter = (i: number): string => {
 const fmt = (v: number, decimals: number) =>
   Number.isInteger(v) ? String(v) : String(Number(v.toFixed(decimals)));
 
-function display(res: CellResult | undefined, decimals: number): { text: string; error?: string } {
+function scalarText(v: number | boolean, decimals: number): string {
+  return typeof v === "boolean" ? (v ? "TRUE" : "FALSE") : fmt(v, decimals);
+}
+
+function display(res: CellResult | undefined, decimals: number): { text: string; error?: string; tip?: string } {
   if (!res) return { text: "" };
-  if (res.ok) return { text: fmt(res.value, decimals) };
+  if (res.ok) {
+    if (Array.isArray(res.value)) {
+      const text = res.value.length ? res.value.map((v) => scalarText(v, decimals)).join(", ") : "(empty)";
+      return { text, tip: `${res.value.length} value${res.value.length === 1 ? "" : "s"}: ${text}` };
+    }
+    return { text: scalarText(res.value, decimals) };
+  }
   switch (res.code) {
     case "MISSING_INPUT":
       return { text: "" }; // incomplete row: stay quiet, like an empty Excel cell
     case "DIV_ZERO":
       return { text: "#DIV/0!", error: res.message };
     case "NOT_A_NUMBER":
+    case "TYPE_MISMATCH":
       return { text: "#VALUE!", error: res.message };
+    case "NO_VALUE":
+      return { text: "#N/A", error: res.message };
+    case "LOOP_LIMIT":
+      return { text: "#LOOP!", error: res.message };
     default:
       return { text: "#ERROR!", error: res.message };
   }
@@ -118,6 +133,21 @@ export function TableView({
     () => rows.map((row) => (scope && !isBlank(row) ? scope.evalRow(row) : null)),
     [rows, scope],
   );
+
+  // Why a cell shows #ERROR! etc.: the messages for the selected row (blank-input cases excluded).
+  const rowErrors = useMemo(() => {
+    const res = computed[sel.r];
+    if (!res) return [] as string[];
+    return columns.flatMap((c) => {
+      const r = c.kind === "formula" ? res[c.name] : undefined;
+      return r && !r.ok && r.code !== "MISSING_INPUT" ? [`${c.name}: ${r.message}`] : [];
+    });
+  }, [computed, sel.r, columns]);
+
+  // Also log them, so they can be copied from the browser console.
+  useEffect(() => {
+    rowErrors.forEach((m) => console.warn(`[TableView] ${m}`));
+  }, [rowErrors]);
 
   const filled = rows.filter((r) => !isBlank(r)).length;
   const title = scope?.name ?? "Table";
@@ -295,7 +325,7 @@ export function TableView({
           if (t !== "" && Number.isFinite(Number(t))) values.push(Number(t));
         } else {
           const res = computed[i]?.[selCol.name];
-          if (res?.ok) values.push(res.value);
+          if (res?.ok && typeof res.value === "number") values.push(res.value);
         }
       });
     }
@@ -384,13 +414,15 @@ export function TableView({
                   const isSel = sel.r === r && sel.c === c;
                   const isEditing = !!editing && editing.r === r && editing.c === c;
                   const isFormula = col.kind === "formula";
-                  const shown = isFormula ? display(computed[r]?.[col.name], decimals) : { text: row[col.name] ?? "" };
+                  const shown: { text: string; error?: string; tip?: string } = isFormula
+                    ? display(computed[r]?.[col.name], decimals)
+                    : { text: row[col.name] ?? "" };
                   const showHint = isFormula && computed[r] === null; // the empty entry row
                   const cls = [
                     "tv-cell",
                     isFormula ? "tv-formula" : "",
                     isSel ? "tv-selected" : "",
-                    "error" in shown && shown.error ? "tv-err" : "",
+                    shown.error ? "tv-err" : "",
                   ]
                     .filter(Boolean)
                     .join(" ");
@@ -398,7 +430,7 @@ export function TableView({
                     <td
                       key={col.id}
                       className={cls}
-                      title={"error" in shown ? shown.error : undefined}
+                      title={shown.error ?? shown.tip}
                       onClick={() => select(r, c)}
                       onDoubleClick={() => {
                         select(r, c);
@@ -435,9 +467,20 @@ export function TableView({
       </div>
 
       <footer className="tv-status">
-        <span>
+        <span style={{ minWidth: 0, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>
           <strong>Ready</strong>
-          <span className="tv-hint">Type to edit, Enter to move down, F2 to edit in place</span>
+          {rowErrors.length === 0 ? (
+            <span className="tv-hint">Type to edit, Enter to move down, F2 to edit in place</span>
+          ) : (
+            <span
+              title={rowErrors.join("\n")}
+              style={{ marginLeft: 10, background: "#fee2e2", color: "#b42318", padding: "1px 8px", borderRadius: 4 }}
+            >
+              {"\u26a0 "}
+              {rowErrors[0]}
+              {rowErrors.length > 1 ? ` (+${rowErrors.length - 1} more)` : ""}
+            </span>
+          )}
         </span>
         <span className="tv-stats" data-testid="stats">
           <span>Average: {fmt(stats.avg, decimals)}</span>
