@@ -113720,52 +113720,87 @@
   {
     "Id": "mv0tlp10l9vix6oxj31",
     "ParentId": "mur37gjqwxhj51a35un",
-    "Name": "Lorry",
+    "Name": "Lorries",
     "PayanarssTypeId": "100000000000000000000000000000002",
     "Attributes": [],
-    "Description": "Cargo space of one lorry. Coordinates: X along the bed (0 = front wall, Length = rear door), Y across (0 = left wall), Z up from the floor. One unit for all dimensions (e.g. cm) and one for all weights (e.g. kg)."
+    "Description": "Cargo space of one lorry. Coordinates: X along the bed (0 = front wall, Length = rear door), Y across (0 = left wall), Z up from the floor. One unit for all dimensions (e.g. cm) and one for all weights (e.g. kg).",
+    "requiredFlags": [],
+    "alwaysOn": true
   },
   {
-    "Id": "mv0tlpuo78w3ezv9ejl",
+    "Id": "mv0tlprwlisrn4bphoo",
+    "ParentId": "mv0tlp10l9vix6oxj31",
+    "Name": "Name",
+    "PayanarssTypeId": "100000000000000000000000000000006",
+    "Attributes": [
+      "100000000000000000000000000000013",
+      "100000000000000000000000000000012"
+    ],
+    "Description": "Must be unique within the fleet."
+  },
+  {
+    "Id": "mv0tlpq4h8z1c6w3n9t",
     "ParentId": "mv0tlp10l9vix6oxj31",
     "Name": "Length",
     "PayanarssTypeId": "100000000000000000000000000000007",
-    "Attributes": [],
-    "Description": "Inner cargo length."
+    "Attributes": [
+      "100000000000000000000000000000012"
+    ],
+    "Description": "Inner cargo length (cm)."
   },
   {
-    "Id": "mv0tlpl2gbw2ksn2c5k",
+    "Id": "mv0tlpr7j2d5v9b1k4x",
     "ParentId": "mv0tlp10l9vix6oxj31",
     "Name": "Width",
     "PayanarssTypeId": "100000000000000000000000000000007",
-    "Attributes": [],
-    "Description": "Inner cargo width."
+    "Attributes": [
+      "100000000000000000000000000000012"
+    ],
+    "Description": "Inner cargo width (cm)."
   },
   {
-    "Id": "mv0tlpijtd8xkp9jxcj",
+    "Id": "mv0tlps3m6f8y2p0e7u",
     "ParentId": "mv0tlp10l9vix6oxj31",
     "Name": "Height",
     "PayanarssTypeId": "100000000000000000000000000000007",
-    "Attributes": [],
-    "Description": "Inner cargo height."
+    "Attributes": [
+      "100000000000000000000000000000012"
+    ],
+    "Description": "Inner cargo height (cm)."
   },
   {
-    "Id": "mv0tlpfb7xy2z5wbr0j",
+    "Id": "mv0tlpt9c1g4a7l5h2z",
     "ParentId": "mv0tlp10l9vix6oxj31",
     "Name": "MaxWeight",
     "PayanarssTypeId": "100000000000000000000000000000007",
-    "Attributes": [],
-    "Description": "Maximum payload (cargo weight only)."
+    "Attributes": [
+      "100000000000000000000000000000012"
+    ],
+    "Description": "Maximum payload (cargo weight only) (kg)."
   },
   {
-    "Id": "mv0tlp1efz5v2qvwxfx",
+    "Id": "mv0tlp729c8fd6kcg4f",
     "ParentId": "mv0tlp10l9vix6oxj31",
-    "Name": "Volume",
+    "Name": "AvailableCount",
     "PayanarssTypeId": "100000000000000000000000000000007",
-    "Attributes": [
-      "100000000000000000000000000000011"
-    ],
-    "Description": "Computed: Length x Width x Height."
+    "Attributes": [],
+    "Description": "Integer. How many of this type can be dispatched in total (across ALL routes). Empty = unlimited."
+  },
+  {
+    "Id": "mv0tlpg2ycyxl1lpjog",
+    "ParentId": "mv0tlp10l9vix6oxj31",
+    "Name": "CostPerTrip",
+    "PayanarssTypeId": "100000000000000000000000000000007",
+    "Attributes": [],
+    "Description": "Fixed cost of one trip (hire / driver / loading)."
+  },
+  {
+    "Id": "mv0tlpkzmpn8jprre8q",
+    "ParentId": "mv0tlp10l9vix6oxj31",
+    "Name": "CostPerKm",
+    "PayanarssTypeId": "100000000000000000000000000000007",
+    "Attributes": [],
+    "Description": "Cost per km, multiplied by the route DistanceKm."
   },
   {
     "Id": "mv0tlplqg5a1k3evcqf",
@@ -114440,57 +114475,6 @@
     "Description": "A lorry type in the fleet. Trip cost = CostPerTrip + CostPerKm x route DistanceKm."
   },
   {
-    "Id": "mv0tlprwlisrn4bphoo",
-    "ParentId": "mv0tlpewhy97ofwd6ok",
-    "Name": "Name",
-    "PayanarssTypeId": "100000000000000000000000000000006",
-    "Attributes": [
-      "100000000000000000000000000000013",
-      "100000000000000000000000000000012"
-    ],
-    "Description": "Must be unique within the fleet."
-  },
-  {
-    "Id": "mv0tlpaerqa4e9c9tzq",
-    "ParentId": "mv0tlpewhy97ofwd6ok",
-    "Name": "Lorry",
-    "PayanarssTypeId": "mv0tlp10l9vix6oxj31",
-    "Attributes": [],
-    "Description": "One Lorry row: the cargo space of this type."
-  },
-  {
-    "Id": "mv0tlp729c8fd6kcg4f",
-    "ParentId": "mv0tlpewhy97ofwd6ok",
-    "Name": "AvailableCount",
-    "PayanarssTypeId": "100000000000000000000000000000007",
-    "Attributes": [],
-    "Description": "Integer. How many of this type can be dispatched in total (across ALL routes). Empty = unlimited."
-  },
-  {
-    "Id": "mv0tlpg2ycyxl1lpjog",
-    "ParentId": "mv0tlpewhy97ofwd6ok",
-    "Name": "CostPerTrip",
-    "PayanarssTypeId": "100000000000000000000000000000007",
-    "Attributes": [],
-    "Description": "Fixed cost of one trip (hire / driver / loading)."
-  },
-  {
-    "Id": "mv0tlpkzmpn8jprre8q",
-    "ParentId": "mv0tlpewhy97ofwd6ok",
-    "Name": "CostPerKm",
-    "PayanarssTypeId": "100000000000000000000000000000007",
-    "Attributes": [],
-    "Description": "Cost per km, multiplied by the route DistanceKm."
-  },
-  {
-    "Id": "mv0tlpngnm07btj4fmr",
-    "ParentId": "mv0tlpewhy97ofwd6ok",
-    "Name": "UNIQUE: Name must be unique within the fleet",
-    "PayanarssTypeId": "100000000000000000000000000000005",
-    "Attributes": [],
-    "Description": "Business rule for LorryType"
-  },
-  {
     "Id": "mv0tlphngkm8lni11pj",
     "ParentId": "mur37gjqwxhj51a35un",
     "Name": "CountTieBreak",
@@ -114735,14 +114719,6 @@
     "PayanarssTypeId": "100000000000000000000000000000002",
     "Attributes": [],
     "Description": "The full fleet plan over all routes."
-  },
-  {
-    "Id": "mv0tlp31f513ugliuk1",
-    "ParentId": "mv0tlpdokqguv1d9204",
-    "Name": "Routes",
-    "PayanarssTypeId": "mv0tlp4qzr039wpm4dd",
-    "Attributes": [],
-    "Description": "List of RoutePlan rows."
   },
   {
     "Id": "mv0tlpf71y11eoskn2n",
@@ -115971,15 +115947,6 @@
     "Description": null
   },
   {
-    "Id": "muwevskh6egrugscwyg",
-    "ParentId": "mv3vrgg325ta14dwbwy01",
-    "Name": "i",
-    "PayanarssTypeId": "100000000000000000000000000000007",
-    "Attributes": [],
-    "Description": null,
-    "Value": "<mv3vp19e8gk3u0zaiw/>"
-  },
-  {
     "Id": "mv3vrgg325ta14dwbwy02",
     "ParentId": "mv3vrgg325ta14dwbwy01",
     "PayanarssTypeId": "100000000000000000030000000000021",
@@ -116055,5 +116022,253 @@
     "PayanarssTypeId": "muwevskh6egrugscwyg",
     "Attributes": [],
     "Description": null
+  },
+  {
+    "Id": "mvdy8d8tvqo2txj2jtf",
+    "ParentId": "mv0tlp10l9vix6oxj31",
+    "Name": "Id",
+    "PayanarssTypeId": "100000000000000000000000000000013",
+    "Attributes": [],
+    "Description": null,
+    "requiredFlags": [],
+    "alwaysOn": true
+  },
+  {
+    "Id": "mvdya1bq9ewcj1o130b",
+    "ParentId": "mur37gjqwxhj51a35un",
+    "Name": "Routes",
+    "PayanarssTypeId": "100000000000000000000000000000001",
+    "Attributes": [],
+    "Description": null,
+    "requiredFlags": [],
+    "alwaysOn": true
+  },
+  {
+    "Id": "mv0tlpu2e5k8b1x7q4d",
+    "ParentId": "mvdya1bq9ewcj1o130b",
+    "Name": "RouteId",
+    "PayanarssTypeId": "100000000000000000000000000000006",
+    "Attributes": [
+      "100000000000000000000000000000012"
+    ],
+    "Description": "Route identifier, e.g. R1."
+  },
+  {
+    "Id": "mv0tlpv6h3n9c2y8w1j",
+    "ParentId": "mvdya1bq9ewcj1o130b",
+    "Name": "WarehousePinCode",
+    "PayanarssTypeId": "100000000000000000000000000000006",
+    "Attributes": [
+      "100000000000000000000000000000012"
+    ],
+    "Description": "PIN code of the warehouse the route starts from."
+  },
+  {
+    "Id": "mv0tlpw9a4m7d5z2k6f",
+    "ParentId": "mvdya1bq9ewcj1o130b",
+    "Name": "DistanceKm",
+    "PayanarssTypeId": "100000000000000000000000000000007",
+    "Attributes": [
+      "100000000000000000000000000000012"
+    ],
+    "Description": "Total route distance in km. Multiplied by the lorry CostPerKm."
+  },
+  {
+    "Id": "mv0tlpx1p8c3t6g9y4b",
+    "ParentId": "mvdya1bq9ewcj1o130b",
+    "Name": "StopOrder",
+    "PayanarssTypeId": "100000000000000000000000000000007",
+    "Attributes": [
+      "100000000000000000000000000000012"
+    ],
+    "Description": "Integer. Delivery sequence on the route; 1 = delivered first."
+  },
+  {
+    "Id": "mv0tlpy5r2j6w1h8n3e",
+    "ParentId": "mvdya1bq9ewcj1o130b",
+    "Name": "StopPinCode",
+    "PayanarssTypeId": "100000000000000000000000000000006",
+    "Attributes": [
+      "100000000000000000000000000000012"
+    ],
+    "Description": "PIN code of the delivery stop."
+  },
+  {
+    "Id": "mv0tlpz8d7v4k9s2m5q",
+    "ParentId": "mvdya1bq9ewcj1o130b",
+    "Name": "StopArea",
+    "PayanarssTypeId": "100000000000000000000000000000006",
+    "Attributes": [],
+    "Description": "Area or locality name of the delivery stop."
+  },
+  {
+    "Id": "mvdykqxsk4cvvd1kpl",
+    "ParentId": "mur37gjqwxhj51a35un",
+    "Name": "Items",
+    "PayanarssTypeId": "100000000000000000000000000000001",
+    "Attributes": [],
+    "Description": null,
+    "requiredFlags": [],
+    "alwaysOn": true
+  },
+  {
+    "Id": "mvdykqa3f7k2m9x1c4d",
+    "ParentId": "mvdykqxsk4cvvd1kpl",
+    "Name": "Code",
+    "PayanarssTypeId": "100000000000000000000000000000006",
+    "Attributes": [
+      "100000000000000000000000000000013",
+      "100000000000000000000000000000012"
+    ],
+    "Description": "Item code, e.g. CUS1_RICE25. Must be unique."
+  },
+  {
+    "Id": "mvdykqb8h2d5n7y3w1j",
+    "ParentId": "mvdykqxsk4cvvd1kpl",
+    "Name": "Name",
+    "PayanarssTypeId": "100000000000000000000000000000006",
+    "Attributes": [
+      "100000000000000000000000000000012"
+    ],
+    "Description": "Item name, e.g. Rice bag 25 kg."
+  },
+  {
+    "Id": "mvdykqc4p9v1k6z8e2t",
+    "ParentId": "mvdykqxsk4cvvd1kpl",
+    "Name": "Length",
+    "PayanarssTypeId": "100000000000000000000000000000007",
+    "Attributes": [
+      "100000000000000000000000000000012"
+    ],
+    "Description": "Item length (cm)."
+  },
+  {
+    "Id": "mvdykqd7m3w5c2h9r4q",
+    "ParentId": "mvdykqxsk4cvvd1kpl",
+    "Name": "Width",
+    "PayanarssTypeId": "100000000000000000000000000000007",
+    "Attributes": [
+      "100000000000000000000000000000012"
+    ],
+    "Description": "Item width (cm)."
+  },
+  {
+    "Id": "mvdykqe1s6b8j4k7n3x",
+    "ParentId": "mvdykqxsk4cvvd1kpl",
+    "Name": "Height",
+    "PayanarssTypeId": "100000000000000000000000000000007",
+    "Attributes": [
+      "100000000000000000000000000000012"
+    ],
+    "Description": "Item height (cm)."
+  },
+  {
+    "Id": "mvdykqf5y2t9d1m6c8h",
+    "ParentId": "mvdykqxsk4cvvd1kpl",
+    "Name": "Weight",
+    "PayanarssTypeId": "100000000000000000000000000000007",
+    "Attributes": [
+      "100000000000000000000000000000012"
+    ],
+    "Description": "Item weight (kg)."
+  },
+  {
+    "Id": "mvdykqg9k4q7w3z5p1e",
+    "ParentId": "mvdykqxsk4cvvd1kpl",
+    "Name": "CanRotate",
+    "PayanarssTypeId": "100000000000000000000000000000009",
+    "Attributes": [],
+    "Description": "May the item be turned? Yes/No. Default Yes."
+  },
+  {
+    "Id": "mvdykqh2c8n1x6v4b7s",
+    "ParentId": "mvdykqxsk4cvvd1kpl",
+    "Name": "Fragile",
+    "PayanarssTypeId": "100000000000000000000000000000009",
+    "Attributes": [],
+    "Description": "Yes = nothing may be placed on top of this item. Default No."
+  },
+  {
+    "Id": "mvdykqi6j5r3y9d2k8m",
+    "ParentId": "mvdykqxsk4cvvd1kpl",
+    "Name": "KeepUpright",
+    "PayanarssTypeId": "100000000000000000000000000000009",
+    "Attributes": [],
+    "Description": "Yes = \"this side up\": only turns around the vertical axis (Length/Width swap) are allowed."
+  },
+  {
+    "Id": "mvdykqj3w7h4p1c6z9f",
+    "ParentId": "mvdykqxsk4cvvd1kpl",
+    "Name": "MaxStack",
+    "PayanarssTypeId": "100000000000000000000000000000007",
+    "Attributes": [],
+    "Description": "Integer. Highest tier this item may sit on (1 = floor). Empty = no item-specific limit."
+  },
+  {
+    "Id": "mvdykqk8d2m5t7y3q1n",
+    "ParentId": "mvdykqxsk4cvvd1kpl",
+    "Name": "MaxLoadOnTop",
+    "PayanarssTypeId": "100000000000000000000000000000007",
+    "Attributes": [],
+    "Description": "Maximum total weight (kg) that may rest on this item (crush limit). Empty = unlimited."
+  },
+  {
+    "Id": "mvesqjizthhzxpj08mo",
+    "ParentId": "mur37gjqwxhj51a35un",
+    "Name": "Distributors",
+    "PayanarssTypeId": "100000000000000000000000000000001",
+    "Attributes": [],
+    "Description": null,
+    "requiredFlags": [],
+    "alwaysOn": true
+  },
+  {
+    "Id": "mvesw8p2st9to3u7ltk",
+    "ParentId": "mvesqjizthhzxpj08mo",
+    "Name": "Code",
+    "PayanarssTypeId": "100000000000000000000000000000006",
+    "Attributes": [
+      "100000000000000000000000000000013",
+      "100000000000000000000000000000012"
+    ],
+    "Description": "Distributor code, e.g. D001. Mandatory and unique.",
+    "requiredFlags": [],
+    "alwaysOn": true
+  },
+  {
+    "Id": "mvesw8p381s0ijm0mra",
+    "ParentId": "mvesqjizthhzxpj08mo",
+    "Name": "Name",
+    "PayanarssTypeId": "100000000000000000000000000000006",
+    "Attributes": [
+      "100000000000000000000000000000012"
+    ],
+    "Description": "Distributor name. Mandatory.",
+    "requiredFlags": [],
+    "alwaysOn": true
+  },
+  {
+    "Id": "mvesw8p430xhcd7yj2m",
+    "ParentId": "mvesqjizthhzxpj08mo",
+    "Name": "Address",
+    "PayanarssTypeId": "100000000000000000000000000000006",
+    "Attributes": [
+      "100000000000000000000000000000012"
+    ],
+    "Description": "Delivery address. Mandatory.",
+    "requiredFlags": [],
+    "alwaysOn": true
+  },
+  {
+    "Id": "mvesw8p58k9kovhjlsb",
+    "ParentId": "mvesqjizthhzxpj08mo",
+    "Name": "Pincode",
+    "PayanarssTypeId": "100000000000000000000000000000006",
+    "Attributes": [
+      "100000000000000000000000000000012"
+    ],
+    "Description": "PIN code of the address (text: an identifier, not a number). Mandatory.",
+    "requiredFlags": [],
+    "alwaysOn": true
   }
 ]
