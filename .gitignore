@@ -362,3 +362,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /payanarsstype-designer/.env
+/payanarsstype-designer/docs/Anthropic Cre.txt
