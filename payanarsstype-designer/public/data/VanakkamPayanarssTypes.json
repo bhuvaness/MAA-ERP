@@ -26,6 +26,14 @@
   {
     "Id": "10000000000000000000000000000000111",
     "ParentId": "10000000000000000000000000000000111",
+    "Name": "InheritTableType",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "10000000000000000000000000000000111",
+    "ParentId": "10000000000000000000000000000000111",
     "Name": "BusinessUseCase",
     "PayanarssTypeId": "10000000000000000000000000000000111",
     "Attributes": [],
@@ -45896,6 +45904,22 @@
     "PayanarssTypeId": "10000000000000000000000000000001111",
     "Attributes": [],
     "Description": "Industry sector: Manufacturing"
+  },
+  {
+    "Id": "SEC00000000000000000000053944400",
+    "ParentId": "SEC00000000000000000000053940000",
+    "Name": "Inherits Common Module",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Industry sector: Manufacturing inherits common module."
+  },
+  {
+    "Id": "SEC00000000000000000000053944444",
+    "ParentId": "SEC00000000000000000000053944400",
+    "Name": "Inherits Common Module",
+    "PayanarssTypeId": "CMR00000000000000000000000010000",
+    "Attributes": [],
+    "Description": "Industry sector: Manufacturing inherits common module."
   },
   {
     "Id": "SUB00000000000000000000053950000",
