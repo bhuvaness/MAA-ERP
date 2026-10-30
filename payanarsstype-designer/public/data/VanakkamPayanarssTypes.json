@@ -116294,5 +116294,1522 @@
     "Description": "PIN code of the address (text: an identifier, not a number). Mandatory.",
     "requiredFlags": [],
     "alwaysOn": true
+  },
+  {
+    "Id": "mvufdr1ik7duyih1m80",
+    "ParentId": "mur37gjqwxhj51a35un",
+    "Name": "FleetManagement",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Fleet Management. Keep the master list of lorry types the business can dispatch: cargo dimensions, payload, how many are available and what a trip costs. Every load plan chooses lorries from this fleet."
+  },
+  {
+    "Id": "mvufdr1jyishzk45oge",
+    "ParentId": "mvufdr1ik7duyih1m80",
+    "Name": "MaintainLorryTypes",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [
+      "100000000000000000000000000000019",
+      "100000000000000000000000000000020"
+    ],
+    "Description": "Maintain Lorry Types. Record each lorry type once (e.g. Tata Ace, Tata 407, Eicher 14 ft) in the Lorries master. Today lorry types are created by loading sample data or a script and read by planning; there is no edit screen yet."
+  },
+  {
+    "Id": "mvufdr1ks5bpl1zlhb6",
+    "ParentId": "mvufdr1jyishzk45oge",
+    "Name": "UniqueLorryTypeName",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[FL-01] UNIQUE: Lorry type Name must be unique in the fleet"
+  },
+  {
+    "Id": "mvufdr1ln2o0mkvhyjk",
+    "ParentId": "mvufdr1jyishzk45oge",
+    "Name": "LorryTypeRequiredFields",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[FL-02] REQUIRED: Lorry type needs Name, Length, Width, Height and Max Payload"
+  },
+  {
+    "Id": "mvufdr1mg68vu4fdo3m",
+    "ParentId": "mvufdr1jyishzk45oge",
+    "Name": "RetiredLorryTypeNotOffered",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[FL-03] RULE: A retired lorry type (inactive) is kept for history and no longer offered for planning"
+  },
+  {
+    "Id": "mvufdr1njf2fog6k1xp",
+    "ParentId": "mvufdr1ik7duyih1m80",
+    "Name": "DefineLorryCapacity",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Define Lorry Dimensions and Payload. Capture the inside cargo space (length from the front wall to the rear door, width, height in cm) and the maximum cargo weight (kg). These bound every package placement."
+  },
+  {
+    "Id": "mvufdr1oahx4wjclv6k",
+    "ParentId": "mvufdr1njf2fog6k1xp",
+    "Name": "LorryDimensionsPositive",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[FL-04] VALIDATION: Length, Width, Height and Max Payload must be greater than 0"
+  },
+  {
+    "Id": "mvufdr1pajlcgog3k2z",
+    "ParentId": "mvufdr1njf2fog6k1xp",
+    "Name": "CargoVolumeCalculation",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[FL-05] CALCULATE: Cargo volume = Length x Width x Height"
+  },
+  {
+    "Id": "mvufdr1qkzs9x5rvjtd",
+    "ParentId": "mvufdr1ik7duyih1m80",
+    "Name": "DefineAvailabilityAndCost",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Define Lorry Availability and Trip Cost. Record how many lorries of a type can be dispatched and what one trip costs. Planning minimises total trip cost."
+  },
+  {
+    "Id": "mvufdr1rgfmd41m97hj",
+    "ParentId": "mvufdr1qkzs9x5rvjtd",
+    "Name": "AvailableCountLimit",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[FL-06] RULE: Available Count empty = unlimited; otherwise at most that many trips of the type across ALL routes"
+  },
+  {
+    "Id": "mvufdr1sge9dlzbcatw",
+    "ParentId": "mvufdr1qkzs9x5rvjtd",
+    "Name": "TripCostsNotNegative",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[FL-07] VALIDATION: Cost Per Trip and Cost Per Km must be 0 or more"
+  },
+  {
+    "Id": "mvufdr1t1u6bni31m47",
+    "ParentId": "mvufdr1qkzs9x5rvjtd",
+    "Name": "TripCostCalculation",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[FL-08] CALCULATE: Trip cost = Cost Per Trip + Cost Per Km x route Distance (km)"
+  },
+  {
+    "Id": "mvufdr1u417ru93zuyq",
+    "ParentId": "mur37gjqwxhj51a35un",
+    "Name": "RouteDistributorManagement",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Route and Distributor Management. Keep the delivery routes, their ordered stops and the distributors they serve."
+  },
+  {
+    "Id": "mvufdr1vlxzshasdnbt",
+    "ParentId": "mvufdr1u417ru93zuyq",
+    "Name": "MaintainRoutes",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [
+      "100000000000000000000000000000019",
+      "100000000000000000000000000000020"
+    ],
+    "Description": "Maintain Routes. Record each delivery route: its code, the warehouse PIN code it starts from and its distance, which drives the per-km part of the trip cost."
+  },
+  {
+    "Id": "mvufdr1wblzm66b1xfc",
+    "ParentId": "mvufdr1vlxzshasdnbt",
+    "Name": "UniqueRouteCode",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[RT-01] UNIQUE: Route code must be unique"
+  },
+  {
+    "Id": "mvufdr1xllf8exf3pv7",
+    "ParentId": "mvufdr1vlxzshasdnbt",
+    "Name": "RouteDistanceNotNegative",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[RT-02] VALIDATION: Route distance (km) must be 0 or more; use the round trip if the return leg is paid"
+  },
+  {
+    "Id": "mvufdr1y4i227sxatjq",
+    "ParentId": "mvufdr1vlxzshasdnbt",
+    "Name": "OneWarehouseAndDistancePerRoute",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[RT-03] RULE: A route has ONE warehouse PIN code and ONE distance; every stop row of the route must agree"
+  },
+  {
+    "Id": "mvufdr1zv2grdjjahnu",
+    "ParentId": "mvufdr1u417ru93zuyq",
+    "Name": "DefineDeliveryStops",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [
+      "100000000000000000000000000000019",
+      "100000000000000000000000000000020"
+    ],
+    "Description": "Define Delivery Stops. Record the ordered drops of a route: stop order, PIN code and area. Stop 1 is delivered first."
+  },
+  {
+    "Id": "mvufdr20wjnjtac2ka7",
+    "ParentId": "mvufdr1zv2grdjjahnu",
+    "Name": "StopOrderAtLeastOne",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[RT-04] VALIDATION: Stop Order must be a whole number of at least 1"
+  },
+  {
+    "Id": "mvufdr21xk0mtlxrz9c",
+    "ParentId": "mvufdr1zv2grdjjahnu",
+    "Name": "UniqueStopOrderWithinRoute",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[RT-05] UNIQUE: Stop Order must be unique within its route"
+  },
+  {
+    "Id": "mvufdr22rlj1c35mmtm",
+    "ParentId": "mvufdr1zv2grdjjahnu",
+    "Name": "StopDeliverySequence",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[RT-06] RULE: Stop 1 is delivered first; the last stop is delivered last"
+  },
+  {
+    "Id": "mvufdr23g6fjxr6dwcs",
+    "ParentId": "mvufdr1u417ru93zuyq",
+    "Name": "MaintainDistributors",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [
+      "100000000000000000000000000000019",
+      "100000000000000000000000000000020"
+    ],
+    "Description": "Maintain Distributors. Record the distributors (customers) that deliveries go to: code, name, address and PIN code."
+  },
+  {
+    "Id": "mvufdr241pi2zgaz4hu",
+    "ParentId": "mvufdr23g6fjxr6dwcs",
+    "Name": "UniqueDistributorCode",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[DS-01] UNIQUE: Distributor Code must be unique"
+  },
+  {
+    "Id": "mvufdr25wr00lhmq71d",
+    "ParentId": "mvufdr23g6fjxr6dwcs",
+    "Name": "DistributorFieldsMandatory",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[DS-02] REQUIRED: Code, Name, Address and Pincode are all mandatory and may not be blank"
+  },
+  {
+    "Id": "mvufdr26pgn8p71h3af",
+    "ParentId": "mvufdr23g6fjxr6dwcs",
+    "Name": "DistributorMatchedByPinCode",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[DS-03] RULE: A distributor is served at the delivery stop with the same PIN code (matched by PIN code, not linked directly)"
+  },
+  {
+    "Id": "mvufdr27rqqw4bslube",
+    "ParentId": "mvufdr1u417ru93zuyq",
+    "Name": "CalculateDistributorDistances",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [
+      "100000000000000000000000000000020"
+    ],
+    "Description": "Calculate Distributor Distances. Calculate the road distance (km) and driving time (minutes) from a warehouse PIN code to each distributor, using an external mapping service (Google Maps). INACTIVE in the current application: the screen and request exist, the server-side service is switched off."
+  },
+  {
+    "Id": "mvufdr28yrkxdytjg7d",
+    "ParentId": "mvufdr27rqqw4bslube",
+    "Name": "DistanceRequest",
+    "PayanarssTypeId": "100000000000000000000000000000002",
+    "Attributes": [],
+    "Description": "Distributor Distance Request. Input of a distance calculation: the origin and the distributors to measure."
+  },
+  {
+    "Id": "mvufdr295024z8rz2sd",
+    "ParentId": "mvufdr28yrkxdytjg7d",
+    "Name": "OriginPinCode",
+    "PayanarssTypeId": "100000000000000000000000000000006",
+    "Attributes": [
+      "100000000000000000000000000000012"
+    ],
+    "Description": "Warehouse PIN code the distances are measured from."
+  },
+  {
+    "Id": "mvufdr2adj77xor1hcx",
+    "ParentId": "mvufdr27rqqw4bslube",
+    "Name": "DistributorDistance",
+    "PayanarssTypeId": "100000000000000000000000000000002",
+    "Attributes": [],
+    "Description": "Distributor Distance. Result per distributor of a distance calculation."
+  },
+  {
+    "Id": "mvufdr2bcthe8xuj9cm",
+    "ParentId": "mvufdr2adj77xor1hcx",
+    "Name": "DistributorCode",
+    "PayanarssTypeId": "100000000000000000000000000000006",
+    "Attributes": [
+      "100000000000000000000000000000012"
+    ],
+    "Description": "Distributor measured (refers to Distributors.Code)."
+  },
+  {
+    "Id": "mvufdr2c2eu3h4dornn",
+    "ParentId": "mvufdr2adj77xor1hcx",
+    "Name": "DistributorName",
+    "PayanarssTypeId": "100000000000000000000000000000006",
+    "Attributes": [],
+    "Description": "Name of the distributor."
+  },
+  {
+    "Id": "mvufdr2dfsbqpqt3334",
+    "ParentId": "mvufdr2adj77xor1hcx",
+    "Name": "Pincode",
+    "PayanarssTypeId": "100000000000000000000000000000006",
+    "Attributes": [],
+    "Description": "PIN code of the distributor."
+  },
+  {
+    "Id": "mvufdr2edja70u5m7pi",
+    "ParentId": "mvufdr2adj77xor1hcx",
+    "Name": "DistanceKm",
+    "PayanarssTypeId": "100000000000000000000000000000007",
+    "Attributes": [],
+    "Description": "Road distance from the origin, km."
+  },
+  {
+    "Id": "mvufdr2fy5k9ao4r2qc",
+    "ParentId": "mvufdr2adj77xor1hcx",
+    "Name": "DurationMinutes",
+    "PayanarssTypeId": "100000000000000000000000000000007",
+    "Attributes": [],
+    "Description": "Driving time from the origin, minutes."
+  },
+  {
+    "Id": "mvufdr2gfpqw9hptbjt",
+    "ParentId": "mvufdr2adj77xor1hcx",
+    "Name": "Success",
+    "PayanarssTypeId": "100000000000000000000000000000009",
+    "Attributes": [],
+    "Description": "False when the service could not measure this distributor."
+  },
+  {
+    "Id": "mvufdr2hd3j0uzqh6ph",
+    "ParentId": "mvufdr2adj77xor1hcx",
+    "Name": "Error",
+    "PayanarssTypeId": "100000000000000000000000000000006",
+    "Attributes": [],
+    "Description": "Why the measurement failed."
+  },
+  {
+    "Id": "mvufdr2i1xuiu9stm7f",
+    "ParentId": "mvufdr27rqqw4bslube",
+    "Name": "DistanceCalculationFlow",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[DS-04] WORKFLOW: Origin PIN code + list of distributors -> distance and duration per distributor"
+  },
+  {
+    "Id": "mvufdr2jz1babl8rjci",
+    "ParentId": "mvufdr27rqqw4bslube",
+    "Name": "DistanceRequestRequiredInput",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[DS-05] VALIDATION: An origin PIN code and at least one distributor are required"
+  },
+  {
+    "Id": "mvufdr2k716c053w0sf",
+    "ParentId": "mur37gjqwxhj51a35un",
+    "Name": "ItemManagement",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Item Management. Keep the item master: what each item type IS (size, weight, handling) independent of any delivery."
+  },
+  {
+    "Id": "mvufdr2ljd2dg0jdd4d",
+    "ParentId": "mvufdr2k716c053w0sf",
+    "Name": "MaintainItemMaster",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [
+      "100000000000000000000000000000019",
+      "100000000000000000000000000000020"
+    ],
+    "Description": "Maintain Item Master. Record each item type (e.g. RICE25 Rice bag 25 kg, TV43 LED TV 43\") in the Items master."
+  },
+  {
+    "Id": "mvufdr2m5on6a9qs977",
+    "ParentId": "mvufdr2ljd2dg0jdd4d",
+    "Name": "UniqueItemCode",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[IT-01] UNIQUE: Item Code must be unique"
+  },
+  {
+    "Id": "mvufdr2ngrqhc9mzp9q",
+    "ParentId": "mvufdr2ljd2dg0jdd4d",
+    "Name": "ItemDimensionsPositive",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[IT-02] VALIDATION: Length, Width and Height must be greater than 0; Weight must be 0 or more"
+  },
+  {
+    "Id": "mvufdr2o694dqqdie2q",
+    "ParentId": "mvufdr2k716c053w0sf",
+    "Name": "DefineItemHandling",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Define Item Handling Rules. Record how an item type may be handled when loaded: turning, fragility, keep upright, stacking and crush limits."
+  },
+  {
+    "Id": "mvufdr2pixkenhknppx",
+    "ParentId": "mvufdr2o694dqqdie2q",
+    "Name": "FragileNothingOnTop",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[IT-03] RULE: A fragile item carries nothing on top and stays upright"
+  },
+  {
+    "Id": "mvufdr2q4uqcvlqdaz1",
+    "ParentId": "mvufdr2o694dqqdie2q",
+    "Name": "KeepUprightVerticalTurnOnly",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[IT-04] RULE: A keep-upright item may only be turned around its vertical axis"
+  },
+  {
+    "Id": "mvufdr2rl57jvzie6g8",
+    "ParentId": "mvufdr2o694dqqdie2q",
+    "Name": "MaxStackAtLeastOne",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[IT-05] VALIDATION: Max Stack (highest tier, 1 = floor) must be at least 1; empty = no limit"
+  },
+  {
+    "Id": "mvufdr2sgf9qnx7jfi1",
+    "ParentId": "mvufdr2o694dqqdie2q",
+    "Name": "MaxLoadOnTopNotNegative",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[IT-06] VALIDATION: Max Load On Top (kg) must be 0 or more; empty = unlimited"
+  },
+  {
+    "Id": "mvufdr2tavcwljg8v5f",
+    "ParentId": "mvufdr2o694dqqdie2q",
+    "Name": "ItemVolumeCalculation",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[IT-07] CALCULATE: Item volume = Length x Width x Height"
+  },
+  {
+    "Id": "mvufdr2uq4ar9wlbzmh",
+    "ParentId": "mur37gjqwxhj51a35un",
+    "Name": "InvoiceManagement",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Invoice Management. Capture what has to be delivered: invoice lines saying which packages go to which stop of which route, and how many. Today invoices arrive in an Excel workbook (sheets Lorries, Routes, Invoice) and are not stored."
+  },
+  {
+    "Id": "mvufdr2vvqhicwpmub3",
+    "ParentId": "mvufdr2uq4ar9wlbzmh",
+    "Name": "Invoice",
+    "PayanarssTypeId": "100000000000000000000000000000001",
+    "Attributes": [],
+    "Description": "One invoice line: a package (or identical packages) for one stop of one route."
+  },
+  {
+    "Id": "mvufdr2wr6oyxws7p38",
+    "ParentId": "mvufdr2vvqhicwpmub3",
+    "Name": "PackageId",
+    "PayanarssTypeId": "100000000000000000000000000000006",
+    "Attributes": [
+      "100000000000000000000000000000012"
+    ],
+    "Description": "Package / SKU id of the line. With Quantity > 1 the packages become <Id>-1, <Id>-2 ..."
+  },
+  {
+    "Id": "mvufdr2xcpxpo9fry8t",
+    "ParentId": "mvufdr2vvqhicwpmub3",
+    "Name": "RouteId",
+    "PayanarssTypeId": "100000000000000000000000000000006",
+    "Attributes": [
+      "100000000000000000000000000000012"
+    ],
+    "Description": "Route the line is delivered on (refers to Routes)."
+  },
+  {
+    "Id": "mvufdr2y9sdwgwm03gx",
+    "ParentId": "mvufdr2vvqhicwpmub3",
+    "Name": "StopOrder",
+    "PayanarssTypeId": "100000000000000000000000000000007",
+    "Attributes": [
+      "100000000000000000000000000000012"
+    ],
+    "Description": "Stop of that route it is delivered to."
+  },
+  {
+    "Id": "mvufdr2z7yypfh9tsf1",
+    "ParentId": "mvufdr2vvqhicwpmub3",
+    "Name": "Length",
+    "PayanarssTypeId": "100000000000000000000000000000007",
+    "Attributes": [
+      "100000000000000000000000000000012"
+    ],
+    "Description": "Length of ONE package, cm."
+  },
+  {
+    "Id": "mvufdr30dag87p57xec",
+    "ParentId": "mvufdr2vvqhicwpmub3",
+    "Name": "Width",
+    "PayanarssTypeId": "100000000000000000000000000000007",
+    "Attributes": [
+      "100000000000000000000000000000012"
+    ],
+    "Description": "Width of ONE package, cm."
+  },
+  {
+    "Id": "mvufdr313k1vtryxgx1",
+    "ParentId": "mvufdr2vvqhicwpmub3",
+    "Name": "Height",
+    "PayanarssTypeId": "100000000000000000000000000000007",
+    "Attributes": [
+      "100000000000000000000000000000012"
+    ],
+    "Description": "Height of ONE package, cm."
+  },
+  {
+    "Id": "mvufdr32mh474ye72wj",
+    "ParentId": "mvufdr2vvqhicwpmub3",
+    "Name": "Weight",
+    "PayanarssTypeId": "100000000000000000000000000000007",
+    "Attributes": [
+      "100000000000000000000000000000012"
+    ],
+    "Description": "Weight of ONE package, kg."
+  },
+  {
+    "Id": "mvufdr33rmswwv5u054",
+    "ParentId": "mvufdr2vvqhicwpmub3",
+    "Name": "Quantity",
+    "PayanarssTypeId": "100000000000000000000000000000007",
+    "Attributes": [],
+    "Description": "Number of identical packages; empty = 1."
+  },
+  {
+    "Id": "mvufdr34kpp31qap7k1",
+    "ParentId": "mvufdr2vvqhicwpmub3",
+    "Name": "CanRotate",
+    "PayanarssTypeId": "100000000000000000000000000000009",
+    "Attributes": [],
+    "Description": "May the package be turned; empty = yes."
+  },
+  {
+    "Id": "mvufdr35j61ahnsyeic",
+    "ParentId": "mvufdr2vvqhicwpmub3",
+    "Name": "Fragile",
+    "PayanarssTypeId": "100000000000000000000000000000009",
+    "Attributes": [],
+    "Description": "Nothing may be placed on top; empty = no."
+  },
+  {
+    "Id": "mvufdr36v10qwczsarz",
+    "ParentId": "mvufdr2vvqhicwpmub3",
+    "Name": "KeepUpright",
+    "PayanarssTypeId": "100000000000000000000000000000009",
+    "Attributes": [],
+    "Description": "Only turned around the vertical axis; empty = no."
+  },
+  {
+    "Id": "mvufdr37elfx1esl7dv",
+    "ParentId": "mvufdr2vvqhicwpmub3",
+    "Name": "MaxStack",
+    "PayanarssTypeId": "100000000000000000000000000000007",
+    "Attributes": [],
+    "Description": "Highest tier it may sit on (1 = floor); empty = no limit."
+  },
+  {
+    "Id": "mvufdr38bsyqsevbqay",
+    "ParentId": "mvufdr2vvqhicwpmub3",
+    "Name": "MaxLoadOnTop",
+    "PayanarssTypeId": "100000000000000000000000000000007",
+    "Attributes": [],
+    "Description": "Maximum weight resting on it, kg; empty = unlimited."
+  },
+  {
+    "Id": "mvufdr3926xwilxg82o",
+    "ParentId": "mvufdr2uq4ar9wlbzmh",
+    "Name": "DownloadInvoiceTemplate",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [
+      "100000000000000000000000000000020"
+    ],
+    "Description": "Download Invoice Template. Provide a ready-to-fill workbook with the sheets Lorries, Routes, Invoice and Instructions, filled with sample data so it can be uploaded as it is."
+  },
+  {
+    "Id": "mvufdr3ao6vgeodey3f",
+    "ParentId": "mvufdr3926xwilxg82o",
+    "Name": "TemplateContents",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[IN-01] WORKFLOW: The template contains the sample lorries, routes and invoice lines plus an Instructions sheet explaining every column"
+  },
+  {
+    "Id": "mvufdr3bchrvem189dp",
+    "ParentId": "mvufdr2uq4ar9wlbzmh",
+    "Name": "ImportInvoiceWorkbook",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [
+      "100000000000000000000000000000019",
+      "100000000000000000000000000000020"
+    ],
+    "Description": "Import Invoice Workbook. Read an uploaded workbook, check every sheet, row and column, and accept it only when it has no problems."
+  },
+  {
+    "Id": "mvufdr3co6j86s9s5p3",
+    "ParentId": "mvufdr3bchrvem189dp",
+    "Name": "RequiredSheets",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[IN-02] VALIDATION: The workbook needs the sheets Lorries, Routes and Invoice (an older sheet named Items is accepted as Invoice)"
+  },
+  {
+    "Id": "mvufdr3dro3hakmgmzx",
+    "ParentId": "mvufdr3bchrvem189dp",
+    "Name": "ProblemReporting",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[IN-03] VALIDATION: Every problem is reported with its sheet, row and column; the first 50 are listed, then the number of the rest"
+  },
+  {
+    "Id": "mvufdr3elt7zqfyccg0",
+    "ParentId": "mvufdr3bchrvem189dp",
+    "Name": "RouteAndStopMustExist",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[IN-04] VALIDATION: Route Id and Stop Order of an invoice line must exist on the Routes sheet"
+  },
+  {
+    "Id": "mvufdr3f37f2x7g9cob",
+    "ParentId": "mvufdr3bchrvem189dp",
+    "Name": "QuantityRange",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[IN-05] VALIDATION: Quantity must be a whole number from 1 to 10000; empty = 1"
+  },
+  {
+    "Id": "mvufdr3gdemkqric97p",
+    "ParentId": "mvufdr3bchrvem189dp",
+    "Name": "QuantityExpansion",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[IN-06] RULE: An invoice line with Quantity n becomes n packages <Id>-1 ... <Id>-n"
+  },
+  {
+    "Id": "mvufdr3hu6r85m8u2o8",
+    "ParentId": "mvufdr3bchrvem189dp",
+    "Name": "UniquePackageIdWithinRoute",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[IN-07] UNIQUE: Package ids must be unique within a route after Quantity is expanded"
+  },
+  {
+    "Id": "mvufdr3im1iuivvvykp",
+    "ParentId": "mvufdr3bchrvem189dp",
+    "Name": "RejectErrorAndFormulaCells",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[IN-08] VALIDATION: Cells with an Excel error or a formula without a saved result are rejected"
+  },
+  {
+    "Id": "mvufdr3j3awvyil7od3",
+    "ParentId": "mvufdr3bchrvem189dp",
+    "Name": "WorkbookFileLimits",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[IN-09] VALIDATION: Only .xlsx workbooks up to 10 MB are accepted"
+  },
+  {
+    "Id": "mvufdr3k2b7whe4d5v7",
+    "ParentId": "mvufdr2uq4ar9wlbzmh",
+    "Name": "ReviewWorkbook",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [
+      "100000000000000000000000000000020"
+    ],
+    "Description": "Review Workbook. Show the imported workbook sheet by sheet (Lorries, Routes, Invoice, Instructions) exactly as entered, with the Excel row numbers used in the problem messages."
+  },
+  {
+    "Id": "mvufdr3l9wci9m5z6tv",
+    "ParentId": "mvufdr3k2b7whe4d5v7",
+    "Name": "RowsShownAsEntered",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[IN-10] RULE: Rows are shown as entered (Quantity not yet expanded) with their Excel row numbers"
+  },
+  {
+    "Id": "mvufdr3mlut3hsxdcv1",
+    "ParentId": "mur37gjqwxhj51a35un",
+    "Name": "LoadPlanning",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [
+      "100000000000000000000000000000019"
+    ],
+    "Description": "Load Planning. Decide which lorries each route needs at the lowest total cost, and where every package goes inside each lorry so that it can be loaded safely and unloaded stop by stop."
+  },
+  {
+    "Id": "mvufdr3ndlb2fznb4gv",
+    "ParentId": "mvufdr3mlut3hsxdcv1",
+    "Name": "ConfigureLoadingRules",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Configure Loading Rules. Set the physical loading policy: rotation, stacking, support, delivery order and centre-of-gravity limits."
+  },
+  {
+    "Id": "mvufdr3o7m4bu5a5vrq",
+    "ParentId": "mvufdr3ndlb2fznb4gv",
+    "Name": "LoadingRuleDefaults",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[LP-01] RULE: Defaults - rotation allowed, no stack limit, at least 75 % of a package base supported, delivery order enforced, strict stop order"
+  },
+  {
+    "Id": "mvufdr3pc3433c69ue5",
+    "ParentId": "mvufdr3ndlb2fznb4gv",
+    "Name": "CentreOfGravityLimits",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[LP-02] RULE: Centre-of-gravity limits (placeholders until axle data is available): sideways within 10 % of width, along the lorry at most 60 % of length from the front, height at most 60 % of cargo height"
+  },
+  {
+    "Id": "mvufdr3qf3lwvkw9atw",
+    "ParentId": "mvufdr3mlut3hsxdcv1",
+    "Name": "ConfigurePlanningOptions",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Configure Fleet Planning Options. Set how hard the planner searches and how it breaks ties between equally cheap plans."
+  },
+  {
+    "Id": "mvufdr3rvfsx31d9u8r",
+    "ParentId": "mvufdr3qf3lwvkw9atw",
+    "Name": "PlanningObjective",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[LP-03] RULE: Objective - lowest total trip cost first; on equal cost prefer most lorries (or fewest, if chosen)"
+  },
+  {
+    "Id": "mvufdr3szlsz3n70u0n",
+    "ParentId": "mvufdr3qf3lwvkw9atw",
+    "Name": "SearchEffortLimits",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[LP-04] RULE: Search effort is bounded by attempts per lorry, time per lorry, combinations and time per route"
+  },
+  {
+    "Id": "mvufdr3tq1l1aibdiud",
+    "ParentId": "mvufdr3mlut3hsxdcv1",
+    "Name": "PreparePackages",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Prepare Packages. Turn invoice lines into packages ready to plan and set aside those that can never be loaded."
+  },
+  {
+    "Id": "mvufdr3uchmi3t5sy8m",
+    "ParentId": "mvufdr3tq1l1aibdiud",
+    "Name": "InvalidPackageNotLoaded",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[LP-05] VALIDATION: A package with a dimension not above 0 or a negative weight is not loaded (\"Invalid dimensions or weight\")"
+  },
+  {
+    "Id": "mvufdr3vosh1bv5kb9v",
+    "ParentId": "mvufdr3tq1l1aibdiud",
+    "Name": "RotationPermission",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[LP-06] RULE: A package may be turned only when the item allows it AND the loading rules allow rotation"
+  },
+  {
+    "Id": "mvufdr3wn3y7c0yhhpl",
+    "ParentId": "mvufdr3tq1l1aibdiud",
+    "Name": "UnassignablePackage",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[LP-07] VALIDATION: A package that fits no lorry type in any permitted orientation, or is heavier than every lorry, is unassignable"
+  },
+  {
+    "Id": "mvufdr3xfrvsh8an44g",
+    "ParentId": "mvufdr3mlut3hsxdcv1",
+    "Name": "SelectLorries",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Select Lorries for Routes. Choose the lorry combination for each route with the lowest total trip cost that really carries every package."
+  },
+  {
+    "Id": "mvufdr3yv9t1jey4w30",
+    "ParentId": "mvufdr3xfrvsh8an44g",
+    "Name": "LowerBoundLorries",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[LP-08] CALCULATE: Lower bound of lorries = the larger of total volume / largest lorry volume and total weight / largest payload, rounded up"
+  },
+  {
+    "Id": "mvufdr3zkyvjn3ce16z",
+    "ParentId": "mvufdr3xfrvsh8an44g",
+    "Name": "CheapestFeasibleCombination",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[LP-09] WORKFLOW: Build a quick plan first (cost ceiling and fallback), then test cheaper lorry combinations, cheapest first; the first one that really packs everything wins"
+  },
+  {
+    "Id": "mvufdr40wg26myj3cqd",
+    "ParentId": "mvufdr3xfrvsh8an44g",
+    "Name": "SharedFleetInRouteOrder",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[LP-10] RULE: Routes share the fleet in the order given; a route can only use lorries still available"
+  },
+  {
+    "Id": "mvufdr41noscn1wwpfo",
+    "ParentId": "mvufdr3xfrvsh8an44g",
+    "Name": "UnservedPackagesAlert",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[ALERT-01] ALERT: Packages the available fleet cannot carry are reported as unserved with the reason, and cost optimisation is skipped"
+  },
+  {
+    "Id": "mvufdr42gku1o7gwatj",
+    "ParentId": "mvufdr3mlut3hsxdcv1",
+    "Name": "CalculatePlacement",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Calculate Package Placement. Place every package in a lorry (3D position and orientation) so that the load is physically sound and as tight as possible."
+  },
+  {
+    "Id": "mvufdr43i5bplpwja23",
+    "ParentId": "mvufdr42gku1o7gwatj",
+    "Name": "NoOverlapInsideCargoSpace",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[LP-11] VALIDATION: Packages may not overlap and must fit inside the cargo space"
+  },
+  {
+    "Id": "mvufdr445d8vr9qfpm6",
+    "ParentId": "mvufdr42gku1o7gwatj",
+    "Name": "MinimumBaseSupport",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[LP-12] VALIDATION: Above the floor at least the minimum support share of a package base must rest on packages below"
+  },
+  {
+    "Id": "mvufdr45paopzj1b24r",
+    "ParentId": "mvufdr42gku1o7gwatj",
+    "Name": "CrushLimit",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[LP-13] VALIDATION: Every package underneath (and below it) must accept its share of the weight within its Max Load On Top; fragile packages carry nothing"
+  },
+  {
+    "Id": "mvufdr46rc2wj8omxr1",
+    "ParentId": "mvufdr42gku1o7gwatj",
+    "Name": "StackTierLimit",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[LP-14] VALIDATION: A package may not sit above the stack limit or its own Max Stack tier"
+  },
+  {
+    "Id": "mvufdr47xulldvvqtx4",
+    "ParentId": "mvufdr42gku1o7gwatj",
+    "Name": "PayloadLimit",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[LP-15] VALIDATION: Total loaded weight may not exceed the lorry payload"
+  },
+  {
+    "Id": "mvufdr48lx6x123aqv8",
+    "ParentId": "mvufdr42gku1o7gwatj",
+    "Name": "BestPackingStrategy",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[LP-16] RULE: Many packing strategies are tried (orderings, wall-first or floor-first, balance); the best loaded volume with the least centre-of-gravity violation wins"
+  },
+  {
+    "Id": "mvufdr493nwwj6b1d22",
+    "ParentId": "mvufdr3mlut3hsxdcv1",
+    "Name": "EnforceDeliveryOrder",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Enforce Delivery Order. Arrange each lorry so that every stop can be unloaded at the rear door without moving packages for later stops."
+  },
+  {
+    "Id": "mvufdr4al1pua2jnsy7",
+    "ParentId": "mvufdr493nwwj6b1d22",
+    "Name": "StrictStopSections",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[LP-17] RULE: Strict stop order - every stop gets its own slice of the lorry: the last stop at the front wall, stop 1 nearest the rear door"
+  },
+  {
+    "Id": "mvufdr4byjpb9xg3f5e",
+    "ParentId": "mvufdr493nwwj6b1d22",
+    "Name": "RelaxedStopOrder",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[LP-18] RULE: Relaxed stop order - stops may share space, but a package for a later stop never blocks a package for an earlier stop"
+  },
+  {
+    "Id": "mvufdr4cfgjit5ifenv",
+    "ParentId": "mvufdr3mlut3hsxdcv1",
+    "Name": "CalculateCentreOfGravity",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Calculate Centre of Gravity. Calculate where the weight of each load sits and check it against the limits."
+  },
+  {
+    "Id": "mvufdr4d9nfihoya1lz",
+    "ParentId": "mvufdr4cfgjit5ifenv",
+    "Name": "CentreOfGravityCalculation",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[LP-19] CALCULATE: Centre of gravity = weight-weighted average of the package centres"
+  },
+  {
+    "Id": "mvufdr4em80d2mfp5lo",
+    "ParentId": "mvufdr4cfgjit5ifenv",
+    "Name": "CentreOfGravityOutOfLimits",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[ALERT-02] ALERT: A load whose centre of gravity is outside the limits is flagged for review"
+  },
+  {
+    "Id": "mvufdr4fv4ey16j2z4k",
+    "ParentId": "mvufdr3mlut3hsxdcv1",
+    "Name": "CalculateLoadingEfficiency",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Calculate Loading Efficiency. Calculate how well each lorry is used: share of cargo volume and of payload."
+  },
+  {
+    "Id": "mvufdr4gy2moxosky6d",
+    "ParentId": "mvufdr4fv4ey16j2z4k",
+    "Name": "UtilisationCalculation",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[LP-20] CALCULATE: Volume utilisation % = loaded volume / cargo volume x 100; weight utilisation % = loaded weight / payload x 100"
+  },
+  {
+    "Id": "mvufdr4hysz5h6b456q",
+    "ParentId": "mvufdr3mlut3hsxdcv1",
+    "Name": "GenerateLoadingSequence",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Generate Loading Sequence. Tell the loaders in which order to load the packages."
+  },
+  {
+    "Id": "mvufdr4if0gexwfi7ts",
+    "ParentId": "mvufdr4hysz5h6b456q",
+    "Name": "LoadingOrder",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[LP-21] RULE: Load stop by stop - the highest stop number first - and within a stop front to back, bottom to top, left to right"
+  },
+  {
+    "Id": "mvufdr4jhd0wyl7jb0r",
+    "ParentId": "mvufdr4hysz5h6b456q",
+    "Name": "LoadBeforeBlockingPackages",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[LP-22] RULE: A package is loaded before every package that would block it"
+  },
+  {
+    "Id": "mvufdr4kisu356fp0df",
+    "ParentId": "mvufdr4hysz5h6b456q",
+    "Name": "ApproximateSequence",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[ALERT-03] ALERT: If no valid sequence exists, the sequence is marked approximate"
+  },
+  {
+    "Id": "mvufdr4lsx6q72k71kj",
+    "ParentId": "mvufdr3mlut3hsxdcv1",
+    "Name": "GenerateLoadPlan",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [
+      "100000000000000000000000000000019",
+      "100000000000000000000000000000020"
+    ],
+    "Description": "Generate Load Plan. Produce the plan: lorries per route with their cost, the arrangement and sequence of every lorry, and every package that could not be loaded."
+  },
+  {
+    "Id": "mvufdr4mqa7emb280vy",
+    "ParentId": "mvufdr4lsx6q72k71kj",
+    "Name": "LoadPlanContents",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[LP-23] RULE: The plan lists per route its trips (lorry type, cost, packages, utilisation, centre of gravity) and per trip every package position and load order"
+  },
+  {
+    "Id": "mvufdr4n0eyxvp8n11v",
+    "ParentId": "mvufdr4lsx6q72k71kj",
+    "Name": "RemainingFleetReport",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[LP-24] RULE: The fleet still available after planning is reported per lorry type"
+  },
+  {
+    "Id": "mvufdr4o871ohdr5nu6",
+    "ParentId": "mvufdr3mlut3hsxdcv1",
+    "Name": "LoadPlanningCalculations",
+    "PayanarssTypeId": "100000000000000000050000000000005",
+    "Attributes": [],
+    "Description": "Load Planning Calculations. Business formulas of load planning, written over the fields of Lorries, Routes, Items, LoadingResult and CenterOfGravity."
+  },
+  {
+    "Id": "mvufdr4pl81dg4cqjfj",
+    "ParentId": "mvufdr4o871ohdr5nu6",
+    "Name": "100",
+    "PayanarssTypeId": "111000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Percent factor."
+  },
+  {
+    "Id": "mvufdr4q9fnl1474jqh",
+    "ParentId": "mvufdr4o871ohdr5nu6",
+    "Name": "2",
+    "PayanarssTypeId": "111000000000000000000000000000000",
+    "Attributes": [],
+    "Description": "Half of a width."
+  },
+  {
+    "Id": "mvufdr4rv2notnxoyss",
+    "ParentId": "mvufdr4o871ohdr5nu6",
+    "Name": "TripCost",
+    "PayanarssTypeId": "1000000000000000000410000000000000",
+    "Attributes": [],
+    "Description": "Cost of one trip of a lorry type on a route = Cost Per Trip + Cost Per Km x Distance (km). [FL-08]"
+  },
+  {
+    "Id": "mvufdr4rv2notnxoyss01",
+    "ParentId": "mvufdr4rv2notnxoyss",
+    "PayanarssTypeId": "100000000000000000030000000000002",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4rv2notnxoyss02",
+    "ParentId": "mvufdr4rv2notnxoyss01",
+    "PayanarssTypeId": "mv0tlpg2ycyxl1lpjog",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4rv2notnxoyss03",
+    "ParentId": "mvufdr4rv2notnxoyss01",
+    "PayanarssTypeId": "100000000000000000030000000000004",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4rv2notnxoyss04",
+    "ParentId": "mvufdr4rv2notnxoyss03",
+    "PayanarssTypeId": "mv0tlpkzmpn8jprre8q",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4rv2notnxoyss05",
+    "ParentId": "mvufdr4rv2notnxoyss03",
+    "PayanarssTypeId": "mv0tlpw9a4m7d5z2k6f",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4sv4zmd66hl5r",
+    "ParentId": "mvufdr4o871ohdr5nu6",
+    "Name": "LorryCargoVolume",
+    "PayanarssTypeId": "1000000000000000000410000000000000",
+    "Attributes": [],
+    "Description": "Cargo volume of a lorry type = Length x Width x Height. [FL-05]"
+  },
+  {
+    "Id": "mvufdr4sv4zmd66hl5r01",
+    "ParentId": "mvufdr4sv4zmd66hl5r",
+    "PayanarssTypeId": "100000000000000000030000000000004",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4sv4zmd66hl5r02",
+    "ParentId": "mvufdr4sv4zmd66hl5r01",
+    "PayanarssTypeId": "100000000000000000030000000000004",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4sv4zmd66hl5r03",
+    "ParentId": "mvufdr4sv4zmd66hl5r02",
+    "PayanarssTypeId": "mv0tlpq4h8z1c6w3n9t",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4sv4zmd66hl5r04",
+    "ParentId": "mvufdr4sv4zmd66hl5r02",
+    "PayanarssTypeId": "mv0tlpr7j2d5v9b1k4x",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4sv4zmd66hl5r05",
+    "ParentId": "mvufdr4sv4zmd66hl5r01",
+    "PayanarssTypeId": "mv0tlps3m6f8y2p0e7u",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4t7vvl5h9tpny",
+    "ParentId": "mvufdr4o871ohdr5nu6",
+    "Name": "ItemVolume",
+    "PayanarssTypeId": "1000000000000000000410000000000000",
+    "Attributes": [],
+    "Description": "Volume of one item = Length x Width x Height. [IT-07]"
+  },
+  {
+    "Id": "mvufdr4t7vvl5h9tpny01",
+    "ParentId": "mvufdr4t7vvl5h9tpny",
+    "PayanarssTypeId": "100000000000000000030000000000004",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4t7vvl5h9tpny02",
+    "ParentId": "mvufdr4t7vvl5h9tpny01",
+    "PayanarssTypeId": "100000000000000000030000000000004",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4t7vvl5h9tpny03",
+    "ParentId": "mvufdr4t7vvl5h9tpny02",
+    "PayanarssTypeId": "mvdykqc4p9v1k6z8e2t",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4t7vvl5h9tpny04",
+    "ParentId": "mvufdr4t7vvl5h9tpny02",
+    "PayanarssTypeId": "mvdykqd7m3w5c2h9r4q",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4t7vvl5h9tpny05",
+    "ParentId": "mvufdr4t7vvl5h9tpny01",
+    "PayanarssTypeId": "mvdykqe1s6b8j4k7n3x",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4u9fm073d1f1l",
+    "ParentId": "mvufdr4o871ohdr5nu6",
+    "Name": "VolumeUtilizationPercent",
+    "PayanarssTypeId": "1000000000000000000410000000000000",
+    "Attributes": [],
+    "Description": "Share of the cargo volume used = (cargo volume - unused volume) / cargo volume x 100. [LP-20]"
+  },
+  {
+    "Id": "mvufdr4u9fm073d1f1l01",
+    "ParentId": "mvufdr4u9fm073d1f1l",
+    "PayanarssTypeId": "100000000000000000030000000000004",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4u9fm073d1f1l02",
+    "ParentId": "mvufdr4u9fm073d1f1l01",
+    "PayanarssTypeId": "100000000000000000030000000000005",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4u9fm073d1f1l03",
+    "ParentId": "mvufdr4u9fm073d1f1l02",
+    "PayanarssTypeId": "100000000000000000030000000000003",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4u9fm073d1f1l04",
+    "ParentId": "mvufdr4u9fm073d1f1l03",
+    "PayanarssTypeId": "100000000000000000030000000000004",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4u9fm073d1f1l05",
+    "ParentId": "mvufdr4u9fm073d1f1l04",
+    "PayanarssTypeId": "100000000000000000030000000000004",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4u9fm073d1f1l06",
+    "ParentId": "mvufdr4u9fm073d1f1l05",
+    "PayanarssTypeId": "mv0tlpq4h8z1c6w3n9t",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4u9fm073d1f1l07",
+    "ParentId": "mvufdr4u9fm073d1f1l05",
+    "PayanarssTypeId": "mv0tlpr7j2d5v9b1k4x",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4u9fm073d1f1l08",
+    "ParentId": "mvufdr4u9fm073d1f1l04",
+    "PayanarssTypeId": "mv0tlps3m6f8y2p0e7u",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4u9fm073d1f1l09",
+    "ParentId": "mvufdr4u9fm073d1f1l03",
+    "PayanarssTypeId": "mv0tlpytlkk3rb0pfl6",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4u9fm073d1f1l10",
+    "ParentId": "mvufdr4u9fm073d1f1l02",
+    "PayanarssTypeId": "100000000000000000030000000000004",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4u9fm073d1f1l11",
+    "ParentId": "mvufdr4u9fm073d1f1l10",
+    "PayanarssTypeId": "100000000000000000030000000000004",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4u9fm073d1f1l12",
+    "ParentId": "mvufdr4u9fm073d1f1l11",
+    "PayanarssTypeId": "mv0tlpq4h8z1c6w3n9t",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4u9fm073d1f1l13",
+    "ParentId": "mvufdr4u9fm073d1f1l11",
+    "PayanarssTypeId": "mv0tlpr7j2d5v9b1k4x",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4u9fm073d1f1l14",
+    "ParentId": "mvufdr4u9fm073d1f1l10",
+    "PayanarssTypeId": "mv0tlps3m6f8y2p0e7u",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4u9fm073d1f1l15",
+    "ParentId": "mvufdr4u9fm073d1f1l01",
+    "PayanarssTypeId": "mvufdr4pl81dg4cqjfj",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4v7ezyf47f21f",
+    "ParentId": "mvufdr4o871ohdr5nu6",
+    "Name": "WeightUtilizationPercent",
+    "PayanarssTypeId": "1000000000000000000410000000000000",
+    "Attributes": [],
+    "Description": "Share of the payload used = loaded weight / payload x 100. [LP-20]"
+  },
+  {
+    "Id": "mvufdr4v7ezyf47f21f01",
+    "ParentId": "mvufdr4v7ezyf47f21f",
+    "PayanarssTypeId": "100000000000000000030000000000004",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4v7ezyf47f21f02",
+    "ParentId": "mvufdr4v7ezyf47f21f01",
+    "PayanarssTypeId": "100000000000000000030000000000005",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4v7ezyf47f21f03",
+    "ParentId": "mvufdr4v7ezyf47f21f02",
+    "PayanarssTypeId": "mv0tlpya3ven7suuv9c",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4v7ezyf47f21f04",
+    "ParentId": "mvufdr4v7ezyf47f21f02",
+    "PayanarssTypeId": "mv0tlpt9c1g4a7l5h2z",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4v7ezyf47f21f05",
+    "ParentId": "mvufdr4v7ezyf47f21f01",
+    "PayanarssTypeId": "mvufdr4pl81dg4cqjfj",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4wyz74zo2jq9d",
+    "ParentId": "mvufdr4o871ohdr5nu6",
+    "Name": "LateralOffsetPercent",
+    "PayanarssTypeId": "1000000000000000000410000000000000",
+    "Attributes": [],
+    "Description": "Sideways centre-of-gravity offset = (CoG Y - Width / 2) / Width x 100; negative = left of the centre line. [LP-19]"
+  },
+  {
+    "Id": "mvufdr4wyz74zo2jq9d01",
+    "ParentId": "mvufdr4wyz74zo2jq9d",
+    "PayanarssTypeId": "100000000000000000030000000000004",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4wyz74zo2jq9d02",
+    "ParentId": "mvufdr4wyz74zo2jq9d01",
+    "PayanarssTypeId": "100000000000000000030000000000005",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4wyz74zo2jq9d03",
+    "ParentId": "mvufdr4wyz74zo2jq9d02",
+    "PayanarssTypeId": "100000000000000000030000000000003",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4wyz74zo2jq9d04",
+    "ParentId": "mvufdr4wyz74zo2jq9d03",
+    "PayanarssTypeId": "mv0tlpzc11os4evgjj3",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4wyz74zo2jq9d05",
+    "ParentId": "mvufdr4wyz74zo2jq9d03",
+    "PayanarssTypeId": "100000000000000000030000000000005",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4wyz74zo2jq9d06",
+    "ParentId": "mvufdr4wyz74zo2jq9d05",
+    "PayanarssTypeId": "mv0tlpr7j2d5v9b1k4x",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4wyz74zo2jq9d07",
+    "ParentId": "mvufdr4wyz74zo2jq9d05",
+    "PayanarssTypeId": "mvufdr4q9fnl1474jqh",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4wyz74zo2jq9d08",
+    "ParentId": "mvufdr4wyz74zo2jq9d02",
+    "PayanarssTypeId": "mv0tlpr7j2d5v9b1k4x",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4wyz74zo2jq9d09",
+    "ParentId": "mvufdr4wyz74zo2jq9d01",
+    "PayanarssTypeId": "mvufdr4pl81dg4cqjfj",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4x9iu0xnkbnzg",
+    "ParentId": "mvufdr4o871ohdr5nu6",
+    "Name": "LongitudinalPercent",
+    "PayanarssTypeId": "1000000000000000000410000000000000",
+    "Attributes": [],
+    "Description": "Centre of gravity along the lorry = CoG X / Length x 100, from the front wall. [LP-19]"
+  },
+  {
+    "Id": "mvufdr4x9iu0xnkbnzg01",
+    "ParentId": "mvufdr4x9iu0xnkbnzg",
+    "PayanarssTypeId": "100000000000000000030000000000004",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4x9iu0xnkbnzg02",
+    "ParentId": "mvufdr4x9iu0xnkbnzg01",
+    "PayanarssTypeId": "100000000000000000030000000000005",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4x9iu0xnkbnzg03",
+    "ParentId": "mvufdr4x9iu0xnkbnzg02",
+    "PayanarssTypeId": "mv0tlpi1as61x476fjo",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4x9iu0xnkbnzg04",
+    "ParentId": "mvufdr4x9iu0xnkbnzg02",
+    "PayanarssTypeId": "mv0tlpq4h8z1c6w3n9t",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4x9iu0xnkbnzg05",
+    "ParentId": "mvufdr4x9iu0xnkbnzg01",
+    "PayanarssTypeId": "mvufdr4pl81dg4cqjfj",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4ylm63v48ulyp",
+    "ParentId": "mvufdr4o871ohdr5nu6",
+    "Name": "HeightPercent",
+    "PayanarssTypeId": "1000000000000000000410000000000000",
+    "Attributes": [],
+    "Description": "Centre-of-gravity height = CoG Z / Height x 100. [LP-19]"
+  },
+  {
+    "Id": "mvufdr4ylm63v48ulyp01",
+    "ParentId": "mvufdr4ylm63v48ulyp",
+    "PayanarssTypeId": "100000000000000000030000000000004",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4ylm63v48ulyp02",
+    "ParentId": "mvufdr4ylm63v48ulyp01",
+    "PayanarssTypeId": "100000000000000000030000000000005",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4ylm63v48ulyp03",
+    "ParentId": "mvufdr4ylm63v48ulyp02",
+    "PayanarssTypeId": "mv0tlpfics1fkao884w",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4ylm63v48ulyp04",
+    "ParentId": "mvufdr4ylm63v48ulyp02",
+    "PayanarssTypeId": "mv0tlps3m6f8y2p0e7u",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4ylm63v48ulyp05",
+    "ParentId": "mvufdr4ylm63v48ulyp01",
+    "PayanarssTypeId": "mvufdr4pl81dg4cqjfj",
+    "Attributes": [],
+    "Description": null
+  },
+  {
+    "Id": "mvufdr4zyuvgbqhxtrm",
+    "ParentId": "mur37gjqwxhj51a35un",
+    "Name": "LoadPlanReview",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [
+      "100000000000000000000000000000020"
+    ],
+    "Description": "Load Plan Review. Let planners and loaders inspect the plan before dispatch."
+  },
+  {
+    "Id": "mvufdr50tbxlw91hg7q",
+    "ParentId": "mvufdr4zyuvgbqhxtrm",
+    "Name": "ViewPlanSummary",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [
+      "100000000000000000000000000000020"
+    ],
+    "Description": "View Plan Summary. Total lorries and total cost, lorries per route and per type, and the objective used."
+  },
+  {
+    "Id": "mvufdr51ssz9a4nz8pg",
+    "ParentId": "mvufdr4zyuvgbqhxtrm",
+    "Name": "ViewLoadingArrangement",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [
+      "100000000000000000000000000000020"
+    ],
+    "Description": "View Lorry Loading Arrangement. Show one lorry in 3D with its packages coloured by delivery stop; replay the loading sequence step by step; see through the load; inspect a package (id, stop, size, weight, tier)."
+  },
+  {
+    "Id": "mvufdr52d1trx8kq520",
+    "ParentId": "mvufdr51ssz9a4nz8pg",
+    "Name": "ColourByStop",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[RV-01] RULE: Packages are coloured by delivery stop and listed in loading order with their stop"
+  },
+  {
+    "Id": "mvufdr535nym6pr8fvf",
+    "ParentId": "mvufdr4zyuvgbqhxtrm",
+    "Name": "ReviewExceptions",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [
+      "100000000000000000000000000000020"
+    ],
+    "Description": "Review Unloaded Packages and Warnings. List every package that could not be planned and why, and every warning (centre of gravity, search limits, approximate sequence)."
+  },
+  {
+    "Id": "mvufdr549m9ofqsiti3",
+    "ParentId": "mvufdr535nym6pr8fvf",
+    "Name": "UnplannedPackagesBySource",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[RV-02] RULE: Unassignable (no lorry can ever carry it), unserved (fleet exhausted) and unloaded (did not fit) packages are reported separately, each with its reason"
+  },
+  {
+    "Id": "mvufdr55dfgbz26hnum",
+    "ParentId": "mur37gjqwxhj51a35un",
+    "Name": "MasterDataAdmin",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [],
+    "Description": "Master Data Administration. Look after the stored master data."
+  },
+  {
+    "Id": "mvufdr56hnu51iqbdd4",
+    "ParentId": "mvufdr55dfgbz26hnum",
+    "Name": "CheckMasterDataStore",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [
+      "100000000000000000000000000000020"
+    ],
+    "Description": "Check Master Data Store. Report whether the master data store is reachable, its version, and how many records each master holds."
+  },
+  {
+    "Id": "mvufdr571m4i6dukkye",
+    "ParentId": "mvufdr55dfgbz26hnum",
+    "Name": "LoadSampleMasterData",
+    "PayanarssTypeId": "10000000000000000000000000000000111",
+    "Attributes": [
+      "100000000000000000000000000000019"
+    ],
+    "Description": "Load Sample Master Data. Fill EMPTY masters (lorry types, routes with stops, item types, distributors) with the sample data; masters that already hold data are not touched."
+  },
+  {
+    "Id": "mvufdr58bzwunwwyrbt",
+    "ParentId": "mvufdr571m4i6dukkye",
+    "Name": "SampleDataOnlyIntoEmptyMasters",
+    "PayanarssTypeId": "100000000000000000000000000000005",
+    "Attributes": [],
+    "Description": "[AD-01] RULE: Sample data is only added to masters that are empty, so real data is never overwritten"
   }
 ]
